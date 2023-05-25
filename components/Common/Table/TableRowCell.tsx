@@ -3,7 +3,7 @@ import { IColumnType } from './Table';
 interface Props<T> {
   item: T;
   column: IColumnType<T>;
-  onDelete?: (item: number | string) => void;
+  onDelete: (item: number | string) => void;
 }
 
 export function TableRowCell<T>({ item, column, onDelete }: Props<T>) {

@@ -40,7 +40,8 @@ export function QuantityField({
       <div
         className="px-2 border flex items-center border-r-0"
         onClick={() => {
-          externalOnChange(Number(externalValue) > 1 ? Number(externalValue) - 1 : 1);
+          externalOnChange &&
+            externalOnChange(Number(externalValue) > 1 ? Number(externalValue) - 1 : 1);
         }}
       >
         <AiOutlineMinus />
@@ -52,7 +53,10 @@ export function QuantityField({
       />
       <div
         className="px-2 border flex items-center border-r-0"
-        onClick={() => externalOnChange(Number(externalValue) ? Number(externalValue) + 1 : 1)}
+        onClick={() =>
+          externalOnChange &&
+          externalOnChange(Number(externalValue) ? Number(externalValue) + 1 : 1)
+        }
       >
         <AiOutlinePlus />
       </div>

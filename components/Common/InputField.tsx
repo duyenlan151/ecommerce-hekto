@@ -9,7 +9,7 @@ interface InputFieldProps {
   onChange?: () => void;
   onBlur?: () => void;
   placeholder?: string;
-  value?: string | number | null | undefined;
+  value?: string;
   className?: string;
   [name: string]: any;
 }

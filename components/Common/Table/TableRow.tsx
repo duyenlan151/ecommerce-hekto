@@ -4,7 +4,7 @@ import { TableRowCell } from './TableRowCell';
 interface Props<T> {
   data: T[];
   columns: IColumnType<T>[];
-  onDelete?: (item: number | string) => void;
+  onDelete: (item: number | string) => void;
 }
 
 export function TableRow<T>({ data, columns, onDelete }: Props<T>) {

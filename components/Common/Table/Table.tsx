@@ -14,7 +14,7 @@ export interface IColumnType<T> {
 interface Props<T> {
   data: T[];
   columns: IColumnType<T>[];
-  onDelete?: (item: number | string) => void;
+  onDelete: (item: number | string) => void;
 }
 
 export function Table<T>({ data, columns, onDelete }: Props<T>): JSX.Element {

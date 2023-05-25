@@ -19,7 +19,7 @@ export default function TabsList({ tabs, setActiveTab, activeTab }: ITabsListPro
   return (
     <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
       {tabs.map((tab) => (
-        <Tab key={tab.value} component={tab.component}>
+        <Tab key={tab.value} currentTab={activeTab} component={tab.component}>
           {tab.title}
         </Tab>
       ))}

@@ -26,11 +26,11 @@ const StaticPropsDetail = ({ product, errors }: Props) => {
   return (
     <section className="container mx-auto">
       <MetaData
-        propTitle={product.name}
+        propTitle={product?.name}
         propSuffix="Duyen Lan"
-        propDescription={product.name}
+        propDescription={product?.name}
         propPreviewImage={product?.thumbnail[0]}
-        propKeywords={product.name}
+        propKeywords={product?.name}
       />
       {product && <ProductDetail product={product} />}
     </section>

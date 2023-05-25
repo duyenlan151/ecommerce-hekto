@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export interface TabProps {
   children?: ReactNode;
   activeTab?: string | number;
-  currentTab?: string | number;
+  currentTab: string | number;
   setActiveTab?: (value: number | string) => void;
   component?: string;
 }

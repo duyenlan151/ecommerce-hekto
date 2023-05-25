@@ -11,7 +11,7 @@ export function Tab({ children, activeTab, currentTab, setActiveTab }: TabProps)
   );
 
   return (
-    <div className={className} onClick={() => setActiveTab(currentTab)}>
+    <div className={className} onClick={() => setActiveTab && setActiveTab(currentTab)}>
       {children}
     </div>
   );

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { Pagination, Scrollbar } from 'swiper';
+import { CSSProperties, ReactNode } from 'react';
+import { Pagination, Scrollbar, SwiperOptions } from 'swiper';
 import { Swiper, SwiperClass } from 'swiper/react';
 
 import 'swiper/css';
@@ -8,7 +8,7 @@ import { SwiperModule } from 'swiper/types';
 
 export interface SwipperCommonProps {
   children: ReactNode;
-  breakpoints?: Object;
+  breakpoints?: SwiperOptions['breakpoints'];
   initialSlide?: number;
   loop?: boolean;
   modules?: SwiperModule[];
@@ -31,6 +31,18 @@ const defaultBreakpoints = {
   },
 };
 
+const style = {
+  ['--swiper-pagination-bullet-size']: '8px',
+  '--swiper-pagination-bullet-width': '16px',
+  '--swiper-pagination-bullet-active-width': '24px',
+  '--swiper-pagination-bullet-height': '4px',
+  '--swiper-pagination-bullet-border-radius': '2px',
+  '--swiper-pagination-color': '#FB2E86',
+  '--swiper-pagination-bullet-inactive-color': '#FEBAD7',
+  '--swiper-pagination-bullet-inactive-opacity': '1',
+  '--swiper-pagination-bullet-horizontal-gap': '6px',
+} as CSSProperties;
+
 export default function SwipperCommon({
   children,
   breakpoints = defaultBreakpoints,
@@ -42,7 +54,7 @@ export default function SwipperCommon({
 }: SwipperCommonProps) {
   return (
     <Swiper
-      breakpoints={breakpoints}
+      breakpoints={{ ...breakpoints }}
       pagination={{
         clickable: true,
       }}
@@ -56,17 +68,7 @@ export default function SwipperCommon({
       onSwiper={onSwiper}
       onInit={onSwiper}
       modules={modules}
-      style={{
-        '--swiper-pagination-bullet-size': '8px',
-        '--swiper-pagination-bullet-width': '16px',
-        '--swiper-pagination-bullet-active-width': '24px',
-        '--swiper-pagination-bullet-height': '4px',
-        '--swiper-pagination-bullet-border-radius': '2px',
-        '--swiper-pagination-color': '#FB2E86',
-        '--swiper-pagination-bullet-inactive-color': '#FEBAD7',
-        '--swiper-pagination-bullet-inactive-opacity': '1',
-        '--swiper-pagination-bullet-horizontal-gap': '6px',
-      }}
+      style={{ ...style }}
     >
       {children}
     </Swiper>
