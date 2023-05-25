@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "JosefinSans-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Josefin_Sans/JosefinSans-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSans-Thin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Josefin_Sans/JosefinSans-Thin.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Lato-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Lato/Lato-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Lato-Light";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Lato/Lato-Light.ttf) format("truetype");
+}
+
+
+html {
+  font-family: 'JosefinSans-Regular', sans-serif;
+  overflow-x: hidden;
+}
+
+.mySwiper .swiper-wrapper {
+  overflow-x: auto;
+  max-width: 500px;
+}
