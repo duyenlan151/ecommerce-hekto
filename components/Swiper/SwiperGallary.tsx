@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { CSSProperties, ReactNode, useState } from 'react';
 import { Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -31,22 +31,23 @@ export default function SwiperGallary({
   return (
     <>
       <Swiper
+        style={
+          {
+            '--swiper-navigation-color': '#fff',
+            '--swiper-pagination-color': '#fff',
+          } as CSSProperties
+        }
         loop={true}
         spaceBetween={10}
         navigation={true}
-        initialSlide={initialSlide}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
+        className="mySwiper2 !ml-0 !mr-0"
       >
         {images.map((image, i) => (
-          <SwiperSlide
-            key={`image-${i}-${image}`}
-            className="rounded flex-shrink-0 cursor-pointer shrink"
-            onClick={() => setAtiveImage(i)}
-          >
+          <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
             <img
-              className="overflow-hidden mx-auto lg:!max-w-[550px] max-h-[550px] object-cover relative h-full overflow-hidden"
+              className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
               src={image}
               alt={image}
             />
@@ -56,22 +57,17 @@ export default function SwiperGallary({
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
-        initialSlide={initialSlide}
         spaceBetween={10}
-        slidesPerView={images.length || 0}
+        slidesPerView={12}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper mt-6 flex gap-3"
+        className="mySwiper gap-4 !absolute bottom-[10px]"
       >
         {images.map((image, i) => (
-          <SwiperSlide
-            key={`image-${i}-${image}`}
-            className="flex-shrink-0 cursor-pointer shrink !w-auto max-h-[75px]"
-            onClick={() => setAtiveImage(i)}
-          >
+          <SwiperSlide key={`image-${i}-${image}`} className="" onClick={() => setAtiveImage(i)}>
             <img
-              className="overflow-hidden  max-h-[75px] object-cover relative overflow-hidden"
+              className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
               src={image}
               alt={image}
             />

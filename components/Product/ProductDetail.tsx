@@ -61,7 +61,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         Cart/ Information/ Shipping/ Payment
       </div>
       <div className="flex lg:flex-nowrap flex-wrap justify-center mt-6 pb-12 border-b">
-        <div className="lg:basis-1/2 md:max-w-[444px] basis-full max-w-full">
+        <div className="lg:basis-1/2 basis-full max-w-full">
           <ImagesGallary images={images} />
         </div>
         <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">

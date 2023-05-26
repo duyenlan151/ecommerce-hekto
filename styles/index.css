@@ -39,8 +39,15 @@ html {
   font-family: 'JosefinSans-Regular', sans-serif;
   overflow-x: hidden;
 }
+.mySwiper {
+  /* margin-top: 20px; */
+}
+.mySwiper .swiper-slide {
+  width: 64px !important;
+  margin: 0 15px;
+  opacity: 0.4;
+}
 
-.mySwiper .swiper-wrapper {
-  overflow-x: auto;
-  max-width: 500px;
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
 }

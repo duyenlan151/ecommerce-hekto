@@ -16,7 +16,7 @@ export interface ImagesGallaryProps {
 
 export default function ImagesGallary({ images }: ImagesGallaryProps) {
   const [activeImage, setAtiveImage] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const escFunction = useCallback((event) => {
     if (event.key === 'Escape') {
@@ -70,7 +70,7 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
             alt={images.imageSmall[6]}
           />
           <div className="opacity-30 absolute inset-0 z-40 bg-black"></div>
-          <div className="absolute inset-0 z-50 text-white text-center text-[10px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+          <div className="absolute inset-0 z-20 text-white text-center text-[10px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
             View more {images.imageSmall.length - 5}
           </div>
         </div>
