@@ -26,7 +26,7 @@ export default function SwiperGallary({
   images,
 }: SwiperGallaryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [activeImage, setAtiveImage] = useState(4);
+  const [activeImage, setAtiveImage] = useState(initialSlide);
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   const handleSlideChange = ({ activeIndex }: { activeIndex: number }) => {
