@@ -49,6 +49,7 @@ export default function SwiperGallary({
           initialSlide={activeImage}
           loop={true}
           spaceBetween={10}
+          onSlideChange={handleSlideChange}
           onSwiper={setSwiper}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
