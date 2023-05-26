@@ -26,7 +26,15 @@ export default function SwiperGallary({
   images,
 }: SwiperGallaryProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [activeImage, setAtiveImage] = useState(0);
+  const [activeImage, setAtiveImage] = useState(4);
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+
+  const handleSlideChange = ({ activeIndex }: { activeIndex: number }) => {
+    if (swiper) {
+      setAtiveImage(activeIndex);
+      swiper.slideTo(activeIndex);
+    }
+  };
 
   return (
     <>
@@ -38,12 +46,14 @@ export default function SwiperGallary({
               '--swiper-pagination-color': '#fff',
             } as CSSProperties
           }
+          initialSlide={activeImage}
           loop={true}
           spaceBetween={10}
+          onSwiper={setSwiper}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="mySwiper2 !ml-0 !mr-0"
+          className="mySwiper2 !mx-2"
         >
           {images.map((image, i) => (
             <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
@@ -56,26 +66,21 @@ export default function SwiperGallary({
           ))}
         </Swiper>
       </div>
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        loop={true}
-        spaceBetween={10}
-        slidesPerView={12}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper gap-4 bottom-[10px]"
-      >
+      <div className="flex overflow-x-auto items-center mt-4 px-2 py-3 gap-3">
         {images.map((image, i) => (
-          <SwiperSlide key={`image-${i}-${image}`} className="" onClick={() => setAtiveImage(i)}>
+          <div
+            key={`image-${i}-${image}`}
+            className={`opacity-50 ${i === activeImage && 'opacity-100'}`}
+            onClick={() => handleSlideChange({ activeIndex: i })}
+          >
             <img
               className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
               src={image}
               alt={image}
             />
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </>
   );
 }

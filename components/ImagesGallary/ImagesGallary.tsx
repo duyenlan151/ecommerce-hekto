@@ -61,7 +61,7 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
           </div>
         ))}
         <div
-          className="relative flex-shrink-0 rounded w-[64px] cursor-pointer shrink rounded-md overflow-hidden"
+          className="relative flex-shrink-0 rounded min-w-[64px] cursor-pointer shrink rounded-md overflow-hidden"
           onClick={handleToggleModal}
         >
           <img
