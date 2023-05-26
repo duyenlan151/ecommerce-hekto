@@ -1,14 +1,12 @@
 import { Modal } from '@components/Common/Modal';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { useCallback, useEffect, useState } from 'react';
 
 // Import Swiper styles
+import SwiperGallary from '@components/Swiper/SwiperGallary';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-import SwiperGallary from '@components/Swiper/SwiperGallary';
 
 export interface ImagesGallaryProps {
   images: { imageSmall: string[]; imageLarge: string[] };
