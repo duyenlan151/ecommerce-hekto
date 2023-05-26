@@ -70,7 +70,7 @@ export default function SwiperGallary({
         {images.map((image, i) => (
           <div
             key={`image-${i}-${image}`}
-            className={`opacity-50 ${i === activeImage && 'opacity-100'}`}
+            className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '}`}
             onClick={() => handleSlideChange({ activeIndex: i })}
           >
             <img
