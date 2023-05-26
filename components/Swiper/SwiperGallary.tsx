@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, useState } from 'react';
+import { CSSProperties, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
@@ -29,10 +29,39 @@ export default function SwiperGallary({
   const [activeImage, setAtiveImage] = useState(initialSlide);
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
-  const handleSlideChange = ({ activeIndex }: { activeIndex: number }) => {
-    if (swiper) {
+  const swiperRef = useRef<SwiperClass | null>(null);
+
+  const handleKeyPress = useCallback((event) => {
+    let activeIndex = Number(swiperRef.current?.activeIndex);
+
+    if (activeIndex >= 0) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          activeIndex = activeIndex > 0 ? activeIndex - 1 : activeIndex;
+          break;
+        case 'ArrowRight':
+          activeIndex = activeIndex < images.length - 1 ? activeIndex + 1 : activeIndex;
+          break;
+
+        default:
+          break;
+      }
+      handleSlideChange({ activeIndex });
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress, false);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress, false);
+    };
+  }, []);
+
+  const handleSlideChange = ({ activeIndex }: { activeIndex: number | undefined }) => {
+    if (swiperRef.current && activeIndex !== undefined) {
       setAtiveImage(activeIndex);
-      swiper.slideTo(activeIndex);
+      swiperRef.current.slideTo(activeIndex);
     }
   };
 
@@ -50,7 +79,9 @@ export default function SwiperGallary({
           loop={true}
           spaceBetween={10}
           onSlideChange={handleSlideChange}
-          onSwiper={setSwiper}
+          onInit={(swiper) => {
+            swiperRef.current = swiper;
+          }}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
@@ -67,20 +98,24 @@ export default function SwiperGallary({
           ))}
         </Swiper>
       </div>
-      <div className="flex overflow-x-auto items-center mt-4 px-2 py-3 gap-3">
-        {images.map((image, i) => (
-          <div
-            key={`image-${i}-${image}`}
-            className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '}`}
-            onClick={() => handleSlideChange({ activeIndex: i })}
-          >
-            <img
-              className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
-              src={image}
-              alt={image}
-            />
+      <div className="relative mt-4 px-2 py-3">
+        <div className="overflow-hidden">
+          <div className="flex overflow-x-auto items-center gap-3">
+            {images.map((image, i) => (
+              <div
+                key={`image-${i}-${image}`}
+                className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '}`}
+                onClick={() => handleSlideChange({ activeIndex: i })}
+              >
+                <img
+                  className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
+                  src={image}
+                  alt={image}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </>
   );
