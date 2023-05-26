@@ -16,7 +16,7 @@ export interface ImagesGallaryProps {
 
 export default function ImagesGallary({ images }: ImagesGallaryProps) {
   const [activeImage, setAtiveImage] = useState(0);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const escFunction = useCallback((event) => {
     if (event.key === 'Escape') {

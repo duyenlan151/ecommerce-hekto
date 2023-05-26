@@ -30,30 +30,32 @@ export default function SwiperGallary({
 
   return (
     <>
-      <Swiper
-        style={
-          {
-            '--swiper-navigation-color': '#fff',
-            '--swiper-pagination-color': '#fff',
-          } as CSSProperties
-        }
-        loop={true}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 !ml-0 !mr-0"
-      >
-        {images.map((image, i) => (
-          <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
-            <img
-              className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
-              src={image}
-              alt={image}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="flex-1 flex items-center">
+        <Swiper
+          style={
+            {
+              '--swiper-navigation-color': '#fff',
+              '--swiper-pagination-color': '#fff',
+            } as CSSProperties
+          }
+          loop={true}
+          spaceBetween={10}
+          navigation={true}
+          thumbs={{ swiper: thumbsSwiper }}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="mySwiper2 !ml-0 !mr-0"
+        >
+          {images.map((image, i) => (
+            <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
+              <img
+                className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
+                src={image}
+                alt={image}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
@@ -62,7 +64,7 @@ export default function SwiperGallary({
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper gap-4 !absolute bottom-[10px]"
+        className="mySwiper gap-4 bottom-[10px]"
       >
         {images.map((image, i) => (
           <SwiperSlide key={`image-${i}-${image}`} className="" onClick={() => setAtiveImage(i)}>
