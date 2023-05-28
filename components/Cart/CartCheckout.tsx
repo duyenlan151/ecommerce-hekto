@@ -1,4 +1,4 @@
-import { CheckBox } from '@components/Common';
+import { CheckBox } from '@components/Shared/Common';
 import { getSymbolCurrency } from '@utils/common';
 import { Currency } from 'models';
 import * as React from 'react';
@@ -26,7 +26,7 @@ export default function CartCheckout({
         <label className="text-blue-1 text-xl">Totals:</label>
         <p className="text-blue-1 font-lato text-lg">{getSymbolCurrency(currency, totalPrice)}</p>
       </div>
-      <CheckBox label="Shipping & taxes calculated at checkout" />
+      <CheckBox label="Shipping & taxes calculated at checkout" className="rounded w-3 h-3" />
       <button
         type="submit"
         onClick={onClick}

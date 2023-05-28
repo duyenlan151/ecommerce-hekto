@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_ENV=development && next",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
@@ -9,9 +9,13 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@tailwindcss/forms": "^0.5.3",
+    "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
     "framer-motion": "^10.12.16",
     "next": "latest",
     "next-images": "^1.8.5",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
@@ -20,6 +24,7 @@
     "react-redux": "^8.0.5",
     "sanitize-html": "^2.10.0",
     "swiper": "^9.3.2",
+    "swr": "^2.1.5",
     "yup": "^1.1.1"
   },
   "devDependencies": {

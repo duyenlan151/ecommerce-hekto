@@ -1,4 +1,4 @@
-import SwipperCommon from '@components/Swiper/SwiperCommon';
+import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
 import { useState } from 'react';
 import { Pagination } from 'swiper';
 

@@ -1,4 +1,4 @@
-import { QuantityField } from '@components/Common/QuantityField';
+import { QuantityField } from '@components/Shared/Common/QuantityField';
 import { getSymbolCurrency } from '@utils/common';
 import { addToCart } from 'app/Cart/cartSlice';
 import { ProductItem } from 'models';

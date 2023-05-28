@@ -1,4 +1,4 @@
-import ImagesGallary from '@components/ImagesGallary/ImagesGallary';
+import ImagesGallary from '@components/Shared/ImagesGallary/ImagesGallary';
 import { ProductItem } from 'models';
 import React, { useState } from 'react';
 import ProductDescription from './ProductDescription';
@@ -55,6 +55,7 @@ const images = {
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  console.log('🚀 ~ file: ProductDetail.tsx:58 ~ ProductDetail ~ product:', product);
   return (
     <div className="container mx-auto lg:py-4 py-10 px-4">
       <div className="text-sub-title font-lato-light leading-7 mt-3">
@@ -62,7 +63,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       </div>
       <div className="flex lg:flex-nowrap flex-wrap justify-center mt-6 pb-12 border-b">
         <div className="lg:basis-1/2 basis-full max-w-full">
-          <ImagesGallary images={images} />
+          <ImagesGallary images={product.images} />
         </div>
         <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">
           <ProductInfo product={product} />

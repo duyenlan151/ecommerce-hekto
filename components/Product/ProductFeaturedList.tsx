@@ -4,7 +4,7 @@ import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import SwipperCommon from '@components/Swiper/SwiperCommon';
+import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
 import { ProductItem } from './ProductItem';
 import { FadeContainer, opacityVariant } from '@content/FramerMotionVariants';
 import { motion } from 'framer-motion';

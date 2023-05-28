@@ -1,4 +1,4 @@
-import { BoxContent } from '@components/Box/BoxContent';
+import { BoxContent } from '@components/Shared/Box/BoxContent';
 import AnimatedText from '@components/FramerMotion/AnimatedText';
 import { popUpFromBottomForText } from '@content/FramerMotionVariants';
 import { getSymbolCurrency } from '@utils/common';

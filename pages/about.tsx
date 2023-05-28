@@ -1,5 +1,5 @@
 import SectionClient from '@components/About/SectionClient';
-import { BoxContent, BoxSection } from '@components/Box';
+import { BoxContent, BoxSection } from '@components/Shared/Box';
 import { ICashBack, IHoursSupport, IPremium, ITruckDelivery } from '@components/Icons';
 import ProductShopex from '@components/Product/ProductShopex';
 import { ShopexModel } from 'models';

@@ -1,6 +1,6 @@
 import CartCheckout from '@components/Cart/CartCheckout';
-import { QuantityField } from '@components/Common/QuantityField';
-import { IColumnType, Table } from '@components/Common/Table';
+import { QuantityField } from '@components/Shared/Common/QuantityField';
+import { IColumnType, Table } from '@components/Shared/Table';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getSymbolCurrency } from '@utils/common';
 import { cartItemsSelector, cartTotalSelector } from 'app/Cart/cartSelector';

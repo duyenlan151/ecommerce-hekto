@@ -1,5 +1,5 @@
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
-import TabsList from '@components/Tabs/TabsList';
+import { TabsList } from '@components/Shared';
 import { FadeContainer, popUpFromBottomForText } from '@content/FramerMotionVariants';
 import { useState } from 'react';
 import { ProductItem } from './ProductItem';

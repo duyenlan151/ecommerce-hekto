@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { User } from '../../interfaces';
 import { sampleUserData } from '../../utils/sample-data';
 import List from '../../components/List';
-import { Layout } from '@components/Layout';
+import { Layout } from '@components/Shared/Layout';
 
 type Props = {
   items: User[];

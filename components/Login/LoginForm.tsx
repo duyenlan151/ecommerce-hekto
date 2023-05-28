@@ -1,4 +1,4 @@
-import { InputField } from '@components/Common';
+import { InputField } from '@components/Shared/Common';
 import * as React from 'react';
 
 export interface LoginFormProps {}

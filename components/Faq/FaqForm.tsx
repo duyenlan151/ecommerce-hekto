@@ -1,4 +1,4 @@
-import { InputField, TextareaField } from '@components/Common';
+import { InputField, TextareaField } from '@components/Shared/Common';
 import * as React from 'react';
 
 export interface FAQFormProps {}

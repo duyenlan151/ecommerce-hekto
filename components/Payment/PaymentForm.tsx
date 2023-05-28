@@ -1,5 +1,5 @@
-import { InputField, TextareaField } from '@components/Common';
-import { CheckBox } from '@components/Common';
+import { InputField, TextareaField } from '@components/Shared/Common';
+import { CheckBox } from '@components/Shared/Common';
 import * as React from 'react';
 
 export interface PaymenFormProps {}
@@ -23,7 +23,10 @@ export default function PaymenForm(props: PaymenFormProps) {
             required
             placeholder="Email or mobile phone number"
           />
-          <CheckBox label="Keep me up to date on news and excluive offers" />
+          <CheckBox
+            label="Keep me up to date on news and excluive offers"
+            className="rounded w-2 h-2"
+          />
         </div>
         <div className="mt-20">
           <h4 className="text-blue-1 text-lg">Shipping address</h4>

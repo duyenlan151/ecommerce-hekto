@@ -7,4 +7,16 @@ module.exports = withImages({
   webpack(config, options) {
     return config;
   },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/dashboard',
+        permanent: true,
+      },
+    ];
+  },
 });

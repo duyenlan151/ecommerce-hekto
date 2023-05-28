@@ -1,4 +1,4 @@
-import { InputField, TextareaField } from '@components/Common';
+import { InputField, TextareaField } from '@components/Shared/Common';
 import * as React from 'react';
 
 export interface ContactFormProps {}
@@ -22,11 +22,7 @@ export default function ContactForm(props: ContactFormProps) {
           />
         </div>
         <InputField className="lg:bg-white bg-transparent" required placeholder="Subject*" />
-        <TextareaField
-          className="lg:bg-white bg-transparent"
-          equired
-          placeholder="Type Your Messege*"
-        />
+        <TextareaField className="lg:bg-white bg-transparent" placeholder="Type Your Messege*" />
         <button
           type="submit"
           className="mt-4 bg-pink-1 w-40 rounded-sm px-5 py-2.5 text-base font-lato text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"

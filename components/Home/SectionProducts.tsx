@@ -1,4 +1,4 @@
-import { BoxSection } from '@components/Box';
+import { BoxSection } from '@components/Shared/Box';
 import { ProductFeaturedList } from '@components/Product/ProductFeaturedList';
 import { ProductLatestList } from '@components/Product/ProductLatestList';
 import ProductShopex from '@components/Product/ProductShopex';

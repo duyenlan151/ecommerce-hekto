@@ -1,4 +1,4 @@
-import { BoxSection, BoxTrending } from '@components/Box';
+import { BoxSection, BoxTrending } from '@components/Shared/Box';
 import { ProductTredingList } from '@components/Product/ProductTrendingList';
 
 export interface SectionTrendingProps {}
