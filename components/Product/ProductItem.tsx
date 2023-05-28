@@ -199,7 +199,7 @@ export function ProductItemSecondary({
           alt="profile picture"
         /> */}
         <Image
-          src={thumbnail}
+          src={String(thumbnail)}
           fill
           alt={name}
           className="scale-[80%] drop-shadow-xl object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "

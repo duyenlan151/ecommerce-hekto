@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 export interface ImagesGallaryProps {
-  images: { imageSmall: string[]; imageLarge: string[] };
+  images: any;
 }
 
 export default function ImagesGallary({ images }: ImagesGallaryProps) {
