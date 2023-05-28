@@ -1,5 +1,7 @@
 import { FadeContainer, headingFromLeft, opacityVariant } from '@content/FramerMotionVariants';
+import { sliderContent } from '@utils/sample-data';
 import { motion } from 'framer-motion';
+import SwiperCommon from './Swiper/SwiperCommon';
 
 export interface BannerProps {}
 
@@ -12,7 +14,8 @@ export function Banner({}: BannerProps) {
       viewport={{ once: true }}
       className="bg-pink-2 overflow-hidden"
     >
-      <div className="container mx-auto relative py-48 lg:px-0 px-2">
+      <SwiperCommon images={sliderContent} />
+      {/* <div className="container mx-auto relative py-48 lg:px-0 px-2">
         <motion.img
           src="/images/shell-shaped.png"
           width={500}
@@ -21,13 +24,6 @@ export function Banner({}: BannerProps) {
           viewport={{ once: true }}
           className="absolute top-1/2 -right-12 transform -translate-y-1/2"
         />
-        {/* <Image
-          src="/images/shell-shaped.png"
-          width={500}
-          height={500}
-          alt="Picture of the author"
-          className="absolute top-1/2 -right-12 transform -translate-y-1/2"
-        /> */}
         <motion.img
           variants={FadeContainer}
           viewport={{ once: true }}
@@ -67,7 +63,7 @@ export function Banner({}: BannerProps) {
         >
           Shop Now
         </motion.button>
-      </div>
+      </div> */}
     </motion.section>
   );
 }

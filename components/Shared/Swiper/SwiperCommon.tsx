@@ -1,76 +1,78 @@
+import Image from 'next/image';
 import { CSSProperties, ReactNode } from 'react';
-import { Pagination, Scrollbar, SwiperOptions } from 'swiper';
-import { Swiper, SwiperClass } from 'swiper/react';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Navigation, Pagination, SwiperOptions } from 'swiper';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { Image as ImageModel } from 'models';
 import { SwiperModule } from 'swiper/types';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export interface SwipperCommonProps {
-  children: ReactNode;
-  breakpoints?: SwiperOptions['breakpoints'];
-  initialSlide?: number;
-  loop?: boolean;
-  modules?: SwiperModule[];
-  onSlideChange?: (swiper: SwiperClass) => void;
+  children?: ReactNode;
+  images?: ImageModel[];
+  classNameSlider?: string;
   onSwiper?: (swiper: SwiperClass) => void;
+  onSlideChange?: (swiper: SwiperClass) => void;
+  [name: string]: any;
 }
 
-const defaultBreakpoints = {
-  400: {
-    slidesPerView: 1,
-  },
-  600: {
-    slidesPerView: 2,
-  },
-  768: {
-    slidesPerView: 3,
-  },
-  1200: {
-    slidesPerView: 4,
-  },
-};
-
-const style = {
+const styleDefault = {
   ['--swiper-pagination-bullet-size']: '8px',
-  '--swiper-pagination-bullet-width': '16px',
+  '--swiper-pagination-bullet-width': '4px',
   '--swiper-pagination-bullet-active-width': '24px',
   '--swiper-pagination-bullet-height': '4px',
   '--swiper-pagination-bullet-border-radius': '2px',
-  '--swiper-pagination-color': '#FB2E86',
-  '--swiper-pagination-bullet-inactive-color': '#FEBAD7',
+  '--swiper-pagination-color': '#000',
+  '--swiper-pagination-bullet-inactive-color': '#b3b3b3',
   '--swiper-pagination-bullet-inactive-opacity': '1',
   '--swiper-pagination-bullet-horizontal-gap': '6px',
+  '--swiper-navigation-color': '#000',
+  '--swiper-navigation-size': '25px',
+  height: '500px',
+  paddingBottom: '0 !important',
 } as CSSProperties;
 
 export default function SwipperCommon({
   children,
-  breakpoints = defaultBreakpoints,
-  initialSlide = 0,
-  loop = false,
-  modules = [Scrollbar, Pagination],
+  images,
   onSlideChange,
   onSwiper,
+  classNameSlider,
+  ...rest
 }: SwipperCommonProps) {
   return (
-    <Swiper
-      breakpoints={{ ...breakpoints }}
-      pagination={{
-        clickable: true,
-      }}
-      // activeIndex={activeIndex}
-      loop={loop}
-      initialSlide={initialSlide}
-      className="!pb-16"
-      spaceBetween={15}
-      scrollbar={true}
-      onSlideChange={onSlideChange}
-      onSwiper={onSwiper}
-      onInit={onSwiper}
-      modules={modules}
-      style={{ ...style }}
-    >
-      {children}
-    </Swiper>
+    <>
+      <Swiper
+        // breakpoints={defaultBreakpoints}
+        slidesPerView={1}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        loop={true}
+        initialSlide={0}
+        spaceBetween={15}
+        scrollbar={true}
+        onSlideChange={onSlideChange}
+        onSwiper={onSwiper}
+        onInit={onSwiper}
+        modules={[Pagination, Navigation]}
+        style={{ ...styleDefault }}
+        {...rest}
+      >
+        {children
+          ? children
+          : images &&
+            images.map((image, i) => (
+              <SwiperSlide
+                key={`image-${i}-${image.ID}`}
+                className={`relative w-[100%] h-[400px] md:h-[70vh] ${classNameSlider}`}
+              >
+                <Image src={image.bgImg} fill alt={image.title} className="object-cover" />
+              </SwiperSlide>
+            ))}
+      </Swiper>
+    </>
   );
 }

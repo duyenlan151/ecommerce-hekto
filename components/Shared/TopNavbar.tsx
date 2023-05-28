@@ -11,9 +11,9 @@ function TopNavbar({}: TopNavbarProps) {
   const cartItemsCount = useSelector(cartItemsCountSelector);
 
   return (
-    <div className="bg-violet-1 min-h-[50px]">
+    <div className="border border-b min-h-[50px]">
       <div className="container mx-auto">
-        <div className="lg:flex justify-between py-3 text-sm text-white lg:px-0 px-2 hidden">
+        <div className="lg:flex justify-between py-3 text-sm text-black-500 lg:px-0 px-2 hidden">
           <div className="flex-1 w-50">
             <span className="mr-5">mhhasanul@gmail.com</span>
             <span>(12345)67890</span>

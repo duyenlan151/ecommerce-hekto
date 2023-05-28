@@ -5,7 +5,7 @@ export interface ProductItem {
   name: string;
   price: number | string;
   currency: Currency;
-  thumbnail: string;
+  thumbnail: string | string[];
   colors: Array<string>;
   code: string | number;
   isSale?: boolean;

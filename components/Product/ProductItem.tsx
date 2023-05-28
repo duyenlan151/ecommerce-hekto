@@ -6,6 +6,7 @@ import { ProductItem } from 'models';
 import Link from 'next/link';
 import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineZoomIn } from 'react-icons/ai';
 import { EProductItemType } from './ProductItem.props';
+import Image from 'next/image';
 
 export interface ProductItemProps {
   product: ProductItem;
@@ -51,7 +52,17 @@ export function ProductItem({
       >
         {/* Image product */}
         <Link href={`/products/${id}`}>
-          <img className="mx-auto scale-9 max-h-full" src={thumbnail[0]} alt="profile picture" />
+          {/* <img
+            className="mx-auto scale-9 max-h-full group-hover:scale-110 delay-100 transition-transform duration-4000 ease-in-out"
+            src={thumbnail[0]}
+            alt="profile picture"
+          /> */}
+          <Image
+            src={thumbnail[0]}
+            fill
+            alt={name}
+            className="scale-[80%] drop-shadow-xl object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
+          />
         </Link>
 
         {/* Image sale */}
@@ -178,11 +189,20 @@ export function ProductItemSecondary({
       className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center mb-3 p-2`}
     >
       {/* Image product */}
-      <Link href={`/products/${id}`} className="block max-w-[214px] min-w-[214px]">
-        <img
+      <Link
+        href={`/products/${id}`}
+        className="relative block max-w-[214px] min-w-[214px] h-[214px]"
+      >
+        {/* <img
           className="mx-auto scale-9 max-h-full max-w-full max-h-[214px]"
           src={thumbnail}
           alt="profile picture"
+        /> */}
+        <Image
+          src={thumbnail}
+          fill
+          alt={name}
+          className="scale-[80%] drop-shadow-xl object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
       <div className="flex-1 px-2 ml-7 transition delay-100 ease-in-out duration-500">
