@@ -11,7 +11,7 @@ export default function LayoutAdmin({ children }: LayoutAdminProps) {
   return (
     <div className="font-lato">
       <Sidebar />
-      <div className="relative md:ml-64 bg-blueGray-100">
+      <div className="relative md:ml-64 bg-blueGray-100 min-h-screen">
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />

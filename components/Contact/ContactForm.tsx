@@ -13,15 +13,15 @@ export default function ContactForm(props: ContactFormProps) {
       </div>
       <form className="mt-9">
         <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-6 gap-4">
-          <InputField className="lg:bg-white bg-transparent" required placeholder="Your Name*" />
+          {/* <InputField className="lg:bg-white bg-transparent" required placeholder="Your Name*" />
           <InputField
             type="email"
             className="lg:bg-white bg-transparent"
             required
             placeholder="Your E-mail"
-          />
+          /> */}
         </div>
-        <InputField className="lg:bg-white bg-transparent" required placeholder="Subject*" />
+        {/* <InputField className="lg:bg-white bg-transparent" required placeholder="Subject*" /> */}
         <TextareaField className="lg:bg-white bg-transparent" placeholder="Type Your Messege*" />
         <button
           type="submit"

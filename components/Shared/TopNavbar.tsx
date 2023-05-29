@@ -11,7 +11,7 @@ function TopNavbar({}: TopNavbarProps) {
   const cartItemsCount = useSelector(cartItemsCountSelector);
 
   return (
-    <div className="border border-b min-h-[50px]">
+    <div className="min-h-[50px]">
       <div className="container mx-auto">
         <div className="lg:flex justify-between py-3 text-sm text-black-500 lg:px-0 px-2 hidden">
           <div className="flex-1 w-50">

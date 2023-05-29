@@ -9,6 +9,7 @@ module.exports = withImages({
   },
   env: {
     BASE_URL: process.env.BASE_URL,
+    MONGODB_URI: process.env.MONGODB_URI,
   },
   async redirects() {
     return [

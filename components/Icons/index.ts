@@ -12,3 +12,4 @@ export * from './ITwitter';
 export * from './INotfound';
 export * from './IContact';
 export * from './IOrder';
+export * from './ILoading';

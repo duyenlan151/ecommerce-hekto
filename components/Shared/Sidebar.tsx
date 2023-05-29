@@ -17,14 +17,13 @@ const items = [
   { id: 2, title: 'Products', icon: <AiOutlineMenu size={20} />, path: '/admin/products' },
   { id: 3, title: 'Categories', icon: <AiOutlineAppstore size={20} />, path: '/admin/categories' },
   { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
-  { id: 4, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
-  { id: 4, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
+  { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
+  { id: 6, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
 ];
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = useState('hidden');
   const router = useRouter();
-  console.log('🚀 ~ file: Sidebar.tsx:11 ~ Sidebar ~ router:', router);
   return (
     <>
       <nav className="font-lato md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10">

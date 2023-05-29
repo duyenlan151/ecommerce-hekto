@@ -8,8 +8,8 @@ export default function FAQForm(props: FAQFormProps) {
     <div className="bg-grey-5 z-10 lg:px-14 sm:px-4 px-2 lg:py-16 py-10">
       <h4 className="text-blue-1 text-2xl font-bold">Ask a Question</h4>
       <form className="mt-14">
-        <InputField className="lg:bg-white bg-transparent" required placeholder="Your Name*" />
-        <InputField className="lg:bg-white bg-transparent" required placeholder="Subject*" />
+        {/* <InputField className="lg:bg-white bg-transparent" required placeholder="Your Name*" />
+        <InputField className="lg:bg-white bg-transparent" required placeholder="Subject*" /> */}
         <TextareaField className="lg:bg-white bg-transparent" placeholder="Type Your Messege*" />
         <button
           type="submit"

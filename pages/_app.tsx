@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import { Layout } from '@components/Shared/Layout';
 import MetaData from '@components/Shared/MetaData';
-import store from 'app/store';
-import 'react-quill/dist/quill.snow.css';
-import { useRouter } from 'next/router';
 import NProgress from '@utils/nprogress';
-import '../styles/tailwind.css';
-import '../styles/index.css';
+import store from 'app/store';
+import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-quill/dist/quill.snow.css';
+import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
+import '../styles/index.css';
+import '../styles/tailwind.css';
+import LayoutAdmin from '@components/Shared/LayoutAdmin';
 
 NProgress.configure({
   easing: 'ease',
@@ -24,8 +28,7 @@ interface MyAppProps extends AppProps {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const router = useRouter();
-
-  const LayoutMain = Component.layout || Layout;
+  const LayoutMain = router.asPath.includes('admin') ? LayoutAdmin : Component.layout || Layout;
 
   useEffect(() => {
     const start = () => {
@@ -51,6 +54,18 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         <MetaData />
         <Component {...pageProps} />
       </LayoutMain>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </Provider>
   );
 }

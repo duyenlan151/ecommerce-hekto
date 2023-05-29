@@ -6,7 +6,7 @@ interface HeaderProps {}
 
 export function Header({}: HeaderProps) {
   return (
-    <div className="flex items-center justify-between bg-white py-4 lg:px-0 px-2">
+    <div className="flex items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-grey-500 shadow-sm">
       <div className="flex items-center justify-between container mx-auto">
         <div className="lg:flex items-center hidden">
           <h1 className="text-4xl font-bold mr-20">Hekto</h1>

@@ -9,6 +9,6 @@ export const productsService = {
   },
 
   getProductById(id: string): Promise<{ product: ProductItem }> {
-    return axiosClient.get(`products/${id}`);
+    return axiosClient.get(`/products/${id}`);
   },
 };

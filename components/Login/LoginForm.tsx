@@ -11,8 +11,8 @@ export default function LoginForm(props: LoginFormProps) {
         <p className="text-sub-title mb-5 mt-2 font-lato-light tracking-wide font-bold">
           Please login using account detail bellow.
         </p>
-        <InputField placeholder="Email Address" required />
-        <InputField placeholder="Password" required />
+        {/* <InputField placeholder="Email Address" required />
+        <InputField placeholder="Password" required /> */}
         <a
           href="/#"
           className="block underline text-left font-lato-light text-sub-title tracking-wide"

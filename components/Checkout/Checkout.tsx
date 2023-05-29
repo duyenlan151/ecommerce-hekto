@@ -144,7 +144,13 @@ export default function Checkout({}: CheckoutProps) {
       <div className="flex lg:flex-nowrap flex-wrap justify-between mt-6">
         <div className="lg:basis-8/12 basis-full overflow-x-auto">
           <div className="inline-block min-w-full">
-            <Table data={cartItems} columns={columns} onDelete={handleDeleteItem} />
+            <Table
+              title={''}
+              data={cartItems}
+              columns={columns}
+              onDelete={handleDeleteItem}
+              onSelectOption={() => {}}
+            />
           </div>
           <Link
             href="/"

@@ -32,7 +32,7 @@ const StaticPropsDetail = ({ product, errors, data }: Props) => {
         propTitle={product?.name || product?.title}
         propSuffix={product?.category}
         propDescription={product?.name || product?.title}
-        propPreviewImage={product?.thumbnail}
+        propPreviewImage={String(product?.thumbnail)}
         propKeywords={product?.name || product?.title}
       />
       {product && <ProductDetail product={product} />}

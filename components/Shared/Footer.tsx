@@ -44,13 +44,13 @@ export function Footer({}: FooterProps) {
                   className="h-full border-transparent focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6"
                   placeholder="Enter Email Address"
                 /> */}
-                <InputField
+                {/* <InputField
                   required
                   placeholder="Enter Email Address"
                   className={
                     'h-full border-transparent focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
                   }
-                />
+                /> */}
                 <button
                   type="submit"
                   className="font-lato bg-pink-1 flex-none px-7 h-full rounded text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"

@@ -5,3 +5,5 @@ export interface Image {
   url: string;
   description: string;
 }
+
+export type ActionCommon = 'add' | 'edit' | 'delete';

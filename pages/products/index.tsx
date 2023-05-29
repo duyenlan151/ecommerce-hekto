@@ -13,9 +13,7 @@ type Props = {
 };
 
 const ProductsPage = ({ products, limit, total }: Props) => (
-  <>
-    <ProductListPage products={products} />
-  </>
+  <>{/* <ProductListPage products={products} /> */}</>
 );
 
 export const getStaticProps: GetStaticProps = async () => {

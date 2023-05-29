@@ -1,7 +1,7 @@
 import { CheckBox } from '@components/Shared/Common';
 import * as React from 'react';
 
-export interface FilterByPriceProps {}
+export interface FilterByColorsProps {}
 const classCheckBox = 'bg-pink-pattern border-pink-500 text-pink-300 focus:border-pink-500 mr-3';
 
 const filterColors = [
@@ -11,7 +11,7 @@ const filterColors = [
   { id: 4, label: 'Color 4', value: 'price-4' },
 ];
 
-export function FilterByColors(props: FilterByPriceProps) {
+export function FilterByColors(props: FilterByColorsProps) {
   return (
     <div className="my-2 border-b">
       <p className="text-blue-1 text-xl px-3 py-2">Colors</p>

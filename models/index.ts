@@ -5,3 +5,4 @@ export * from './meta';
 export * from './shopex';
 export * from './cart';
 export * from './common';
+export * from './category';

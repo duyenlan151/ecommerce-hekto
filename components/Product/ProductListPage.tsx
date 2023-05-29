@@ -27,17 +27,16 @@ const dropdowns = [
 ];
 
 export default function ProductListPage({ products }: ProductListPageProps) {
-  console.log('🚀 ~ file: ProductListPage.tsx:30 ~ ProductListPage ~ products:', products);
   return (
     <section className="bg-bg-color">
-      <div className="container mx-auto lg:py-28 py-10 lg:px-0 px-4">
+      <div className="container mx-auto py-10 lg:px-0 px-4">
         <h4 className="text-blue-1 text-3xl">Ecommerce Acceories & Fashion item </h4>
         <div className="text-sub-title font-lato-light leading-7">
           About 9,620 results (0.62 seconds)
         </div>
         <div className="ml-auto flex justify-end items-center py-2">
-          <Dropdown className="mr-3" listItems={perPage} label="Per page" />
-          <Dropdown className="mr-3" listItems={itemsList} />
+          {/* <Dropdown className="mr-3" listItems={perPage} label="Per page" />
+          <Dropdown className="mr-3" listItems={itemsList} /> */}
           {/* {dropdowns.map((item) => (
             <Dropdown key={item.id} listItems={item.data} className="mr-3" />
           ))} */}

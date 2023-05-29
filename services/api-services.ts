@@ -1,7 +1,8 @@
 import axios, { AxiosError } from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: process.env.BASE_URL,
+  // baseURL: process.env.BASE_URL,
+  baseURL: 'http://localhost:3000/api/admin/',
   headers: {
     'Content-Type': 'application/json',
   },

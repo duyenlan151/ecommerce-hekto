@@ -84,4 +84,4 @@ const ContactPage = () => (
   </section>
 );
 
-export default ContactPage.layout = Layout;
+export default ContactPage;

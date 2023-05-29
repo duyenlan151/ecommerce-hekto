@@ -51,3 +51,7 @@ html {
 .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
+
+.ql-editor {
+  min-height: 400px;
+}

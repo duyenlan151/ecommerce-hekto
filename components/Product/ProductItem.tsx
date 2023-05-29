@@ -18,7 +18,7 @@ const classProductItem = {
   [EProductItemType.PRIMARY]: {
     'group-icons': 'top-2',
     'bg-color': 'bg-pink-3',
-    shadow: 'shadow-xl hover:shadow-none',
+    shadow: 'shadow-md hover:shadow-sm',
     img: '',
   },
 
@@ -45,7 +45,7 @@ export function ProductItem({
     <motion.div
       variants={opacityVariant}
       viewport={{ once: true }}
-      className={`${classProductItem[styleProductItem].shadow} ${className} group  transition delay-100 ease-in-out duration-500`}
+      className={`${classProductItem[styleProductItem].shadow} ${className} group transition delay-100 ease-in-out duration-500`}
     >
       <div
         className={`flex relative justify-center items-center h-72 ${classProductItem[styleProductItem]['bg-color']} ${classProductItem[styleProductItem]?.img}`}
@@ -108,10 +108,10 @@ export function ProductItem({
        *  2. style Secondary
        */}
       {styleProductItem === EProductItemType.PRIMARY && (
-        <div className="text-center p-4 group-hover:bg-blue-3 transition delay-100 ease-in-out duration-500">
+        <div className="text-center p-4 transition delay-100 ease-in-out duration-500">
           <Link
             href={`/products/${id}`}
-            className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold group-hover:text-white"
+            className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
           >
             {name}
           </Link>
@@ -123,10 +123,10 @@ export function ProductItem({
               ></div>
             ))}
           </div>
-          <div className="transition delay-100 ease-in-out duration-500 pt-1 text-blue-1 group-hover:text-white text-sm">
+          <div className="transition delay-100 ease-in-out duration-500 pt-1 text-blue-1 text-sm">
             {code}
           </div>
-          <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 group-hover:text-white text-sm font-lato">
+          <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 text-sm font-lato">
             {getSymbolCurrency(currency, price)}
           </div>
         </div>

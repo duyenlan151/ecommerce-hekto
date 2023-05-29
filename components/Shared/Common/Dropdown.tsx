@@ -1,32 +1,33 @@
 import { useOnClickOutside } from '@hooks/index';
-import React, { RefObject, useRef, useState } from 'react';
-import { AiOutlineDown } from 'react-icons/ai';
+import { createPopper } from '@popperjs/core';
+import { ReactNode, useRef, useState } from 'react';
+import { AiOutlineMore } from 'react-icons/ai';
 
 export interface DropdownProps {
   label?: string;
-  listItems: Array<{ id: string | number; label: string; value: string | number }>;
+  listItems: Array<{ id: string | number; label: string; value: string | number; icon: ReactNode }>;
+  onSelectOption: (item) => void;
   [key: string]: any;
 }
 
-export function Dropdown({ label = 'Sort by', listItems, ...rest }: DropdownProps) {
-  const [showDropdown, setShowDropDown] = useState(false);
+export function Dropdown({ label = 'Sort by', listItems, onSelectOption, ...rest }: DropdownProps) {
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = useRef(null);
+  const popoverDropdownRef = useRef(null);
   const refContainer = useRef(null);
 
-  const toggleDropDown = () => {
-    setShowDropDown((prev) => !prev);
+  const openDropdownPopover = () => {
+    if (btnDropdownRef.current && popoverDropdownRef.current) {
+      setDropdownPopoverShow(true);
+      createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
+        placement: 'left-start',
+      });
+    }
   };
 
   const onSelectItem = (item: { id: string | number; label: string; value: string | number }) => {
-    console.log('🚀 ~ file: Dropdown.tsx:20 ~ onSelectItem ~ item:', item);
-    toggleDropDown();
-  };
-
-  const handleClickOutside = () => {
-    setShowDropDown(false);
-  };
-
-  const handleClickInside = () => {
-    setShowDropDown(true);
+    onSelectOption(item);
+    setDropdownPopoverShow(false);
   };
 
   // const getMap = () => {
@@ -37,32 +38,45 @@ export function Dropdown({ label = 'Sort by', listItems, ...rest }: DropdownProp
   //   return refContainer.current;
   // }
 
-  useOnClickOutside(refContainer, handleClickOutside);
+  const closeDropdownPopover = () => {
+    setDropdownPopoverShow(false);
+  };
+
+  useOnClickOutside(refContainer, closeDropdownPopover);
 
   return (
     <div {...rest}>
       <div ref={refContainer} className="dropdown inline-block relative">
-        <button
-          onClick={handleClickInside}
-          className="text-gray-700 font-semibold py-2 px-4 inline-flex items-center border border-grey-3"
+        <a
+          className="text-blueGray-500 py-1 px-3"
+          href="#pablo"
+          ref={btnDropdownRef}
+          onClick={(e) => {
+            e.preventDefault();
+            dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+          }}
         >
-          <span className="mr-4">{label}</span>
-          <AiOutlineDown />
-        </button>
-        {showDropdown && (
-          <ul className="dropdown-menu min-w-[150px] absolute text-gray-700 right-0 bg-white top-[110%] shadow-xl">
-            {listItems.map((item) => (
-              <li key={item.id} className="bg-white" onClick={() => onSelectItem(item)}>
-                <a
-                  className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block whitespace-no-wrap"
-                  href="#"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+          <AiOutlineMore size={22} />
+        </a>
+        <div
+          ref={popoverDropdownRef}
+          className={
+            (dropdownPopoverShow ? 'inline-block ' : 'hidden ') +
+            'bg-white text-base z-10 float-leftlist-none text-left rounded shadow-lg min-w-48'
+          }
+        >
+          {listItems.map((item) => (
+            <a
+              key={item.id}
+              onClick={() => onSelectItem(item)}
+              className="whitespace-nowrap hover:bg-grey-1 py-3 px-4 block whitespace-no-wrap text-sm flex items-center"
+              // href="#!"
+            >
+              {item.icon}
+              <span className="ml-3">{item.label}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

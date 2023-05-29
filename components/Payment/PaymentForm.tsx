@@ -18,11 +18,11 @@ export default function PaymenForm(props: PaymenFormProps) {
       <form className="mt-9">
         <div>
           <h4 className="text-blue-1 text-lg">Contact Information</h4>
-          <InputField
+          {/* <InputField
             className={classNameInput}
             required
             placeholder="Email or mobile phone number"
-          />
+          /> */}
           <CheckBox
             label="Keep me up to date on news and excluive offers"
             className="rounded w-2 h-2"
@@ -31,24 +31,24 @@ export default function PaymenForm(props: PaymenFormProps) {
         <div className="mt-20">
           <h4 className="text-blue-1 text-lg">Shipping address</h4>
           <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-6 gap-4">
-            <InputField className={classNameInput} required placeholder="First name (optional)" />
-            <InputField type="email" className={classNameInput} required placeholder="Last name" />
+            {/* <InputField className={classNameInput} required placeholder="First name (optional)" /> */}
+            {/* <InputField type="email" className={classNameInput} required placeholder="Last name" /> */}
           </div>
-          <InputField className={classNameInput} required placeholder="Address" />
+          {/* <InputField className={classNameInput} required placeholder="Address" />
           <InputField
             className={classNameInput}
             required
             placeholder="Appaetnentment,suit,e.t.c (optinal)"
-          />
-          <InputField className={classNameInput} required placeholder="City" />
+          /> */}
+          {/* <InputField className={classNameInput} required placeholder="City" /> */}
           <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-6 gap-4">
-            <InputField className={classNameInput} required placeholder="Bangladesh" />
+            {/* <InputField className={classNameInput} required placeholder="Bangladesh" />
             <InputField
               type="email"
               className={classNameInput}
               required
               placeholder="Postal Code"
-            />
+            /> */}
           </div>
         </div>
         <button

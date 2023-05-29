@@ -14,7 +14,6 @@ type Props = {
 const pathNameNoNeedBox = ['/products', '/'];
 
 export const Layout = ({ children, title = 'This is the default title' }: Props) => {
-  console.log('🚀 ~ file: Layout.tsx:17 ~ Layout ~ children:', children);
   const { pathname } = useRouter();
   return (
     <>
@@ -27,7 +26,7 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
         <TopNavbar />
         <Header />
       </header>
-      {!pathNameNoNeedBox.includes(pathname) && <BoxPageMeta />}
+      {/* {!pathNameNoNeedBox.includes(pathname) && <BoxPageMeta />} */}
       {children}
       <Footer />
     </>

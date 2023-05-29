@@ -28,8 +28,8 @@ export function FilterByPrice(props: FilterByPriceProps) {
       </div>
       <form className="px-3 mb-3">
         <div className="flex items-center gap-3">
-          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Min" />
-          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Max" />
+          {/* <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Min" />
+          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Max" /> */}
         </div>
         <button
           type="submit"
