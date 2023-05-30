@@ -9,9 +9,9 @@ export default async function handle(req, res) {
   switch (method) {
     case 'GET': {
       if (req.query?.slug) {
-        res.json(await Product.findOne({ _id: req.query.id, slug: req.query.slug }));
+        res.status(200).json(await Product.findOne({ _id: req.query.id, slug: req.query.slug }));
       } else if (req.query?.id) {
-        res.json(await Product.findOne({ _id: req.query.id }));
+        res.status(200).json(await Product.findOne({ _id: req.query.id }));
       } else {
         const data = await Product.find();
         res.status(200).json({
@@ -49,7 +49,7 @@ export default async function handle(req, res) {
         rating,
         slug: title.split(' ').join('-'),
       });
-      res.json(productDoc);
+      res.status(200).json(productDoc);
       break;
     }
     case 'PUT': {
@@ -80,18 +80,19 @@ export default async function handle(req, res) {
           slug: title.split(' ').join('-'),
         }
       );
-      res.json(true);
+      res.status(200).json(true);
       break;
     }
     case 'DELETE': {
       if (req.query?._id) {
         await Product.deleteOne({ _id: req.query?._id });
-        res.json(true);
+        res.status(200).json(true);
       }
       break;
     }
 
     default:
+      res.status(200).json({ products: 'categories' });
       break;
   }
   // res.status(200).json({ products: 'categories' });

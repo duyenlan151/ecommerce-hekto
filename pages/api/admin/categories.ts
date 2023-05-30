@@ -12,7 +12,7 @@ export default async function handle(req, res) {
     switch (method) {
       case 'GET': {
         if (req.query?.id) {
-          res.json(await Category.findOne({ _id: query.id }));
+          res.status(200).json(await Category.findOne({ _id: query.id }));
         } else {
           const data = await Category.find();
           res.status(200).json({
@@ -35,7 +35,7 @@ export default async function handle(req, res) {
           slug,
           status,
         });
-        res.json(categoryDoc);
+        res.status(200).json(categoryDoc);
         break;
       }
       case 'PUT':
@@ -50,13 +50,13 @@ export default async function handle(req, res) {
               // parent: parentCategory || undefined,
             }
           );
-          res.json(categoryDoc);
+          res.status(200).json(categoryDoc);
         }
         break;
       case 'DELETE': {
         const { _id } = req.query;
         await Category.deleteOne({ _id });
-        res.json('ok');
+        res.status(200).json('ok');
       }
 
       default:
