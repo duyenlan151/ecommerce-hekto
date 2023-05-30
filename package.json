@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development && next",
-    "build": "next build",
-    "start": "next start",
+    "build": "NODE_ENV=prodution && build",
+    "start": "NODE_ENV=development && next start",
     "type-check": "tsc"
   },
   "dependencies": {
