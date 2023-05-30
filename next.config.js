@@ -1,30 +1,41 @@
-const withImages = require('next-images');
+/**
+ * @type {import('next').NextConfig}
+ */
 
-module.exports = withImages({
+const path = require('path');
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  publicExcludes: ['!resume.pdf'],
+});
+
+module.exports = withPWA({
+  reactStrictMode: true,
   images: {
     domains: [
       'images.unsplash.com',
       'i.dummyjson.com',
       'localhost',
       'ecommerce-hekto-dl.vercel.app',
+      'ucarecdn.com',
+      'cdn.buymeacoffee.com',
+      'res.cloudinary.com',
+      'imgur.com',
+      'i.imgur.com',
+      'cutt.ly',
+      'activity-graph.herokuapp.com',
+      'i.scdn.co', // images from spotify
+      'images.unsplash.com',
+      'm.media-amazon.com', // for imdb images
     ],
   },
-  webpack(config, options) {
-    return config;
+  typescript: {
+    ignoreBuildErrors: false,
   },
-  env: {
-    BASE_URL: process.env.BASE_URL,
-    MONGODB_URI: process.env.MONGODB_URI,
-    HOST_URL: process.env.HOST_URL,
-  },
-  target: 'serverless',
-  async redirects() {
-    return [
-      {
-        source: '/admin',
-        destination: '/admin/dashboard',
-        permanent: true,
-      },
-    ];
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 });
