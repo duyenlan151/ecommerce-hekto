@@ -17,6 +17,7 @@ module.exports = withImages({
     MONGODB_URI: process.env.MONGODB_URI,
     HOST_URL: process.env.HOST_URL,
   },
+  target: 'serverless',
   async redirects() {
     return [
       {
