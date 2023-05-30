@@ -62,7 +62,7 @@ export default async function handle(req, res) {
     //   default:
     //     break;
     // }
-    res.status(200).json({ categories: 'categories', rest });
+    res.status(200).json({ categories: 'categories' });
   } catch (error) {
     res.status(200).json({ error });
   }
