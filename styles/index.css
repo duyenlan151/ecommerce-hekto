@@ -19,6 +19,14 @@
 }
 
 @font-face {
+  font-family: "JosefinSans-Bold";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Josefin_Sans/JosefinSans-Bold.ttf) format("truetype");
+}
+
+@font-face {
   font-family: "Lato-Regular";
   font-style: normal;
   font-weight: 400;
@@ -32,6 +40,14 @@
   font-weight: 400;
   font-display: swap;
   src: url(/fonts/Lato/Lato-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Lato-Bold";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Lato/Lato-Bold.ttf) format("truetype");
 }
 
 

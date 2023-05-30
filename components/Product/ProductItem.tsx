@@ -2,14 +2,14 @@ import { ISale } from '@components/Icons';
 import { opacityVariant } from '@content/FramerMotionVariants';
 import { getSymbolCurrency } from '@utils/index';
 import { motion } from 'framer-motion';
-import { ProductItem } from 'models';
+import { ProductModel } from 'models';
 import Link from 'next/link';
 import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineZoomIn } from 'react-icons/ai';
-import { EProductItemType } from './ProductItem.props';
 import Image from 'next/image';
+import { EProductItemType } from './ProductItem.props';
 
 export interface ProductItemProps {
-  product: ProductItem;
+  product: ProductModel;
   styleProductItem?: EProductItemType;
   className?: string;
 }
@@ -36,7 +36,7 @@ const classProductItem = {
   },
 };
 
-export function ProductItem({
+export function ProductModel({
   product: { id, name, price, code, currency, thumbnail, colors, isSale },
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
@@ -163,7 +163,7 @@ export function ProductItem({
 
 export function ProductItemSecondary({
   product: {
-    id,
+    _id,
     name,
     price,
     code,
@@ -175,9 +175,10 @@ export function ProductItemSecondary({
     salePrice,
     images,
     title,
-    discountPercentage,
+    discount_percentage,
     thumbnail,
     rating,
+    slug,
   },
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
@@ -190,7 +191,7 @@ export function ProductItemSecondary({
     >
       {/* Image product */}
       <Link
-        href={`/products/${id}`}
+        href={`/products/${_id}/${slug}`}
         className="relative block max-w-[214px] min-w-[214px] h-[214px]"
       >
         {/* <img
@@ -199,16 +200,16 @@ export function ProductItemSecondary({
           alt="profile picture"
         /> */}
         <Image
-          src={String(thumbnail)}
+          src={`http://localhost:3000/${images[0].path}`}
           fill
           alt={name}
-          className="scale-[80%] drop-shadow-xl object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
+          className="scale-[80%] object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
       <div className="flex-1 px-2 ml-7 transition delay-100 ease-in-out duration-500">
         {/* Name Product */}
         <Link
-          href={`/products/${id}`}
+          href={`/products/${_id}/${slug}`}
           className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
         >
           {name || title}
@@ -227,7 +228,7 @@ export function ProductItemSecondary({
           <span className="text-sub-title-1 text-sm">
             {getSymbolCurrency(
               'EUR',
-              Number(price) - Number(price) * Number(discountPercentage / 100)
+              Number(price) - Number(price) * Number(discount_percentage / 100)
             )}
           </span>
           {/* {(salePrice || discountPercentage) && ( */}

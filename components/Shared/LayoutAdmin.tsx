@@ -9,13 +9,13 @@ export interface LayoutAdminProps {
 
 export default function LayoutAdmin({ children }: LayoutAdminProps) {
   return (
-    <div className="font-lato">
+    <div className="bg-white font-lato">
       <Sidebar />
-      <div className="relative md:ml-64 bg-blueGray-100 min-h-screen">
-        <AdminNavbar />
+      <div className="relative md:ml-64 min-h-screen">
+        {/* <AdminNavbar /> */}
         {/* Header */}
-        <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        {/* <HeaderStats /> */}
+        <div className="px-4 md:px-10 mx-auto w-full pt-24 pb-16">
           {children}
           {/* <FooterAdmin /> */}
         </div>

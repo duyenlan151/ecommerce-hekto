@@ -5,25 +5,11 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { categoryService } from 'services/Admin';
+import { columns } from './Category.props';
 
 export interface CategoryListProps {
   data: [];
 }
-
-const columns = [
-  {
-    key: '_id',
-    title: 'Id',
-  },
-  {
-    key: 'name',
-    title: 'Category Name',
-  },
-  {
-    key: 'slug',
-    title: 'Slug',
-  },
-];
 
 export default function CategoryList({ data }: CategoryListProps) {
   const router = useRouter();
@@ -63,6 +49,14 @@ export default function CategoryList({ data }: CategoryListProps) {
 
   return (
     <div>
+      <div className="flex justify-end">
+        <button
+          onClick={onAddNew}
+          className="bg-green-1 text-white py-2 px-10 mb-4 text-center capitalize border focus:outline-none"
+        >
+          Add New
+        </button>
+      </div>
       <Table
         onSelectOption={onSelectOption}
         data={data}
@@ -70,7 +64,6 @@ export default function CategoryList({ data }: CategoryListProps) {
         columns={columns}
         onDelete={() => {}}
       />
-      <a onClick={onAddNew}>Add New</a>
       <ModalConfirm
         title={'Delete Category'}
         description={

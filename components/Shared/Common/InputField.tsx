@@ -51,10 +51,8 @@ export function InputField({
         name={name}
         value={value}
         placeholder={placeholder}
-        onChange={(event) => {
-          onChange(event);
-        }}
-        className={`placeholder:text-sub-title placeholder:font-lato-light peer border border-border-1 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
+        onChange={onChange}
+        className={`placeholder:text-sub-title placeholder:font-lato-light peer border border-gray-200 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
         {...rest}
       />
       {error?.message && (

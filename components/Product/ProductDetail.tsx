@@ -1,5 +1,5 @@
 import ImagesGallary from '@components/Shared/ImagesGallary/ImagesGallary';
-import { ProductItem } from 'models';
+import { ProductModel } from 'models';
 import React, { useState } from 'react';
 import ProductDescription from './ProductDescription';
 import ProductInfo from './ProductInfo';
@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export interface ProductDetailProps {
-  product: ProductItem;
+  product: ProductModel;
 }
 
 const images = {
@@ -62,7 +62,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         Cart/ Information/ Shipping/ Payment
       </div>
       <div className="flex lg:flex-nowrap flex-wrap justify-center mt-6 pb-12 border-b">
-        <div className="lg:basis-1/2 basis-full max-w-full">
+        <div className="">
           <ImagesGallary images={product.images} />
         </div>
         <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">

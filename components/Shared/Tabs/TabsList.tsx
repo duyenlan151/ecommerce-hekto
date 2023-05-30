@@ -4,7 +4,7 @@ import { Tabs } from './Tabs';
 
 export interface Tab {
   value: string | number;
-  component: string;
+  component?: string;
   title: string;
 }
 

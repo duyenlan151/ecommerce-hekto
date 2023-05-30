@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useController } from 'react-hook-form';
 import 'react-quill/dist/quill.snow.css';
-// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-// import { Quill } from 'react-quill';
-import ImageResize from 'quill-image-resize-module-react';
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 });
 
-export interface ReactQuillProps {}
+export interface ReactQuillProps {
+  name: string;
+  label?: string;
+  control?: any;
+  onChange?: () => void;
+  onBlur?: () => void;
+  placeholder?: string;
+  value?: string;
+  className?: string;
+  [name: string]: any;
+}
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -53,11 +60,26 @@ const formats = [
   'video',
 ];
 
-export default function ReactQuillCommon(props: ReactQuillProps) {
-  const [value, setValue] = useState('');
+export default function ReactQuillCommon({
+  name,
+  label,
+  control,
+  onChange: externalOnChange,
+  onBlur: externalOnBlur,
+  placeholder = 'Please enter',
+  value: externaValue,
+  className,
+  ...rest
+}: ReactQuillProps) {
+  const {
+    field: { onChange, onBlur, value, ref },
+    fieldState: { error },
+  } = useController({
+    name,
+    control,
+  });
   return (
     <div>
-      {/* <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue} /> */}
       <label
         htmlFor="editor"
         className="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
@@ -67,13 +89,13 @@ export default function ReactQuillCommon(props: ReactQuillProps) {
       <QuillNoSSRWrapper
         modules={modules}
         formats={formats}
+        defaultValue={value}
         theme="snow"
-        onChange={(content) => {
-          // var htmlToRtf = require('html-to-rtf');
-          console.log('CONTETN: ', content);
-        }}
+        onChange={onChange}
       />
-      {/* <div id="editor" className="min-h-[300px]"></div> */}
+      {error?.message && (
+        <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
+      )}
     </div>
   );
 }

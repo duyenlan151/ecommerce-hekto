@@ -69,7 +69,7 @@ export function Dropdown({ label = 'Sort by', listItems, onSelectOption, ...rest
             <a
               key={item.id}
               onClick={() => onSelectItem(item)}
-              className="whitespace-nowrap hover:bg-grey-1 py-3 px-4 block whitespace-no-wrap text-sm flex items-center"
+              className="cursor-pointer whitespace-nowrap hover:bg-grey-1 py-3 px-4 block whitespace-no-wrap text-sm flex items-center"
               // href="#!"
             >
               {item.icon}

@@ -12,7 +12,7 @@ export default function ProductSlugPage(props: ProductSlugPageProps) {
     case 'add':
       return (
         <div className="flex flex-wrap">
-          <div className="w-full px-4">
+          <div className="w-full">
             <ProductForm product={{}} />
           </div>
         </div>

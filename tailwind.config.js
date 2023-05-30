@@ -27,8 +27,10 @@ module.exports = {
     fontFamily: {
       inter: ['JosefinSans-Regular', 'sans-serif'],
       ['josefinsans-thin']: ['JosefinSans-Thin', 'sans-serif'],
+      ['josefinsans-bold']: ['JosefinSans-Bold', 'sans-serif'],
       lato: ['Lato-Regular', 'sans-serif'],
       ['lato-light']: ['Lato-Light', 'sans-serif'],
+      ['lato-bold']: ['Lato-Bold', 'sans-serif'],
     },
     extend: {
       colors: {
@@ -72,6 +74,11 @@ module.exports = {
         'bg-color': '#efefef',
         'yellow-300': '#FFF6DA',
         'yellow-500': '#FFCC2E',
+        'color-tab': '#f4f4f4',
+        'color-border': '#afafaf',
+        'table-odd': 'rgba(0, 0, 0, 0.03)',
+        'table-border': '#d2d2d2',
+        'table-border-1': '#f7f7f9',
       },
       boxShadow: {
         main: ' 0px 0px 25px 10px #F8F8FB',

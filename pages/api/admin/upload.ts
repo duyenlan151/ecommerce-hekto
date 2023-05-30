@@ -31,7 +31,7 @@ handler.post(async (req, res) => {
     type: mimetype,
     path: path.split('/').slice(1).join('/'),
   });
-  res.status(200).json(imageDoc);
+  res.status(200).json([imageDoc]);
 });
 
 export default handler;

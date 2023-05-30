@@ -24,7 +24,7 @@ export function Tabs({ children, activeTab, setActiveTab }) {
 
   return (
     <>
-      <div className="flex gap-2 justify-center p-2">
+      <div className="flex border border-grey-3 !border-y-0 border-r-0">
         {children.map((item, i) => {
           return (
             <div key={`tab-${i}`}>
@@ -42,15 +42,17 @@ export function Tabs({ children, activeTab, setActiveTab }) {
           );
         })}
       </div>
-      <div className="p-5">
-        {children.map((item, i) => {
-          return (
-            <div key={i} className={`${i === activeTab ? 'visible' : 'hidden'}`}>
-              {item.props.component}
-            </div>
-          );
-        })}
-      </div>
+      {children && (
+        <div className="">
+          {children.map((item, i) => {
+            return (
+              <div key={i} className={`${i === activeTab ? 'visible' : 'hidden'}`}>
+                {item.props.component}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }

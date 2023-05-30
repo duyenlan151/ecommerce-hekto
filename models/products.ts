@@ -1,14 +1,15 @@
-import { Currency } from './currency';
+import { CategoryModel } from './category';
+import { ImageModel } from './image';
 
-export interface ProductItem {
-  id: string | number;
-  name: string;
-  price: number | string;
-  currency: Currency;
-  thumbnail: string | string[];
-  colors: Array<string>;
-  code: string | number;
-  isSale?: boolean;
-  desc?: string;
+export interface ProductModel {
+  _id?: string | number;
+  title: string;
+  description: string;
+  price: number;
+  images: ImageModel;
+  category: CategoryModel;
+  short_description: string;
+  discount_percentage: number;
+  rating: number;
   [key: string]: any;
 }

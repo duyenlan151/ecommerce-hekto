@@ -1,40 +1,62 @@
-import { ActionCommon, CategoryModel } from 'models';
+import { ActionCommon, CategoryModel, ProductModel } from 'models';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { categoryService } from 'services/Admin';
+import { productsService } from 'services/Admin';
 
 const titleAction = {
   add: 'Added',
-  edit: 'Edited',
+  edit: 'Updated',
   delete: 'Deleted',
 };
 
 export const useProducts = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleCategory = async (category: CategoryModel, action: ActionCommon) => {
+  const handleProduct = async (product: Partial<ProductModel>, action: ActionCommon) => {
     let status = false;
     try {
       setLoading(true);
 
-      const { _id, name, slug } = category;
+      const {
+        _id,
+        title,
+        description,
+        price,
+        images,
+        category,
+        short_description,
+        discount_percentage,
+        rating,
+      } = product;
       switch (action) {
         case 'add':
-          await categoryService.addNewCategory({
-            name,
-            slug,
+          await productsService.addNewProduct({
+            title,
+            description,
+            price,
+            images,
+            category,
+            short_description,
+            discount_percentage,
+            rating,
           });
           break;
         case 'delete':
-          await categoryService.deleteCategory({
+          await productsService.deleteProduct({
             _id,
           });
           break;
         case 'edit':
-          await categoryService.updateCategory({
+          await productsService.updateProduct({
             _id,
-            name,
-            slug,
+            title,
+            description,
+            price,
+            images,
+            category,
+            short_description,
+            discount_percentage,
+            rating,
           });
           break;
         default:
@@ -57,5 +79,5 @@ export const useProducts = () => {
     return status;
   };
 
-  return { loading, handleCategory };
+  return { loading, handleProduct };
 };

@@ -1,17 +1,17 @@
-import { ProductItem } from 'models';
+import { ProductModel } from 'models';
 import * as sanitizeHtml from 'sanitize-html';
 
 export interface ProductDetailProps {
-  product: ProductItem;
+  product: ProductModel;
 }
 
 function ProductDescription({ product }) {
-  const { description } = product;
+  const { short_description } = product;
   return (
     <div
       className="ql-editor"
       dangerouslySetInnerHTML={{
-        __html: description,
+        __html: short_description,
       }}
     ></div>
   );

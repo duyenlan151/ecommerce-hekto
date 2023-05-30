@@ -12,17 +12,15 @@ type Props = {
   total: number;
 };
 
-const ProductsPage = ({ products, limit, total }: Props) => (
-  <>{/* <ProductListPage products={products} /> */}</>
-);
+const ProductsPage = ({ products, limit, total }: Props) => <ProductListPage products={products} />;
 
 export const getStaticProps: GetStaticProps = async () => {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
   try {
-    const { products, limit, total } = await productsService.getAllProducts();
-    return { props: { products, limit, total } };
+    const data = await productsService.getAllProducts();
+    return { props: { products: data } };
   } catch (error) {}
   return { props: {} };
 };

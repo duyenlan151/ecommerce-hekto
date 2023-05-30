@@ -9,7 +9,6 @@ import store from 'app/store';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 
-import 'react-quill/dist/quill.snow.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import '../styles/index.css';

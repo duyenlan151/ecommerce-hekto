@@ -1,9 +1,9 @@
 import { Currency } from './currency';
-import { ProductItem } from './products';
+import { ProductModel } from './products';
 
 export interface CartModel {
   id: string | number;
-  product: ProductItem;
+  product: ProductModel;
   size: string;
   currency?: Currency;
   color: string;

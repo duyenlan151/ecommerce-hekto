@@ -1,12 +1,10 @@
-import { Dropdown } from '@components/Shared/Common';
-import { dataProduct } from '@utils/sample-data';
-import * as React from 'react';
 import { IoFilterOutline } from 'react-icons/io5';
 import ProductFilters from './ProductFilters';
 import ProductList from './ProductList';
 
 export interface ProductListPageProps {
-  products: [];
+  // products: [];
+  products: any;
 }
 
 const itemsList = [
@@ -27,6 +25,7 @@ const dropdowns = [
 ];
 
 export default function ProductListPage({ products }: ProductListPageProps) {
+  console.log('🚀 ~ file: ProductListPage.tsx:31 ~ ProductListPage ~ products:', products);
   return (
     <section className="bg-bg-color">
       <div className="container mx-auto py-10 lg:px-0 px-4">
@@ -49,7 +48,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             <ProductFilters />
           </div>
           <div className="flex-1 basis-full lg:ml-3 w-full justify-self-end">
-            <ProductList products={products} />
+            <ProductList products={products?.data} />
           </div>
         </div>
       </div>

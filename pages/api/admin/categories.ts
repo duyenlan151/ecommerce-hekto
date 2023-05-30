@@ -26,23 +26,26 @@ export default async function handle(req, res) {
       break;
     }
     case 'POST': {
-      const { name, parentCategory, properties, slug } = req.body;
+      const { name, parentCategory, properties, slug, status } = req.body;
+      console.log('🚀 ~ file: categories.ts:30 ~ handle ~ status:', status);
       const categoryDoc = await Category.create({
         name,
         properties,
         slug,
+        status,
       });
       res.json(categoryDoc);
       break;
     }
     case 'PUT':
       {
-        const { name, parentCategory, properties, _id, slug } = req.body;
+        const { name, parentCategory, properties, _id, slug, status } = req.body;
         const categoryDoc = await Category.updateOne(
           { _id },
           {
             name,
             slug,
+            status,
             // parent: parentCategory || undefined,
           }
         );

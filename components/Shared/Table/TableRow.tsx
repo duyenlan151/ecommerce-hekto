@@ -1,6 +1,5 @@
 import { AiOutlineDelete, AiTwotoneEdit } from 'react-icons/ai';
 import { Dropdown } from '../Common';
-import TableDropdown from '../Dropdowns/TableDropdown';
 import { IColumnType } from './Table';
 import { TableRowCell } from './TableRowCell';
 
@@ -29,17 +28,21 @@ export function TableRow<T>({
     <>
       {data &&
         data.map((item, itemIndex) => (
-          <tr key={`table-body-${itemIndex}`}>
+          <tr
+            key={`table-body-${itemIndex}`}
+            className="even:bg-table-odd odd:bg-white border-b border-table-border cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-100"
+          >
             <>
               {columns.map((column, columnIndex) => (
                 <TableRowCell
                   onDelete={onDelete}
                   column={column}
                   item={item}
+                  columnIndex={itemIndex}
                   key={`table-row-cell-${columnIndex}`}
                 />
               ))}
-              <td className="relative border-t-0 align-middle text-right border-l-0 border-r-0 text-xs whitespace-nowrap py-4 text-right">
+              <td className="relative border-t-0 align-middle text-right border-l-0 border-r-0 text-xs whitespace-nowrap text-right">
                 <Dropdown
                   className="mr-3"
                   listItems={itemsList}

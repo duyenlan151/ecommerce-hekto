@@ -1,23 +1,29 @@
 import ILoading from '@components/Icons/ILoading';
 import { InputField } from '@components/Shared/Common';
+import { DropdownSelect } from '@components/Shared/Dropdowns';
 import ReactQuillCommon from '@components/Shared/ReactQuill';
+import UploadImages from '@components/Shared/UploadImages';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useProducts } from '@hooks/index';
+import { ActionCommon, ProductModel } from 'models';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import axiosClient from 'services/api-services';
-import * as yup from 'yup';
 import { schemaProduct } from './ProductForm.props';
 
 export interface ProductFormProps {
-  product: {};
+  product: Partial<ProductModel>;
 }
+
+const items = [
+  { id: 1, title: 'Active', value: 'active' },
+  { id: 2, title: 'Archived', value: 'archived' },
+  { id: 3, title: 'Lock', value: 'lock' },
+];
 
 export default function ProductForm({ product }: ProductFormProps) {
   const router = useRouter();
-  const { loading, handleCategory } = useProducts();
+  const { loading, handleProduct } = useProducts();
   const {
     query: { slug },
   } = router;
@@ -37,33 +43,42 @@ export default function ProductForm({ product }: ProductFormProps) {
     control,
   } = form;
 
-  const uploadImages = async (ev) => {
-    const files = ev.target?.files;
-    if (files?.length > 0) {
-      // setIsUploading(true);
-      const data = new FormData();
-      for (const file of files) {
-        console.log('🚀 ~ file: ProductForm.tsx:46 ~ uploadImages ~ file:', file);
-        await data.append('file', file);
-      }
-      const config = {
-        headers: { 'content-type': 'multipart/form-data' },
-        onUploadProgress: (event) => {
-          console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
-        },
-      };
+  const onSubmit = async (product) => {
+    const {
+      _id,
+      title,
+      description,
+      price,
+      images,
+      category,
+      short_description,
+      discount_percentage,
+      rating,
+    } = product;
+    const statusCode = await handleProduct(
+      {
+        _id,
+        title,
+        description,
+        price: Number(price),
+        images,
+        category,
+        short_description,
+        discount_percentage: Number(discount_percentage),
+        rating: Number(rating),
+      },
+      String(router?.query?.slug) as ActionCommon
+    );
 
-      const response = await axiosClient.post('/upload', data, config);
-      // setImages(oldImages => {
-      //   return [...oldImages, ...res.data.links];
-      // });
-      // setIsUploading(false);
+    if (statusCode) {
+      setTimeout(() => {
+        router.back();
+      }, 2000);
     }
   };
-  const onSubmit = async (product) => {};
 
   return (
-    <div className="relative p-4 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+    <div className="relative min-w-0 break-words bg-white w-full mb-6 rounded">
       <button
         onClick={() => router.back()}
         className="flex items-center focus:outline-none hover:underline"
@@ -71,7 +86,7 @@ export default function ProductForm({ product }: ProductFormProps) {
         <AiOutlineArrowLeft />
         <span className="ml-1 text-sm">Back To Products</span>
       </button>
-      <h4 className="text-3xl font-bold tracking-wider mt-10 mb-4 pb-4 border-b">
+      <h4 className="font-bold tracking-wider mt-10 mb-4 border-b font-josefinsans-bold text-4xl text-black font-bold pb-5 mb-8 border-b">
         {slug === 'add' ? 'Add New' : 'Edit'} Product
       </h4>
       <form onSubmit={handleSubmit(onSubmit)} className="py-2">
@@ -86,18 +101,25 @@ export default function ProductForm({ product }: ProductFormProps) {
           </div>
           {/* Short description */}
           <div className="col-span-4">
-            <ReactQuillCommon />
+            <ReactQuillCommon
+              label="Short Description"
+              name="short_description"
+              control={control}
+            />
             {/* <InputField label="Short description" name="short_description" control={control} /> */}
+          </div>
+          <div className="col-span-4">
+            <DropdownSelect
+              label="Category"
+              name="category"
+              control={control}
+              placeholder={'Please select'}
+              items={items}
+            />
           </div>
           {/* Price */}
           <div className="col-start-1">
-            <InputField
-              label="Price"
-              name="price"
-              type="number"
-              // className="focus:outline-none"
-              control={control}
-            />
+            <InputField label="Price" name="price" type="number" control={control} />
           </div>
           {/*  Distcount Percent*/}
           <div className="col-start-2">
@@ -105,41 +127,16 @@ export default function ProductForm({ product }: ProductFormProps) {
               label="Distcount Percentage"
               name="discount_percentage"
               type="number"
-              // className="focus:outline-none"
               control={control}
             />
           </div>
           {/* Rating */}
           <div className="col-start-3">
-            <InputField
-              label="Rating"
-              name="rating"
-              type="number"
-              // className="focus:outline-none"
-              control={control}
-            />
+            <InputField label="Rating" name="rating" type="number" control={control} />
           </div>
         </div>
-        <div>
-          images
-          <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            <div>Add image</div>
-            <input type="file" onChange={uploadImages} className="hidden" />
-          </label>
+        <div className="mt-2">
+          <UploadImages defaultImges={product?.images} name="images" control={control} />
         </div>
         <div className="flex justify-end w-full flex-end">
           <button

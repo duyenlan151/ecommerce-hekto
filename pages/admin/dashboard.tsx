@@ -9,11 +9,13 @@ import {
   CardSocialTraffic,
   CardStats,
 } from '@components/Shared/Cards';
+import HeaderStats from '@components/Shared/HeaderStats';
 
 export default function DashboardPage() {
   return (
     <>
       {/* Card stats */}
+      <HeaderStats />
       <div className="flex flex-wrap  pb-10">
         <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardStats
@@ -64,13 +66,9 @@ export default function DashboardPage() {
           />
         </div>
       </div>
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-          <CardLineChart />
-        </div>
-        <div className="w-full xl:w-4/12 px-4">
-          <CardBarChart />
-        </div>
+      <div className="px-4">
+        <CardLineChart />
+        <CardBarChart />
       </div>
       <div className="flex flex-wrap mt-4">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">

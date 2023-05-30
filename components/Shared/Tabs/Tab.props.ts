@@ -14,6 +14,6 @@ export enum ColorType {
 }
 
 export const colorText: Record<ColorType, any> = {
-  [ColorType.TRUE]: 'text-pink-1 border-b border-pink-1',
-  [ColorType.FALSE]: 'text-black',
+  [ColorType.TRUE]: '!border-b-0',
+  [ColorType.FALSE]: 'text-black !bg-color-tab',
 };

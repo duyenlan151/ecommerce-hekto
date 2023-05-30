@@ -26,6 +26,7 @@ export const productsService = {
   },
 
   deleteProduct({ _id }): Promise<any> {
+    console.log('🚀 ~ file: products.ts:29 ~ deleteProduct ~ _id:', _id);
     return axiosClient.delete(`/products`, {
       params: {
         _id,

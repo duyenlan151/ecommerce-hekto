@@ -1,13 +1,13 @@
 import { QuantityField } from '@components/Shared/Common/QuantityField';
 import { getSymbolCurrency } from '@utils/common';
 import { addToCart } from 'app/Cart/cartSlice';
-import { ProductItem } from 'models';
+import { ProductModel } from 'models';
 import { useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
 export interface ProductInfoProps {
-  product: ProductItem;
+  product: ProductModel;
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {

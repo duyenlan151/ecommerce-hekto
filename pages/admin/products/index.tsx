@@ -1,20 +1,34 @@
-import React from 'react';
-
 // components
-import CardTable from '@components/Shared/Cards/CardTable';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
-import { GetServerSideProps } from 'next';
-import { productsService } from 'services/Admin';
 import ProductList from '@components/Admin/Products/ProductList';
+import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
+import { GetServerSideProps } from 'next';
+import { useState } from 'react';
+import { productsService } from 'services/Admin';
 
 // layout for page
 export interface ProductsPageProps {
   data: [];
 }
 
+const tabs = [
+  { id: 1, title: 'All', value: 'all' },
+  { id: 2, title: 'Active', value: 'active' },
+  { id: 3, title: 'Locked', value: 'locked' },
+];
+
 export default function ProductsPage({ data }: ProductsPageProps) {
+  const [activeTab, setActiveTab] = useState('all');
+
+  const handleSetActiveTab = (value) => {
+    setActiveTab(value);
+  };
   return (
     <>
+      <h4 className="font-josefinsans-bold text-5xl text-black font-bold pb-5 mb-8 border-b">
+        Products
+      </h4>
+      <TabsListAdmin tabs={tabs} activeTab={activeTab} setActiveTab={handleSetActiveTab} />
       <ProductList data={data} />
     </>
   );

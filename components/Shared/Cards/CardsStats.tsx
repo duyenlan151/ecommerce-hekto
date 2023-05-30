@@ -45,7 +45,7 @@ export function CardStats({
               </div>
             </div>
           </div>
-          <p className="text-sm text-blueGray-400 mt-4">
+          <p className="text-sm text-blueGray-400 mt-8">
             <span className={statPercentColor + ' mr-2'}>
               <i
                 className={

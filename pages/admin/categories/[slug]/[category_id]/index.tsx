@@ -1,9 +1,7 @@
 import CategoryForm from '@components/Admin/Categories/CategoryForm';
 import LayoutAdmin from '@components/Shared/LayoutAdmin';
 import { CategoryModel } from 'models';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
-import * as React from 'react';
+import { GetServerSideProps } from 'next';
 import { categoryService } from 'services/Admin';
 
 export interface CategoryPageProps {
@@ -13,7 +11,7 @@ export interface CategoryPageProps {
 export default function CategoryPage({ category }: CategoryPageProps) {
   return (
     <div className="flex flex-wrap">
-      <div className="w-full px-4">
+      <div className="w-full">
         <CategoryForm category={category} />
       </div>
     </div>

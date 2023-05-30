@@ -5,7 +5,7 @@ import { categoryService } from 'services/Admin';
 
 const titleAction = {
   add: 'Added',
-  edit: 'Edited',
+  edit: 'Updated',
   delete: 'Deleted',
 };
 
@@ -13,16 +13,17 @@ export const useCategories = () => {
   const [loading, setLoading] = useState(false);
 
   const handleCategory = async (category: CategoryModel, action: ActionCommon) => {
-    let status = false;
+    let statusCode = false;
     try {
       setLoading(true);
 
-      const { _id, name, slug } = category;
+      const { _id, name, slug, status } = category;
       switch (action) {
         case 'add':
           await categoryService.addNewCategory({
             name,
             slug,
+            status,
           });
           break;
         case 'delete':
@@ -35,6 +36,7 @@ export const useCategories = () => {
             _id,
             name,
             slug,
+            status,
           });
           break;
         default:
@@ -45,7 +47,7 @@ export const useCategories = () => {
         toast(`${titleAction[action]} Successfully!`, { type: 'success' });
       }, 2000);
 
-      status = true;
+      statusCode = true;
     } catch (error) {
       toast('Something error! Please try again.', { type: 'error' });
     } finally {
@@ -54,7 +56,7 @@ export const useCategories = () => {
       }, 2000);
     }
 
-    return status;
+    return statusCode;
   };
 
   return { loading, handleCategory };

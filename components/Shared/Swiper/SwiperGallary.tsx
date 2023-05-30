@@ -8,11 +8,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import { SwiperModule } from 'swiper/types';
+import { ImageModel } from 'models';
 
 export interface SwiperGallaryProps {
   initialSlide?: number;
   modules?: SwiperModule[];
-  images: string[];
+  images: ImageModel[];
 }
 
 const style = {
@@ -78,8 +79,8 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
             <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
               <img
                 className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
-                src={image}
-                alt={image}
+                src={`http://localhost:3000/${image.path}`}
+                alt={image.name}
               />
             </SwiperSlide>
           ))}
@@ -96,8 +97,8 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
               >
                 <img
                   className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
-                  src={image}
-                  alt={image}
+                  src={`http://localhost:3000/${image.path}`}
+                  alt={image.name}
                 />
               </div>
             ))}

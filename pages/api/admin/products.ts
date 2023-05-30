@@ -8,7 +8,9 @@ export default async function handle(req, res) {
   // await isAdminRequest(req,res);
   switch (method) {
     case 'GET': {
-      if (req.query?.id) {
+      if (req.query?.slug) {
+        res.json(await Product.findOne({ _id: req.query.id, slug: req.query.slug }));
+      } else if (req.query?.id) {
         res.json(await Product.findOne({ _id: req.query.id }));
       } else {
         const data = await Product.find();
@@ -30,7 +32,7 @@ export default async function handle(req, res) {
         price,
         images,
         category,
-        properties,
+        // properties,
         short_description,
         discount_percentage,
         rating,
@@ -41,10 +43,11 @@ export default async function handle(req, res) {
         price,
         images,
         category,
-        properties,
+        // properties,
         short_description,
         discount_percentage,
         rating,
+        slug: title.split(' ').join('-'),
       });
       res.json(productDoc);
       break;
@@ -56,7 +59,7 @@ export default async function handle(req, res) {
         price,
         images,
         category,
-        properties,
+        // properties,
         _id,
         short_description,
         discount_percentage,
@@ -70,18 +73,19 @@ export default async function handle(req, res) {
           price,
           images,
           category,
-          properties,
+          // properties,
           short_description,
           discount_percentage,
           rating,
+          slug: title.split(' ').join('-'),
         }
       );
       res.json(true);
       break;
     }
     case 'DELETE': {
-      if (req.query?.id) {
-        await Product.deleteOne({ _id: req.query?.id });
+      if (req.query?._id) {
+        await Product.deleteOne({ _id: req.query?._id });
         res.json(true);
       }
       break;

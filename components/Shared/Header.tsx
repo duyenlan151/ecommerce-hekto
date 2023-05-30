@@ -10,26 +10,23 @@ export function Header({}: HeaderProps) {
       <div className="flex items-center justify-between container mx-auto">
         <div className="lg:flex items-center hidden">
           <h1 className="text-4xl font-bold mr-20">Hekto</h1>
-          <nav className="">
-            <Link className="mx-3 text-base" href="/">
-              Home
-            </Link>
-            <Link className="mx-3 text-base" href="/pages">
-              Pages
-            </Link>
-            <Link className="mx-3 text-base" href="/products">
-              Products
-            </Link>
-            <Link className="mx-3 text-base" href="/blog">
-              Blog
-            </Link>
-            <Link className="mx-3 text-base" href="/shop">
-              Shop
-            </Link>
-            <Link className="mx-3 text-base" href="/contact">
-              Contact
-            </Link>
-          </nav>
+          {/* <nav className=""> */}
+          <Link className="mx-3 text-base" href="/">
+            Home
+          </Link>
+          <Link className="mx-3 text-base" href="/products">
+            Products
+          </Link>
+          <Link className="mx-3 text-base" href="/blog">
+            Blog
+          </Link>
+          {/* <Link className="mx-3 text-base" href="/shop">
+            Shop
+          </Link> */}
+          <Link className="mx-3 text-base" href="/contact">
+            Contact
+          </Link>
+          {/* </nav> */}
         </div>
 
         {/* Input */}
