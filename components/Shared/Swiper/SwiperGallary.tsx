@@ -55,7 +55,7 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
   const handleSlideChange = ({ activeIndex }: { activeIndex: number | undefined }) => {
     if (swiperRef.current && activeIndex !== undefined) {
       setAtiveImage(activeIndex);
-      swiperRef.current.slideTo(activeIndex);
+      swiperRef?.current?.slideTo(activeIndex);
     }
   };
 
@@ -69,7 +69,7 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
           spaceBetween={10}
           initialSlide={activeImage}
           className="mySwiper2 !mx-2"
-          onSlideChange={handleSlideChange}
+          // onSlideChange={handleSlideChange}
           modules={[FreeMode, Navigation, Thumbs]}
           onInit={(swiper) => {
             swiperRef.current = swiper;

@@ -6,9 +6,9 @@ if (!process.env.MONGODB_URI) {
 }
 
 // const uri = process.env.MONGODB_URI;
-var username = encodeURIComponent('admin');
-var password = encodeURIComponent('Duyenlan1501');
-const uri = `mongodb+srv://${username}:${password}@cluster0.06plb.mongodb.net/?retryWrites=true&w=majority`;
+var username = encodeURIComponent('loanduyen151');
+var password = encodeURIComponent('fCdrmQgppbLe1KCb');
+const uri = `mongodb+srv://${username}:${password}@nextjs.lye8oja.mongodb.net/?retryWrites=true&w=majority`;
 
 const options = {};
 
