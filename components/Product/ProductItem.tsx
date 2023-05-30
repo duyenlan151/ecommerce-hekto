@@ -194,13 +194,9 @@ export function ProductItemSecondary({
         href={`/products/${_id}/${slug}`}
         className="relative block max-w-[214px] min-w-[214px] h-[214px]"
       >
-        {/* <img
-          className="mx-auto scale-9 max-h-full max-w-full max-h-[214px]"
-          src={thumbnail}
-          alt="profile picture"
-        /> */}
         <Image
-          src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[0].path}`}
+          // src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[0].path}`}
+          src={images[0].path}
           fill
           alt={name}
           className="scale-[80%] object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "

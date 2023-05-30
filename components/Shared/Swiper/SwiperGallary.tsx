@@ -79,7 +79,7 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
             <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
               <img
                 className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
-                src={`${process.env.NEXT_PUBLIC_HOST_URL}${image.path}`}
+                src={image.path}
                 alt={image.name}
               />
             </SwiperSlide>

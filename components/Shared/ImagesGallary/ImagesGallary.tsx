@@ -33,9 +33,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
         <div className="flex justify-center sm:px-12">
           <img
             className="object-scale-down max-h-full rounded-md m-auto max-h-[444px]"
-            // src={images[activeImage]}
-            alt={`${process.env.NEXT_PUBLIC_HOST_URL}${images[activeImage].path}`}
-            src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[activeImage].path}`}
+            alt={images[activeImage].path}
+            src={images[activeImage].path}
           />
         </div>
       </div>
@@ -48,9 +47,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
           >
             <img
               className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative h-full overflow-hidden"
-              // src={image}
-              alt={`${process.env.NEXT_PUBLIC_HOST_URL}${image.path}`}
-              src={`${process.env.NEXT_PUBLIC_HOST_URL}${image.path}`}
+              alt={image.path}
+              src={image.path}
             />
           </div>
         ))}
@@ -59,17 +57,10 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
             className="relative flex-shrink-0 rounded max-w-[64px] min-w-[64px] h-[64px] cursor-pointer shrink rounded-md overflow-hidden"
             onClick={handleToggleModal}
           >
-            {/* <img
-            className="max-w-[64px] min-w-[64px] max-h-[64px] rounded-md overflow-hidden object-cover relative border h-full"
-            src={images.imageSmall[6]}
-            alt={images.imageSmall[6]}
-          /> */}
             <img
               className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative border h-full"
-              // src={images[6]}
-              // alt={images[6]}
-              alt={`${process.env.NEXT_PUBLIC_HOST_URL}${images[6].path}`}
-              src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[6].path}`}
+              alt={images[6].path}
+              src={images[6].path}
             />
             <div className="opacity-30 absolute inset-0 z-40 bg-black"></div>
             <div className="absolute inset-0 z-20 text-white text-center text-[10px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
@@ -80,7 +71,6 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
       </div>
 
       <Modal isShow={showModal} onChange={handleToggleModal}>
-        {/* <SwiperGallary images={images.imageLarge} initialSlide={activeImage} /> */}
         <SwiperGallary images={images} initialSlide={activeImage} />
       </Modal>
     </div>
