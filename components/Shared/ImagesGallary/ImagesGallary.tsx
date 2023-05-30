@@ -34,8 +34,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
           <img
             className="object-scale-down max-h-full rounded-md m-auto max-h-[444px]"
             // src={images[activeImage]}
-            alt={`http://localhost:3000/${images[activeImage].path}`}
-            src={`http://localhost:3000/${images[activeImage].path}`}
+            alt={`${process.env.HOST_URL}${images[activeImage].path}`}
+            src={`${process.env.HOST_URL}${images[activeImage].path}`}
           />
         </div>
       </div>
@@ -49,8 +49,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
             <img
               className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative h-full overflow-hidden"
               // src={image}
-              alt={`http://localhost:3000/${image.path}`}
-              src={`http://localhost:3000/${image.path}`}
+              alt={`${process.env.HOST_URL}${image.path}`}
+              src={`${process.env.HOST_URL}${image.path}`}
             />
           </div>
         ))}
@@ -68,8 +68,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
               className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative border h-full"
               // src={images[6]}
               // alt={images[6]}
-              alt={`http://localhost:3000/${images[6].path}`}
-              src={`http://localhost:3000/${images[6].path}`}
+              alt={`${process.env.HOST_URL}${images[6].path}`}
+              src={`${process.env.HOST_URL}${images[6].path}`}
             />
             <div className="opacity-30 absolute inset-0 z-40 bg-black"></div>
             <div className="absolute inset-0 z-20 text-white text-center text-[10px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">

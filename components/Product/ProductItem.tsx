@@ -200,7 +200,7 @@ export function ProductItemSecondary({
           alt="profile picture"
         /> */}
         <Image
-          src={`http://localhost:3000/${images[0].path}`}
+          src={`${process.env.HOST_URL}${images[0].path}`}
           fill
           alt={name}
           className="scale-[80%] object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "

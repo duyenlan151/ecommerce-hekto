@@ -79,7 +79,7 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
             <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
               <img
                 className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
-                src={`http://localhost:3000/${image.path}`}
+                src={`${process.env.HOST_URL}${image.path}`}
                 alt={image.name}
               />
             </SwiperSlide>
@@ -97,7 +97,7 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
               >
                 <img
                   className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
-                  src={`http://localhost:3000/${image.path}`}
+                  src={`${process.env.HOST_URL}${image.path}`}
                   alt={image.name}
                 />
               </div>
