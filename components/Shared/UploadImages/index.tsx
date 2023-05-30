@@ -111,7 +111,7 @@ export default function UploadImages({
               <Image
                 onClick={() => handleClickImage(idx)}
                 className="min-h-[96px] min-w-[96px] border border-primary"
-                src={`${process.env.HOST_URL}${image.path}`}
+                src={`${process.env.NEXT_PUBLIC_HOST_URL}${image.path}`}
                 fill
                 alt={image.name}
               />

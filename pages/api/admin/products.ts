@@ -94,5 +94,5 @@ export default async function handle(req, res) {
     default:
       break;
   }
-  res.status(200).json({ products: 'categories' });
+  // res.status(200).json({ products: 'categories' });
 }
