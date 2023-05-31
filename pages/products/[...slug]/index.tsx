@@ -1,7 +1,7 @@
 import ProductDetail from '@components/Product/ProductDetail';
 import MetaData from '@components/Shared/MetaData';
 import { ProductModel } from 'models';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import * as React from 'react';
 import { productsService } from 'services';
 import Loading from '../loading';
@@ -29,6 +29,7 @@ export default function ProductSlug({ product }: ProductSlugProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
+    context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
     const slug = context.params?.slug;
     let product;
     if (slug) {

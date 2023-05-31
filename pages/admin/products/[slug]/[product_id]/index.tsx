@@ -22,7 +22,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
 ProductDetailPage.layout = LayoutAdmin;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate');
+  context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
   const slug = context.params?.slug;
   if (slug !== 'edit') {
     return { notFound: true };
