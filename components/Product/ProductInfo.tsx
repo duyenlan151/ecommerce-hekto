@@ -11,7 +11,7 @@ export interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  const { name, price, shortDescription, salePrice } = product;
+  const { title, price, shortDescription, salePrice } = product;
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
   return (
     <div>
-      <h4 className="text-blue-1 text-3xl">{name}</h4>
+      <h4 className="text-blue-1 text-3xl">{title}</h4>
 
       <div className="my-4">
         <span className="text-pink-1 text-2xl">{getSymbolCurrency('EUR', price)}</span>
