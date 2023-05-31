@@ -35,6 +35,8 @@ export default function CategoriesPage({ data }: CategoriesPageProps) {
 CategoriesPage.layout = LayoutAdmin;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate');
+
   try {
     const { data } = await categoryService.getAllCategory();
 

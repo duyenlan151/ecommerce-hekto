@@ -37,6 +37,8 @@ export default function ProductsPage({ data }: ProductsPageProps) {
 ProductsPage.layout = LayoutAdmin;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate');
+
   try {
     const { data } = await productsService.getAllProducts();
 
