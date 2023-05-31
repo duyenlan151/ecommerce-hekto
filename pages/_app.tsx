@@ -1,33 +1,27 @@
-import { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-
 import { Layout } from '@components/Shared/Layout';
 import MetaData from '@components/Shared/MetaData';
 import NProgress from '@utils/nprogress';
 import store from 'app/store';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
+import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import { AppPropsWithLayout } from 'models';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import '../styles/index.css';
 import '../styles/tailwind.css';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
-
 NProgress.configure({
   easing: 'ease',
   speed: 800,
   showSpinner: false,
 });
 
-interface MyAppProps extends AppProps {
-  Component;
-}
-
-function MyApp({ Component, pageProps }: MyAppProps) {
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
-  const LayoutMain = router.asPath.includes('admin') ? LayoutAdmin : Component.layout || Layout;
+  const LayoutMain = router.asPath.includes('admin') ? LayoutAdmin : Component.layout ?? Layout;
 
   useEffect(() => {
     const start = () => {
@@ -50,8 +44,10 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <Provider store={store}>
       <LayoutMain>
-        <MetaData />
-        <Component {...pageProps} />
+        <>
+          <MetaData />
+          <Component {...pageProps} />
+        </>
       </LayoutMain>
       <ToastContainer
         position="top-right"

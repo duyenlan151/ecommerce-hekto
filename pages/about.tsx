@@ -1,10 +1,8 @@
 import SectionClient from '@components/About/SectionClient';
-import { BoxContent, BoxSection } from '@components/Shared/Box';
 import { ICashBack, IHoursSupport, IPremium, ITruckDelivery } from '@components/Icons';
 import ProductShopex from '@components/Product/ProductShopex';
+import { BoxContent, BoxSection } from '@components/Shared/Box';
 import { ShopexModel } from 'models';
-// import { dataFetures } from 'mocks';
-
 const dataFetures: ShopexModel[] = [
   {
     id: 1,

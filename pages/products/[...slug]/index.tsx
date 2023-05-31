@@ -4,6 +4,7 @@ import { ProductModel } from 'models';
 import { GetServerSideProps } from 'next';
 import * as React from 'react';
 import { productsService } from 'services';
+import Loading from '../loading';
 
 export interface ProductSlugProps {
   product: ProductModel;
@@ -11,16 +12,18 @@ export interface ProductSlugProps {
 
 export default function ProductSlug({ product }: ProductSlugProps) {
   return (
-    <section className="container mx-auto">
-      <MetaData
-        propTitle={product?.name || product?.title}
-        propSuffix={product?.category?.name}
-        propDescription={product?.name || product?.title}
-        propPreviewImage={String(product?.thumbnail)}
-        propKeywords={product?.name || product?.title}
-      />
-      {product && <ProductDetail product={product} />}
-    </section>
+    <React.Suspense fallback={<Loading />}>
+      <section className="container mx-auto">
+        <MetaData
+          propTitle={product?.name || product?.title}
+          propSuffix={product?.category?.name}
+          propDescription={product?.name || product?.title}
+          propPreviewImage={String(product?.thumbnail)}
+          propKeywords={product?.name || product?.title}
+        />
+        {product && <ProductDetail product={product} />}
+      </section>
+    </React.Suspense>
   );
 }
 

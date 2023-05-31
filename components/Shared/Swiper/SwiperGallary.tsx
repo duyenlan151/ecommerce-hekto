@@ -1,14 +1,14 @@
+import { ImageModel } from 'models';
+import Image from 'next/image';
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
-
 import { FreeMode, Navigation, Thumbs } from 'swiper';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { SwiperModule } from 'swiper/types';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
-import { SwiperModule } from 'swiper/types';
-import { ImageModel } from 'models';
 
 export interface SwiperGallaryProps {
   initialSlide?: number;
@@ -76,9 +76,14 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
           }}
         >
           {images.map((image, i) => (
-            <SwiperSlide key={`image-${i}-${image}`} className="h-full max-h-[550px] w-full">
-              <img
-                className="mx-auto w-full !max-w-[550px] max-h-[550px] relative h-full"
+            <SwiperSlide
+              key={`image-${i}-${image}`}
+              className="relative h-full max-h-[550px] w-full"
+            >
+              <Image
+                className="mx-auto"
+                width={550}
+                height={550}
                 src={image.path}
                 alt={image.name}
               />
@@ -92,12 +97,14 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
             {images.map((image, i) => (
               <div
                 key={`image-${i}-${image}`}
-                className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '}`}
+                className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '} relative`}
                 onClick={() => handleSlideChange({ activeIndex: i })}
               >
-                <img
-                  className="overflow-hidden max-h-[75px] max-w-[75px] relative overflow-hidden"
-                  src={`${process.env.NEXT_PUBLIC_HOST_URL}${image.path}`}
+                <Image
+                  className="mx-auto"
+                  width={75}
+                  height={75}
+                  src={image.path}
                   alt={image.name}
                 />
               </div>
