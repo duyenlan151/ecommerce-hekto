@@ -19,16 +19,16 @@ const ProductsPage = ({ products, limit, total }: Props) => {
   return <ProductListPage products={products} />;
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  // Example for including static props in a Next.js function component page.
-  // Don't forget to include the respective types for any props passed into
-  // the component.
-  const data = await productsService.getAllProducts();
-  return {
-    paths: data.products.map((product) => ({ params: { product_id: product.id } })),
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   // Example for including static props in a Next.js function component page.
+//   // Don't forget to include the respective types for any props passed into
+//   // the component.
+//   const data = await productsService.getAllProducts();
+//   return {
+//     paths: data.products.map((product) => ({ params: { product_id: product.id } })),
+//     fallback: true,
+//   };
+// };
 
 export const getStaticProps: GetStaticProps = async () => {
   // Example for including static props in a Next.js function component page.
