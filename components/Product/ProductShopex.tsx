@@ -44,7 +44,7 @@ export default function ProductShopex({ data = dataDefault }: IProductShopexProp
   return (
     <AnimatedDiv
       variants={FadeContainer}
-      className="grid justify-center items-center mx-auto gap-6 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 grid-flow-row"
+      className="grid justify-center items-center mx-auto gap-6 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-flow-row"
     >
       {data.map((item) => (
         <ProductShopexItem key={item.id} item={item} />

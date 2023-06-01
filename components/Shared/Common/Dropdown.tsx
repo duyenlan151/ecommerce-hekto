@@ -5,7 +5,12 @@ import { AiOutlineMore } from 'react-icons/ai';
 
 export interface DropdownProps {
   label?: string;
-  listItems: Array<{ id: string | number; label: string; value: string | number; icon: ReactNode }>;
+  listItems: Array<{
+    id: string | number;
+    label: string;
+    value?: string | number;
+    icon?: ReactNode;
+  }>;
   onSelectOption: (item) => void;
   [key: string]: any;
 }
@@ -25,7 +30,7 @@ export function Dropdown({ label = 'Sort by', listItems, onSelectOption, ...rest
     }
   };
 
-  const onSelectItem = (item: { id: string | number; label: string; value: string | number }) => {
+  const onSelectItem = (item: { id: string | number; label?: string; value?: string | number }) => {
     onSelectOption(item);
     setDropdownPopoverShow(false);
   };

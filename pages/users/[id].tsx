@@ -12,20 +12,10 @@ type Props = {
 
 const StaticPropsDetail = ({ item, errors }: Props) => {
   if (errors) {
-    return (
-      <Layout title="Error | Next.js + TypeScript Example">
-        <p>
-          <span style={{ color: 'red' }}>Error:</span> {errors}
-        </p>
-      </Layout>
-    );
+    return <></>;
   }
 
-  return (
-    <Layout title={`${item ? item.name : 'User Detail'} | Next.js + TypeScript Example`}>
-      {item && <ListDetail item={item} />}
-    </Layout>
-  );
+  return <></>;
 };
 
 export default StaticPropsDetail;
@@ -47,7 +37,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id;
-    console.log('🚀 ~ file: [id].tsx:52 ~ constgetStaticProps:GetStaticProps= ~ id:', id);
     // const item = sampleUserData.find((data) => data.id === Number(id))
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time

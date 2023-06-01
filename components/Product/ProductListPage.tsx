@@ -25,7 +25,6 @@ const dropdowns = [
 ];
 
 export default function ProductListPage({ products }: ProductListPageProps) {
-  console.log('🚀 ~ file: ProductListPage.tsx:31 ~ ProductListPage ~ products:', products);
   return (
     <section className="bg-bg-color">
       <div className="container mx-auto py-10 lg:px-0 px-4">

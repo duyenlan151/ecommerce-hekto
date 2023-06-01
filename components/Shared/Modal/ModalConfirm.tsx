@@ -1,13 +1,8 @@
-import ILoading from '@components/Icons/ILoading';
-import React, { ReactNode } from 'react';
+import { ILoading } from '@components/Icons';
 import { Modal } from './Modal';
+import { ModalCommonProps } from './Modal.props';
 
-export interface ModalConfirmProps {
-  loading: boolean;
-  isShow: boolean;
-  title: string;
-  description: string | ReactNode;
-  onClose: () => void;
+export interface ModalConfirmProps extends ModalCommonProps {
   onConfirm: () => Promise<void>;
 }
 

@@ -27,7 +27,6 @@ export default async function handle(req, res) {
     }
     case 'POST': {
       const { name, parentCategory, properties, slug, status } = req.body;
-      console.log('🚀 ~ file: categories.ts:30 ~ handle ~ status:', status);
       const categoryDoc = await Category.create({
         name,
         properties,

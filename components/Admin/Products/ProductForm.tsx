@@ -1,4 +1,4 @@
-import ILoading from '@components/Icons/ILoading';
+import { ILoading } from '@components/Icons';
 import { InputField } from '@components/Shared/Common';
 import { DropdownSelect } from '@components/Shared/Dropdowns';
 import ReactQuillCommon from '@components/Shared/ReactQuill';

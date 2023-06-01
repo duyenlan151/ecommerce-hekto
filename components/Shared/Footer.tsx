@@ -2,55 +2,50 @@ import Link from 'next/link';
 import * as React from 'react';
 import { InputField } from './Common';
 import { IFacebook, IInstagram, ITwitter } from '../Icons';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { dataFooter, schemaFooter } from './Footer.props';
 
 export interface FooterProps {}
 
-const dataFooter = {
-  Categories: [
-    'Laptops & Computers',
-    'Cameras & Photography',
-    'Smart Phones & Tablets',
-    'Video Games & Consoles',
-    'Waterproof Headphones',
-  ],
-  'Customer Care': ['My Account', 'Discount', 'Returns', 'Orders History', 'Order Tracking'],
-  Pages: [
-    'Blog',
-    'Browse the Shop',
-    'Category',
-    'Pre-Built Pages',
-    'Visual Composer Elements',
-    'WooCommerce Pages',
-  ],
-};
-
 export function Footer({}: FooterProps) {
+  const form = useForm({
+    resolver: yupResolver(schemaFooter),
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = form;
+
+  const onSubmit = (values) => {
+    console.log('🚀 ~ file: Footer.tsx:25 ~ onSubmit ~ values:', values);
+  };
   return (
     <footer>
       <div className="bg-grey-1 py-24 lg:px-0 px-2">
         <div className="container mx-auto">
-          <div className="flex lg:flex-nowrap flex-wrap lg:gap-4">
-            <div className="lg:w-2/5 md:w-1/2 w-full lg:pr-24">
+          <div className="flex lg:flex-row flex-col lg:gap-4">
+            <div className="lg:w-2/5 !w-full lg:pr-24 mb-4">
               <h4 className="text-4xl font-bold">Hekto</h4>
 
               {/* Input Sing up */}
-              <form className="max-w-[90%] bg-white flex items-center justify-between p-[3px] h-[44px] rounded my-6">
-                {/* <input
-                  id="email-address"
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="max-w-[90%] bg-white flex items-center justify-between p-[3px] h-[44px] rounded my-6"
+              >
+                <InputField
+                  control={control}
                   name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="h-full border-transparent focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6"
-                  placeholder="Enter Email Address"
-                /> */}
-                {/* <InputField
                   required
                   placeholder="Enter Email Address"
                   className={
-                    'h-full border-transparent focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
+                    'h-full min-w-[60%] max-w-[95%] !border-white focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
                   }
-                /> */}
+                />
                 <button
                   type="submit"
                   className="font-lato bg-pink-1 flex-none px-7 h-full rounded text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
@@ -66,8 +61,8 @@ export function Footer({}: FooterProps) {
               </div>
             </div>
             {Object.keys(dataFooter).map((key, i) => (
-              <div key={`key-${i}`} className="lg:w-1/5 md:w-1/2 w-full">
-                <h4 className="text-xl mb-10">{key}</h4>
+              <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full">
+                <h4 className="text-xl lg:mb-10 mb-4">{key}</h4>
                 {Array.from(dataFooter[key]).map((item, i) => (
                   <Link
                     key={`item-${i}`}

@@ -10,8 +10,8 @@ const IndexPage = () => (
     <Banner />
     <SectionProducts />
     <SectionUnique />
-    <SectionTrending />
-    <SectionNewLetters />
+    {/* <SectionTrending /> */}
+    {/* <SectionNewLetters /> */}
     <SectionBlogs />
   </>
 );

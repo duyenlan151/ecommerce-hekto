@@ -1,6 +1,7 @@
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { BoxPageMeta } from './Box';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -14,7 +15,22 @@ type Props = {
 const pathNameNoNeedBox = ['/products', '/'];
 
 export const Layout = ({ children, title = 'This is the default title' }: Props) => {
-  const { pathname } = useRouter();
+  const { status, data: session } = useSession();
+  const router = useRouter();
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+  //@ts-ignore
+  if (!!session?.user?.isAdmin) {
+    router.push('/admin');
+    return;
+  }
+  //@ts-ignore
+  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+    router.push('/');
+    return;
+  }
+
   return (
     <>
       <Head>

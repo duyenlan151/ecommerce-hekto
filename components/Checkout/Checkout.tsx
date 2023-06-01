@@ -127,9 +127,7 @@ export default function Checkout({}: CheckoutProps) {
     []
   );
 
-  const onSubmit = (values) => {
-    console.log('🚀 ~ file: Checkout.tsx:166 ~ onSubmit ~ values:', values);
-  };
+  const onSubmit = (values) => {};
 
   const handleNavigate = () => {
     router.push('/cart/payment');

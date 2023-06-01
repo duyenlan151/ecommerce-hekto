@@ -6,9 +6,9 @@ interface HeaderProps {}
 
 export function Header({}: HeaderProps) {
   return (
-    <div className="flex items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-grey-500 shadow-sm">
+    <div className="md:flex hidden items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-primary">
       <div className="flex items-center justify-between container mx-auto">
-        <div className="lg:flex items-center hidden">
+        <div className="md:flex items-center ">
           <h1 className="text-4xl font-bold mr-20">Hekto</h1>
           {/* <nav className=""> */}
           <Link className="mx-3 text-base" href="/">
@@ -30,7 +30,7 @@ export function Header({}: HeaderProps) {
         </div>
 
         {/* Input */}
-        <div className="lg:flex max-w-md hidden">
+        {/* <div className="lg:flex max-w-md hidden">
           <input
             id="email-address"
             name="email"
@@ -46,7 +46,7 @@ export function Header({}: HeaderProps) {
           >
             <AiOutlineSearch size={22} />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

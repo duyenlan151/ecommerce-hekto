@@ -1,9 +1,11 @@
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   AiOutlineAppstore,
   AiOutlineHome,
+  AiOutlineLogout,
   AiOutlineMenu,
   AiOutlineSetting,
   AiOutlineUsergroupAdd,
@@ -19,6 +21,13 @@ const items = [
   { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
   { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
   { id: 6, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
+  {
+    id: 7,
+    title: 'Logout',
+    icon: <AiOutlineLogout size={20} />,
+    path: '#',
+    action: () => signOut({ callbackUrl: '/' }),
+  },
 ];
 
 export default function Sidebar() {
@@ -84,7 +93,8 @@ export default function Sidebar() {
             {items.map((item) => (
               <Link
                 key={item.id}
-                href={item.path}
+                href={item?.path}
+                onClick={() => item.action && item.action()}
                 className={
                   'items-center flex items-center py-4 ' +
                   (router.pathname.indexOf(item.path) !== -1

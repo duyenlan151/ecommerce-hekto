@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
-import { Provider } from 'react-redux';
 import { Layout } from '@components/Shared/Layout';
-import MetaData from '@components/Shared/MetaData';
+import LayoutAdmin from '@components/Shared/LayoutAdmin';
 import NProgress from '@utils/nprogress';
 import store from 'app/store';
+import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
-import { AppPropsWithLayout } from 'models';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
@@ -18,10 +17,10 @@ NProgress.configure({
   speed: 800,
   showSpinner: false,
 });
-
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
-  const LayoutMain = router.asPath.includes('admin') ? LayoutAdmin : Component.layout ?? Layout;
+
+  const LayoutMain = Component.layout ?? Layout;
 
   useEffect(() => {
     const start = () => {
@@ -42,27 +41,25 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }, [router.events]);
 
   return (
-    <Provider store={store}>
-      <LayoutMain>
-        <>
-          <MetaData />
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <LayoutMain>
           <Component {...pageProps} />
-        </>
-      </LayoutMain>
-      <ToastContainer
-        position="top-right"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-    </Provider>
+        </LayoutMain>
+        <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </Provider>
+    </SessionProvider>
   );
 }
-
 export default MyApp;

@@ -11,9 +11,6 @@ export default function SectionProducts({}: SectionProductsProps) {
       <BoxSection title={'Featured Products'}>
         <ProductFeaturedList />
       </BoxSection>
-      <BoxSection className="container mx-auto mt-10 lg:px-0 px-2" title={'Leatest Products'}>
-        <ProductLatestList />
-      </BoxSection>
       <BoxSection title={'What Shopex Offer!'}>
         <ProductShopex />
       </BoxSection>

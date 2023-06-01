@@ -23,7 +23,7 @@ export function BoxContent({
   return (
     <AnimatedDiv variants={FadeContainer} className={bgColor}>
       <div
-        className={`${className} relative grid justify-center items-center mx-auto gap-6 lg:grid-cols-2 grid-cols-1 grid-flow-row`}
+        className={`${className} relative grid justify-center items-center mx-auto gap-6 lg:grid-cols-2 xs:grid-cols-1 grid-flow-row`}
       >
         <div>
           {imgUrl && (

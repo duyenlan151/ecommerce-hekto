@@ -9,7 +9,6 @@ export interface ProductListProps {
 }
 
 export default function ProductList({ products }: ProductListProps) {
-  console.log('🚀 ~ file: ProductList.tsx:12 ~ ProductList ~ products:', products);
   return (
     <AnimatedDiv variants={opacityVariant} className="">
       {/* // <div className="grid md:grid-cols-2 grid-cols-1 flex-wrap gap-4"> */}

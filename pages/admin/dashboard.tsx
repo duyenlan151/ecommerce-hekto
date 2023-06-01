@@ -83,3 +83,4 @@ export default function DashboardPage() {
 }
 
 DashboardPage.layout = LayoutAdmin;
+DashboardPage.isAdmin = true;

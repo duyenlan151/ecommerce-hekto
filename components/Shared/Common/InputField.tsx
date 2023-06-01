@@ -7,7 +7,7 @@ interface InputFieldProps {
   name: string;
   label?: string;
   control?: any;
-  onChange?: () => void;
+  onChange?: (value) => void;
   onBlur?: () => void;
   placeholder?: string;
   value?: string;
@@ -46,12 +46,17 @@ export function InputField({
         </label>
       )}
       <input
+        ref={ref}
         id={name}
-        defaultValue={externaValue}
-        name={name}
-        value={value}
+        defaultValue={value || ''}
+        name={name || ''}
+        // value={value}
         placeholder={placeholder}
-        onChange={onChange}
+        // onChange={onChange}
+        onChange={(event) => {
+          onChange(event.target.value);
+          externalOnChange && externalOnChange(event);
+        }}
         className={`placeholder:text-sub-title placeholder:font-lato-light peer border border-gray-200 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
         {...rest}
       />

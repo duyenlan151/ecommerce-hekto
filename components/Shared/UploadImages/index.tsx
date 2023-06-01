@@ -50,7 +50,6 @@ export default function UploadImages({
   }, []);
 
   useEffect(() => {
-    console.log('🚀 ~ file: index.tsx:50 ~ useEffect ~ images:', images);
     onChange(images);
   }, [images]);
 
@@ -64,9 +63,7 @@ export default function UploadImages({
       }
       const config = {
         headers: { 'content-type': 'multipart/form-data' },
-        onUploadProgress: (event) => {
-          console.log(`Current progress:`, Math.round((event.loaded * 100) / event.total));
-        },
+        onUploadProgress: (event) => {},
       };
 
       const response = await axiosClient.post('/upload', data, config);

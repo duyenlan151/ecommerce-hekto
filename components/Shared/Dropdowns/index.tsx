@@ -1,2 +1,2 @@
-export * from './TableDropdown';
+export * from './Dropdown';
 export * from './DropdownSelect';

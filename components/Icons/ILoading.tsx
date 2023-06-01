@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface ILoadingProps {}
 
-export default function ILoading(props: ILoadingProps) {
+export function ILoading(props: ILoadingProps) {
   return (
     <svg className="h-6 w-6 animate-spin mx-auto" viewBox="3 3 18 18">
       <path
