@@ -14,16 +14,16 @@ export default function OrdersResultPage(props: OrdersResultPageProps) {
   } = useRouter();
 
   useEffect(() => {
-    // (async () => {
-    //   if (success && order_id) {
-    //     try {
-    //       let result = await orderServices.updateStatusPayment({ status: success, id: order_id });
-    //       setResult(result);
-    //     } catch (error) {
-    //       setResult(error);
-    //     }
-    //   }
-    // })();
+    (async () => {
+      if (success && order_id) {
+        try {
+          let result = await orderServices.updateStatusPayment({ status: success, id: order_id });
+          setResult(result);
+        } catch (error) {
+          setResult(error);
+        }
+      }
+    })();
   }, []);
 
   return <OrderCommon status={result.status} message={result.message} />;

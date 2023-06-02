@@ -5,7 +5,7 @@ import { isObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import PaymentForm from './\bPaymentForm';
+import PaymentForm from './PaymentForm';
 
 export interface PaymentProps {}
 
