@@ -20,23 +20,10 @@ export function QuantityField({
   form,
   ...rest
 }: QuantityFieldProps) {
-  // const {
-  //   control,
-  //   setValue,
-  //   formState: { errors },
-  // } = form;
-
   return (
-    // <Controller
-    //   name={name}
-    //   control={control}
-    //   render={({
-    //     field: { onChange, onBlur, value, name, ref },
-    //     fieldState: { invalid, isTouched, isDirty, error },
-    //   }) => (
     <div className="group flex items-stretch jutify-center relative py-3">
       <div
-        className="px-2 border flex items-center border-r-0"
+        className="px-2 border flex items-center"
         onClick={() => {
           externalOnChange &&
             externalOnChange(Number(externalValue) > 1 ? Number(externalValue) - 1 : 1);
@@ -44,13 +31,9 @@ export function QuantityField({
       >
         <AiOutlineMinus />
       </div>
-      <input
-        value={externalValue}
-        className={`w-[45px] text-center placeholder:text-sub-title placeholder:font-lato-light peer border border-border-1 relative bg-white px-[2px] font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
-        {...rest}
-      />
+      <span className="bg-white px-3 py-2 border-t border-b">{externalValue}</span>
       <div
-        className="px-2 border flex items-center border-r-0"
+        className="px-2 border flex items-center "
         onClick={() =>
           externalOnChange &&
           externalOnChange(Number(externalValue) ? Number(externalValue) + 1 : 1)
@@ -59,7 +42,5 @@ export function QuantityField({
         <AiOutlinePlus />
       </div>
     </div>
-    //   )}
-    // />
   );
 }

@@ -3,11 +3,11 @@ import axiosClient from 'services/api-services';
 
 export const categoryService = {
   getAllCategory(params?): Promise<any> {
-    return axiosClient.get('/categories', { params });
+    return axiosClient.get('/admin/categories', { params });
   },
 
   getProductById({ id }): Promise<any> {
-    return axiosClient.get(`/categories`, {
+    return axiosClient.get(`/admin/categories`, {
       params: {
         id,
       },
@@ -15,19 +15,19 @@ export const categoryService = {
   },
 
   addNewCategory(category): Promise<any> {
-    return axiosClient.post(`/categories`, {
+    return axiosClient.post(`/admin/categories`, {
       ...category,
     });
   },
 
   updateCategory(category): Promise<any> {
-    return axiosClient.put(`/categories`, {
+    return axiosClient.put(`/admin/categories`, {
       ...category,
     });
   },
 
   deleteCategory({ _id }): Promise<any> {
-    return axiosClient.delete(`/categories`, {
+    return axiosClient.delete(`/admin/categories`, {
       params: {
         _id,
       },

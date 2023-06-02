@@ -26,7 +26,6 @@ export default function UploadImages({
   control,
   onChange: externalOnChange,
   onBlur: externalOnBlur,
-  placeholder = 'Please enter',
   value: externaValue,
 }: UploadImagesProps) {
   const [images, setImages] = useState<any>([]);
@@ -66,7 +65,7 @@ export default function UploadImages({
         onUploadProgress: (event) => {},
       };
 
-      const response = await axiosClient.post('/upload', data, config);
+      const response = await axiosClient.post('/admin/upload', data, config);
       if (response) {
         const newImages = images?.length > 0 ? images.concat(response) : response;
         setImages(newImages);

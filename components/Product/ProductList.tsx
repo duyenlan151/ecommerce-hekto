@@ -11,11 +11,11 @@ export interface ProductListProps {
 export default function ProductList({ products }: ProductListProps) {
   return (
     <AnimatedDiv variants={opacityVariant} className="">
-      {/* // <div className="grid md:grid-cols-2 grid-cols-1 flex-wrap gap-4"> */}
+      {!products.length && <div className="p-4 bg-white">No Products found</div>}
       {products &&
         products.map((product) => (
           <ProductItemSecondary
-            key={product.id}
+            key={product._id}
             className="mb-20"
             product={product}
             styleProductItem={EProductItemType.SECONDARY}

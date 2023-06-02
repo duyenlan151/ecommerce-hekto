@@ -26,10 +26,10 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
     return;
   }
   //@ts-ignore
-  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
-    router.push('/');
-    return;
-  }
+  // if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+  //   router.push('/');
+  //   return;
+  // }
 
   return (
     <>

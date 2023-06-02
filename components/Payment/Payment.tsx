@@ -1,32 +1,43 @@
 import CartCheckout from '@components/Cart/CartCheckout';
 import CartItemList from '@components/Cart/CartItemList';
-import { cartItemsSelector, cartTotalSelector } from 'app/Cart/cartSelector';
+import { cartItemsSelector, shippingAddressSelector } from 'app/Cart/cartSelector';
+import { isObjectEmptyValue } from 'constants/index';
+import { useRouter } from 'next/router';
 import * as React from 'react';
-import PaymentForm from './\bPaymentForm';
 import { useSelector } from 'react-redux';
+import PaymentForm from './\bPaymentForm';
 
 export interface PaymentProps {}
 
 export default function Payment(props: PaymentProps) {
   const cartItems = useSelector(cartItemsSelector);
-  const cartTotal = useSelector(cartTotalSelector);
+  const shippingAddress = useSelector(shippingAddressSelector);
+  const router = useRouter();
+
+  const [trigger, setTrigger] = React.useState(false);
+
+  const onPayment = () => {
+    setTrigger(true);
+
+    if (shippingAddress && !isObjectEmptyValue(shippingAddress)) {
+      router.push('/cart/payment-method');
+    }
+  };
+
+  const onSubmit = (isError) => {};
   return (
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
       <h4 className="text-blue-1 text-3xl">Hekto Payment</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart/ Information/ Shipping/ Payment
       </div>
-      <div className="flex lg:flex-nowrap flex-wrap justify-between mt-6">
+      <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">
-          <PaymentForm />
+          <PaymentForm isTrigger={trigger} />
         </div>
         <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 mt-5 w-full justify-self-end">
           <CartItemList data={cartItems} />
-          <CartCheckout
-            onClick={() => {}}
-            price={cartTotal}
-            totalPrice={cartTotal + (cartTotal * 3) / 100}
-          />
+          <CartCheckout onClick={onPayment} />
         </div>
       </div>
     </section>

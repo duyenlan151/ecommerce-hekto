@@ -4,11 +4,13 @@ import SectionProducts from '@components/Home/SectionProducts';
 import SectionTrending from '@components/Home/SectionTrendingProducts';
 import SectionUnique from '@components/Home/SectionUnique';
 import { Banner } from '@components/index';
+import { GetServerSideProps } from 'next';
+import { productsService } from 'services';
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <>
     <Banner />
-    <SectionProducts />
+    <SectionProducts data={data} />
     <SectionUnique />
     {/* <SectionTrending /> */}
     {/* <SectionNewLetters /> */}
@@ -17,3 +19,16 @@ const IndexPage = () => (
 );
 
 export default IndexPage;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
+
+    const products = await productsService.getAllProducts({ limit: 8 });
+    return {
+      props: { data: products?.data },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
+};

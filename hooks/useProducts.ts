@@ -1,4 +1,4 @@
-import { ActionCommon, CategoryModel, ProductModel } from 'models';
+import { ActionCommon, ProductModel } from 'models';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { productsService } from 'services/Admin';

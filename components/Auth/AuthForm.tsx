@@ -2,7 +2,7 @@ import { ILoading } from '@components/Icons';
 import { InputField } from '@components/Shared/Common';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ActionAuthPage } from 'models';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -18,6 +18,10 @@ export interface LoginFormProps {
 
 export default function LoginForm({ type = 'login' }: LoginFormProps) {
   const router = useRouter();
+  const {
+    query: { redirect },
+  } = router;
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const form = useForm({
     resolver: yupResolver(type === 'login' ? schemaLogin : schemaSignUp),
@@ -51,12 +55,21 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
         return toast.error(result?.error);
       }
       toast.success(`${type} successfully`);
+      if (redirect) {
+        router.push(String(redirect));
+      }
     } catch (err) {
       toast.error(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  //@ts-ignore
+  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+    // router.push('/');
+    return <section className="container mx-auto">You've already logged</section>;
+  }
 
   return (
     <section className="container mx-auto">

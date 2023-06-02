@@ -33,8 +33,14 @@ const defaultBreakpoints = {
 export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
   return (
     // grid justify-center items-center mx-auto gap-6 grid-cols-2 grid-flow-row
-    <AnimatedDiv variants={FadeContainer}>
-      <SwipperCommon breakpoints={defaultBreakpoints} modules={[Pagination]}>
+    <AnimatedDiv variants={FadeContainer} className="mt-20 mb-40">
+      <SwipperCommon
+        style={{
+          paddingBottom: 50,
+        }}
+        breakpoints={defaultBreakpoints}
+        modules={[Pagination]}
+      >
         {data.map((product) => (
           <SwiperSlide key={product.id}>
             <ProductModel product={product} />

@@ -1,14 +1,13 @@
 import { ModalConfirm } from '@components/Shared/Modal';
 import { Table } from '@components/Shared/Table';
-import { useCategories, useTimeout } from '@hooks/index';
+import { useCategories } from '@hooks/index';
+import { CategoryModel } from 'models/category';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
-import { toast } from 'react-toastify';
-import { categoryService } from 'services/Admin';
+import { useRef, useState } from 'react';
 import { columns } from './Category.props';
 
 export interface CategoryListProps {
-  data: [];
+  data: CategoryModel[];
 }
 
 export default function CategoryList({ data }: CategoryListProps) {

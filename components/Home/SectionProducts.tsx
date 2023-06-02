@@ -1,15 +1,17 @@
 import { BoxSection } from '@components/Shared/Box';
 import { ProductFeaturedList } from '@components/Product/ProductFeaturedList';
-import { ProductLatestList } from '@components/Product/ProductLatestList';
 import ProductShopex from '@components/Product/ProductShopex';
+import { ProductModel } from 'models';
 
-export interface SectionProductsProps {}
+export interface SectionProductsProps {
+  data: ProductModel[];
+}
 
-export default function SectionProducts({}: SectionProductsProps) {
+export default function SectionProducts({ data }: SectionProductsProps) {
   return (
     <section className="my-[129px]">
       <BoxSection title={'Featured Products'}>
-        <ProductFeaturedList />
+        <ProductFeaturedList data={data} />
       </BoxSection>
       <BoxSection title={'What Shopex Offer!'}>
         <ProductShopex />

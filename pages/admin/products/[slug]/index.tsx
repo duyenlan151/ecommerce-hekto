@@ -1,4 +1,5 @@
 import ProductForm from '@components/Admin/Products/ProductForm';
+import LayoutAdmin from '@components/Shared/LayoutAdmin';
 import { useRouter } from 'next/router';
 import PageNotFound from 'pages/404';
 import * as React from 'react';
@@ -31,3 +32,4 @@ export default function ProductSlugPage(props: ProductSlugPageProps) {
       return <PageNotFound />;
   }
 }
+ProductSlugPage.layout = LayoutAdmin;

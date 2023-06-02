@@ -1,3 +1,4 @@
+import { cleanAllCart } from '@app/Cart/cartSlice';
 import { cartItemsCountSelector } from 'app/Cart/cartSelector';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -8,7 +9,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from './Dropdowns';
 import { SidebarMenu } from './SidebarMenu';
 
@@ -20,9 +21,11 @@ function TopNavbar({}: TopNavbarProps) {
   const cartItemsCount = useSelector(cartItemsCountSelector);
   const { data: session } = useSession();
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
   const logoutClickHandler = () => {
     signOut({ callbackUrl: '/' });
+    dispatch(cleanAllCart());
   };
 
   return (
@@ -55,11 +58,10 @@ function TopNavbar({}: TopNavbarProps) {
                       </span>
                     </p>
                   }
-                  onSelectOption={() => {}}
                 >
                   <Link
                     className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block"
-                    href="/profile"
+                    href="/users/profile"
                   >
                     Profile
                   </Link>
@@ -98,7 +100,7 @@ function TopNavbar({}: TopNavbarProps) {
           ></div>
         )}
 
-        <div className="md:hidden text-center justify-between py-2 px-3 flex items-center border border-b border-primary">
+        <div className="md:hidden text-center justify-between py-2 px-3 flex items-center border-b border-primary">
           <span onClick={() => setShow(true)}>
             <AiOutlineMenu size={25} />
           </span>

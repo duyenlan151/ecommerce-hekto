@@ -1,35 +1,38 @@
-import { CheckBox, InputField } from '@components/Shared/Common';
-import * as React from 'react';
+import { useRouter } from 'next/router';
+import { filterPrice } from './Filter.props';
 
 export interface FilterByPriceProps {}
-const classCheckBox = 'bg-pink-pattern border-pink-500 text-pink-300 focus:border-pink-500 mr-3';
-
-const filterPrice = [
-  { id: 1, label: 'Under €25', value: 'price-1' },
-  { id: 2, label: '$25 to $50', value: 'price-2' },
-  { id: 3, label: '$50 to $100', value: 'price-3' },
-  { id: 4, label: '$100 to $200', value: 'price-4' },
-  { id: 5, label: ' $200 & Above', value: 'price-4' },
-];
 
 export function FilterByPrice(props: FilterByPriceProps) {
+  const router = useRouter();
+
+  const handleFilterByPrice = (price) => {
+    router.push({
+      path: router.pathname,
+      query: {
+        ...router.query,
+        price,
+      },
+    });
+  };
   return (
     <div className="my-2 border-b">
       <p className="text-blue-1 text-xl px-3 py-2">Price</p>
-      <div className="flex flex-col px-3 pt-0">
+      <div className="flex flex-col px-3 pt-0 mb-4">
         {filterPrice.map((item) => (
           <a
             key={item.id}
-            className="my-1 font-lato text-sm hover:text-pink-1 cursor-pointer transition ease-in-out duration-300"
+            onClick={() => handleFilterByPrice(item.value)}
+            className="my-2 font-lato text-sm hover:text-pink-1 cursor-pointer transition ease-in-out duration-300"
           >
             {item.label}
           </a>
         ))}
       </div>
-      <form className="px-3 mb-3">
+      {/* <form className="px-3 mb-3">
         <div className="flex items-center gap-3">
-          {/* <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Min" />
-          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Max" /> */}
+          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Min" />
+          <InputField className="h-10 !px-2 border-grey-1" placeholder="€ Max" />
         </div>
         <button
           type="submit"
@@ -37,7 +40,7 @@ export function FilterByPrice(props: FilterByPriceProps) {
         >
           Go
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }

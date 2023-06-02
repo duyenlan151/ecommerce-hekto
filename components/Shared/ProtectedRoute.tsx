@@ -9,20 +9,15 @@ export interface ProtectedRouteProps {
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const router = useRouter();
   const { status, data: session } = useSession();
-  console.log('🚀 ~ file: ProtectedRoute.tsx:12 ~ ProtectedRoute ~ status:', status);
 
   if (status === 'loading') {
     return <div>Loading...</div>;
   }
 
   //@ts-ignore
-  if (!!session?.user?.isAdmin) {
-    router.push('/admin');
-    return;
-  }
 
   //@ts-ignore
-  if (!session?.user?.isAdmin) {
+  if (!session?.user) {
     router.push('/');
     return;
   }

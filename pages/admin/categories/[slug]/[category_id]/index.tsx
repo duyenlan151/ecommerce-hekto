@@ -1,6 +1,6 @@
 import CategoryForm from '@components/Admin/Categories/CategoryForm';
 import LayoutAdmin from '@components/Shared/LayoutAdmin';
-import { CategoryModel } from 'models';
+import { CategoryModel } from 'models/category';
 import { GetServerSideProps } from 'next';
 import { categoryService } from 'services/Admin';
 

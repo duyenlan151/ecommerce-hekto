@@ -1,13 +1,15 @@
 import CategoryList from '@components/Admin/Categories/CategoryList';
 import LayoutAdmin from '@components/Shared/LayoutAdmin';
-import { Table } from '@components/Shared/Table';
+import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
+import { DataCategoryModel } from 'models';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { categoryService } from 'services/Admin';
 
 export interface CategoriesPageProps {
-  data: [];
+  data: DataCategoryModel;
 }
 
 const tabs = [
@@ -17,6 +19,9 @@ const tabs = [
 ];
 export default function CategoriesPage({ data }: CategoriesPageProps) {
   const [activeTab, setActiveTab] = useState('all');
+  const {
+    query: { page },
+  } = useRouter();
 
   const handleSetActiveTab = (value) => {
     setActiveTab(value);
@@ -27,7 +32,12 @@ export default function CategoriesPage({ data }: CategoriesPageProps) {
         Categories
       </h4>
       <TabsListAdmin tabs={tabs} activeTab={activeTab} setActiveTab={handleSetActiveTab} />
-      <CategoryList data={data} />
+      <CategoryList data={data?.data} />
+      <Pagination
+        totalCount={data?.totalDocs || 0}
+        currentPage={Number(page) || 1}
+        pageSize={data?.limit || 10}
+      />
     </>
   );
 }
@@ -35,10 +45,11 @@ export default function CategoriesPage({ data }: CategoriesPageProps) {
 CategoriesPage.layout = LayoutAdmin;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate');
+  context.res.setHeader('Cache-Control', 's-maxage=1000, stale-while-revalidate');
 
   try {
-    const { data } = await categoryService.getAllCategory();
+    const page = context?.query?.page || 1;
+    const data = await categoryService.getAllCategory({ page });
 
     return {
       props: {

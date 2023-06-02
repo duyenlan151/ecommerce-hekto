@@ -1,4 +1,5 @@
 import { CategoryModel } from './category';
+import { DataResCommonModel } from './common';
 import { ImageModel } from './image';
 
 export interface ProductModel {
@@ -12,4 +13,8 @@ export interface ProductModel {
   discount_percentage: number;
   rating: number;
   [key: string]: any;
+}
+
+export interface DataCategoryModel extends DataResCommonModel {
+  data: ProductModel[];
 }

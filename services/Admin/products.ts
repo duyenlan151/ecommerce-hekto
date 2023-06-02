@@ -2,11 +2,11 @@ import axiosClient from 'services/api-services';
 
 export const productsService = {
   getAllProducts(params?): Promise<any> {
-    return axiosClient.get('/products', { params });
+    return axiosClient.get('/admin/products', { params });
   },
 
   getProductById({ id }): Promise<any> {
-    return axiosClient.get(`/products`, {
+    return axiosClient.get(`/admin/products`, {
       params: {
         id,
       },
@@ -14,19 +14,19 @@ export const productsService = {
   },
 
   addNewProduct(product): Promise<any> {
-    return axiosClient.post(`/products`, {
+    return axiosClient.post(`/admin/products`, {
       ...product,
     });
   },
 
   updateProduct(product): Promise<any> {
-    return axiosClient.put(`/products`, {
+    return axiosClient.put(`/admin/products`, {
       ...product,
     });
   },
 
   deleteProduct({ _id }): Promise<any> {
-    return axiosClient.delete(`/products`, {
+    return axiosClient.delete(`/admin/products`, {
       params: {
         _id,
       },

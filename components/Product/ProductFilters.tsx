@@ -12,10 +12,10 @@ export interface ProductFiltersProps {}
 export default function ProductFilters(props: ProductFiltersProps) {
   return (
     <div className="bg-white py-2">
-      <FilterByBrand />
+      {/* <FilterByBrand /> */}
       <FilterByCategories />
       <FilterByPrice />
-      <FilterByColors />
+      {/* <FilterByColors /> */}
       <FilterByRating />
     </div>
   );

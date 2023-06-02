@@ -1,7 +1,9 @@
+import { cleanAllCart } from '@app/Cart/cartSlice';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdLogin, MdLogout } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 
 export interface SidebarMenuProps {
   show: boolean;
@@ -17,6 +19,7 @@ const links = [
 
 export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
   const { data: session } = useSession();
+  const dispatch = useDispatch();
   return (
     <div
       className={`md:hidden max-w-[380px] w-[90%] h-screen fixed top-0 left-0 z-50 bg-white shadow-md z-[1000] bg-palette-card origin-left overflow-y-auto  transition-transform duration-300 ease-out ${
@@ -41,7 +44,7 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
             </Link>
           )}
           {links.map((link) => (
-            <Link className="py-3 text-base block" href={link.path} onClick={onClose}>
+            <Link key={link.id} className="py-3 text-base block" href={link.path} onClick={onClose}>
               {link.name}
             </Link>
           ))}
@@ -49,7 +52,11 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
           <Link
             className="py-3 text-base block flex items-center"
             href={session?.user?.name ? '/#' : '/login'}
-            onClick={() => (session?.user?.name ? signOut({ callbackUrl: '/' }) : onClose())}
+            onClick={() =>
+              session?.user?.name
+                ? (signOut({ callbackUrl: '/' }), dispatch(cleanAllCart()))
+                : onClose()
+            }
           >
             {session?.user?.name ? <MdLogin size={20} /> : <MdLogout size={20} />}
             <span className="ml-2">{session?.user?.name ? 'Logout' : 'Login'}</span>

@@ -10,3 +10,12 @@ export interface CartModel {
   quantity: number;
   [key: string]: any;
 }
+
+export type paymentMethod = 'cash' | 'stripe' | 'paypal';
+export interface CartsModel {
+  showMiniCart: boolean;
+  formValid: boolean;
+  paymentMethod: paymentMethod;
+  cartItems: CartModel[];
+  shippingAddress: {};
+}

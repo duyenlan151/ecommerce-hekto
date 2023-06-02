@@ -9,6 +9,7 @@ interface Props<T> {
   onDelete: (item: number | string) => void;
   color?: 'light' | 'dark';
   onSelectOption: (action, item) => void;
+  showAction?: boolean;
 }
 
 const itemsList = [
@@ -23,6 +24,7 @@ export function TableRow<T>({
   onDelete,
   color = 'light',
   onSelectOption,
+  showAction,
 }: Props<T>) {
   return (
     <>
@@ -42,13 +44,15 @@ export function TableRow<T>({
                   key={`table-row-cell-${columnIndex}`}
                 />
               ))}
-              <td className="relative border-t-0 align-middle text-right border-l-0 border-r-0 text-xs whitespace-nowrap text-right">
-                <Dropdown
-                  className="mr-3"
-                  listItems={itemsList}
-                  onSelectOption={(action) => onSelectOption(action.value, item)}
-                />
-              </td>
+              {showAction && (
+                <td className="relative border-t-0 align-middle text-right border-l-0 border-r-0 text-xs whitespace-nowrap text-right">
+                  <Dropdown
+                    className="mr-3"
+                    listItems={itemsList}
+                    onSelectOption={(action) => onSelectOption(action.value, item)}
+                  />
+                </td>
+              )}
             </>
           </tr>
         ))}

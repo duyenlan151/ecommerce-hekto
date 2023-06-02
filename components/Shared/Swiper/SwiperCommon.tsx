@@ -29,7 +29,7 @@ const styleDefault = {
   '--swiper-pagination-bullet-horizontal-gap': '6px',
   '--swiper-navigation-color': '#000',
   '--swiper-navigation-size': '25px',
-  height: '500px',
+  // height: '500px',
   paddingBottom: '0 !important',
 } as CSSProperties;
 

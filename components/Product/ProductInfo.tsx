@@ -16,7 +16,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const dispatch = useDispatch();
 
   const onAddToCart = () => {
-    dispatch(addToCart({ id: product?.id, product, quantity }));
+    dispatch(addToCart({ _id: product?._id, product, quantity }));
   };
 
   return (

@@ -6,19 +6,23 @@ export interface DropdownProps {
   label?: string | ReactNode;
   listItems?: Array<{ id: string | number; label: string; value?: string | number }>;
   children?: ReactNode;
+  onSelectItem?: (item) => void;
   [key: string]: any;
 }
 
-export function Dropdown({ label = 'Sort by', children, listItems, ...rest }: DropdownProps) {
+export function Dropdown({
+  label = 'Sort by',
+  children,
+  listItems,
+  onSelectItem,
+  ...rest
+}: DropdownProps) {
   const [showDropdown, setShowDropDown] = useState(false);
   const refContainer = useRef(null);
 
-  const toggleDropDown = () => {
+  const onClickItem = (item) => {
+    onSelectItem && onSelectItem(item);
     setShowDropDown((prev) => !prev);
-  };
-
-  const onSelectItem = (item: any) => {
-    toggleDropDown();
   };
 
   const handleClickOutside = () => {
@@ -56,13 +60,14 @@ export function Dropdown({ label = 'Sort by', children, listItems, ...rest }: Dr
                 ? children
                 : listItems &&
                   listItems.map((item) => (
-                    <li key={item.id} className="bg-white" onClick={() => onSelectItem(item)}>
-                      <a
-                        className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block whitespace-no-wrap"
-                        href="#"
-                      >
+                    <li
+                      key={item.id}
+                      className="bg-white cursor-pointer"
+                      onClick={() => onClickItem(item)}
+                    >
+                      <span className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block whitespace-no-wrap">
                         {item.label}
-                      </a>
+                      </span>
                     </li>
                   ))}
             </ul>

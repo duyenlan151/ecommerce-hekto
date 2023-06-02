@@ -25,3 +25,21 @@ export type NextPageWithLayout = NextPage & {
 export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+export interface DataResCommonModel {
+  totalDocs: number;
+  limit?: number;
+  page?: number;
+  message?: string;
+  pages: number;
+}
+
+export interface ShippingAddressModel {
+  email: string;
+  first_name: string;
+  last_name: string;
+  address: string;
+  city: string;
+  country: string;
+  post_code: string;
+}

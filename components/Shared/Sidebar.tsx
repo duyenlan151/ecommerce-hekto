@@ -1,3 +1,4 @@
+import { cleanAllCart } from '@app/Cart/cartSlice';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,6 +12,7 @@ import {
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
 import { SlMap } from 'react-icons/sl';
+import { useDispatch } from 'react-redux';
 
 export interface SideBarProps {}
 
@@ -33,6 +35,12 @@ const items = [
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = useState('hidden');
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(cleanAllCart());
+    signOut({ callbackUrl: '/' });
+  };
   return (
     <div className="font-lato md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10">
       <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
@@ -94,7 +102,7 @@ export default function Sidebar() {
               <Link
                 key={item.id}
                 href={item?.path}
-                onClick={() => item.action && item.action()}
+                onClick={() => item.action && handleLogout()}
                 className={
                   'items-center flex items-center py-4 ' +
                   (router.pathname.indexOf(item.path) !== -1

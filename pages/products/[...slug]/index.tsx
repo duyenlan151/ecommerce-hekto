@@ -35,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (slug) {
       product = await productsService.getProductBySlug({
         id: String(slug[0]),
-        slug: String(slug[1]),
       });
 
       if (!product) {

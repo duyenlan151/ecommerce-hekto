@@ -22,6 +22,8 @@ interface Props<T> {
   columns: IColumnType<T>[];
   onDelete: (item: number | string) => void;
   onSelectOption: (action, item) => void;
+  showHeader?: boolean;
+  showAction?: boolean;
   color?: 'light' | 'dark';
 }
 
@@ -32,6 +34,8 @@ export function Table<T>({
   columns,
   onDelete,
   onSelectOption,
+  showHeader = true,
+  showAction = true,
 }: Props<T>) {
   return (
     <div
@@ -44,7 +48,7 @@ export function Table<T>({
         {/* Projects table */}
         <table className="items-center w-full bg-transparent border-collapse border border-table-border-1">
           <thead className="border-b border-table-border">
-            <TableHeader columns={columns} />
+            {showHeader && <TableHeader columns={columns} />}
           </thead>
           <tbody>
             <TableRow
@@ -52,6 +56,7 @@ export function Table<T>({
               columns={columns}
               onDelete={onDelete}
               onSelectOption={onSelectOption}
+              showAction={showAction}
             />
             {data && !data.length && (
               <tr>

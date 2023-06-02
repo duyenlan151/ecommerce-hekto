@@ -36,8 +36,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
           // fill
           width={444}
           height={444}
-          alt={images[activeImage].path}
-          src={images[activeImage].path}
+          alt={images[activeImage]?.path}
+          src={images[activeImage]?.path}
         />
       </div>
       <div className="flex overflow-x-auto items-center mt-4 gap-3">
@@ -47,7 +47,7 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
             className="relative rounded flex-shrink-0 max-w-[64px] min-w-[64px] h-[64px] border flex items-center cursor-pointer shrink"
             onClick={() => setAtiveImage(i)}
           >
-            <Image src={image.path} width={64} height={64} alt={image.name} />
+            <Image src={image?.path} width={64} height={64} alt={image.name} />
           </div>
         ))}
         <div className="">
@@ -59,8 +59,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
               <Image
                 className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative border h-full"
                 fill
-                alt={images[6].path}
-                src={images[6].path}
+                alt={images[6]?.path}
+                src={images[6]?.path}
               />
               <div className="opacity-30 absolute inset-0 z-40 bg-black"></div>
               <div className="absolute inset-0 z-20 text-white text-center text-[10px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">

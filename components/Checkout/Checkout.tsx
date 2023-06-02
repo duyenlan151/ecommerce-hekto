@@ -12,7 +12,9 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
 import * as yup from 'yup';
+import { useSession } from 'next-auth/react';
 
 export interface CheckoutProps {}
 
@@ -29,6 +31,7 @@ const schema = yup
 export default function Checkout({}: CheckoutProps) {
   const cartItems = useSelector(cartItemsSelector);
   const cartTotal = useSelector(cartTotalSelector);
+  const { data: session } = useSession();
 
   const router = useRouter();
 
@@ -47,12 +50,12 @@ export default function Checkout({}: CheckoutProps) {
     formState: { errors },
     control,
   } = form;
-  const handleDeleteItem = (id: string | number) => {
-    dispatch(removeFromCart(id));
+  const handleDeleteItem = (_id: string | number) => {
+    dispatch(removeFromCart(_id));
   };
 
-  const handleUpdateQuantity = ({ id, quantity }: { id: string | number; quantity: number }) => {
-    dispatch(updateQuantity({ id, quantity }));
+  const handleUpdateQuantity = ({ _id, quantity }: { _id: string | number; quantity: number }) => {
+    dispatch(updateQuantity({ _id, quantity }));
   };
 
   const columns: IColumnType<CartModel>[] = useMemo(
@@ -60,39 +63,47 @@ export default function Checkout({}: CheckoutProps) {
       {
         key: 'product',
         title: 'Product',
-        render: (_, { id, product, color, size }, onDelete) => (
+        render: (_, { _id, product, color, size }, onDelete) => (
           <>
-            <div className="flex">
+            <div className="flex py-4">
               <div className="relative mr-3 h-[83px] w-[83px]">
                 <span
-                  className="absolute cursor-pointer -top-1 -right-1"
+                  className="absolute cursor-pointer -top-1 -right-1 z-50"
                   onClick={() => {
                     {
                       if (!onDelete) return;
-                      onDelete(id);
+                      onDelete(_id);
                     }
                   }}
                 >
                   <AiFillCloseCircle />
                 </span>
-                <Link href={`/product/${product.id}`} className="mr-3 h-[83px] w-[83px]">
-                  <img
-                    className="max-w-full max-h-full mx-auto"
-                    src={product.thumbnail[0]}
-                    alt=""
+                <Link href={`/product/${product?._id}`} className="mr-3 h-[83px] w-[83px] py-4">
+                  <Image
+                    className="max-w-[64px] min-w-[83px] h-full z overflow-hidden object-cover relative shadow-sm h-full"
+                    width={83}
+                    height={83}
+                    src={product?.images[0]?.path}
+                    alt={product?.images[0]?.name}
                   />
                 </Link>
               </div>
-              <div>
-                <Link
-                  href={`/product/${product.id}`}
-                  className="hover:text-pink-1 transition ease-in-out duration-300"
-                >
-                  {product.name}
-                </Link>
-                <p className="text-sub-title text-sm">Color: {color}</p>
-                <p className="text-sub-title text-sm">Size: {size}</p>
-              </div>
+            </div>
+          </>
+        ),
+      },
+      {
+        key: 'title',
+        title: 'Title',
+        render: (_, { product }) => (
+          <>
+            <div className="line-clamp-3">
+              <Link
+                href={`/product/${product?._id}`}
+                className="flex hover:text-pink-1 transition ease-in-out duration-300 whitespace-pre-wrap max-h-[80px]"
+              >
+                {product?.title}
+              </Link>
             </div>
           </>
         ),
@@ -105,9 +116,9 @@ export default function Checkout({}: CheckoutProps) {
       {
         key: 'quantity',
         title: 'Quantity',
-        render: (_, { id, quantity }) => (
+        render: (_, { _id, quantity }) => (
           <QuantityField
-            onChange={(value: number) => handleUpdateQuantity({ id, quantity: value })}
+            onChange={(value: number) => handleUpdateQuantity({ _id, quantity: value })}
             value={quantity}
             form={form}
             name="quantity"
@@ -130,7 +141,12 @@ export default function Checkout({}: CheckoutProps) {
   const onSubmit = (values) => {};
 
   const handleNavigate = () => {
-    router.push('/cart/payment');
+    console.log('🚀 ~ file: Checkout.tsx:145 ~ handleNavigate ~ session:', session);
+    if (!session) {
+      router.push('/login/?redirect=/cart/payment');
+      return;
+    }
+    cartTotal > 0 && router.push('/cart/payment');
   };
 
   return (
@@ -139,10 +155,12 @@ export default function Checkout({}: CheckoutProps) {
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart/ Information/ Shipping/ Checkout
       </div>
-      <div className="flex lg:flex-nowrap flex-wrap justify-between mt-6">
+      <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full overflow-x-auto">
           <div className="inline-block min-w-full">
             <Table
+              showHeader={false}
+              showAction={false}
               title={''}
               data={cartItems}
               columns={columns}
@@ -150,20 +168,18 @@ export default function Checkout({}: CheckoutProps) {
               onSelectOption={() => {}}
             />
           </div>
-          <Link
-            href="/"
-            className="block text-center mt-10 bg-pink-1 lg:w-fit w-full rounded-sm px-10 py-3 text-base font-lato text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
-          >
-            Continue Shopping
-          </Link>
+          <div className="mt-10">
+            <Link
+              href="/products"
+              className="text-center mt-20 bg-pink-1 lg:w-fit w-full rounded-sm px-10 py-3 text-base font-lato text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
+            >
+              Continue Shopping
+            </Link>
+          </div>
         </div>
         <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 mt-5 w-full justify-self-end">
           <h4 className="text-blue-1 text-xl text-center mb-5">Cart Totals</h4>
-          <CartCheckout
-            onClick={handleNavigate}
-            price={cartTotal}
-            totalPrice={cartTotal + (cartTotal * 3) / 100}
-          />
+          <CartCheckout onClick={handleNavigate} />
         </div>
       </div>
     </section>

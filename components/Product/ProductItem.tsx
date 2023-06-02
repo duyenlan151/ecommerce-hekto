@@ -18,7 +18,7 @@ const classProductItem = {
   [EProductItemType.PRIMARY]: {
     'group-icons': 'top-2',
     'bg-color': 'bg-pink-3',
-    shadow: 'shadow-md hover:shadow-sm',
+    shadow: 'border border-primary',
     img: '',
   },
 
@@ -37,7 +37,7 @@ const classProductItem = {
 };
 
 export function ProductModel({
-  product: { id, name, price, code, currency, thumbnail, colors, isSale },
+  product: { _id, title, price, code, currency, images, colors, isSale, slug },
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
 }: ProductItemProps) {
@@ -48,20 +48,15 @@ export function ProductModel({
       className={`${classProductItem[styleProductItem].shadow} ${className} group transition delay-100 ease-in-out duration-500`}
     >
       <div
-        className={`flex relative justify-center items-center h-72 ${classProductItem[styleProductItem]['bg-color']} ${classProductItem[styleProductItem]?.img}`}
+        className={`flex relative justify-center items-stretch h-72 bg-white ${classProductItem[styleProductItem]?.img}`}
       >
         {/* Image product */}
-        <Link href={`/products/${id}`}>
-          {/* <img
-            className="mx-auto scale-9 max-h-full group-hover:scale-110 delay-100 transition-transform duration-4000 ease-in-out"
-            src={thumbnail[0]}
-            alt="profile picture"
-          /> */}
+        <Link href={`/products/${_id}`}>
           <Image
-            src={thumbnail[0]}
+            src={images && images[0]?.path}
             fill
-            alt={name}
-            className="scale-[80%] drop-shadow-xl object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
+            alt={images && images[0]?.name}
+            className="scale-[80%] object-contain p-8 transition-transform duration-300 ease-in-out !py-2 "
           />
         </Link>
 
@@ -94,14 +89,14 @@ export function ProductModel({
         </div>
 
         {/* Button view detail */}
-        {styleProductItem === EProductItemType.PRIMARY && (
+        {/* {styleProductItem === EProductItemType.PRIMARY && (
           <Link
-            href={`/product/${id}`}
-            className="absolute bottom-1 right-1/2 transform translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition delay-100 ease-in-out duration-500 rounded-sm bg-green-1 flex-none px-4 py-2 text-lg font-semibold text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
+            href={`/product/${_id}`}
+            className="absolute bottom-3 !left-1/2 transform !-translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition delay-100 ease-in-out duration-500 rounded-sm bg-green-1 flex-none px-4 py-2 text-lg font-semibold text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
           >
             View Details
           </Link>
-        )}
+        )} */}
       </div>
       {/** Content of Product: 2 style
        *  1. style Primary
@@ -110,19 +105,19 @@ export function ProductModel({
       {styleProductItem === EProductItemType.PRIMARY && (
         <div className="text-center p-4 transition delay-100 ease-in-out duration-500">
           <Link
-            href={`/products/${id}`}
-            className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
+            href={`/products/${_id}`}
+            className="transition line-clamp-1 delay-100 ease-in-out duration-500 text-gray-600 font-lato font-bold"
           >
-            {name}
+            {title}
           </Link>
-          <div className="flex items-center justify-center my-2">
-            {colors.map((color, i) => (
+          {/* <div className="flex items-center justify-center my-2">
+            {colors?.map((color, i) => (
               <div
                 key={`${color}-${i}`}
                 className={`bg-[${color}] h-[4px] w-[14px] rounded-sm mx-[2px]`}
               ></div>
             ))}
-          </div>
+          </div> */}
           <div className="transition delay-100 ease-in-out duration-500 pt-1 text-blue-1 text-sm">
             {code}
           </div>
@@ -135,7 +130,7 @@ export function ProductModel({
       {styleProductItem === EProductItemType.SECONDARY && (
         <div className="py-3 px-1 flex relative justify-between">
           <div className="tracking-wide transition delay-100 ease-in-out duration-500 text-blue-1">
-            {name}
+            {title}
           </div>
           <div>
             <span className="text-sm text-blue-1">{getSymbolCurrency(currency, price)}</span>
@@ -148,7 +143,7 @@ export function ProductModel({
 
       {styleProductItem === EProductItemType.TRENDING && (
         <div className="mt-[19px] mb-8 text-center">
-          <div className="tracking-wide text-blue-1 font-lato font-bold">{name}</div>
+          <div className="tracking-wide text-blue-1 font-lato font-bold">{title}</div>
           <div className="mt-2">
             <span className="text-sm text-blue-1">{getSymbolCurrency(currency, price)}</span>
             <span className="mx-2 text-xs text-blue-1 line-through opacity-30">
@@ -184,9 +179,7 @@ export function ProductItemSecondary({
   className = '',
 }: ProductItemProps) {
   return (
-    <motion.div
-      variants={opacityVariant}
-      viewport={{ once: true }}
+    <div
       className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center mb-3 p-2`}
     >
       {/* Image product */}
@@ -196,45 +189,42 @@ export function ProductItemSecondary({
       >
         <Image
           // src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[0].path}`}
-          src={images[0].path}
+          src={images && images[0]?.path}
           fill
           alt={name}
-          className="scale-[80%] object-contain group-hover:scale-[90%] transition-transform duration-300 ease-in-out !py-2 "
+          className="scale-[80%] object-contain  transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
       <div className="flex-1 px-2 ml-7 transition delay-100 ease-in-out duration-500">
         {/* Name Product */}
         <Link
           href={`/products/${_id}/${slug}`}
-          className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
+          className="line-clamp-2 transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
         >
           {name || title}
         </Link>
         {/* Colors */}
-        <div>
+        {/* <div>
           {colors?.map((color, i) => (
             <span
               key={`${color}-${i}`}
               className={`inline-block bg-[${color}] h-[11px] w-[11px] rounded-full mr-2`}
             ></span>
           ))}
-        </div>
+        </div> */}
         {/* Price */}
         <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 text-sm font-lato">
           <span className="text-sub-title-1 text-sm">
-            {getSymbolCurrency(
-              'EUR',
-              Number(price) - Number(price) * Number(discount_percentage / 100)
-            )}
+            {getSymbolCurrency('EUR', Number(price))}
           </span>
           {/* {(salePrice || discountPercentage) && ( */}
           <span className="ml-2 text-sub-title text-xs line-through">
-            {getSymbolCurrency('EUR', price)}
+            {/* {getSymbolCurrency('EUR', price)} */}
           </span>
         </div>
         <div className="text-sm text-sub-title mt-2">{rating}/5</div>
         {/* ShortDescription */}
-        <div className="line-clamp-2 transition delay-100 ease-in-out duration-500 mt-2 text-sub-title-3 text-sm">
+        <div className="line-clamp-1 transition delay-100 ease-in-out duration-500 mt-2 text-sub-title-3 text-sm">
           {shortDescription || description}
         </div>
 
@@ -332,6 +322,6 @@ export function ProductItemSecondary({
           </div>
         </div>
       )} */}
-    </motion.div>
+    </div>
   );
 }

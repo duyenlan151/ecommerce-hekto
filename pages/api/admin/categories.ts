@@ -13,12 +13,28 @@ export default async function handle(req, res) {
       if (req.query?.id) {
         res.status(200).json(await Category.findOne({ _id: query.id }));
       } else {
-        const data = await Category.find();
+        const { page = 1, limit = 10 } = req.query;
+
+        if (Number(page) < 1) {
+          res.status(200).json({
+            data: [],
+            totalDocs: 0,
+            limit,
+            page,
+            message: 'Find all success!',
+            statusCode: 200,
+          });
+        }
+        const data = await Category.find()
+          .skip(Number(limit) * Number(page - 1))
+          .limit(Number(limit))
+          .lean();
+        const countProducts = await Category.countDocuments();
         res.status(200).json({
           data,
-          total: data.length,
-          linmit: 10,
-          page: 1,
+          totalDocs: countProducts,
+          limit,
+          page,
           message: 'Find all success!',
           statusCode: 200,
         });
