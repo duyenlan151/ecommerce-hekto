@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import PaymentForm from './PaymentForm';
-
 export interface PaymentProps {}
 
 export default function Payment(props: PaymentProps) {
