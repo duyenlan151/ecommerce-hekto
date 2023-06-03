@@ -209,7 +209,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
           ) : (
             <>
               {paymentMethod === 'paypal' && (
-                <div className="bg-grey-6 px-4 w-full">
+                <div className="pt-6 bg-grey-6 px-4 w-full">
                   <PayPalButtons
                     createOrder={createOrder}
                     onApprove={onApprove}
