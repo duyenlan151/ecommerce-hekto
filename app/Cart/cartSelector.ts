@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { CartModel, CartsModel, paymentMethod, ShippingAddressModel } from 'models';
 
 const allCartSelector = (state) => state.cart as CartsModel;
+const showMiniCartSelector = (state) => state.cart.showMiniCart as boolean;
 const cartItemsSelector = (state) => state.cart.cartItems as CartModel[];
 const formValidSelector = (state) => state.cart.formValid as boolean;
 const shippingAddressSelector = (state) => state.cart.shippingAddress as ShippingAddressModel;
@@ -20,6 +21,7 @@ const cartTotalSelector = createSelector(cartItemsSelector, (cartItems) =>
 // );
 
 export {
+  showMiniCartSelector,
   allCartSelector,
   paymentMethodSelector,
   shippingAddressSelector,

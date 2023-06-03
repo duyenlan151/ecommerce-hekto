@@ -1,3 +1,4 @@
+import CartMini from '@components/Cart/CartMini';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -42,6 +43,7 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
         <TopNavbar />
         <Header />
       </header>
+      <CartMini />
       {/* {!pathNameNoNeedBox.includes(pathname) && <BoxPageMeta />} */}
       {children}
       <Footer />

@@ -8,9 +8,10 @@ export interface ModalProps {
   isShow: boolean;
   onChange: () => void;
   children?: ReactNode;
+  showIconClose?: boolean;
 }
 
-export function Modal({ children, isShow, onChange }: ModalProps) {
+export function Modal({ children, isShow, onChange, showIconClose = true }: ModalProps) {
   return (
     <div>
       {isShow ? (
@@ -33,9 +34,11 @@ export function Modal({ children, isShow, onChange }: ModalProps) {
             </div>
           </div>
           <div className="opacity-60 fixed inset-0 z-40 bg-black" onClick={onChange}></div>
-          <div className="fixed z-50 top-4 right-4 cursor-pointer" onClick={onChange}>
-            <AiOutlineClose color="white" size={35} />
-          </div>
+          {showIconClose && (
+            <div className="fixed z-50 top-4 right-4 cursor-pointer" onClick={onChange}>
+              <AiOutlineClose color="white" size={35} />
+            </div>
+          )}
         </motion.div>
       ) : null}
     </div>

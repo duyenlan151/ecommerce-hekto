@@ -6,3 +6,4 @@ export * from './shopex';
 export * from './cart';
 export * from './common';
 export * from './image';
+export * from './order';

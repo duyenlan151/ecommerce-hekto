@@ -1,11 +1,12 @@
+import { OrderResModel } from 'models';
 import axiosClient from './api-services';
 
 export const orderServices = {
-  orders(params?): Promise<any> {
+  orders(params?): Promise<OrderResModel> {
     return axiosClient.post('/orders', { ...params });
   },
 
-  updateStatusPayment({ id, status }): Promise<any> {
+  updateStatusPayment({ id, status }): Promise<{ message: string; status: boolean }> {
     return axiosClient.put('/orders/pay', {
       id,
       status,

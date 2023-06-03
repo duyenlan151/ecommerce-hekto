@@ -1,7 +1,7 @@
 import CartCheckout from '@components/Cart/CartCheckout';
 import CartItemList from '@components/Cart/CartItemList';
 import { cartItemsSelector, shippingAddressSelector } from 'app/Cart/cartSelector';
-import { isObjectEmptyValue } from 'constants/index';
+import { isObjectEmpty, isObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useSelector } from 'react-redux';
@@ -15,10 +15,12 @@ export default function Payment(props: PaymentProps) {
 
   const [trigger, setTrigger] = React.useState(false);
 
-  const onPayment = () => {
+  const onPayment = (e) => {
+    // e.preventDefault();
     setTrigger(true);
 
-    if (shippingAddress && !isObjectEmptyValue(shippingAddress)) {
+    console.log('🚀 ~ file: Payment.tsx:22 ~ onPayment ~ shippingAddress:', !!shippingAddress);
+    if (!isObjectEmpty(shippingAddress) && !isObjectEmptyValue(shippingAddress)) {
       router.push('/cart/payment-method');
     }
   };
@@ -36,7 +38,9 @@ export default function Payment(props: PaymentProps) {
         </div>
         <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 mt-5 w-full justify-self-end">
           <CartItemList data={cartItems} />
-          <CartCheckout onClick={onPayment} />
+          <div className="mt-8">
+            <CartCheckout onClick={onPayment} />
+          </div>
         </div>
       </div>
     </section>

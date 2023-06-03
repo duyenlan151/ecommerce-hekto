@@ -1,4 +1,4 @@
-import { cleanAllCart } from '@app/Cart/cartSlice';
+import { cleanAllCart, toggleMiniCart } from '@app/Cart/cartSlice';
 import { cartItemsCountSelector } from 'app/Cart/cartSelector';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -26,6 +26,10 @@ function TopNavbar({}: TopNavbarProps) {
   const logoutClickHandler = () => {
     signOut({ callbackUrl: '/' });
     dispatch(cleanAllCart());
+  };
+
+  const handleToggleCart = () => {
+    dispatch(toggleMiniCart());
   };
 
   return (
@@ -81,13 +85,19 @@ function TopNavbar({}: TopNavbarProps) {
                 </span>
               </Link>
             )}
+            <div onClick={handleToggleCart} className="cursor-pointer relative mr-2 inline-block">
+              <AiOutlineShoppingCart size={20} />
+              <span className="absolute -top-2 -right-3 px-[6px] py-[2px] text-xs text-red-100 transform bg-red-600 rounded-full">
+                {cartItemsCount}
+              </span>
+            </div>
 
-            <Link href="/cart/checkout" className="relative ml-4 inline-block">
+            {/* <Link href="/cart/checkout" className="relative ml-4 inline-block">
               <AiOutlineShoppingCart size={20} />
               <span className="absolute -top-2 -right-5 px-2 py-1 text-xs text-red-100 transform bg-red-600 rounded-full">
                 {cartItemsCount}
               </span>
-            </Link>
+            </Link> */}
           </div>
         </div>
 
@@ -96,7 +106,7 @@ function TopNavbar({}: TopNavbarProps) {
         {show && (
           <div
             onClick={() => setShow(false)}
-            className="md:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition ease-in-out duration-500 opacity-100"
+            className="md:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
           ></div>
         )}
 
@@ -105,12 +115,12 @@ function TopNavbar({}: TopNavbarProps) {
             <AiOutlineMenu size={25} />
           </span>
           <h1 className="text-3xl font-bold">Hekto</h1>
-          <Link href="/cart/checkout" className="relative mr-2 inline-block">
+          <div onClick={handleToggleCart} className="cursor-pointer relative mr-2 inline-block">
             <AiOutlineShoppingCart size={20} />
             <span className="absolute -top-2 -right-3 px-[6px] py-[2px] text-xs text-red-100 transform bg-red-600 rounded-full">
               {cartItemsCount}
             </span>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

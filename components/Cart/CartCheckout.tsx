@@ -10,7 +10,7 @@ import { schemaCart } from './Cart.props';
 
 export interface CartCheckoutProps {
   currency?: Currency;
-  onClick: () => void;
+  onClick: (e) => void;
   isShowButton?: boolean;
 }
 

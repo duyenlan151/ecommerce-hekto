@@ -1,13 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { KEY_CART } from 'constants/index';
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
-import { CartsModel } from 'models';
+import { CartsModel, ShippingAddressModel } from 'models/index';
+
+const defaultShippingAddress: ShippingAddressModel = {
+  address: '',
+  city: '',
+  country: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  postalCode: '',
+};
 
 const defaultCart: CartsModel = {
   showMiniCart: false,
   formValid: false,
   paymentMethod: 'cash',
-  shippingAddress: {},
+  shippingAddress: defaultShippingAddress,
   cartItems: [],
 };
 
@@ -34,6 +44,7 @@ export const cartSlice = createSlice({
         state.cartItems.push(newItem);
       }
 
+      state.showMiniCart = !state.showMiniCart;
       setCookie(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
     },
 
@@ -69,8 +80,8 @@ export const cartSlice = createSlice({
     },
 
     cleanAllCart: (state) => {
-      state = { ...defaultCart };
       deleteCookie(KEY_CART);
+      return { ...defaultCart };
     },
   },
 });

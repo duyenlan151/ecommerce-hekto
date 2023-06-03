@@ -16,6 +16,9 @@ import { orderServices } from 'services';
 import { paymentMethods } from './Payment.props';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import axiosClient from 'services/api-services';
+import { getError } from '@utils/common';
+import { Modal } from '@components/Shared/Modal';
+import { ILoading } from '@components/Icons';
 
 export interface PaymentMethodProps {}
 
@@ -74,11 +77,12 @@ export default function PaymentMethod(props: PaymentMethodProps) {
       }
 
       if (result?.url) {
-        dispatch(cleanAllCart());
-        window.open(result?.url, 'paymentTab');
-        // window.location.href = result?.url;
+        window.location.href = result?.url;
+        return;
       }
-      // toast.success(`Order successfully`);
+      dispatch(cleanAllCart());
+      toast.success('Order Successfully');
+      router.push(`/order/${result?.order._id}`);
     } catch (err) {
       toast.error(err.message);
     } finally {
@@ -119,8 +123,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
     });
   }
   function onError(err) {
-    console.log('🚀 ~ file: PaymentMethod.tsx:102 ~ onError ~ err:', err);
-    // toast.error(getError(err));
+    toast.error(getError(err));
   }
 
   return (
@@ -129,6 +132,11 @@ export default function PaymentMethod(props: PaymentMethodProps) {
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart/ Information/ Shipping/ Payment
       </div>
+      {paymentMethod !== 'paypal' && (
+        <Modal showIconClose={false} isShow={loading} onChange={() => {}}>
+          <ILoading />
+        </Modal>
+      )}
       <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">
           <div className=" bg-grey-6  mb-4">
@@ -140,10 +148,10 @@ export default function PaymentMethod(props: PaymentMethodProps) {
             </div>
             <div className="px-8 pb-4">
               <div className="py-2 text-sm">
-                First Name: <span className="text-sub-title">{shippingAddress?.first_name}</span>
+                First Name: <span className="text-sub-title">{shippingAddress?.firstName}</span>
               </div>
               <div className="py-2 text-sm">
-                Last Name: <span className="text-sub-title">{shippingAddress?.last_name}</span>
+                Last Name: <span className="text-sub-title">{shippingAddress?.lastName}</span>
               </div>
               <div className="py-2 text-sm">
                 Email: <span className="text-sub-title">{shippingAddress?.email}</span>
@@ -158,7 +166,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
                 Country: <span className="text-sub-title">{shippingAddress?.country}</span>
               </div>
               <div className="py-2 text-sm">
-                Post code: <span className="text-sub-title">{shippingAddress?.post_code}</span>
+                Post code: <span className="text-sub-title">{shippingAddress?.postalCode}</span>
               </div>
             </div>
           </div>

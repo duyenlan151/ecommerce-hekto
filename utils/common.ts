@@ -18,3 +18,8 @@ export const initialOptionsPayPal = {
   intent: 'capture',
   'data-client-token': 'access_token$sandbox$787bmf4bqq85zwft$058df35f387d4f349dc93790ce60f55c',
 };
+
+export const getError = (err) =>
+  err.response && err.response.data && err.response.data.message
+    ? err.response.data.message
+    : err.message;

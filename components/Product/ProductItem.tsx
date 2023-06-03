@@ -229,7 +229,7 @@ export function ProductItemSecondary({
         </div>
 
         <div className="flex items-center mt-4">
-          <div className="flex justify-center mr-1 items-center rounded-full cursor-pointer mr-5">
+          <div className="flex justify-center items-center rounded-full cursor-pointer mr-5">
             <AiOutlineShoppingCart color={'#2F1AC4'} size={17} />
           </div>
           <div className="flex justify-center items-center rounded-full cursor-pointer mr-5">

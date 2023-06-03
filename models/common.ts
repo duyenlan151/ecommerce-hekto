@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
+import { OrderModel } from './order';
 export interface Image {
   ID: string | number;
   title: string;
@@ -33,13 +34,9 @@ export interface DataResCommonModel {
   message?: string;
   pages: number;
 }
-
-export interface ShippingAddressModel {
-  email: string;
-  first_name: string;
-  last_name: string;
-  address: string;
-  city: string;
-  country: string;
-  post_code: string;
+export interface OrderResModel {
+  order: OrderModel;
+  message?: string;
+  url?: string;
+  error?: string;
 }

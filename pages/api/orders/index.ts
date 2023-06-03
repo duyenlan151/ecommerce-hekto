@@ -56,7 +56,6 @@ const handler = async (req, res) => {
           }
           res.status(201).json({ order });
         }
-
         break;
 
       default:
