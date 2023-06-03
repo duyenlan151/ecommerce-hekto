@@ -63,18 +63,13 @@ export default function Checkout({}: CheckoutProps) {
       {
         key: 'product',
         title: 'Product',
-        render: (_, { _id, product, color, size }, onDelete) => (
+        render: (_, { _id, product, color, size }, columnIndex) => (
           <>
             <div className="flex py-4">
               <div className="relative mr-3 h-[83px] w-[83px]">
                 <span
                   className="absolute cursor-pointer -top-1 -right-1 z-50"
-                  onClick={() => {
-                    {
-                      if (!onDelete) return;
-                      onDelete(_id);
-                    }
-                  }}
+                  onClick={() => handleDeleteItem(_id)}
                 >
                   <AiFillCloseCircle />
                 </span>
@@ -141,7 +136,6 @@ export default function Checkout({}: CheckoutProps) {
   const onSubmit = (values) => {};
 
   const handleNavigate = () => {
-    console.log('🚀 ~ file: Checkout.tsx:145 ~ handleNavigate ~ session:', session);
     if (!session) {
       router.push('/login/?redirect=/cart/payment');
       return;
@@ -164,7 +158,6 @@ export default function Checkout({}: CheckoutProps) {
               title={''}
               data={cartItems}
               columns={columns}
-              onDelete={handleDeleteItem}
               onSelectOption={() => {}}
             />
           </div>

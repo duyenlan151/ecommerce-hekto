@@ -1,12 +1,13 @@
+import { Dropdown } from '@components/Shared/Dropdowns';
+import { Pagination } from '@components/Shared/Pagination';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { IoFilterOutline } from 'react-icons/io5';
+import { MdKeyboardArrowDown, MdKeyboardControlKey } from 'react-icons/md';
+import { FilterViewer } from './Filters';
 import ProductFilters from './ProductFilters';
 import ProductList from './ProductList';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Pagination } from '@components/Shared/Pagination';
-import { Dropdown } from '@components/Shared/Dropdowns';
 import { itemsList } from './Products.props';
-import { FilterViewer } from './Filters';
 
 export interface ProductListPageProps {
   products: any;
@@ -14,11 +15,11 @@ export interface ProductListPageProps {
 }
 
 export default function ProductListPage({ products }: ProductListPageProps) {
-  console.log('🚀 ~ file: ProductListPage.tsx:17 ~ ProductListPage ~ products:', products);
   const router = useRouter();
   const {
     query: { page },
   } = router;
+  const [showOverlayFilter, setShowOverlayFilter] = useState(false);
 
   const handleFilterBySort = ({ value }) => {
     router.push({
@@ -29,6 +30,10 @@ export default function ProductListPage({ products }: ProductListPageProps) {
       },
     });
   };
+
+  const handleOverlayFilter = () => {
+    setShowOverlayFilter((prev) => !prev);
+  };
   return (
     <section className="bg-bg-color">
       <div className="container mx-auto py-10 lg:px-0 px-4">
@@ -38,8 +43,17 @@ export default function ProductListPage({ products }: ProductListPageProps) {
         </div>
         <div className="ml-auto flex justify-end items-center py-2">
           {/* Sort */}
-          <Dropdown listItems={itemsList} onSelectItem={handleFilterBySort} />
-          <div className="cursor-pointer px-2 lg:hidden">
+          <Dropdown
+            label={
+              <div className="flex items-center py-2 bg-white px-4 border border-gray-10">
+                <div className="pr-3"> Sort By</div>
+                <MdKeyboardArrowDown size={20} />
+              </div>
+            }
+            listItems={itemsList}
+            onSelectItem={handleFilterBySort}
+          />
+          <div className="cursor-pointer pl-5 lg:hidden" onClick={handleOverlayFilter}>
             <IoFilterOutline size={25} />
           </div>
         </div>
@@ -48,6 +62,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             {/* Filter */}
             <ProductFilters />
           </div>
+
           <div className="flex-1 basis-full lg:ml-3 w-full justify-self-end">
             {/* Filter Viewer */}
             <FilterViewer />
@@ -62,6 +77,19 @@ export default function ProductListPage({ products }: ProductListPageProps) {
           </div>
         </div>
       </div>
+      <div
+        className={`trasform translate-x-full ${
+          showOverlayFilter && '!-translate-x-full'
+        } w-[350px] lg:hidden bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
+      >
+        <ProductFilters />
+      </div>
+      {showOverlayFilter && (
+        <div
+          onClick={handleOverlayFilter}
+          className="md:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
+        ></div>
+      )}
     </section>
   );
 }

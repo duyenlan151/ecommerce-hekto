@@ -32,6 +32,7 @@ export const cartSlice = createSlice({
   reducers: {
     toggleMiniCart: (state) => {
       state.showMiniCart = !state.showMiniCart;
+      setCookie(KEY_CART, JSON.stringify({ ...state }));
     },
 
     addToCart: (state, action) => {
@@ -60,7 +61,7 @@ export const cartSlice = createSlice({
 
     removeFromCart: (state, action) => {
       const isNeedToRemove = action.payload;
-      state.cartItems = state.cartItems.filter((item) => item.id !== isNeedToRemove);
+      state.cartItems = state.cartItems.filter((item) => item._id !== isNeedToRemove);
       setCookie(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
     },
 

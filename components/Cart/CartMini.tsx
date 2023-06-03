@@ -28,7 +28,7 @@ export default function CartMini(props: CartMiniProps) {
       <div
         className={`trasform translate-x-full ${
           showMiniCart && '!-translate-x-full'
-        } w-[350px] bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition ease-in-out duration-1000 opacity-100 outline-none focus:outline-none`}
+        } w-[350px] bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
       >
         <div
           className="cursor-pointer p-4 flex justify-end border-b border-primary"
@@ -53,12 +53,12 @@ export default function CartMini(props: CartMiniProps) {
           )}
         </div>
       </div>
-      <div
-        onClick={handleToggleCart}
-        className={` opacity-60 fixed h-full w-full top-0 left-0 z-40 bg-black ${
-          !showMiniCart && '!opacity-0 !z-[-1]'
-        }`}
-      ></div>
+      {showMiniCart && (
+        <div
+          onClick={handleToggleCart}
+          className="animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
+        ></div>
+      )}
     </>
   );
 }

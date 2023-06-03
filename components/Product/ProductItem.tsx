@@ -3,9 +3,10 @@ import { opacityVariant } from '@content/FramerMotionVariants';
 import { getSymbolCurrency } from '@utils/index';
 import { motion } from 'framer-motion';
 import { ProductModel } from 'models';
-import Link from 'next/link';
-import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineZoomIn } from 'react-icons/ai';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineZoomIn } from 'react-icons/ai';
 import { EProductItemType } from './ProductItem.props';
 
 export interface ProductItemProps {
@@ -37,7 +38,7 @@ const classProductItem = {
 };
 
 export function ProductModel({
-  product: { _id, title, price, code, currency, images, colors, isSale, slug },
+  product: { _id, title, price, code, currency, images, isSale, slug },
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
 }: ProductItemProps) {
@@ -48,7 +49,8 @@ export function ProductModel({
       className={`${classProductItem[styleProductItem].shadow} ${className} group transition delay-100 ease-in-out duration-500`}
     >
       <div
-        className={`flex relative justify-center items-stretch h-72 bg-white ${classProductItem[styleProductItem]?.img}`}
+        className={`flex relative justify-center items-stretch h-72 bg-white
+        ${classProductItem[styleProductItem]?.img}`}
       >
         {/* Image product */}
         <Link href={`/products/${_id}`}>
@@ -87,16 +89,6 @@ export function ProductModel({
             <AiOutlineZoomIn color={'#1389FF'} size={17} />
           </div>
         </div>
-
-        {/* Button view detail */}
-        {/* {styleProductItem === EProductItemType.PRIMARY && (
-          <Link
-            href={`/product/${_id}`}
-            className="absolute bottom-3 !left-1/2 transform !-translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition delay-100 ease-in-out duration-500 rounded-sm bg-green-1 flex-none px-4 py-2 text-lg font-semibold text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
-          >
-            View Details
-          </Link>
-        )} */}
       </div>
       {/** Content of Product: 2 style
        *  1. style Primary
@@ -105,19 +97,11 @@ export function ProductModel({
       {styleProductItem === EProductItemType.PRIMARY && (
         <div className="text-center p-4 transition delay-100 ease-in-out duration-500">
           <Link
-            href={`/products/${_id}`}
+            href={`/products/${_id}/${slug}`}
             className="transition line-clamp-1 delay-100 ease-in-out duration-500 text-gray-600 font-lato font-bold"
           >
             {title}
           </Link>
-          {/* <div className="flex items-center justify-center my-2">
-            {colors?.map((color, i) => (
-              <div
-                key={`${color}-${i}`}
-                className={`bg-[${color}] h-[4px] w-[14px] rounded-sm mx-[2px]`}
-              ></div>
-            ))}
-          </div> */}
           <div className="transition delay-100 ease-in-out duration-500 pt-1 text-blue-1 text-sm">
             {code}
           </div>
@@ -157,27 +141,9 @@ export function ProductModel({
 }
 
 export function ProductItemSecondary({
-  product: {
-    _id,
-    name,
-    price,
-    code,
-    currency,
-    colors,
-    isSale,
-    shortDescription,
-    description,
-    salePrice,
-    images,
-    title,
-    discount_percentage,
-    thumbnail,
-    rating,
-    slug,
-  },
-  styleProductItem = EProductItemType.PRIMARY,
-  className = '',
+  product: { _id, name, price, shortDescription, description, images, title, rating, slug },
 }: ProductItemProps) {
+  const router = useRouter();
   return (
     <div
       className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center mb-3 p-2`}
@@ -188,10 +154,9 @@ export function ProductItemSecondary({
         className="relative block max-w-[214px] min-w-[214px] h-[214px]"
       >
         <Image
-          // src={`${process.env.NEXT_PUBLIC_HOST_URL}${images[0].path}`}
-          src={images && images[0]?.path}
           fill
-          alt={name}
+          src={images && images[0]?.path}
+          alt={(images && images[0]?.path) || name}
           className="scale-[80%] object-contain  transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
@@ -203,125 +168,37 @@ export function ProductItemSecondary({
         >
           {name || title}
         </Link>
-        {/* Colors */}
-        {/* <div>
-          {colors?.map((color, i) => (
-            <span
-              key={`${color}-${i}`}
-              className={`inline-block bg-[${color}] h-[11px] w-[11px] rounded-full mr-2`}
-            ></span>
-          ))}
-        </div> */}
         {/* Price */}
         <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 text-sm font-lato">
           <span className="text-sub-title-1 text-sm">
             {getSymbolCurrency('EUR', Number(price))}
           </span>
-          {/* {(salePrice || discountPercentage) && ( */}
-          <span className="ml-2 text-sub-title text-xs line-through">
-            {/* {getSymbolCurrency('EUR', price)} */}
-          </span>
+          <span className="ml-2 text-sub-title text-xs line-through"></span>
         </div>
         <div className="text-sm text-sub-title mt-2">{rating}/5</div>
         {/* ShortDescription */}
         <div className="line-clamp-1 transition delay-100 ease-in-out duration-500 mt-2 text-sub-title-3 text-sm">
           {shortDescription || description}
         </div>
-
+        {/* Group Icons */}
         <div className="flex items-center mt-4">
-          <div className="flex justify-center items-center rounded-full cursor-pointer mr-5">
+          <div
+            onClick={() => router.push(`/products/${_id}/${slug}`)}
+            className="flex justify-center items-center rounded-full cursor-pointer mr-5"
+          >
             <AiOutlineShoppingCart color={'#2F1AC4'} size={17} />
           </div>
           <div className="flex justify-center items-center rounded-full cursor-pointer mr-5">
             <AiOutlineHeart color={'#1389FF'} size={17} />
           </div>
-          <div className="flex justify-center items-center rounded-full cursor-pointer mr-5">
+          <div
+            onClick={() => router.push(`/products/${_id}/${slug}`)}
+            className="flex justify-center items-center rounded-full cursor-pointer mr-5"
+          >
             <AiOutlineZoomIn color={'#1389FF'} size={17} />
           </div>
         </div>
       </div>
-
-      {/* Image sale */}
-      {/* {isSale && (
-          <div className="absolute top-1 left-1">
-            <div className="relative">
-              <ISale />
-
-              <p className="text-white text-sm -rotate-[18deg] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                Sale
-              </p>
-            </div>
-          </div>
-        )} */}
-
-      {/* Group icons: cart, heart and zoom */}
-      {/* <div
-          className={`${classProductItem[styleProductItem]['group-icons']} absolute z-20 left-2 flex items-center opacity-0 group-hover:opacity-100 transition delay-100 ease-in-out duration-300`}
-        >
-          <div className="flex justify-center mr-1 items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
-            <AiOutlineShoppingCart color={'#2F1AC4'} size={17} />
-          </div>
-          <div className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
-            <AiOutlineHeart color={'#1389FF'} size={17} />
-          </div>
-          <div className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
-            <AiOutlineZoomIn color={'#1389FF'} size={17} />
-          </div>
-        </div> */}
-      {/** Content of Product: 2 style
-       *  1. style Primary
-       *  2. style Secondary
-       */}
-      {/* {styleProductItem === EProductItemType.PRIMARY && (
-        <div className="text-center p-4 group-hover:bg-blue-3 transition delay-100 ease-in-out duration-500">
-          <Link
-            href={`/product/${id}`}
-            className="transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold group-hover:text-white"
-          >
-            {name}
-          </Link>
-          <div className="flex items-center justify-center my-2">
-            {colors.map((color, i) => (
-              <div
-                key={`${color}-${i}`}
-                className={`bg-[${color}] h-[4px] w-[14px] rounded-sm mx-[2px]`}
-              ></div>
-            ))}
-          </div>
-          <div className="transition delay-100 ease-in-out duration-500 pt-1 text-blue-1 group-hover:text-white text-sm">
-            {code}
-          </div>
-          <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 group-hover:text-white text-sm font-lato">
-            {getSymbolCurrency(currency, price)}
-          </div>
-        </div>
-      )}
-
-      {styleProductItem === EProductItemType.SECONDARY && (
-        <div className="py-3 px-1 flex relative justify-between">
-          <div className="tracking-wide transition delay-100 ease-in-out duration-500 text-blue-1">
-            {name}
-          </div>
-          <div>
-            <span className="text-sm text-blue-1">{getSymbolCurrency(currency, price)}</span>
-            <span className="mx-2 text-xs text-red-1 line-through">
-              {getSymbolCurrency(currency, price)}
-            </span>
-          </div>
-        </div>
-      )}
-
-      {styleProductItem === EProductItemType.TRENDING && (
-        <div className="mt-[19px] mb-8 text-center">
-          <div className="tracking-wide text-blue-1 font-lato font-bold">{name}</div>
-          <div className="mt-2">
-            <span className="text-sm text-blue-1">{getSymbolCurrency(currency, price)}</span>
-            <span className="mx-2 text-xs text-blue-1 line-through opacity-30">
-              {getSymbolCurrency(currency, price)}
-            </span>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

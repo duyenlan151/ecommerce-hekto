@@ -6,13 +6,7 @@ export interface IColumnType<T> {
   key: string;
   title: string;
   width?: number;
-  render?: (
-    column: IColumnType<T>,
-    item: T,
-    onDelete: (item: number | string) => void,
-    index?: string | number
-  ) => ReactNode;
-  onDelete?: (item: number | string) => void;
+  render?: (column: IColumnType<T>, item: T, columnIndex?: string | number) => ReactNode;
   [key: string]: any;
 }
 
@@ -20,7 +14,6 @@ interface Props<T> {
   title: string;
   data: T[];
   columns: IColumnType<T>[];
-  onDelete: (item: number | string) => void;
   onSelectOption: (action, item) => void;
   showHeader?: boolean;
   showAction?: boolean;
@@ -32,7 +25,6 @@ export function Table<T>({
   title = '',
   data,
   columns,
-  onDelete,
   onSelectOption,
   showHeader = true,
   showAction = true,
@@ -54,7 +46,6 @@ export function Table<T>({
             <TableRow
               data={data}
               columns={columns}
-              onDelete={onDelete}
               onSelectOption={onSelectOption}
               showAction={showAction}
             />

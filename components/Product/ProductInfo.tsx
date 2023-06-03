@@ -32,12 +32,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         )}
       </div>
       <div className="text-sub-title font-lato-light leading-7">{shortDescription}</div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <span className="text-blue-1">Color</span>
       </div>
       <div className="mt-4">
         <span className="text-blue-1">Categories:</span>
-      </div>
+      </div> */}
       <div className="mt-4">
         <span className="text-blue-1">Share:</span>
       </div>

@@ -6,7 +6,6 @@ import { TableRowCell } from './TableRowCell';
 interface Props<T> {
   data: T[];
   columns: IColumnType<T>[];
-  onDelete: (item: number | string) => void;
   color?: 'light' | 'dark';
   onSelectOption: (action, item) => void;
   showAction?: boolean;
@@ -15,17 +14,9 @@ interface Props<T> {
 const itemsList = [
   { id: 1, label: 'Edit', value: 'edit', icon: <AiTwotoneEdit /> },
   { id: 2, label: 'Delete', value: 'delete', icon: <AiOutlineDelete /> },
-  // { id: 3, label: 'Price: Low to High', value: 'price:asc' },
 ];
 
-export function TableRow<T>({
-  data,
-  columns,
-  onDelete,
-  color = 'light',
-  onSelectOption,
-  showAction,
-}: Props<T>) {
+export function TableRow<T>({ data, columns, onSelectOption, showAction }: Props<T>) {
   return (
     <>
       {data &&
@@ -37,7 +28,6 @@ export function TableRow<T>({
             <>
               {columns.map((column, columnIndex) => (
                 <TableRowCell
-                  onDelete={onDelete}
                   column={column}
                   item={item}
                   columnIndex={itemIndex}

@@ -44,12 +44,8 @@ export default function SwipperCommon({
   return (
     <>
       <Swiper
-        // breakpoints={defaultBreakpoints}
         slidesPerView={1}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
+        pagination={true}
         loop={true}
         initialSlide={0}
         spaceBetween={15}
