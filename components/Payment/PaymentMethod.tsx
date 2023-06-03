@@ -32,13 +32,17 @@ export default function PaymentMethod(props: PaymentMethodProps) {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const {
+    query: { cancelled },
+  } = router;
+
   const shippingPrice = cartTotal > 200 ? 0 : 15;
   const taxPrice = round2(cartTotal * 0.15);
   const totalPrice = round2(cartTotal + shippingPrice + taxPrice);
 
   useEffect(() => {
-    if (isObjectEmpty(shippingAddress)) {
-      router.push('/cart/payment');
+    if (cancelled === 'true') {
+      toast.error('Order Cancelled');
     }
   }, []);
 
