@@ -5,7 +5,7 @@ export const columns = [
     key: 'id',
     title: 'ID',
     isSort: false,
-    render: (_, item, onDelete, columnIndex) => {
+    render: (_, item, columnIndex) => {
       columnIndex + 1;
     },
   },

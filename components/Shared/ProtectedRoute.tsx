@@ -18,8 +18,13 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   //@ts-ignore
   if (!session?.user) {
-    router.push('/');
-    return;
+    router.push({
+      pathname: '/login',
+      query: {
+        redirect: router.asPath,
+      },
+    });
+    // return;
   }
 
   return children;

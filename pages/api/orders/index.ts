@@ -49,9 +49,9 @@ const handler = async (req, res) => {
                 userId: user.id,
               },
               mode: 'payment',
-              success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order.id}&success=true&session_id={CHECKOUT_SESSION_ID}`,
+              success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders/${order.id}&success=true&session_id={CHECKOUT_SESSION_ID}`,
               // cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order.id}&cancelled=true`,
-              cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?cancelled=true`,
+              cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?order_id=${order.id}&cancelled=true`,
             });
             res.status(201).json({ order, url: checkoutSession.url });
           }
@@ -62,8 +62,9 @@ const handler = async (req, res) => {
       default:
         break;
     }
+    res.status(500).json({ message: 'Not found' });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: 'Not found' });
   }
 };
 export default handler;

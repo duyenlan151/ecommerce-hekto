@@ -51,7 +51,7 @@ export default function ResetpassForm({}: ResetPassProps) {
     <section className="container mx-auto my-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto py-10 w-34 max-w-[98%] shadow-main lg:!px-8 px-4"
+        className="mx-auto py-10 w-34 max-w-[98%] shadow-main lg:!px-8 px-4 bg-white"
       >
         <h4 className="text-3xl text-center mb-4">Reset password</h4>
 

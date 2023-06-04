@@ -1,13 +1,28 @@
 import { CountryLocals, Currency, CurrencyValue } from 'models';
 
-export const getSymbolCurrency = (currencyCode: Currency = 'EUR', value: number | string) => {
+const options = {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false,
+  timeZone: 'America/Los_Angeles',
+};
+
+export const getSymbolCurrency = (value: number | string, currencyCode: Currency = 'USD') => {
   return (
-    new Intl.NumberFormat('en-UK', {
+    new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currencyCode,
     }).format(Number(value)) ||
-    `${currencyCode === 'EUR' ? CurrencyValue.EUR : CurrencyValue.GBP}${value}`
+    `${currencyCode === 'EUR' ? CurrencyValue.EUR : CurrencyValue.USD}${value}`
   );
+};
+
+export const formatDateTime = (date: number | Date | undefined) => {
+  //@ts-ignore
+  return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
 // export const urlFor = (source: any) => builder.image(source);

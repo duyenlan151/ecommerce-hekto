@@ -4,7 +4,7 @@ import { ProductModel } from './products';
 export interface OrderModel {
   _id: string;
   user: string;
-  orderItems: ProductModel;
+  orderItems: ProductModel[];
 
   shippingAddress: ShippingAddressModel;
   paymentMethod: paymentMethod;
@@ -15,7 +15,10 @@ export interface OrderModel {
 
   isPaid: boolean;
   isDelivered: boolean;
+  isCancelled: boolean;
 
   createdAt: string;
   updatedAt: string;
 }
+
+export type ActionOrder = 'getOrderById' | 'getHistory';

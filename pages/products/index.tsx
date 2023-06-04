@@ -23,28 +23,7 @@ const ProductsPage = ({ products, limit, total }: Props) => {
       <ProductListPage products={products} />
     </Suspense>
   );
-  return <ProductListPage products={products} />;
 };
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   // Example for including static props in a Next.js function component page.
-//   // Don't forget to include the respective types for any props passed into
-//   // the component.
-//   const query = context?.params?.query;
-//   console.log(
-//     '🚀 ~ file: index.tsx:34 ~ constgetServerSideProps:GetServerSideProps= ~ query:',
-//     query
-//   );
-//   try {
-//     const data = await productsService.getAllProducts();
-//     return { props: { products: data }, revalidate: 1000 };
-//   } catch (error) {
-//     return {
-//       props: {},
-//     };
-//   }
-//   return { notFound: true };
-// };
 
 export default ProductsPage;
 
@@ -57,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const rating = context?.query?.rating || 'all';
     const sort = context?.query?.sort || 'featured';
 
-    const data = await productsService.getAllProducts({ page, price, rating, sort });
+    const data = await productsService.getAllProducts({ page, price, rating, sort, limit: 3 });
     return {
       props: { products: data },
     };

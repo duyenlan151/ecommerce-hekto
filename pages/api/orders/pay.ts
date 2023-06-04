@@ -7,7 +7,6 @@ const secret = process.env.NEXT_PUBLIC_SECRET;
 const handler = async (req, res) => {
   try {
     const user = await getToken({ req, secret });
-    console.log('🚀 ~ file: pay.ts:9 ~ handler ~ user:', req);
     if (!user) {
       return res.status(401).json({ message: 'signin required' });
     }

@@ -47,7 +47,7 @@ export default function PaymenForm({ isTrigger }: PaymenFormProps) {
   };
 
   return (
-    <div className="z-10 bg-grey-6 lg:px-10 px-5 lg:py-16 py-6 w-full">
+    <div className="z-10 bg-white lg:px-10 px-5 lg:py-16 py-6 w-full">
       <a
         href="/"
         className="block underline text-right text-sub-title font-lato-light leading-7 mb-3"

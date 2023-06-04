@@ -9,7 +9,7 @@ import CartCheckout from '@components/Cart/CartCheckout';
 import { isObjectEmpty, round2 } from 'constants/index';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { orderServices } from 'services';
@@ -19,21 +19,25 @@ import axiosClient from 'services/api-services';
 import { getError } from '@utils/common';
 import { Modal } from '@components/Shared/Modal';
 import { ILoading } from '@components/Icons';
+import { OrderResModel } from 'models';
+import { useSession } from 'next-auth/react';
 
 export interface PaymentMethodProps {}
 
 export default function PaymentMethod(props: PaymentMethodProps) {
-  const [loading, setLoading] = useState(false);
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-  const paymentMethod = useSelector(paymentMethodSelector);
-  const cartTotal = useSelector(cartTotalSelector);
-  const shippingAddress = useSelector(shippingAddressSelector);
-  const allCart = useSelector(allCartSelector);
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
+  const allCart = useSelector(allCartSelector);
+  const cartTotal = useSelector(cartTotalSelector);
+  const paymentMethod = useSelector(paymentMethodSelector);
+  const shippingAddress = useSelector(shippingAddressSelector);
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const refOrder = useRef<Partial<OrderResModel>>({});
 
   const {
-    query: { cancelled },
+    query: { cancelled, order_id },
   } = router;
 
   const shippingPrice = cartTotal > 200 ? 0 : 15;
@@ -41,8 +45,9 @@ export default function PaymentMethod(props: PaymentMethodProps) {
   const totalPrice = round2(cartTotal + shippingPrice + taxPrice);
 
   useEffect(() => {
-    if (cancelled === 'true') {
-      toast.error('Order Cancelled');
+    if (cancelled === 'true' && order_id) {
+      dispatch(cleanAllCart());
+      router.push(`/user/orders/${order_id}`);
     }
   }, []);
 
@@ -84,9 +89,12 @@ export default function PaymentMethod(props: PaymentMethodProps) {
         window.location.href = result?.url;
         return;
       }
+
+      // Clear cart if create order success
       dispatch(cleanAllCart());
+
       toast.success('Order Successfully');
-      router.push(`/order/${result?.order._id}`);
+      router.push(`/user/orders/${result?.order._id}`);
     } catch (err) {
       toast.error(err.message);
     } finally {
@@ -109,26 +117,47 @@ export default function PaymentMethod(props: PaymentMethodProps) {
   }
 
   function onApprove(data, actions) {
-    console.log('🚀 ~ file: PaymentMethod.tsx:104 ~ onApprove ~ actions:', actions);
     return actions.order.capture().then(async function (details) {
-      console.log('🚀 ~ file: PaymentMethod.tsx:105 ~ details:', details);
       try {
-        // dispatch({ type: 'PAY_REQUEST' });
-        // const { data } = await axios.put(
-        //   `/api/orders/${order._id}/pay`,
-        //   details
-        // );
-        // dispatch({ type: 'PAY_SUCCESS', payload: data });
-        // toast.success('Order is paid successgully');
+        let result = await orderServices.updateStatusPayment({
+          status: true,
+          id: refOrder.current?.order?._id,
+          email_address: session?.user?.email,
+        });
+
+        if (result.status) {
+          dispatch(cleanAllCart());
+          toast.success('Order is paid successgully');
+
+          router.push(`/user/orders/${refOrder?.current?.order?._id}`);
+        }
       } catch (err) {
-        // dispatch({ type: 'PAY_FAIL', payload: getError(err) });
-        // toast.error(getError(err));
+        toast.error(getError(err));
       }
     });
   }
-  function onError(err) {
+
+  const onOrder = async () => {
+    try {
+      const { cartItems } = allCart;
+      const order = await orderServices.orders({
+        orderItems: cartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice: cartTotal,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      });
+      // setDataOrder(order);
+      refOrder.current = order;
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
+  const onError = (err) => {
     toast.error(getError(err));
-  }
+  };
 
   return (
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
@@ -143,7 +172,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
       )}
       <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">
-          <div className=" bg-grey-6  mb-4">
+          <div className="bg-white mb-4">
             <div className="tracking-wider flex items-center justify-between px-8 py-4 text-lg mb-4 border-b border-primary">
               Shipping Address
               <Link href="/cart/payment" className="text-sm underline">
@@ -174,7 +203,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
               </div>
             </div>
           </div>
-          <div className=" bg-grey-6 py-5 px-8">
+          <div className="bg-white py-5 px-8">
             <div className="tracking-wider text-xl mb-8">Payment method</div>
             <div className="">
               {paymentMethods.map((payment) => (
@@ -202,15 +231,16 @@ export default function PaymentMethod(props: PaymentMethodProps) {
             </div>
           </div>
         </div>
-        <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 w-full justify-self-end">
+        <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 w-full justify-self-end">
           <CartCheckout onClick={handlePayment} isShowButton={paymentMethod !== 'paypal'} />
           {isPending ? (
             <div>Loading...</div>
           ) : (
             <>
               {paymentMethod === 'paypal' && (
-                <div className="pt-6 bg-grey-6 px-4 w-full">
+                <div className="pt-6 bg-white px-4 w-full">
                   <PayPalButtons
+                    onClick={onOrder}
                     createOrder={createOrder}
                     onApprove={onApprove}
                     onError={onError}

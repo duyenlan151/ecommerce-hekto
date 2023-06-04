@@ -5,7 +5,7 @@ export interface SectionTrendingProps {}
 
 export default function SectionTrending(props: SectionTrendingProps) {
   return (
-    <section className="my-[129px]">
+    <section className="py-[129px] bg-white">
       <BoxSection className="container mx-auto mt-10 lg:px-0 px-2" title={'Trending Products'}>
         <ProductTredingList />
         <div className="flex gap-6">

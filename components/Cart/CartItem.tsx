@@ -9,7 +9,7 @@ export interface CartItemProps {
 
 export default function CartItem({ item: { product, size, color, quantity } }: CartItemProps) {
   return (
-    <div className="py-4 rounded overflow-hidden border-b flex items-center justify-between">
+    <div className="py-4 px-2 rounded overflow-hidden border-b flex items-center justify-between">
       <div className="flex">
         <Link href={`/products/${product.id}`} className="mr-3 h-[83px] w-[83px] min-w-[83px]">
           <Image
@@ -29,7 +29,7 @@ export default function CartItem({ item: { product, size, color, quantity } }: C
           <p className="text-sub-title text-xs">{quantity}</p>
         </div>
       </div>
-      <div>{getSymbolCurrency('EUR', Number(quantity * Number(product.price)))}</div>
+      <div>{getSymbolCurrency(Number(quantity * Number(product.price)))}</div>
     </div>
   );
 }

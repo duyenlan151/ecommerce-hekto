@@ -7,7 +7,7 @@ export interface CartItemListProps {
 
 export default function CartItemList({ data }: CartItemListProps) {
   return (
-    <div className="lg:-mt-4">
+    <div className="bg-white lg:-mt-4">
       {data &&
         data.map((product, idx) => <CartItem key={`${product.id} - ${idx}`} item={product} />)}
     </div>

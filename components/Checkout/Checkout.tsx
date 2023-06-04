@@ -94,7 +94,7 @@ export default function Checkout({}: CheckoutProps) {
           <>
             <div className="line-clamp-3">
               <Link
-                href={`/product/${product?._id}`}
+                href={`/products/${product?._id}/${product?.slug}`}
                 className="flex hover:text-pink-1 transition ease-in-out duration-300 whitespace-pre-wrap max-h-[80px]"
               >
                 {product?.title}
@@ -106,7 +106,7 @@ export default function Checkout({}: CheckoutProps) {
       {
         key: 'price',
         title: 'Price',
-        render: (_, { product }) => <>{getSymbolCurrency('EUR', Number(product.price))}</>,
+        render: (_, { product }) => <>{getSymbolCurrency(Number(product.price))}</>,
       },
       {
         key: 'quantity',
@@ -126,7 +126,7 @@ export default function Checkout({}: CheckoutProps) {
         key: 'total',
         title: 'Total',
         render: (_, { product, quantity }) => (
-          <>{getSymbolCurrency('EUR', quantity * Number(product.price))}</>
+          <>{getSymbolCurrency(quantity * Number(product.price))}</>
         ),
       },
     ],
@@ -170,7 +170,7 @@ export default function Checkout({}: CheckoutProps) {
             </Link>
           </div>
         </div>
-        <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 mt-5 w-full justify-self-end">
+        <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 mt-5 w-full justify-self-end">
           <h4 className="text-blue-1 text-xl text-center mb-5">Cart Totals</h4>
           <CartCheckout onClick={handleNavigate} />
         </div>

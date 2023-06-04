@@ -1,4 +1,4 @@
-export type Currency = 'EUR' | 'GBP';
+export type Currency = 'EUR' | 'GBP' | 'USD';
 
 export enum CountryLocals {
   'en-UK' = 'en-UK',
@@ -7,4 +7,5 @@ export enum CountryLocals {
 export enum CurrencyValue {
   EUR = '€',
   GBP = '£',
+  USD = '$',
 }

@@ -37,7 +37,7 @@ export default function SectionUnique(props: SectionUniqueProps) {
           </div>
           <div className="mx-auto w-fit mt-11">
             <p className="text-blue-1">B&B Italian Sofa </p>
-            <p className="font-lato text-blue-1">{getSymbolCurrency('EUR', '32')}</p>
+            <p className="font-lato text-blue-1">{getSymbolCurrency('32')}</p>
           </div>
         </div>
       </BoxContent>

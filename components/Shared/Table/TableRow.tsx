@@ -1,14 +1,16 @@
+import { ProductModel } from 'models';
 import { AiOutlineDelete, AiTwotoneEdit } from 'react-icons/ai';
 import { Dropdown } from '../Common';
 import { IColumnType } from './Table';
 import { TableRowCell } from './TableRowCell';
 
 interface Props<T> {
-  data: T[];
+  data: T[] | ProductModel[];
   columns: IColumnType<T>[];
   color?: 'light' | 'dark';
   onSelectOption: (action, item) => void;
   showAction?: boolean;
+  isPrimary?: boolean;
 }
 
 const itemsList = [
@@ -16,14 +18,22 @@ const itemsList = [
   { id: 2, label: 'Delete', value: 'delete', icon: <AiOutlineDelete /> },
 ];
 
-export function TableRow<T>({ data, columns, onSelectOption, showAction }: Props<T>) {
+export function TableRow<T>({
+  data,
+  columns,
+  onSelectOption,
+  showAction,
+  isPrimary = true,
+}: Props<T>) {
   return (
     <>
       {data &&
         data.map((item, itemIndex) => (
           <tr
             key={`table-body-${itemIndex}`}
-            className="even:bg-table-odd odd:bg-white border-b border-table-border cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-100"
+            className={`${
+              isPrimary && 'even:bg-table-odd odd:bg-white'
+            } border-b border-table-border cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-100`}
           >
             <>
               {columns.map((column, columnIndex) => (

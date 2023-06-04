@@ -5,8 +5,10 @@ export interface SectionBlogsProps {}
 
 export default function SectionBlogs({}: SectionBlogsProps) {
   return (
-    <section className="my-[129px] container mx-auto lg:px-0 px-4">
-      <BlogList />
+    <section className="py-[129px] bg-white">
+      <div className="container mx-auto lg:px-0 px-4">
+        <BlogList />
+      </div>
     </section>
   );
 }

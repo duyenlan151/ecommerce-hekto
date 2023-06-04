@@ -1,3 +1,4 @@
+import { ProductModel } from 'models';
 import { ReactNode } from 'react';
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
@@ -12,12 +13,13 @@ export interface IColumnType<T> {
 
 interface Props<T> {
   title: string;
-  data: T[];
+  data: T[] | ProductModel[];
   columns: IColumnType<T>[];
   onSelectOption: (action, item) => void;
   showHeader?: boolean;
   showAction?: boolean;
   color?: 'light' | 'dark';
+  isPrimary?: boolean;
 }
 
 export function Table<T>({
@@ -28,6 +30,7 @@ export function Table<T>({
   onSelectOption,
   showHeader = true,
   showAction = true,
+  isPrimary,
 }: Props<T>) {
   return (
     <div
@@ -40,10 +43,11 @@ export function Table<T>({
         {/* Projects table */}
         <table className="items-center w-full bg-transparent border-collapse border border-table-border-1">
           <thead className="border-b border-table-border">
-            {showHeader && <TableHeader columns={columns} />}
+            {showHeader && <TableHeader columns={columns} showAction={showAction} />}
           </thead>
           <tbody>
             <TableRow
+              isPrimary={isPrimary}
               data={data}
               columns={columns}
               onSelectOption={onSelectOption}

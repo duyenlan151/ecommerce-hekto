@@ -43,8 +43,7 @@ export const FILTER_LIST = [
     id: 2,
     getLabel: (filters) =>
       filters.price &&
-      `${getSymbolCurrency('EUR', Number(filters.price.split('-')[0]))} - ${getSymbolCurrency(
-        'EUR',
+      `${getSymbolCurrency(Number(filters.price.split('-')[0]))} - ${getSymbolCurrency(
         Number(filters.price.split('-')[1])
       )}`,
     isShow: (filters) => filters.price,

@@ -9,7 +9,7 @@ export interface SectionProductsProps {
 
 export default function SectionProducts({ data }: SectionProductsProps) {
   return (
-    <section className="my-[129px]">
+    <section className="py-[129px] bg-white">
       <BoxSection title={'Featured Products'}>
         <ProductFeaturedList data={data} />
       </BoxSection>

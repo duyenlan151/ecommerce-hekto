@@ -3,49 +3,63 @@ import * as React from 'react';
 
 export interface UserCartInfoProps {}
 
+const dataOrders = [
+  { id: 1, title: 'All orders', value: 'all' },
+  { id: 2, title: 'Waiting for payment', value: 'unpaid' },
+  { id: 3, title: 'In progress', value: 'inprogress' },
+  { id: 4, title: 'Delivered', value: 'delivered' },
+  { id: 5, title: 'Cancelled', value: 'cancelled' },
+];
+
 export function UserCartInfo(props: UserCartInfoProps) {
   const router = useRouter();
   const {
     query: { typeOrder },
   } = router;
 
-  const changeTypeOrder = (typeOrder) => {
-    router.push({
-      path: router.pathname,
-      query: {
-        ...router.query,
-        typeOrder,
-      },
-    });
+  const changeTypeOrder = (type) => {
+    if (type !== typeOrder) {
+      router.push({
+        path: router.pathname,
+        query: {
+          ...router.query,
+          typeOrder: type,
+        },
+      });
+    }
   };
 
   return (
-    <div>
+    <div className="bg-white">
       <div>
         <ul className="flex overflow-x-auto items-center border-b border-primary">
-          <li
-            onClick={() => changeTypeOrder('All')}
+          {dataOrders.map((order) => (
+            <li
+              key={order.value}
+              onClick={() => changeTypeOrder(order.value)}
+              className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-neutral-100 ${
+                typeOrder === order.value && 'bg-gray-100'
+              }`}
+            >
+              {order.title}
+            </li>
+          ))}
+
+          {/* <li
+            onClick={() => changeTypeOrder('unpaid')}
             className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              !!typeOrder || (typeOrder === 'All' && 'bg-gray-100')
-            }`}
-          >
-            All orders
-          </li>
-          <li
-            onClick={() => changeTypeOrder('wait')}
-            className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'wait' && 'bg-gray-100'
+              typeOrder === 'unpaid' && 'bg-gray-100'
             }`}
           >
             Waiting for payment
           </li>
           <li
-            onClick={() => changeTypeOrder('delivering')}
+            onClick={() => changeTypeOrder('inprogress')}
             className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'delivering' && 'bg-gray-100'
+              typeOrder === 'inprogress' && 'bg-gray-100'
             }`}
           >
-            Delivering
+            In progress
           </li>
           <li
             onClick={() => changeTypeOrder('delivered')}
@@ -56,13 +70,13 @@ export function UserCartInfo(props: UserCartInfoProps) {
             Delivered
           </li>
           <li
-            onClick={() => changeTypeOrder('cancel')}
+            onClick={() => changeTypeOrder('cancelled')}
             className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'cancel' && 'bg-gray-100'
+              typeOrder === 'cancelled' && 'bg-gray-100'
             }`}
           >
-            Cancel
-          </li>
+            Cancelled
+          </li> */}
         </ul>
       </div>
     </div>

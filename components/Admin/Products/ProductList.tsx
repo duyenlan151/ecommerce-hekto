@@ -55,13 +55,7 @@ export default function ProductList({ data }: ProductListProps) {
           Add New
         </button>
       </div>
-      <Table
-        onSelectOption={onSelectOption}
-        data={data}
-        title="Products"
-        columns={columns}
-        onDelete={() => {}}
-      />
+      <Table onSelectOption={onSelectOption} data={data} title="Products" columns={columns} />
 
       <ModalConfirm
         title={'Delete Product'}

@@ -43,17 +43,15 @@ export default function CartCheckout({
   }, [cartTotal]);
 
   return (
-    <form onSubmit={handleSubmit(onClick)} className="bg-grey-6 w-full h-fit lg:p-6 p-4">
+    <form onSubmit={handleSubmit(onClick)} className="bg-white w-full h-fit lg:p-6 p-4">
       <div className="flex items-center justify-between border-b-2 pb-3 border-grey-1 mt-3 mb-8">
         <label className="text-blue-1 text-base">Subtotals:</label>
-        <p className="text-blue-1 font-lato font-bold text-lg">
-          {getSymbolCurrency(currency, cartTotal)}
-        </p>
+        <p className="text-blue-1 font-lato font-bold text-lg">{getSymbolCurrency(cartTotal)}</p>
       </div>
       <div className="flex items-center justify-between border-b-2 pb-3 border-grey-1 mb-4">
         <label className="text-blue-1 text-base">Totals:</label>
         <p className="text-blue-1 font-lato font-bold text-lg">
-          {getSymbolCurrency(currency, cartTotal + (cartTotal * 3) / 100)}
+          {getSymbolCurrency(cartTotal + (cartTotal * 3) / 100)}
         </p>
       </div>
       <CheckBox

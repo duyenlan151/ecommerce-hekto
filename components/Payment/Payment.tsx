@@ -19,7 +19,6 @@ export default function Payment(props: PaymentProps) {
     // e.preventDefault();
     setTrigger(true);
 
-    console.log('🚀 ~ file: Payment.tsx:22 ~ onPayment ~ shippingAddress:', !!shippingAddress);
     if (!isObjectEmpty(shippingAddress) && !isObjectEmptyValue(shippingAddress)) {
       router.push('/cart/payment-method');
     }
@@ -36,9 +35,9 @@ export default function Payment(props: PaymentProps) {
         <div className="lg:basis-8/12 basis-full">
           <PaymentForm isTrigger={trigger} />
         </div>
-        <div className="lg:basis-4/12 basis-full lg:ml-10 lg:mt-0 mt-5 w-full justify-self-end">
+        <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 mt-5 w-full justify-self-end">
           <CartItemList data={cartItems} />
-          <div className="mt-8">
+          <div className="mt-4">
             <CartCheckout onClick={onPayment} />
           </div>
         </div>

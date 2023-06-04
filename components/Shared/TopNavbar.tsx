@@ -33,7 +33,7 @@ function TopNavbar({}: TopNavbarProps) {
   };
 
   return (
-    <div className="">
+    <div className="bg-white">
       <div className="container mx-auto">
         <div className="md:flex justify-between py-3 text-sm text-black-500 lg:px-0 px-2 hidden">
           <div className="flex-1 w-50">
@@ -65,7 +65,7 @@ function TopNavbar({}: TopNavbarProps) {
                 >
                   <Link
                     className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block"
-                    href="/users/profile"
+                    href="/user/profile"
                   >
                     Profile
                   </Link>
@@ -85,7 +85,7 @@ function TopNavbar({}: TopNavbarProps) {
                 </span>
               </Link>
             )}
-            <div onClick={handleToggleCart} className="cursor-pointer relative mr-2 inline-block">
+            <div onClick={handleToggleCart} className="cursor-pointer relative ml-2 inline-block">
               <AiOutlineShoppingCart size={20} />
               <span className="absolute -top-2 -right-3 px-[6px] py-[2px] text-xs text-red-100 transform bg-red-600 rounded-full">
                 {cartItemsCount}
@@ -115,7 +115,7 @@ function TopNavbar({}: TopNavbarProps) {
             <AiOutlineMenu size={25} />
           </span>
           <h1 className="text-3xl font-bold">Hekto</h1>
-          <div onClick={handleToggleCart} className="cursor-pointer relative mr-2 inline-block">
+          <div onClick={handleToggleCart} className="cursor-pointer relative ml-2 inline-block">
             <AiOutlineShoppingCart size={20} />
             <span className="absolute -top-2 -right-3 px-[6px] py-[2px] text-xs text-red-100 transform bg-red-600 rounded-full">
               {cartItemsCount}

@@ -56,13 +56,7 @@ export default function CategoryList({ data }: CategoryListProps) {
           Add New
         </button>
       </div>
-      <Table
-        onSelectOption={onSelectOption}
-        data={data}
-        title="Categories"
-        columns={columns}
-        onDelete={() => {}}
-      />
+      <Table onSelectOption={onSelectOption} data={data} title="Categories" columns={columns} />
       <ModalConfirm
         title={'Delete Category'}
         description={
