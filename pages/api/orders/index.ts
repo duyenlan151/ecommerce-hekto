@@ -1,4 +1,5 @@
 import { mongooseConnect } from '@lib/mongoose';
+import { round2 } from 'constants/index';
 import Order from 'models/Admin/order';
 import { getToken } from 'next-auth/jwt';
 
@@ -24,7 +25,8 @@ const handler = async (req, res) => {
       }
       case 'POST':
         {
-          const { orderItems, paymentMethod } = req.body;
+          const { orderItems, paymentMethod, totalPrice, shippingPrice, itemsPrice, taxPrice } =
+            req.body;
           await mongooseConnect();
           const newOrder = new Order({
             ...req.body,
@@ -33,6 +35,7 @@ const handler = async (req, res) => {
 
           const order = await newOrder.save();
 
+          const midTax = (shippingPrice + taxPrice) / orderItems?.length || 1;
           if (paymentMethod === 'stripe') {
             const checkoutSession = await stripe.checkout.sessions.create({
               line_items: orderItems.map((item) => ({
@@ -41,7 +44,8 @@ const handler = async (req, res) => {
                   product_data: {
                     name: item.product.title,
                   },
-                  unit_amount: item.product.price * 100,
+                  unit_amount_decimal: Math.ceil((item.product.price + midTax) * 100),
+                  // unit_amount: item.product.price,
                 },
                 quantity: item.quantity,
               })),
@@ -64,7 +68,7 @@ const handler = async (req, res) => {
     }
     res.status(500).json({ message: 'Not found' });
   } catch (error) {
-    res.status(500).json({ message: 'Not found' });
+    res.status(500).json({ message: error });
   }
 };
 export default handler;

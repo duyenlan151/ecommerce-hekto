@@ -2,6 +2,7 @@ import { cartTotalSelector } from '@app/Cart/cartSelector';
 import { CheckBox } from '@components/Shared/Common';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getSymbolCurrency } from '@utils/common';
+import { round2 } from 'constants/index';
 import { Currency } from 'models';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,6 +21,11 @@ export default function CartCheckout({
   isShowButton = true,
 }: CartCheckoutProps) {
   const cartTotal = useSelector(cartTotalSelector);
+
+  const shippingPrice = cartTotal > 200 ? 0 : 15;
+  const taxPrice = round2(cartTotal * 0.15);
+  const totalPrice = round2(cartTotal + shippingPrice + taxPrice);
+
   const form = useForm({
     resolver: yupResolver(schemaCart),
     mode: 'onChange',
@@ -44,15 +50,26 @@ export default function CartCheckout({
 
   return (
     <form onSubmit={handleSubmit(onClick)} className="bg-white w-full h-fit lg:p-6 p-4">
-      <div className="flex items-center justify-between border-b-2 pb-3 border-grey-1 mt-3 mb-8">
+      <div className="flex items-center justify-between border-b pb-3 border-grey-1 mt-3 mb-4">
         <label className="text-blue-1 text-base">Subtotals:</label>
         <p className="text-blue-1 font-lato font-bold text-lg">{getSymbolCurrency(cartTotal)}</p>
       </div>
-      <div className="flex items-center justify-between border-b-2 pb-3 border-grey-1 mb-4">
+
+      <div className="flex items-center text-sm justify-between pb-3 border-grey-1 ">
+        <label className="text-blue-1">Ship:</label>
+        <p className="text-blue-1 font-lato">{getSymbolCurrency(shippingPrice)}</p>
+      </div>
+      <div className="flex items-center  text-sm justify-between pb-3 border-grey-1 border-b">
+        <label className="text-blue-1">Tax:</label>
+        <p className="text-blue-1 font-lato">{getSymbolCurrency(taxPrice)}</p>
+      </div>
+      {/* <div className="text-right text-sm mb-2">
+        <div>Ship: {getSymbolCurrency(shippingPrice)}</div>
+        <div>Tax: {getSymbolCurrency(taxPrice)}</div>
+      </div> */}
+      <div className="flex items-center justify-between border-b pb-2 border-grey-1 mt-2 mb-4">
         <label className="text-blue-1 text-base">Totals:</label>
-        <p className="text-blue-1 font-lato font-bold text-lg">
-          {getSymbolCurrency(cartTotal + (cartTotal * 3) / 100)}
-        </p>
+        <p className="text-blue-1 font-lato font-bold text-lg">{getSymbolCurrency(totalPrice)}</p>
       </div>
       <CheckBox
         control={control}
