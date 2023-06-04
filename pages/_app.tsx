@@ -13,7 +13,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import '../styles/index.css';
-import '../styles/tailwind.css';
+// import '../styles/tailwind.css';
 import { initialOptionsPayPal } from '@utils/common';
 NProgress.configure({
   easing: 'ease',

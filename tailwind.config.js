@@ -12,16 +12,15 @@ const colorClasses = [
 ];
 module.exports = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
 
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  purge: {
-    safelist: [...colorClasses.map((color) => `bg-[${color}]`)],
-  },
+  // purge: {
+  //   safelist: [...colorClasses.map((color) => `bg-[${color}]`)],
+  // },
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
