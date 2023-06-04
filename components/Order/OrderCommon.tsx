@@ -1,5 +1,5 @@
 import { IOrder } from '@components/Icons';
-import * as React from 'react';
+import React from 'react';
 
 export interface OrderCommonProps {
   message: string;

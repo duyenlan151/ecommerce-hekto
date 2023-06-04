@@ -1,6 +1,6 @@
 import AnimatedHeading from '@components/FramerMotion/AnimatedHeading';
 import { popUpFromBottomForText } from '@content/FramerMotionVariants';
-import * as React from 'react';
+import React from 'react';
 
 export interface BoxSectionProps {
   title: string;

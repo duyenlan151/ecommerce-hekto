@@ -15,6 +15,7 @@ export default function CartItem({ item: { product, size, color, quantity } }: C
           <Image
             height={83}
             width={83}
+            sizes="(max-width: 83px) 100vw, (max-width: 83px)"
             src={product?.images[0]?.path}
             alt={product?.images[0]?.name}
           />

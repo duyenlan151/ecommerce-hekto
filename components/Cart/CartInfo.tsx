@@ -27,6 +27,7 @@ const columns = [
                 className="max-w-[64px] min-w-[83px] h-full z overflow-hidden object-cover relative shadow-sm h-full"
                 width={83}
                 height={83}
+                sizes="(max-width: 83px) 100vw, (max-width: 83px)"
                 src={product?.images[0]?.path}
                 alt={product?.images[0]?.name}
               />

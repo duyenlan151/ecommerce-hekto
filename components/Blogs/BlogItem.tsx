@@ -1,6 +1,6 @@
 import { IDate, IPencil } from '@components/Icons';
 import { BlogModel } from 'models';
-import * as React from 'react';
+import React from 'react';
 
 export interface IBlogProps {
   blog: BlogModel;

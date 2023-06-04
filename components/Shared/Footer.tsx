@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import * as React from 'react';
+import React from 'react';
 import { InputField } from './Common';
 import { IFacebook, IInstagram, ITwitter } from '../Icons';
 import { yupResolver } from '@hookform/resolvers/yup';

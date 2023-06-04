@@ -3,7 +3,7 @@ import { getSymbolCurrency } from '@utils/common';
 import { OrderModel } from 'models';
 import Link from 'next/link';
 import Image from 'next/image';
-import * as React from 'react';
+import React from 'react';
 import { AiOutlineStop } from 'react-icons/ai';
 import { MdOutlineDeliveryDining } from 'react-icons/md';
 import CartHistory from './CartHistory';
@@ -76,6 +76,7 @@ const columns = [
                 className="max-w-[64px] min-w-[83px] h-full z overflow-hidden object-cover relative shadow-sm h-full"
                 width={83}
                 height={83}
+                sizes="(max-width: 83px) 100vw, (max-width: 83px)"
                 src={product?.images[0]?.path}
                 alt={product?.images[0]?.name}
               />

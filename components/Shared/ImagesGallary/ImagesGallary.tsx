@@ -59,6 +59,7 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
               <Image
                 className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative border h-full"
                 fill
+                sizes="(max-width: 64px) 100vw, (max-width: 64px)"
                 alt={images[6]?.path}
                 src={images[6]?.path}
               />

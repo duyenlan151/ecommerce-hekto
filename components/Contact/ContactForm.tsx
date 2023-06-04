@@ -1,5 +1,5 @@
 import { InputField, TextareaField } from '@components/Shared/Common';
-import * as React from 'react';
+import React from 'react';
 
 export interface ContactFormProps {}
 

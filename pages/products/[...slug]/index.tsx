@@ -2,7 +2,7 @@ import ProductDetail from '@components/Product/ProductDetail';
 import MetaData from '@components/Shared/MetaData';
 import { ProductModel } from 'models';
 import { GetServerSideProps, GetStaticProps } from 'next';
-import * as React from 'react';
+import React from 'react';
 import { productsService } from 'services';
 import Loading from '../loading';
 

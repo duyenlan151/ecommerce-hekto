@@ -86,6 +86,7 @@ export default function ReactQuillCommon({
       >
         Short Description
       </label>
+      {/* @ts-ignore */}
       <QuillNoSSRWrapper
         modules={modules}
         formats={formats}
@@ -93,6 +94,7 @@ export default function ReactQuillCommon({
         theme="snow"
         onChange={onChange}
       />
+
       {error?.message && (
         <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
       )}

@@ -1,5 +1,5 @@
 import { useOnClickOutside } from '@hooks/useOnClickOutside';
-import * as React from 'react';
+import React from 'react';
 import { useController } from 'react-hook-form';
 
 export interface DropdownSelectProps {

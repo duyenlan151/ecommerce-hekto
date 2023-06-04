@@ -44,9 +44,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   }, [router.events]);
 
   return (
-    <SessionProvider session={session}>
-      <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
-        <Provider store={store}>
+    <Provider store={store}>
+      <SessionProvider session={session}>
+        <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
           <LayoutMain>
             {Component.authorize ? (
               <ProtectedRoute>
@@ -68,9 +68,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             pauseOnHover
             theme="colored"
           />
-        </Provider>
-      </PayPalScriptProvider>
-    </SessionProvider>
+        </PayPalScriptProvider>
+      </SessionProvider>
+    </Provider>
   );
 }
 export default MyApp;

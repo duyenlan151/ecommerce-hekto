@@ -1,5 +1,5 @@
 import BlogList from '@components/Blogs/BlogList';
-import * as React from 'react';
+import React from 'react';
 
 export interface SectionBlogsProps {}
 

@@ -2,7 +2,7 @@ import ProductForm from '@components/Admin/Products/ProductForm';
 import LayoutAdmin from '@components/Shared/LayoutAdmin';
 import { ProductModel } from 'models';
 import { GetServerSideProps } from 'next';
-import * as React from 'react';
+import React from 'react';
 import { productsService } from 'services/Admin';
 
 export interface ProductDetailPageProps {

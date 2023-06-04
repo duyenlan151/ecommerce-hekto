@@ -2,7 +2,7 @@ import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
 import { ICashBack, IHoursSupport, IPremium, ITruckDelivery } from '@components/Icons';
 import { FadeContainer } from '@content/FramerMotionVariants';
 import { ShopexModel } from 'models';
-import * as React from 'react';
+import React from 'react';
 import ProductShopexItem from './ProductShopexItem';
 
 export interface IProductShopexProps {

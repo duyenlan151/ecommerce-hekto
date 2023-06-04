@@ -1,18 +1,40 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"],
-      "@utils/*": ["utils/*"],
-      "@content/*": ["content/*"],
-      "@styles/*": ["styles/*"],
-      "@context/*": ["context/*"],
-      "@layout/*": ["layout/*"],
-      "@hooks/*": ["hooks/*"],
-      "@app/*": ["app/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@content/*": [
+        "content/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@context/*": [
+        "context/*"
+      ],
+      "@layout/*": [
+        "layout/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@app/*": [
+        "app/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,7 +44,6 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
@@ -31,8 +52,17 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "resolveJsonModule": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.js",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

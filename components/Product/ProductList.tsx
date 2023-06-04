@@ -1,7 +1,7 @@
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
 import { opacityVariant, popUpFromBottomForText } from '@content/FramerMotionVariants';
 import { ProductModel } from 'models';
-import * as React from 'react';
+import React from 'react';
 import { ProductItemSecondary } from './ProductItem';
 import { EProductItemType } from './ProductItem.props';
 export interface ProductListProps {

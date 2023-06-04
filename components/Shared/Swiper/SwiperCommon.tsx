@@ -65,7 +65,13 @@ export default function SwipperCommon({
                 key={`image-${i}-${image.ID}`}
                 className={`relative w-[100%] h-[400px] md:h-[70vh] ${classNameSlider}`}
               >
-                <Image src={image.bgImg} fill alt={image.title} className="object-cover" />
+                <Image
+                  sizes="(max-width: 400px) 100vw, (max-width: 400px)"
+                  src={image.bgImg}
+                  fill
+                  alt={image.title}
+                  className="object-cover"
+                />
               </SwiperSlide>
             ))}
       </Swiper>
