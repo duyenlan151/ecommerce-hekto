@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
 
-    const products = await productsService.getAllProducts({ limit: 3 });
+    const products = await productsService.getAllProducts({ limit: 8 });
     return {
       props: { data: products?.data },
     };
