@@ -2,7 +2,7 @@ import { Layout } from '@components/Shared/Layout';
 import LayoutAdmin from '@components/Shared/LayoutAdmin';
 import ProtectedRoute from '@components/Shared/ProtectedRoute';
 import NProgress from '@utils/nprogress';
-import store from 'app/store';
+import { wrapper } from 'app/store';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -20,8 +20,9 @@ NProgress.configure({
   speed: 800,
   showSpinner: false,
 });
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps: { session, ...pageProps }, ...rest }) {
   const router = useRouter();
+  const { store, props } = wrapper.useWrappedStore(rest);
 
   const LayoutMain = Component.layout ?? Layout;
 
@@ -44,9 +45,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   }, [router.events]);
 
   return (
-    <Provider store={store}>
-      <SessionProvider session={session}>
-        <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
+    <SessionProvider session={session}>
+      <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
+        <Provider store={store}>
           <LayoutMain>
             {Component.authorize ? (
               <ProtectedRoute>
@@ -56,21 +57,21 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               <Component {...pageProps} />
             )}
           </LayoutMain>
-          <ToastContainer
-            position="top-right"
-            autoClose={2500}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
-        </PayPalScriptProvider>
-      </SessionProvider>
-    </Provider>
+        </Provider>
+        <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </PayPalScriptProvider>
+    </SessionProvider>
   );
 }
 export default MyApp;

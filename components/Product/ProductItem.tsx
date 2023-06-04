@@ -58,6 +58,8 @@ export function ProductModel({
           <Image
             src={images && images[0]?.path}
             fill
+            layout="responsive"
+            loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={images && images[0]?.name}
             className="scale-[80%] object-contain p-8 transition-transform duration-300 ease-in-out !py-2 "
@@ -164,6 +166,8 @@ export function ProductItemSecondary({
       >
         <Image
           fill
+          layout="responsive"
+          loading="lazy"
           sizes="(max-width: 214px) 100vw, (max-width: 214px)"
           src={images && images[0]?.path}
           alt={(images && images[0]?.path) || name}

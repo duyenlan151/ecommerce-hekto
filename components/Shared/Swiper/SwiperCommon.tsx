@@ -69,6 +69,8 @@ export default function SwipperCommon({
                   sizes="(max-width: 400px) 100vw, (max-width: 400px)"
                   src={image.bgImg}
                   fill
+                  layout="responsive"
+                  loading="lazy"
                   alt={image.title}
                   className="object-cover"
                 />

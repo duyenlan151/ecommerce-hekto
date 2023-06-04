@@ -34,6 +34,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
         <Image
           className="!max-h-full !max-w-full rounded-md "
           // fill
+          layout="responsive"
+          loading="lazy"
           width={444}
           height={444}
           alt={images[activeImage]?.path}
@@ -47,7 +49,14 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
             className="relative rounded flex-shrink-0 max-w-[64px] min-w-[64px] h-[64px] border flex items-center cursor-pointer shrink"
             onClick={() => setAtiveImage(i)}
           >
-            <Image src={image?.path} width={64} height={64} alt={image.name} />
+            <Image
+              layout="responsive"
+              loading="lazy"
+              src={image?.path}
+              width={64}
+              height={64}
+              alt={image.name}
+            />
           </div>
         ))}
         <div className="">
@@ -59,6 +68,8 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
               <Image
                 className="max-w-[64px] min-w-[64px] h-full rounded-md overflow-hidden object-cover relative border h-full"
                 fill
+                layout="responsive"
+                loading="lazy"
                 sizes="(max-width: 64px) 100vw, (max-width: 64px)"
                 alt={images[6]?.path}
                 src={images[6]?.path}

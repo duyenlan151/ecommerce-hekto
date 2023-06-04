@@ -1,13 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import cartReducer from './Cart/cartSlice';
+import { createWrapper } from 'next-redux-wrapper';
 
-const rootReducer = {
-  cart: cartReducer,
-  // user: userReducer,
-};
+const makeStore = () =>
+  configureStore({
+    reducer: {
+      cart: cartReducer,
+    },
+    devTools: true,
+  });
 
-const store = configureStore({
-  reducer: rootReducer,
-});
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore['getState']>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
 
-export default store;
+export const wrapper = createWrapper<AppStore>(makeStore);
