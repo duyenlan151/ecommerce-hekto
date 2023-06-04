@@ -45,7 +45,7 @@ export default function CartMini(props: CartMiniProps) {
               <button
                 type="submit"
                 onClick={onViewBag}
-                className="block text-center mt-10 bg-gray-200 w-full rounded-sm py-3 text-base font-lato text-primary shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
+                className="block text-center mt-6 bg-gray-200 w-full rounded-sm py-3 text-base font-lato text-primary shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
               >
                 View Bag
               </button>

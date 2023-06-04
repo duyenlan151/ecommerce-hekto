@@ -42,6 +42,7 @@ export function ProductModel({
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
 }: ProductItemProps) {
+  const router = useRouter();
   return (
     <motion.div
       variants={opacityVariant}
@@ -53,7 +54,7 @@ export function ProductModel({
         ${classProductItem[styleProductItem]?.img}`}
       >
         {/* Image product */}
-        <Link href={`/products/${_id}`}>
+        <Link href={`/products/${_id}/${slug}`}>
           <Image
             src={images && images[0]?.path}
             fill
@@ -79,13 +80,22 @@ export function ProductModel({
         <div
           className={`${classProductItem[styleProductItem]['group-icons']} absolute z-20 left-2 flex items-center opacity-0 group-hover:opacity-100 transition delay-100 ease-in-out duration-300`}
         >
-          <div className="flex justify-center mr-1 items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
+          <div
+            onClick={() => router.push(`/products/${_id}/${slug}`)}
+            className="flex justify-center mr-1 items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1"
+          >
             <AiOutlineShoppingCart color={'#2F1AC4'} size={17} />
           </div>
-          <div className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
+          <div
+            onClick={() => router.push(`/products/${_id}/${slug}`)}
+            className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1"
+          >
             <AiOutlineHeart color={'#1389FF'} size={17} />
           </div>
-          <div className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1">
+          <div
+            onClick={() => router.push(`/products/${_id}/${slug}`)}
+            className="flex justify-center items-center rounded-full cursor-pointer h-8 w-8 hover:bg-grey-1"
+          >
             <AiOutlineZoomIn color={'#1389FF'} size={17} />
           </div>
         </div>

@@ -50,7 +50,7 @@ function TopNavbar({}: TopNavbarProps) {
               </span>
             </Link>
             {session?.user?.name ? (
-              <a href="#" className="ml-4 flex items-center">
+              <div className="ml-4 flex items-center cursor-pointer">
                 <Dropdown
                   label={
                     <p className="mt-[1px] flex flex-cols items-center text-ellipsis">
@@ -76,7 +76,7 @@ function TopNavbar({}: TopNavbarProps) {
                     Logout
                   </li>
                 </Dropdown>
-              </a>
+              </div>
             ) : (
               <Link href="/login" className="ml-4 flex items-center">
                 Login

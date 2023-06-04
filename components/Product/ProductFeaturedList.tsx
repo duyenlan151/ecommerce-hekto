@@ -41,8 +41,8 @@ export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
         breakpoints={defaultBreakpoints}
         modules={[Pagination]}
       >
-        {data.map((product) => (
-          <SwiperSlide key={product.id}>
+        {data.map((product, idx) => (
+          <SwiperSlide key={`${product.id} - ${idx}`}>
             <ProductModel product={product} />
           </SwiperSlide>
         ))}

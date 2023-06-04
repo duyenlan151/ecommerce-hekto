@@ -12,19 +12,21 @@ export interface ProductDetailProps {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   return (
-    <div className="container mx-auto lg:py-4 py-10 px-4">
-      <div className="text-sub-title font-lato-light leading-7 mt-3">
+    <div className="container mx-auto px-4">
+      <div className="text-sub-title font-lato-light leading-7 pt-8 pb-4">
         Cart/ Information/ Shipping/ Payment
       </div>
-      <div className="flex lg:flex-nowrap flex-wrap justify-center mt-6 pb-12 border-b">
-        <div className="">
-          <ImagesGallary images={product.images} />
-        </div>
-        <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">
-          <ProductInfo product={product} />
+      <div className="bg-white">
+        <div className="flex lg:flex-nowrap flex-wrap justify-center pb-12">
+          <div className="">
+            <ImagesGallary images={product.images} />
+          </div>
+          <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">
+            <ProductInfo product={product} />
+          </div>
         </div>
       </div>
-      <div className="mt-12">
+      <div className="mt-4 bg-white">
         <ProductDescription product={product} />
       </div>
     </div>
