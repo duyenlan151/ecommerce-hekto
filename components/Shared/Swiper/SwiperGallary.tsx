@@ -81,7 +81,6 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
               className="relative h-full max-h-[550px] w-full"
             >
               <Image
-                layout="responsive"
                 loading="lazy"
                 className="mx-auto"
                 width={550}
@@ -106,7 +105,6 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
                   className="mx-auto"
                   width={75}
                   height={75}
-                  layout="responsive"
                   loading="lazy"
                   src={image.path}
                   alt={image.name}

@@ -109,7 +109,6 @@ export default function UploadImages({
                 className="min-h-[96px] min-w-[96px] border border-primary"
                 src={image.path}
                 fill
-                layout="responsive"
                 loading="lazy"
                 sizes="(max-width: 96px) 100vw, (max-width: 96px)"
                 alt={image.name}

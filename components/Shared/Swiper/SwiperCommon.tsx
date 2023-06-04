@@ -66,10 +66,8 @@ export default function SwipperCommon({
                 className={`relative w-[100%] h-[400px] md:h-[70vh] ${classNameSlider}`}
               >
                 <Image
-                  sizes="(max-width: 400px) 100vw, (max-width: 400px)"
                   src={image.bgImg}
                   fill
-                  layout="responsive"
                   loading="lazy"
                   alt={image.title}
                   className="object-cover"
