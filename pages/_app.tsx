@@ -22,9 +22,8 @@ NProgress.configure({
   speed: 800,
   showSpinner: false,
 });
-function MyApp({ Component, pageProps: { session, ...pageProps }, ...rest }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
-  const { store, props } = wrapper.useWrappedStore(rest);
 
   const LayoutMain = Component.layout ?? Layout;
 
@@ -47,20 +46,19 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, ...rest }) {
   }, [router.events]);
 
   return (
+    // <Provider store={store}>
     <SessionProvider session={session}>
       <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
-        <Provider store={store}>
-          <MetaData />
-          <LayoutMain>
-            {Component.authorize ? (
-              <ProtectedRoute>
-                <Component {...pageProps} />
-              </ProtectedRoute>
-            ) : (
+        <MetaData />
+        <LayoutMain>
+          {Component.authorize ? (
+            <ProtectedRoute>
               <Component {...pageProps} />
-            )}
-          </LayoutMain>
-        </Provider>
+            </ProtectedRoute>
+          ) : (
+            <Component {...pageProps} />
+          )}
+        </LayoutMain>
         <ToastContainer
           position="top-right"
           autoClose={2500}
@@ -75,6 +73,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, ...rest }) {
         />
       </PayPalScriptProvider>
     </SessionProvider>
+    // </Provider>
   );
 }
-export default MyApp;
+export default wrapper.withRedux(MyApp);

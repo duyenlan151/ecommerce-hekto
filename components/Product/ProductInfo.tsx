@@ -11,12 +11,23 @@ export interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
-  const { title, price, shortDescription, salePrice } = product;
+  const { _id, title, price, rating, images, slug, shortDescription, salePrice } = product;
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const onAddToCart = () => {
-    dispatch(addToCart({ _id: product?._id, product, quantity }));
+    dispatch(
+      addToCart({
+        _id: product?._id,
+        product: {
+          _id,
+          title,
+          price,
+          images,
+        },
+        quantity,
+      })
+    );
   };
 
   return (

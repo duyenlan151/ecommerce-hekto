@@ -52,7 +52,7 @@ export function InputField({
           {label}
         </label>
       )}
-      <div className="border border-gray-200 flex items-center">
+      <div className={`border border-gray-200 flex items-center h-3.125 ${className}`}>
         <input
           ref={ref}
           id={name}
@@ -65,7 +65,7 @@ export function InputField({
             onChange(event.target.value);
             externalOnChange && externalOnChange(event);
           }}
-          className={`border-transparent focus:border-transparent focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border-0 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
+          className={`border-transparent bg-white focus:border-transparent focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border-0 relative w-full h-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out `}
           // {...rest}
         />
         {rest.type === 'password' && (

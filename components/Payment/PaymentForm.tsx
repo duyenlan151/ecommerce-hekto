@@ -14,7 +14,8 @@ export interface PaymenFormProps {
   isTrigger: boolean;
 }
 
-const classNameInput = '!border-0 !border-b !bg-grey-6 !px-0 mb-1';
+const classNameWrapprer = '!border-0 !border-b !px-0 mb-6';
+const classNameInput = '!border-0 !border-b !px-0 mt-4';
 
 export default function PaymenForm({ isTrigger }: PaymenFormProps) {
   const router = useRouter();

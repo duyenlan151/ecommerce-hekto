@@ -60,7 +60,7 @@ const pageMeta: PageMeta = {
   },
 
   faq: {
-    title: 'FAQ',
+    title: 'Heko | FAQ',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
@@ -69,7 +69,7 @@ const pageMeta: PageMeta = {
   },
 
   cart: {
-    title: 'Cart',
+    title: 'Heko | Cart',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
@@ -78,7 +78,7 @@ const pageMeta: PageMeta = {
   },
 
   checkout: {
-    title: 'Checkout',
+    title: 'Heko | Checkout',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
     // image: 'https://imgur.com/9scFfW5.png',
@@ -97,7 +97,7 @@ const pageMeta: PageMeta = {
   },
 
   product: {
-    title: 'Product Detail',
+    title: 'Heko | Product Detail',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
     // image: 'https://imgur.com/9scFfW5.png',
@@ -106,7 +106,7 @@ const pageMeta: PageMeta = {
   },
 
   payment: {
-    title: 'Payment',
+    title: 'Heko | Payment',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
@@ -115,16 +115,16 @@ const pageMeta: PageMeta = {
   },
 
   'order-completed': {
-    title: 'Order Completed',
+    title: 'Heko | Order Completed',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
     keywords: 'stats, Statistics',
-    breadcrumb: 'Order Completed',
+    breadcrumb: 'Heko | Order Completed',
   },
 
   'order-failed': {
-    title: 'Order Failed',
+    title: 'Heko | Order Failed',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
@@ -139,7 +139,7 @@ const pageMeta: PageMeta = {
     keywords: 'Utilities, what i use?, utils, setup, uses,',
   },
   blogs: {
-    title: 'Blogs',
+    title: 'Heko | Blogs',
     description:
       "I've been writing online since 2021, mostly about web development and tech careers. In total, I've written more than 50 articles till now.",
 
