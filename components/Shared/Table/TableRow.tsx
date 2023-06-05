@@ -40,7 +40,7 @@ export function TableRow<T>({
                 <TableRowCell
                   column={column}
                   item={item}
-                  columnIndex={itemIndex}
+                  columnIndex={columnIndex}
                   key={`table-row-cell-${columnIndex}`}
                 />
               ))}

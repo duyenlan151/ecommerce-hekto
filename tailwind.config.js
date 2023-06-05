@@ -107,6 +107,7 @@ module.exports = {
         'table-border': '#d2d2d2',
         'table-border-1': '#f7f7f9',
         'color-primary': 'rgb(245, 245, 250)',
+        'color-primary-300': 'rgba(245, 245, 250, 0.5)',
       },
       boxShadow: {
         main: ' 0px 0px 25px 10px #F8F8FB',

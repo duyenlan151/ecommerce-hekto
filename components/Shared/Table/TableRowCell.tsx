@@ -7,6 +7,7 @@ interface Props<T> {
 }
 
 export function TableRowCell<T>({ item, column, columnIndex }: Props<T>) {
+  console.log('🚀 ~ file: TableRowCell.tsx:10 ~ columnIndex:', columnIndex);
   return (
     <td className="max-w-[250px] overflow-hidden text-ellipsis border-t-0 px-3 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap">
       {/* {item[column.key]} */}

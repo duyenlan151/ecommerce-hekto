@@ -33,10 +33,7 @@ export function TableHeader<T>({ columns, color = 'light', showAction }: Props<T
       {showAction && (
         <th
           className={
-            'px-4 align-middle py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-right ' +
-            (color === 'light'
-              ? 'bg-table-odd text-blueGray-500 border-blueGray-100'
-              : 'bg-table-odd text-blueGray-200 border-blueGray-500')
+            'px-4 align-middle py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold text-right'
           }
         ></th>
       )}
