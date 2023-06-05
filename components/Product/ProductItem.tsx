@@ -156,7 +156,7 @@ export function ProductItemSecondary({
   const router = useRouter();
   return (
     <div
-      className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center mb-3 p-2`}
+      className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center p-2`}
     >
       {/* Image product */}
       <Link

@@ -74,7 +74,9 @@ export const FILTER_LIST = [
   },
   {
     id: 4,
-    getLabel: (filters) => <div className="flex items-center capitalize">{filters.sort}</div>,
+    getLabel: (filters) => (
+      <div className="flex items-center capitalize">Price - {filters.sort}</div>
+    ),
     isShow: (filters) => filters.sort && filters.sort !== 'featured',
     onRemove: (filters) => {
       const newFilters = { ...filters };

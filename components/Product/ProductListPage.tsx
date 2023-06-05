@@ -1,7 +1,8 @@
 import { Dropdown } from '@components/Shared/Dropdowns';
 import { Pagination } from '@components/Shared/Pagination';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { BsGrid, BsListTask } from 'react-icons/bs';
 import { IoFilterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown, MdKeyboardControlKey } from 'react-icons/md';
 import { FilterViewer } from './Filters';
@@ -14,12 +15,38 @@ export interface ProductListPageProps {
   itemsPerPage?: number;
 }
 
+// type typeView = 'col' | 'view';
+
+export enum ETypeView {
+  COL = 'col',
+  ROW = 'row',
+}
+
+export const ProductViewType: Record<ETypeView, string | number> = {
+  [ETypeView.COL]: 'lg:grid-cols-2',
+  [ETypeView.ROW]: 'lg:grid-cols-1',
+};
+
 export default function ProductListPage({ products }: ProductListPageProps) {
   const router = useRouter();
   const {
-    query: { page },
+    query: { page, view },
   } = router;
   const [showOverlayFilter, setShowOverlayFilter] = useState(false);
+  const [typeView, setTypeView] = useState(
+    [ETypeView.COL, ETypeView.ROW].includes(String(view) as ETypeView) ? view : ETypeView.ROW
+  );
+  console.log('🚀 ~ file: ProductListPage.tsx:39 ~ ProductListPage ~ typeView:', typeView);
+
+  useEffect(() => {
+    router.push({
+      path: router.pathname,
+      query: {
+        ...router.query,
+        view: typeView,
+      },
+    });
+  }, [typeView]);
 
   const handleFilterBySort = ({ value }) => {
     router.push({
@@ -30,6 +57,8 @@ export default function ProductListPage({ products }: ProductListPageProps) {
       },
     });
   };
+
+  const onChangeViewType = (type) => setTypeView(type);
 
   const handleOverlayFilter = () => {
     setShowOverlayFilter((prev) => !prev);
@@ -42,6 +71,25 @@ export default function ProductListPage({ products }: ProductListPageProps) {
           About {products?.totalDocs || 0} results
         </div>
         <div className="ml-auto flex justify-end items-center py-2">
+          <div className="flex items-center px-4">
+            <p className="pr-3">View:</p>
+            <span
+              className={`pr-2 cursor-pointer opacity-50 ${
+                typeView === ETypeView.COL && '!opacity-100'
+              }`}
+              onClick={() => onChangeViewType(ETypeView.COL)}
+            >
+              <BsGrid size={18} />
+            </span>
+            <span
+              className={`pr-2 cursor-pointer opacity-50 ${
+                typeView === ETypeView.ROW && '!opacity-100'
+              }`}
+              onClick={() => onChangeViewType(ETypeView.ROW)}
+            >
+              <BsListTask size={23} />
+            </span>
+          </div>
           {/* Sort */}
           <Dropdown
             label={
@@ -67,7 +115,12 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             {/* Filter Viewer */}
             <FilterViewer />
             {/* Product List */}
-            <ProductList products={products?.data} />
+            {/* <div className="grid justify-center items-center mx-auto gap-2 lg:grid-cols-2 grid-cols-1"> */}
+            <ProductList
+              products={products?.data}
+              viewCol={ProductViewType[typeView] as ETypeView}
+            />
+            {/* </div> */}
             {/* Pagination */}
             <Pagination
               totalCount={products?.totalDocs || 0}

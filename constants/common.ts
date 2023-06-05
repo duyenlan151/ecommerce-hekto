@@ -10,6 +10,9 @@ export const isObjectEmpty = (objectName) => {
 };
 
 export const isObjectEmptyValue = (values) =>
-  Object.values(values).some((x) => x === null || x === '');
+  Object.values(values).some((x) => x === undefined || x === null || x === '');
+
+export const isAllObjectEmptyValue = (values) =>
+  Object.values(values).every((x) => x === undefined || x === null || x === '');
 
 export const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;

@@ -1,3 +1,4 @@
+import { isAllObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -13,9 +14,13 @@ export function FilterViewer(props: FilterViewerProps) {
     return { price, rating, sort };
   }, [router.query]);
 
+  if (isAllObjectEmptyValue(filters)) {
+    return <></>;
+  }
+
   return (
     <>
-      <div className="bg-white py-4 px-2 flex border-b border-primary">
+      <div className="bg-white py-4 px-2 mb-2 flex border-b border-primary">
         {FILTER_LIST.map((elm) => (
           <div key={elm.id}>
             {!!elm.isShow(filters) && (
