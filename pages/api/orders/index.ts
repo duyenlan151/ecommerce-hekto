@@ -17,7 +17,6 @@ const handler = async (req, res) => {
     switch (method) {
       case 'GET': {
         if (req.query?.id) {
-          console.log('🚀 ~ file: index.ts:20 ~ handler ~ req.query:', req.query);
           await mongooseConnect();
           const order = await Order.findById(req.query.id);
           res.status(200).json(order);

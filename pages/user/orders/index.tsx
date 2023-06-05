@@ -15,12 +15,6 @@ export default function OrderAll(props: OrderInProps) {
   } = router;
 
   useEffect(() => {
-    (async () => {
-      getOrders();
-    })();
-  }, []);
-
-  useEffect(() => {
     if (typeOrder) {
       getOrders({ typeOrder });
     } else if (!typeOrder) {
