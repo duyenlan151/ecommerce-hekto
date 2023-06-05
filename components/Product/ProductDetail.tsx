@@ -26,7 +26,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
       </div>
-      <div className="mt-4 bg-white">
+      <div className="mt-4 mb-6 bg-white">
         <ProductDescription product={product} />
       </div>
     </div>

@@ -28,11 +28,11 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
   return (
     <div className="overflow-hidden max-w-[90%] lg:w-full mx-auto">
       <div
-        className="relative max-w-full cursor-pointer flex justify-center"
+        className="relative max-w-full cursor-pointer flex justify-center lg:min-h-[444px] h-[250px]"
         onClick={handleToggleModal}
       >
         <Image
-          className="!max-h-full !max-w-full rounded-md "
+          className="!max-h-full !max-w-full rounded-md object-contain"
           // fill
           loading="lazy"
           width={444}
