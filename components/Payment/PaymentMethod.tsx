@@ -207,21 +207,24 @@ export default function PaymentMethod(props: PaymentMethodProps) {
           <div className="bg-white py-5 px-8">
             <div className="tracking-wider text-xl mb-8">Payment method</div>
             <div className="">
-              {paymentMethods.map((payment) => (
+              {paymentMethods.map((payment, index) => (
                 <div className="flex items-center my-6" key={payment.value}>
                   <input
-                    id={payment.value}
+                    id={`${payment.value}-${index}`}
                     type="radio"
                     name={payment.value}
                     onChange={(e) => dispatch(updatePaymentMethod(payment.value))}
                     value={payment.value}
                     className="h-4 w-4 border-gray-300 focus:ring-2"
-                    aria-labelledby={payment.value}
-                    aria-describedby={payment.value}
+                    aria-labelledby={`${payment.value}-${index}`}
+                    aria-describedby={`${payment.value}-${index}`}
                     checked={paymentMethod.toLocaleLowerCase() === payment.value}
                   />
                   <span className="pl-4">{payment.icon}</span>
-                  <label htmlFor={payment.value} className="text-sm font-medium text-gray-900 ml-2">
+                  <label
+                    htmlFor={`${payment.value}-${index}`}
+                    className="text-sm font-medium text-gray-900 ml-2"
+                  >
                     {payment.label}
                   </label>
                 </div>
