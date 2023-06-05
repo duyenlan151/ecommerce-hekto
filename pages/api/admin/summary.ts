@@ -10,7 +10,6 @@ const secret = process.env.NEXT_PUBLIC_SECRET;
 export default async function handle(req, res) {
   try {
     const user = await getToken({ req, secret });
-    console.log('🚀 ~ file: summary.ts:13 ~ handle ~ user:', user);
     if (!user || (user && !user.isAdmin)) {
       return res.status(401).send('signin required');
     }

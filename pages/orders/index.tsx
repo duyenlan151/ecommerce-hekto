@@ -11,12 +11,10 @@ export interface OrdersResultPageProps {}
 export default function OrdersResultPage(props: OrdersResultPageProps) {
   const [result, setResult] = useState({ message: 'Nothing from here', status: false });
   const router = useRouter();
-  console.log('🚀 ~ file: index.tsx:14 ~ OrdersResultPage ~ router:', router);
   const dispatch = useDispatch();
   const {
     query: { success, order_id },
   } = useRouter();
-  console.log('🚀 ~ file: [order_id].tsx:17 ~ OrdersResultPage ~ order_id:', order_id);
 
   const { data: session } = useSession();
 

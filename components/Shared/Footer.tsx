@@ -22,7 +22,7 @@ export function Footer({}: FooterProps) {
   } = form;
 
   const onSubmit = (values) => {
-    console.log('🚀 ~ file: Footer.tsx:25 ~ onSubmit ~ values:', values);
+    // console.log('🚀 ~ file: Footer.tsx:25 ~ onSubmit ~ values:', values);
   };
   return (
     <footer>

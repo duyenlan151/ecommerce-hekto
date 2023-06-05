@@ -32,10 +32,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
 
     const page = context?.query?.page || 1;
-    console.log(
-      '🚀 ~ file: index.tsx:35 ~ constgetServerSideProps:GetServerSideProps= ~ context?.query:',
-      context?.query
-    );
     const price = context?.query?.price || 'all';
     const rating = context?.query?.rating || 'all';
     const sort = context?.query?.sort || 'featured';
