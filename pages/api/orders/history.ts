@@ -13,11 +13,12 @@ const handler = async (req, res) => {
   const queryOrder =
     typeOrder && typeOrder === 'unpaid'
       ? {
-          isPaid: true,
+          isPaid: false,
         }
       : typeOrder === 'inprogress'
       ? {
           isDelivered: false,
+          isPaid: true,
         }
       : typeOrder === 'delivered'
       ? {

@@ -42,10 +42,10 @@ export default function MetaData({
     query: { slug },
   } = useRouter();
 
-  const namePage = (slug && String(slug)) || pathname.split('/')[1];
+  const namePage = (slug && String(slug)) || pathname.split('/').at(-1);
 
   const { title, description, suffix, keywords, currentURL, previewImage }: PageData = useMemo(
-    () => (pageMeta[namePage] ? pageMeta[namePage] : []),
+    () => (pageMeta[String(namePage)] ? pageMeta[String(namePage)] : []),
     [namePage]
   );
 

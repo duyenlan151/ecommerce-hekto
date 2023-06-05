@@ -49,13 +49,13 @@ export default function PaymenForm({ isTrigger }: PaymenFormProps) {
 
   return (
     <div className="z-10 bg-white lg:px-10 px-5 lg:py-16 py-6 w-full">
-      <a
+      {/* <a
         href="/"
         className="block underline text-right text-sub-title font-lato-light leading-7 mb-3"
       >
         Already have an account?
-      </a>
-      <form className="mt-9">
+      </a> */}
+      <form className="mt-4">
         <div>
           <h4 className="text-blue-1 text-lg  mb-4">Contact Information</h4>
           <InputField

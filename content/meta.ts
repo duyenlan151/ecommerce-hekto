@@ -114,6 +114,33 @@ const pageMeta: PageMeta = {
     breadcrumb: 'Payment',
   },
 
+  profile: {
+    title: 'Heko | Profile',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Profile',
+  },
+
+  orders: {
+    title: 'Heko | Orders',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Orders',
+  },
+
+  ['payment-method']: {
+    title: 'Heko | Payment Method',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Payment',
+  },
+
   'order-completed': {
     title: 'Heko | Order Completed',
     description:

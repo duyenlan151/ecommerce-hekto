@@ -66,7 +66,7 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
   };
 
   //@ts-ignore
-  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login' && !redirect) {
     router.push('/');
     // return <section className="container mx-auto">You've already logged</section>;
   }

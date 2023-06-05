@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import { Table } from '@components/Shared/Table';
+import MetaData from '@components/Shared/MetaData';
 
 export interface CartInfoProps {
   isLoading: boolean;
@@ -161,6 +162,12 @@ export function CartInfo({ isLoading, order }: CartInfoProps) {
 
   return (
     <div className="">
+      <MetaData
+        propTitle={'Order Infor'}
+        propSuffix={'Order Infor'}
+        propDescription={'Order Infor'}
+        propKeywords={''}
+      />
       <div className="pb-4 gap-4">
         #{_id} - <span className="text-blue-600">{!isDelivered ? 'In progress' : 'Delivered'}</span>
       </div>
