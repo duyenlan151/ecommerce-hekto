@@ -210,21 +210,18 @@ export default function PaymentMethod(props: PaymentMethodProps) {
               {paymentMethods.map((payment) => (
                 <div className="flex items-center my-6" key={payment.value}>
                   <input
-                    id="country-option-1"
+                    id={payment.value}
                     type="radio"
                     name={payment.value}
                     onChange={(e) => dispatch(updatePaymentMethod(payment.value))}
                     value={payment.value}
                     className="h-4 w-4 border-gray-300 focus:ring-2"
-                    aria-labelledby="country-option-1"
-                    aria-describedby="country-option-1"
+                    aria-labelledby={payment.value}
+                    aria-describedby={payment.value}
                     checked={paymentMethod.toLocaleLowerCase() === payment.value}
                   />
                   <span className="pl-4">{payment.icon}</span>
-                  <label
-                    htmlFor="country-option-1"
-                    className="text-sm font-medium text-gray-900 ml-2"
-                  >
+                  <label htmlFor={payment.value} className="text-sm font-medium text-gray-900 ml-2">
                     {payment.label}
                   </label>
                 </div>
