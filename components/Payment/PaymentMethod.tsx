@@ -21,6 +21,7 @@ import { Modal } from '@components/Shared/Modal';
 import { ILoading } from '@components/Icons';
 import { OrderResModel } from 'models';
 import { useSession } from 'next-auth/react';
+import LoadingCommon from '@components/Shared/Common/LoadingCommon';
 
 export interface PaymentMethodProps {}
 
@@ -234,7 +235,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
         <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 w-full justify-self-end">
           <CartCheckout onClick={handlePayment} isShowButton={paymentMethod !== 'paypal'} />
           {isPending ? (
-            <div>Loading...</div>
+            <LoadingCommon />
           ) : (
             <>
               {paymentMethod === 'paypal' && (

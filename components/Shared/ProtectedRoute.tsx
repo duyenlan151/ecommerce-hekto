@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useState, useEffect } from 'react';
+import LoadingCommon from './Common/LoadingCommon';
 
 export interface ProtectedRouteProps {
   children: any;
@@ -11,7 +12,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { status, data: session } = useSession();
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <LoadingCommon />;
   }
 
   //@ts-ignore

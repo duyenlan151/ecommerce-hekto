@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 import { BoxPageMeta } from './Box';
+import LoadingCommon from './Common/LoadingCommon';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import TopNavbar from './TopNavbar';
@@ -19,7 +20,7 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
   const { status, data: session } = useSession();
   const router = useRouter();
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <LoadingCommon />;
   }
   //@ts-ignore
   if (!!session?.user?.isAdmin) {

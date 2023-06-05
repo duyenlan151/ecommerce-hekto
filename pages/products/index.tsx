@@ -1,9 +1,9 @@
-import { GetServerSideProps, GetStaticProps } from 'next';
 import ProductListPage from '@components/Product/ProductListPage';
+import LoadingCommon from '@components/Shared/Common/LoadingCommon';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 import { productsService } from 'services';
-import Loading from './loading';
 
 type Props = {
   products: [];
@@ -15,11 +15,11 @@ const ProductsPage = ({ products, limit, total }: Props) => {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loading.....</div>;
+    return <LoadingCommon />;
   }
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<LoadingCommon />}>
       <ProductListPage products={products} />
     </Suspense>
   );
