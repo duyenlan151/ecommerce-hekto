@@ -32,12 +32,12 @@ const defaultBreakpoints = {
 
 export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
   return (
-    // grid justify-center items-center mx-auto gap-6 grid-cols-2 grid-flow-row
     <AnimatedDiv variants={FadeContainer} className="mt-20 mb-40">
       <SwipperCommon
         style={{
           paddingBottom: 50,
         }}
+        className="swiper-center"
         breakpoints={defaultBreakpoints}
         modules={[Pagination]}
       >

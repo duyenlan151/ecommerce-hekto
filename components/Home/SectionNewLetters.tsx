@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface SectionNewLettersProps {}
 
-export default function SectionNewLetters(props: SectionNewLettersProps) {
+export function SectionNewLetters(props: SectionNewLettersProps) {
   return (
     <section className="pt-[184px] pb-[113px] relative bg-[url('/images/trending/news-letters.png')] bg bg-center bg-no-repeat bg-contain">
       <div className="text-center container mx-auto">

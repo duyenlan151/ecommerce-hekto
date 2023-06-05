@@ -3,7 +3,7 @@ import { ProductTredingList } from '@components/Product/ProductTrendingList';
 
 export interface SectionTrendingProps {}
 
-export default function SectionTrending(props: SectionTrendingProps) {
+export function SectionTrending(props: SectionTrendingProps) {
   return (
     <section className="py-[129px] bg-white">
       <BoxSection className="container mx-auto mt-10 lg:px-0 px-2" title={'Trending Products'}>

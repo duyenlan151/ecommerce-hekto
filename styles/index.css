@@ -71,3 +71,7 @@ html {
 .ql-editor {
   min-height: 400px;
 }
+
+.swiper-center > .swiper-wrapper {
+  justify-content: center;
+}

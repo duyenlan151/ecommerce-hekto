@@ -14,14 +14,14 @@ export const sliderContent: Image[] = [
     ID: 1,
     title: 'digitalBT',
     description: 'digitalBD',
-    bgImg: '/images/slider-img/toy-banner.webp',
+    bgImg: '/images/slider-img/stationery-banner.webp',
     url: '/',
   },
   {
     ID: 2,
     title: 'stationeryBT',
     description: 'stationeryBD',
-    bgImg: '/images/slider-img/stationery-banner.webp',
+    bgImg: '/images/slider-img/toy-banner.webp',
     url: '/',
   },
   {

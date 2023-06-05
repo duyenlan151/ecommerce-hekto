@@ -7,7 +7,7 @@ export interface SectionProductsProps {
   data: ProductModel[];
 }
 
-export default function SectionProducts({ data }: SectionProductsProps) {
+export function SectionProducts({ data }: SectionProductsProps) {
   return (
     <section className="py-[129px] bg-white">
       <BoxSection title={'Featured Products'}>

@@ -1,8 +1,4 @@
-import SectionBlogs from '@components/Home/SectionBlogs';
-import SectionNewLetters from '@components/Home/SectionNewLetters';
-import SectionProducts from '@components/Home/SectionProducts';
-import SectionTrending from '@components/Home/SectionTrendingProducts';
-import SectionUnique from '@components/Home/SectionUnique';
+import { SectionBlogs, SectionProducts, SectionUnique } from '@components/Home';
 import { Banner } from '@components/index';
 import { GetServerSideProps } from 'next';
 import { productsService } from 'services';
@@ -12,8 +8,6 @@ const IndexPage = ({ data }) => (
     <Banner />
     <SectionProducts data={data} />
     <SectionUnique />
-    {/* <SectionTrending /> */}
-    {/* <SectionNewLetters /> */}
     <SectionBlogs />
   </>
 );

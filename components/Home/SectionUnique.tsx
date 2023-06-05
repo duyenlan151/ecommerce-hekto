@@ -5,7 +5,7 @@ import { getSymbolCurrency } from '@utils/common';
 
 export interface SectionUniqueProps {}
 
-export default function SectionUnique(props: SectionUniqueProps) {
+export function SectionUnique(props: SectionUniqueProps) {
   return (
     <section className="overflow-hidden">
       <BoxContent
