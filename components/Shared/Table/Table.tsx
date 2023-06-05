@@ -41,7 +41,7 @@ export function Table<T>({
     >
       <div className="block w-full overflow-x-auto">
         {/* Projects table */}
-        <table className="items-center w-full bg-transparent border-collapse border border-table-border-1">
+        <table className="items-center w-full bg-white border-collapse border border-table-border-1">
           <thead className="border-b border-table-border">
             {showHeader && <TableHeader columns={columns} showAction={showAction} />}
           </thead>

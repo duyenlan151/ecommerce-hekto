@@ -160,6 +160,7 @@ export default function Checkout({}: CheckoutProps) {
               title={''}
               data={cartItems}
               columns={columns}
+              isPrimary={false}
               onSelectOption={() => {}}
             />
           </div>
