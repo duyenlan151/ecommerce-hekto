@@ -58,6 +58,7 @@ const handler = async (req, res) => {
               cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?order_id=${order.id}&cancelled=true`,
             });
             res.status(201).json({ order, url: checkoutSession.url });
+            return;
           }
           res.status(201).json({ order });
         }
