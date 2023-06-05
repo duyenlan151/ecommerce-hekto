@@ -1,17 +1,15 @@
 import { PageMeta } from 'models';
 
 const pageMeta: PageMeta = {
-  home: {
-    title: 'Home | Next.js + TypeScript Example',
+  ['']: {
+    title: 'Heko | Ecommerce - Next.js + TypeScript',
     description: "Hello, I'm Duyen. A Front-end Developer/React Developer from VietNam",
-    image: 'https://i.imgur.com/GPUnXdC.png',
     keywords: 'portfolio duyen, portfolio, duyen blogs',
   },
 
   ['404']: {
     title: '404 Not Found',
     description: "Hello, I'm Duyen. A Front-end Developer/React Developer from VietNam",
-    image: 'https://i.imgur.com/GPUnXdC.png',
     keywords: 'portfolio duyen, portfolio, duyen blogs',
     breadcrumb: '404 Not Found',
   },
@@ -20,7 +18,7 @@ const pageMeta: PageMeta = {
     title: 'Login',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Login',
   },
@@ -29,7 +27,7 @@ const pageMeta: PageMeta = {
     title: 'Contact Us',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Contact us',
   },
@@ -38,7 +36,7 @@ const pageMeta: PageMeta = {
     title: 'FAQ',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Faq',
   },
@@ -47,7 +45,7 @@ const pageMeta: PageMeta = {
     title: 'Cart',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Cart',
   },
@@ -56,16 +54,26 @@ const pageMeta: PageMeta = {
     title: 'Checkout',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+    // image: 'https://imgur.com/9scFfW5.png',
     keywords: 'stats, Statistics',
     breadcrumb: 'Checkout',
+  },
+
+  products: {
+    title: 'Heko | Products',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+    // image: 'https://imgur.com/9scFfW5.png',
+    keywords: 'Product Detail',
+    currentURL: `${process.env.NEXT_PUBLIC_HOST_URL}/products`,
+    breadcrumb: 'Product Detail',
   },
 
   product: {
     title: 'Product Detail',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+    // image: 'https://imgur.com/9scFfW5.png',
     keywords: 'Product Detail',
     breadcrumb: 'Product Detail',
   },
@@ -74,7 +82,7 @@ const pageMeta: PageMeta = {
     title: 'Payment',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Payment',
   },
@@ -83,7 +91,7 @@ const pageMeta: PageMeta = {
     title: 'Order Completed',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Order Completed',
   },
@@ -92,7 +100,7 @@ const pageMeta: PageMeta = {
     title: 'Order Failed',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
-    image: 'https://imgur.com/9scFfW5.png',
+
     keywords: 'stats, Statistics',
     breadcrumb: 'Order Failed',
   },
@@ -100,21 +108,21 @@ const pageMeta: PageMeta = {
     title: 'Utilities',
     description:
       "In case you are wondering What tech I use, Here's the list of what tech I'm currently using for coding on the daily basis. This list is always changing.",
-    image: 'https://imgur.com/MpfymCd.png',
+
     keywords: 'Utilities, what i use?, utils, setup, uses,',
   },
   blogs: {
     title: 'Blogs',
     description:
       "I've been writing online since 2021, mostly about web development and tech careers. In total, I've written more than 50 articles till now.",
-    image: 'https://imgur.com/nbNLLZk.png',
+
     keywords: 'blog, blog, webdev, react',
   },
 
   bookmark: {
     title: 'Bookmarked Blogs',
     description: "Bookmarked Blogs of Duyen Lan's blogs by you",
-    image: 'https://imgur.com/5XkrVPq.png',
+
     keywords: 'bookmark, blogs, ',
   },
   certificates: {
@@ -148,7 +156,6 @@ const pageMeta: PageMeta = {
     title: 'Code Snippets',
     description:
       "These are a collection of code snippets I've used in the past and saved. These could be useful to you as well.",
-    image: 'https://i.imgur.com/GPUnXdC.png',
     keywords: 'Code, Code Snippets, Snippets',
   },
 };

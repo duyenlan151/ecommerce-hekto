@@ -16,6 +16,7 @@ import 'swiper/css';
 import '../styles/index.css';
 // import '../styles/tailwind.css';
 import { initialOptionsPayPal } from '@utils/common';
+import MetaData from '@components/Shared/MetaData';
 NProgress.configure({
   easing: 'ease',
   speed: 800,
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, ...rest }) {
     <SessionProvider session={session}>
       <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
         <Provider store={store}>
+          <MetaData />
           <LayoutMain>
             {Component.authorize ? (
               <ProtectedRoute>

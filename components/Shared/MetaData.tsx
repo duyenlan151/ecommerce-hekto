@@ -43,6 +43,7 @@ export default function MetaData({
   } = useRouter();
 
   const namePage = (slug && String(slug)) || pathname.split('/')[1];
+  console.log('🚀 ~ file: MetaData.tsx:46 ~ namePage:', namePage);
 
   const { title, description, suffix, keywords, currentURL, previewImage }: PageData = useMemo(
     () => (pageMeta[namePage] ? pageMeta[namePage] : pageMeta['404']),

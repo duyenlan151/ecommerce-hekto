@@ -1,7 +1,7 @@
 export type PageData = {
   title: string;
   description: string;
-  image: string;
+  image?: string;
   keywords: string;
   breadcrumb?: string;
   suffix?: string;
@@ -10,7 +10,7 @@ export type PageData = {
 };
 
 export type PageMeta = {
-  home: PageData;
+  home?: PageData;
   login: PageData;
   // stats: PageData;
   utilities: PageData;

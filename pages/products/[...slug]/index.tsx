@@ -11,14 +11,15 @@ export interface ProductSlugProps {
 }
 
 export default function ProductSlug({ product }: ProductSlugProps) {
+  console.log('🚀 ~ file: index.tsx:14 ~ ProductSlug ~ product:', product);
   return (
     <React.Suspense fallback={<Loading />}>
       <section className="container mx-auto">
         <MetaData
           propTitle={product?.name || product?.title}
           propSuffix={product?.category?.name}
-          propDescription={product?.name || product?.title}
-          propPreviewImage={String(product?.thumbnail)}
+          propDescription={product?.description || product?.title}
+          propPreviewImage={String(product?.images[0]?.path)}
           propKeywords={product?.name || product?.title}
         />
         {product && <ProductDetail product={product} />}
