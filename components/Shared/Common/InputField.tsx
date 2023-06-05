@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useController } from 'react-hook-form';
+import { AiFillEye, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 export type TypeInput = 'text' | 'number';
 
@@ -26,6 +27,7 @@ export function InputField({
   className,
   ...rest
 }: InputFieldProps) {
+  const [typeInput, setTypeInput] = useState(rest?.type || 'text');
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { error },
@@ -33,6 +35,11 @@ export function InputField({
     name,
     control,
   });
+
+  const changeTypeInput = () => {
+    const newType = typeInput === 'password' ? 'text' : 'password';
+    setTypeInput(newType);
+  };
 
   // render whatever you want: MUI, Ant Design, Bootstrap, Custom UI
   return (
@@ -45,21 +52,32 @@ export function InputField({
           {label}
         </label>
       )}
-      <input
-        ref={ref}
-        id={name}
-        defaultValue={value || ''}
-        name={name || ''}
-        // value={value}
-        placeholder={placeholder}
-        // onChange={onChange}
-        onChange={(event) => {
-          onChange(event.target.value);
-          externalOnChange && externalOnChange(event);
-        }}
-        className={`placeholder:text-sub-title placeholder:font-lato-light peer border border-gray-200 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
-        {...rest}
-      />
+      <div className="border border-gray-200 flex items-center">
+        <input
+          ref={ref}
+          id={name}
+          defaultValue={value || ''}
+          name={name || ''}
+          placeholder={placeholder}
+          // onChange={onChange}
+          type={typeInput}
+          onChange={(event) => {
+            onChange(event.target.value);
+            externalOnChange && externalOnChange(event);
+          }}
+          className={`border-transparent focus:border-transparent focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border-0 relative h-3.125 w-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out ${className}`}
+          // {...rest}
+        />
+        {rest.type === 'password' && (
+          <span className="px-4 cursor-pointer" onClick={changeTypeInput}>
+            {typeInput !== 'password' ? (
+              <AiOutlineEye size={20} />
+            ) : (
+              <AiOutlineEyeInvisible size={20} />
+            )}
+          </span>
+        )}
+      </div>
       {error?.message && (
         <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
       )}
