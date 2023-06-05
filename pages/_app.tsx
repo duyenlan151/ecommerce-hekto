@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import React from 'react';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
