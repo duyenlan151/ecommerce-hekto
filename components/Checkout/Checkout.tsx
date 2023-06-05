@@ -152,7 +152,7 @@ export default function Checkout({}: CheckoutProps) {
         Cart/ Information/ Shipping/ Checkout
       </div>
       <div className="flex lg:flex-row flex-col justify-between mt-6">
-        <div className="lg:basis-8/12 basis-full overflow-x-auto">
+        <div className="lg:basis-8/12 basis-full">
           <div className="inline-block min-w-full">
             <Table
               showHeader={false}
