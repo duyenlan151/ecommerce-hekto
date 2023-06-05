@@ -119,8 +119,8 @@ export function CardLineChart() {
             {
               label: String(new Date().getFullYear() - 1),
               fill: false,
-              backgroundColor: '#fff',
-              borderColor: '#fff',
+              backgroundColor: '#ccc',
+              borderColor: '#ccc',
               data: [40, 68, 86, 74, 56, 60, 87],
             },
           ],

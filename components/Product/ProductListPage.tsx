@@ -118,7 +118,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             {/* <div className="grid justify-center items-center mx-auto gap-2 lg:grid-cols-2 grid-cols-1"> */}
             <ProductList
               products={products?.data}
-              viewCol={ProductViewType[typeView] as ETypeView}
+              viewCol={ProductViewType[String(typeView)] as ETypeView}
             />
             {/* </div> */}
             {/* Pagination */}
