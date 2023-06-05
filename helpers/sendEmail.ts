@@ -12,19 +12,12 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendEmail(params) {
-  const { identifier, url, message, subject } = params;
+  const { identifier, url, message, subject, fromEmail } = params;
   const { host } = new URL(url);
-  // NOTE: You are not required to use `nodemailer`, use whatever you want.
-  // const transport = nodemailer.createTransport({
-  //   service: 'gmail',
-  //   auth: {
-  //     user: email,
-  //     pass,
-  //   },
-  // });
+
   const result = await transporter.sendMail({
     to: identifier,
-    from: email,
+    from: fromEmail || email,
     subject,
     text: message ?? text({ url, host }),
     html: html({ url, host }),
@@ -102,14 +95,7 @@ function html(params: { url: string; host: string }) {
           style="border-bottom: 1px solid #eeeeee; padding-left: 16px"
           align="left"
         >
-          <img
-            src="https://ci3.googleusercontent.com/proxy/1mmLbbt_GO9TvI1V6pu5Q1xaFgI6zjQKB9rVibpuNqY4a5ZJDS8JAirx6hGKckbxdY9--NCpdHIGzQW7tqMDH49gI9V7em_m1TSL=s0-d-e1-ft#https://cloud.mongodb.com/static/images/logo-mongodb.png"
-            width="140"
-            height="35"
-            style="display: block; width: 140px; height: 35px"
-            class="CToWUd"
-            data-bit="iit"
-          />
+          <p style="font-size: 22px; font-weight: bold">Hekto | Ecommerce</p>
         </td>
       </tr>
       <tr>
@@ -172,37 +158,6 @@ function html(params: { url: string; host: string }) {
   </body>
 </html>
 
-`;
-  return `
-<body style="background: ${color.background}; margin: 10px 0px; ">
-  <table width="100%" border="0" cellspacing="20" cellpadding="0"
-    style="background: ${color.mainBackground}; max-width: 600px; margin: auto; border-radius: 10px;">
-    <tr>
-      <td align="center"
-        style="padding: 10px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        Sign in to <strong>${escapedHost}</strong>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" style="padding: 20px 0;">
-        <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td align="center" style="border-radius: 5px;" bgcolor="${color.buttonBackground}"><a href="${url}"
-                target="_blank"
-                style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: ${color.buttonText}; text-decoration: none; border-radius: 5px; padding: 10px 20px; border: 1px solid ${color.buttonBorder}; display: inline-block; font-weight: bold;">Sign
-                in</a></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td align="center"
-        style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        If you did not request this email you can safely ignore it.
-      </td>
-    </tr>
-  </table>
-</body>
 `;
 }
 

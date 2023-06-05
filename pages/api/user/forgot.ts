@@ -40,7 +40,8 @@ export default async (req, res) => {
       });
 
       return res.status(200).json({
-        message: `Email sent to ${user.email}, please check your email.`,
+        message: `Email sent to <a style="color: #2470bb; text-decoration: underline;" href="https://mail.google.com/mail/u/0/#inbox">${user.email}</a>
+        , please check your email.`,
       });
     }
   } catch (error) {

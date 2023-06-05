@@ -2,7 +2,7 @@ import React from 'react';
 import { useController } from 'react-hook-form';
 
 interface TextareaFieldProps {
-  name?: string;
+  name: string;
   control?: any;
   onChange?: () => void;
   onBlur?: () => void;
@@ -17,18 +17,18 @@ export function TextareaField({
   control,
   onChange: externalOnChange,
   onBlur: externalOnBlur,
-  value,
+  value: externalName,
   label,
   className,
   ...rest
 }: TextareaFieldProps) {
-  // const {
-  //   field: { onChange, onBlur, value, ref },
-  //   fieldState: { error },
-  // } = useController({
-  //   name,
-  //   control,
-  // });
+  const {
+    field: { onChange, onBlur, value, ref },
+    fieldState: { error },
+  } = useController({
+    name,
+    control,
+  });
 
   // render whatever you want: MUI, Ant Design, Bootstrap, Custom UI
   return (
@@ -42,10 +42,15 @@ export function TextareaField({
         </label>
       )}
       <textarea
-        className={`placeholder:text-sub-title placeholder:font-lato-light peer border border-border-1 relative w-full bg-white p-4 font-thin outline-none ${className}`}
+        name={name}
+        onChange={onChange}
+        className={`border border-gray-200 focus:border-gray-200 focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border border-border-1 relative w-full bg-white p-4 font-thin outline-none ${className}`}
         rows={6}
         {...rest}
       />
+      {error?.message && (
+        <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
+      )}
     </div>
   );
 }

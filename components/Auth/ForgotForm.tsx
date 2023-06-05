@@ -57,7 +57,12 @@ export default function ForgotpassForm({}: ForgotPassProps) {
           placeholder="Email"
           type="email"
         />
-        {message}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: message,
+          }}
+        ></div>
+        {/* {message} */}
         <button
           type="submit"
           disabled={loading}

@@ -15,7 +15,7 @@ const pageMeta: PageMeta = {
   },
 
   login: {
-    title: 'Login',
+    title: 'Heko | Login',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
@@ -23,8 +23,35 @@ const pageMeta: PageMeta = {
     breadcrumb: 'Login',
   },
 
+  signup: {
+    title: 'Heko | Signup',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Singup',
+  },
+
+  forgot: {
+    title: 'Heko | Forgot Password',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Forgot',
+  },
+
+  ['reset-password']: {
+    title: 'Heko | Reset Password',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Singup',
+  },
+
   contact: {
-    title: 'Contact Us',
+    title: 'Heko | Contact Us',
     description:
       'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
 
