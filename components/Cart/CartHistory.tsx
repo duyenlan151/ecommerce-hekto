@@ -21,7 +21,7 @@ const columns = [
         <div className="flex py-4">
           <div className="relative mr-3 h-[83px] w-[83px]">
             <Link
-              href={`/products/${product?._id}/${slug}`}
+              href={`/products/${product?._id}/${product?.slug}`}
               className="mr-3 h-[83px] w-[83px] py-4"
             >
               <Image
@@ -49,7 +49,7 @@ const columns = [
       <>
         <div className="realitve line-clamp-3">
           <Link
-            href={`/products/${product?._id}/${slug}`}
+            href={`/products/${product?._id}/${product?.slug}`}
             className="flex hover:text-pink-1 transition ease-in-out duration-300 whitespace-pre-wrap max-h-[80px]"
           >
             {product?.title}

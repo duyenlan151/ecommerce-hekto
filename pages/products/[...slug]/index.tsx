@@ -1,7 +1,7 @@
 import ProductDetail from '@components/Product/ProductDetail';
 import MetaData from '@components/Shared/MetaData';
 import { ProductModel } from 'models';
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import React from 'react';
 import { productsService } from 'services';
 import Loading from '../loading';
@@ -11,7 +11,6 @@ export interface ProductSlugProps {
 }
 
 export default function ProductSlug({ product }: ProductSlugProps) {
-  console.log('🚀 ~ file: index.tsx:14 ~ ProductSlug ~ product:', product);
   return (
     <React.Suspense fallback={<Loading />}>
       <section className="container mx-auto">

@@ -57,7 +57,7 @@ function TopNavbar({}: TopNavbarProps) {
                       <span className="flex-1 mr-1">
                         <AiOutlineUser />
                       </span>
-                      <span className="text-ellipsis max-w-[100px] overflow-hidden whitespace-nowrap">
+                      <span className="text-ellipsis max-w-[100px] overflow-hidden whitespace-nowrap mt-[2px]">
                         {session?.user?.name}
                       </span>
                     </p>
