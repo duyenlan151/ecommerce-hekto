@@ -68,11 +68,11 @@ export default function DashboardPage() {
       } = summary;
 
       currentYear.forEach((data) => {
-        dataCurrent.splice(data.month, 1, data.totalSales);
+        dataCurrent.splice(data.month - 1, 1, data.totalSales);
       });
 
       previousYear.forEach((data) => {
-        dataPrevious.splice(data.month, 1, data.totalSales);
+        dataPrevious.splice(data.month - 1, 1, data.totalSales);
       });
     }
     const data = [
