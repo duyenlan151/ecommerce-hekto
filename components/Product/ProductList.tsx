@@ -13,9 +13,7 @@ export default function ProductList({ products, viewCol }: ProductListProps) {
   return (
     <AnimatedDiv variants={opacityVariant} className="">
       {!products.length && <div className="p-4 bg-white">No Products found</div>}
-      <div
-        className={`grid justify-center items-center mx-auto gap-4 lg:grid-cols-2 ${viewCol} grid-cols-1`}
-      >
+      <div className={`grid justify-center items-center mx-auto gap-4 ${viewCol} grid-cols-1`}>
         {products &&
           products.map((product) => (
             <ProductItemSecondary

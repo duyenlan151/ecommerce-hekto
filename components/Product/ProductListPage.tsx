@@ -36,7 +36,6 @@ export default function ProductListPage({ products }: ProductListPageProps) {
   const [typeView, setTypeView] = useState(
     [ETypeView.COL, ETypeView.ROW].includes(String(view) as ETypeView) ? view : ETypeView.ROW
   );
-  console.log('🚀 ~ file: ProductListPage.tsx:39 ~ ProductListPage ~ typeView:', typeView);
 
   useEffect(() => {
     router.push({
@@ -115,12 +114,10 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             {/* Filter Viewer */}
             <FilterViewer />
             {/* Product List */}
-            {/* <div className="grid justify-center items-center mx-auto gap-2 lg:grid-cols-2 grid-cols-1"> */}
             <ProductList
               products={products?.data}
               viewCol={ProductViewType[String(typeView)] as ETypeView}
             />
-            {/* </div> */}
             {/* Pagination */}
             <Pagination
               totalCount={products?.totalDocs || 0}
