@@ -161,7 +161,7 @@ export function ProductItemSecondary({
       {/* Image product */}
       <Link
         href={`/products/${_id}/${slug}`}
-        className="relative block max-w-[214px] min-w-[214px] h-[214px]"
+        className="relative block max-w-[214px] lg:min-w-[214px] min-w-[150px] h-[214px]"
       >
         <Image
           fill
@@ -172,7 +172,7 @@ export function ProductItemSecondary({
           className="scale-[80%] object-contain  transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
-      <div className="flex-1 px-2 ml-7 transition delay-100 ease-in-out duration-500">
+      <div className="flex-1 px-2 transition delay-100 ease-in-out duration-500">
         {/* Name Product */}
         <Link
           href={`/products/${_id}/${slug}`}

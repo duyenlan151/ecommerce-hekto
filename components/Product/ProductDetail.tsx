@@ -17,11 +17,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         Cart/ Information/ Shipping/ Payment
       </div>
       <div className="bg-white">
-        <div className="flex lg:flex-nowrap flex-wrap justify-center lg:p-10 p-4">
-          <div className="">
+        <div className="flex lg:flex-nowrap flex-wrap justify-center">
+          <div className="lg:p-10 p-4">
             <ImagesGallary images={product.images} />
           </div>
-          <div className="lg:basis-1/2 basis-full lg:ml-20 lg:mt-0 mt-5 w-full justify-self-end">
+          <div className="lg:p-10 p-4 lg:basis-1/2 basis-full lg:pl-10 lg:mt-0 mt-5 w-full justify-self-end border-l border-primary">
             <ProductInfo product={product} />
           </div>
         </div>
