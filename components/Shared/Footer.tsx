@@ -39,7 +39,7 @@ export function Footer({}: FooterProps) {
               >
                 <InputField
                   control={control}
-                  name="email"
+                  name="emailSup"
                   required
                   placeholder="Enter Email Address"
                   className={

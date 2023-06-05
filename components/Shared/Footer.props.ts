@@ -21,7 +21,7 @@ export const dataFooter = {
 
 export const schemaFooter = yup
   .object({
-    email: yup
+    emailSup: yup
       .string()
       .required('Please enter email')
       .email('Please enter valid email')
