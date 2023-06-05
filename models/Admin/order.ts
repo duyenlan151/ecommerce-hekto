@@ -29,6 +29,7 @@ const orderSchema = new mongoose.Schema(
     isCancelled: { type: Boolean, required: true, default: false },
     paidAt: { type: Date },
     deliveredAt: { type: Date },
+    checkout_session_id: { type: String },
   },
   {
     timestamps: true,

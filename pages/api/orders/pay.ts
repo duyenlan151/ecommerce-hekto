@@ -12,11 +12,18 @@ const handler = async (req, res) => {
     }
 
     await mongooseConnect();
-    const order = await Order.findById(req.body.id);
+
+    const { id, session_id } = req.body;
+    const order = await Order.findById(id);
     if (order) {
       if (order.isPaid) {
         return res.status(400).send({ message: 'Your order is already paid', status: false });
       }
+
+      if (order.checkout_session_id && session_id !== order.checkout_session_id) {
+        return res.status(400).send({ message: 'Invalid session and order', status: false });
+      }
+
       order.isPaid = true;
       order.paidAt = Date.now();
       order.paymentResult = {

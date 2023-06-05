@@ -13,23 +13,25 @@ export default function OrdersResultPage(props: OrdersResultPageProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const {
-    query: { success, order_id },
+    query: { success, order_id, session_id },
   } = useRouter();
 
   const { data: session } = useSession();
 
   useEffect(() => {
     (async () => {
-      if (success && order_id) {
+      if (success && order_id && session_id) {
         try {
           let result = await orderServices.updateStatusPayment({
             status: success,
             id: order_id,
             email_address: session?.user?.email,
+            session_id,
           });
           if (result.status) {
             dispatch(cleanAllCart());
             router.push(`/user/orders/${order_id}`);
+            return;
           }
           setResult(result);
         } catch (error) {

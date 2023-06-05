@@ -44,39 +44,6 @@ export function UserCartInfo(props: UserCartInfoProps) {
               {order.title}
             </li>
           ))}
-
-          {/* <li
-            onClick={() => changeTypeOrder('unpaid')}
-            className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'unpaid' && 'bg-gray-100'
-            }`}
-          >
-            Waiting for payment
-          </li>
-          <li
-            onClick={() => changeTypeOrder('inprogress')}
-            className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'inprogress' && 'bg-gray-100'
-            }`}
-          >
-            In progress
-          </li>
-          <li
-            onClick={() => changeTypeOrder('delivered')}
-            className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'delivered' && 'bg-gray-100'
-            }`}
-          >
-            Delivered
-          </li>
-          <li
-            onClick={() => changeTypeOrder('cancelled')}
-            className={`px-5 py-3 whitespace-nowrap cursor-pointer hover:bg-gray-100 ${
-              typeOrder === 'cancelled' && 'bg-gray-100'
-            }`}
-          >
-            Cancelled
-          </li> */}
         </ul>
       </div>
     </div>

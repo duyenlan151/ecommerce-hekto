@@ -31,6 +31,7 @@ export default async function handle(req, res) {
 
     // Sales Data
     const currentYear = await Order.aggregate([
+      // { $group: { _id: { month: '$month' } } },
       {
         $project: {
           totalSales: { $sum: '$totalPrice' },
@@ -39,6 +40,16 @@ export default async function handle(req, res) {
         },
       },
       { $match: { year: new Date().getFullYear() } },
+      {
+        $group: {
+          _id: { month: '$month' },
+          count: { $sum: 1 },
+          total: {
+            $sum: '$totalSales',
+          },
+        },
+      },
+      // { $group: { _id: { month: '$month' }, count: { $sum: 1 } } },
       // {
       //   $group: {
       //     // _id: { $dateToString: { format: '%Y-%m', date: '$createdAt' } },
@@ -56,6 +67,15 @@ export default async function handle(req, res) {
         },
       },
       { $match: { year: new Date().getFullYear() - 1 } },
+      {
+        $group: {
+          _id: { month: '$month' },
+          count: { $sum: 1 },
+          total: {
+            $sum: '$totalSales',
+          },
+        },
+      },
     ]);
     const salesData = {
       currentYear,

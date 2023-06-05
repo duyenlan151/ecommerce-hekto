@@ -18,6 +18,7 @@ import {
   AiOutlinePieChart,
   AiOutlineTeam,
 } from 'react-icons/ai';
+import DashboardSkeleton from '@components/Admin/Dashboard/DashboardSkeleton';
 
 const commonCardChart = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -68,11 +69,11 @@ export default function DashboardPage() {
       } = summary;
 
       currentYear.forEach((data) => {
-        dataCurrent.splice(data.month - 1, 1, data.totalSales);
+        dataCurrent.splice(data._id.month - 1, 1, data.total);
       });
 
       previousYear.forEach((data) => {
-        dataPrevious.splice(data.month - 1, 1, data.totalSales);
+        dataPrevious.splice(data._id.month - 1, 1, data.total);
       });
     }
     const data = [
@@ -98,7 +99,7 @@ export default function DashboardPage() {
     <>
       <HeaderStats />
       {loading ? (
-        <>loading...</>
+        <DashboardSkeleton />
       ) : (
         <>
           <div className="flex flex-wrap  pb-10">

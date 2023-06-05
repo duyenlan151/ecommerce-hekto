@@ -20,8 +20,8 @@ export const getSymbolCurrency = (value: number | string, currencyCode: Currency
   );
 };
 
-export const formatDateTime = (date: number | Date | undefined) => {
-  //@ts-ignore
+export const formatDateTime = (date: number | Date | undefined | string) => {
+  // @ts-ignore
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 

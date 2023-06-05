@@ -20,8 +20,8 @@ const items = [
   { id: 1, title: 'Dashboard', icon: <AiOutlineHome size={20} />, path: '/admin/dashboard' },
   { id: 2, title: 'Products', icon: <AiOutlineMenu size={20} />, path: '/admin/products' },
   { id: 3, title: 'Categories', icon: <AiOutlineAppstore size={20} />, path: '/admin/categories' },
-  { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
   { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
+  { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
   { id: 6, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
   {
     id: 7,

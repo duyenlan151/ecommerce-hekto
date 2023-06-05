@@ -1,8 +1,10 @@
 export interface SalesData {
-  _id: string;
-  month: number;
-  totalSales: number;
-  year: number;
+  _id: {
+    month: number;
+  };
+  // month: number;
+  total: number;
+  // year: number;
 }
 
 export interface OrdersData {

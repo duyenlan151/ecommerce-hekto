@@ -124,6 +124,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
           status: true,
           id: refOrder.current?.order?._id,
           email_address: session?.user?.email,
+          session_id: '',
         });
 
         if (result.status) {

@@ -54,13 +54,17 @@ const handler = async (req, res) => {
               },
               mode: 'payment',
               success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order.id}&success=true&session_id={CHECKOUT_SESSION_ID}`,
-              // cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order.id}&cancelled=true`,
               cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?order_id=${order.id}&cancelled=true`,
             });
-            res.status(201).json({ order, url: checkoutSession.url });
-            return;
+            const orderSession = await Order.findById(order.id);
+            orderSession.checkout_session_id = checkoutSession.id;
+
+            await orderSession.save();
+            res.status(201).json({ order: orderSession, url: checkoutSession.url });
+          } else {
+            const order = await newOrder.save();
+            res.status(201).json({ order });
           }
-          res.status(201).json({ order });
         }
         break;
 

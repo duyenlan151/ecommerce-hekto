@@ -17,11 +17,13 @@ export const orderServices = {
     id,
     status,
     email_address,
+    session_id,
   }): Promise<{ message: string; status: boolean }> {
     return axiosClient.put('/orders/pay', {
       id,
       status,
       email_address,
+      session_id,
     });
   },
 
