@@ -114,7 +114,9 @@ function TopNavbar({}: TopNavbarProps) {
           <span onClick={() => setShow(true)}>
             <AiOutlineMenu size={25} />
           </span>
-          <h1 className="text-3xl font-bold">Hekto</h1>
+          <h1 className="text-3xl font-bold">
+            <Link href="/">Hekto</Link>
+          </h1>
           <div onClick={handleToggleCart} className="cursor-pointer relative ml-2 inline-block">
             <AiOutlineShoppingCart size={20} />
             <span className="absolute -top-2 -right-3 px-[6px] py-[2px] text-xs text-red-100 transform bg-red-600 rounded-full">

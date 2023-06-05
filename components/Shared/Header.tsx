@@ -9,7 +9,9 @@ export function Header({}: HeaderProps) {
     <div className="md:flex hidden items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-primary">
       <div className="flex items-center justify-between container mx-auto">
         <div className="md:flex items-center ">
-          <h1 className="text-4xl font-bold mr-20">Hekto</h1>
+          <h1 className="text-4xl font-bold mr-20">
+            <Link href="/">Hekto</Link>
+          </h1>
           {/* <nav className=""> */}
           <Link className="mx-3 text-base" href="/">
             Home
