@@ -37,7 +37,7 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
           {session?.user?.name && (
             <Link
               className="py-3 text-base block text-ellipsis max-w-full overflow-hidden whitespace-nowrap"
-              href={'/#'}
+              href={'/user/profile'}
               onClick={onClose}
             >
               Hello, {session?.user?.name}
