@@ -155,6 +155,7 @@ export function CartInfo({ isLoading, order }: CartInfoProps) {
     itemsPrice,
     isPaid,
     isDelivered,
+    user,
   } = order;
   if (isLoading) {
     return <CartInfoSkeleton />;
@@ -176,6 +177,7 @@ export function CartInfo({ isLoading, order }: CartInfoProps) {
           <div className="uppercase font-bold">{firstName + lastName}</div>
           <div className="text-[13px] mt-2">Address: {[address, city, country].join(', ')}</div>
           <div className="text-[13px] mt-1">Postal Code: {postalCode}</div>
+          <div className="text-[13px] mt-1">Email: {user[0]?.email}</div>
         </div>
         <div className="bg-white p-4 w-full mx-auto">
           <div className="font-[13px] flex items-center">

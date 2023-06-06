@@ -22,6 +22,7 @@ export const useOrders = () => {
         case 'getHistory': {
           const orders = await orderServices.getOrdersHistory(params);
           setOrders(orders);
+          break;
         }
 
         case 'getAllOrders': {

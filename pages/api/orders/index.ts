@@ -1,7 +1,9 @@
 import { mongooseConnect } from '@lib/mongoose';
 import Order from 'models/Admin/order';
+import mongoose from 'mongoose';
 import { getToken } from 'next-auth/jwt';
 
+const ObjectId = mongoose.Types.ObjectId;
 const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET);
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
@@ -17,10 +19,40 @@ const handler = async (req, res) => {
 
     switch (method) {
       case 'GET': {
-        if (req.query?.id) {
+        const { id } = req.query;
+        if (id) {
           await mongooseConnect();
-          const order = await Order.findById(req.query.id);
-          res.status(200).json(order);
+
+          const order = await Order.aggregate([
+            {
+              $match: {
+                _id: new ObjectId(id),
+              },
+            },
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'user',
+                foreignField: '_id',
+                as: 'user',
+                pipeline: [
+                  {
+                    $project: {
+                      email: 1,
+                      name: 1,
+                    },
+                  },
+                ],
+              },
+            },
+          ]);
+
+          // @ts-ignore
+          if (order[0]?.user[0]?._id.toString() !== user?._id) {
+            res.status(401).json({ message: 'Authorize error!!' });
+            return;
+          }
+          res.status(200).json(order[0]);
         } else if (user?.isAdmin) {
           const { page = 1, limit = 10 } = req.query;
 
