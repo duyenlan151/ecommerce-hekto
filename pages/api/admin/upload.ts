@@ -51,37 +51,48 @@ import nc from 'next-connect';
 import multer from 'multer';
 import path from 'path';
 import DatauriParser from 'datauri/parser';
-
 const handler = nc<NextApiRequest, NextApiResponse>();
-handler.use(multer().single('file'));
+handler.use(multer().array('file', 5));
 handler.post(async (req, res) => {
-  await mongooseConnect();
-  // @ts-ignore
-  const image = req.file;
-
-  const parser = new DatauriParser();
   try {
-    // destroy existing image on cloudinary
-    // await cloudinary.v2.uploader.destroy(req.body.imageId);
-    // create new one
-    const base64Image = await parser.format(
-      path.extname(image.originalname).toString(),
-      image.buffer
-    );
-    // @ts-ignore
-    const uploadedImageResponse = await cloudinary.uploader.upload(
-      base64Image.content,
-      'flashcards',
-      { resource_type: 'image' }
-    );
-    const url = uploadedImageResponse.url;
+    await mongooseConnect();
 
-    const imageDoc = await Image.create({
-      name: image.originalname,
-      type: image.mimetype,
-      path: url,
-    });
-    res.status(200).json([imageDoc]);
+    const imagesDoc = [];
+    // @ts-ignorex
+    const files = req.files;
+
+    if (!files) return res.status(400).json({ message: 'No picture attached!' });
+
+    const uploader = async (image) => {
+      // await cloudinary.v2.uploader.upload(path);
+      const parser = new DatauriParser();
+
+      const base64Image = await parser.format(
+        path.extname(image.originalname).toString(),
+        image.buffer
+      );
+      // @ts-ignorex
+      const uploadedImageResponse = await cloudinary.uploader.upload(
+        base64Image.content,
+        'flashcards',
+        { resource_type: 'image' }
+      );
+
+      const url = uploadedImageResponse.url;
+      const imageDoc = await Image.create({
+        name: image.originalname,
+        type: image.mimetype,
+        path: url,
+      });
+      return imageDoc;
+    };
+
+    for (const file of files) {
+      const newPath = await uploader(file);
+      // @ts-ignorex
+      imagesDoc.push(newPath);
+    }
+    res.status(200).json([...imagesDoc]);
   } catch (error) {
     res.status(500).json({ error });
   }

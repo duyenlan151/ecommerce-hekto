@@ -81,8 +81,8 @@ export function DropdownSelect({
             className={`cursor-pointer outline-none focus:outline-none border-l border-gray-200 transition-all text-gray-300 hover:text-gray-600`}
           >
             <svg
-              className={`w-4 h-4 mx-2 fill-current transition-all duration-200 ease-in-out transform ${
-                show && 'rotate-180'
+              className={`w-4 h-4 mx-2 fill-current transition-all duration-200 ease-in-out transform rotate-180 ${
+                show && '-rotate-180'
               }`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { ILoadingSeconday } from '@components/Icons';
+import { PATTERN_IMAGES } from 'constants/index';
+import { useEffect, useState } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useController } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import axiosClient from 'services/api-services';
-import Image from 'next/image';
-import ImagesGallary from '../ImagesGallary/ImagesGallary';
-import { Modal } from '../Modal';
-import SwiperGallary from '../Swiper/SwiperGallary';
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { useKeypress } from '@hooks/useKeyPress';
+import { Container } from './ImagesDragContainer';
 
 export interface UploadImagesProps {
   name: string;
@@ -20,6 +20,37 @@ export interface UploadImagesProps {
   [name: string]: any;
 }
 
+const test = [
+  {
+    name: 'book10.jpeg',
+    type: 'image/jpeg',
+    path: 'http://res.cloudinary.com/duzzoglqz/image/upload/v1686022265/obn0gk09y2cdwrmvwxhy.jpg',
+    _id: '647ea87aae7753d52fda0496',
+    __v: 0,
+  },
+  {
+    name: 'book11.jpeg',
+    type: 'image/jpeg',
+    path: 'http://res.cloudinary.com/duzzoglqz/image/upload/v1686022269/aerrerir5wdnhg5jocdd.jpg',
+    _id: '647ea87eae7753d52fda0498',
+    __v: 0,
+  },
+  {
+    name: 'book12.jpeg',
+    type: 'image/jpeg',
+    path: 'http://res.cloudinary.com/duzzoglqz/image/upload/v1686022272/hrlc0uottzmgehsow5lo.jpg',
+    _id: '647ea880ae7753d52fda049a',
+    __v: 0,
+  },
+  {
+    name: 'book13.jpeg',
+    type: 'image/jpeg',
+    path: 'http://res.cloudinary.com/duzzoglqz/image/upload/v1686022274/vgrrontiq8lkkiw5ltga.jpg',
+    _id: '647ea883ae7753d52fda049c',
+    __v: 0,
+  },
+];
+
 export default function UploadImages({
   name,
   label,
@@ -28,9 +59,9 @@ export default function UploadImages({
   onBlur: externalOnBlur,
   value: externaValue,
 }: UploadImagesProps) {
-  const [images, setImages] = useState<any>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [activeImage, setAtiveImage] = useState(0);
+  const [images, setImages] = useState<any>(() => [...test]);
+
+  const [loadingUpload, setLoadingUpload] = useState(false);
 
   const {
     field: { onChange, onBlur, value, ref },
@@ -38,10 +69,6 @@ export default function UploadImages({
   } = useController({
     name,
     control,
-  });
-
-  useKeypress('Escape', () => {
-    setShowModal(false);
   });
 
   useEffect(() => {
@@ -53,70 +80,68 @@ export default function UploadImages({
   }, [images]);
 
   const uploadImages = async (ev) => {
-    const files = ev.target?.files;
-    if (files?.length > 0) {
-      // setIsUploading(true);
-      const data = new FormData();
-      for (const file of files) {
-        await data.append('file', file);
-      }
-      const config = {
-        headers: { 'content-type': 'multipart/form-data' },
-        onUploadProgress: (event) => {},
-      };
+    setLoadingUpload(true);
+    try {
+      const files = ev.target?.files;
 
-      const response = await axiosClient.post('/admin/upload', data, config);
-      if (response) {
-        const newImages = images?.length > 0 ? images.concat(response) : response;
-        setImages(newImages);
+      if (files?.length > 0) {
+        const data = new FormData();
+        for (const file of files) {
+          if (!file.name.match(PATTERN_IMAGES)) {
+            toast.error(`This file name ${name} format is not supported`);
+          } else {
+            await data.append('file', file);
+          }
+        }
+        const config = {
+          headers: { 'content-type': 'multipart/form-data' },
+          onUploadProgress: (event) => {},
+        };
+
+        const response = await axiosClient.post('/admin/upload', data, config);
+        if (response) {
+          const newImages = images?.length > 0 ? images.concat(response) : response;
+          setImages(newImages);
+        }
       }
+    } catch (error) {
+    } finally {
+      setLoadingUpload(false);
     }
   };
 
-  const handleClickImage = (index: number) => {
-    setAtiveImage(index);
-    setShowModal(true);
-  };
-
-  const handleRemoveImage = (index) => {
+  const deleteImage = (index: number) => {
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
   };
+
   return (
     <div className="mt-4">
       <label
         htmlFor={name}
-        className="block w-full pb-2 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
+        className="block w-full pb-3 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
       >
-        Images [min 3 - max 20]
+        Images [min 3 - max 20](Images can drag and drop to change position)
       </label>
       <div className="relative flex items-center gap-4">
-        {images &&
-          images.map((image, idx) => (
-            <div
-              key={image._id}
-              className="cursor-pointer min-w-[96px] min-h-[96px] max-w-[96px] relative"
-            >
-              <span
-                onClick={() => handleRemoveImage(idx)}
-                className="curosr-pointer absolute -top-[8px] -right-[8px] z-50"
-              >
-                <AiFillCloseCircle />
-              </span>
-              <Image
-                onClick={() => handleClickImage(idx)}
-                className="min-h-[96px] min-w-[96px] border border-primary"
-                src={image.path}
-                fill
-                loading="lazy"
-                sizes="(max-width: 96px) 100vw, (max-width: 96px)"
-                alt={image.name}
-              />
-            </div>
-          ))}
+        <DndProvider backend={HTML5Backend}>
+          {images && <Container images={images} onChange={setImages} deleteImage={deleteImage} />}
+        </DndProvider>
 
-        <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary bg-white border border-primary">
+        {loadingUpload && (
+          <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary bg-white border border-primary">
+            <div>
+              <ILoadingSeconday />
+            </div>
+          </label>
+        )}
+
+        <label
+          className={`w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary bg-white border border-primary ${
+            loadingUpload && 'opacity-50'
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -132,11 +157,15 @@ export default function UploadImages({
             />
           </svg>
           <div>Upload image</div>
-          <input type="file" onChange={uploadImages} className="hidden" />
+          <input
+            disabled={loadingUpload}
+            multiple
+            type="file"
+            accept="image/png, image/gif, image/jpeg"
+            onChange={uploadImages}
+            className="hidden"
+          />
         </label>
-        <Modal isShow={showModal} onChange={() => setShowModal(false)}>
-          <SwiperGallary images={images} initialSlide={activeImage} />
-        </Modal>
       </div>
       {error?.message && (
         <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>

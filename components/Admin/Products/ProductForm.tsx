@@ -78,7 +78,7 @@ export default function ProductForm({ product }: ProductFormProps) {
   };
 
   return (
-    <div className="relative min-w-0 break-words bg-white w-full mb-6 rounded">
+    <div className="relative min-w-0 break-words w-full mb-6 rounded">
       <button
         onClick={() => router.back()}
         className="flex items-center focus:outline-none hover:underline"
@@ -89,7 +89,7 @@ export default function ProductForm({ product }: ProductFormProps) {
       <h4 className="font-bold tracking-wider mt-10 mb-4 border-b font-josefinsans-bold text-4xl text-black font-bold pb-5 mb-8 border-b">
         {slug === 'add' ? 'Add New' : 'Edit'} Product
       </h4>
-      <form onSubmit={handleSubmit(onSubmit)} className="py-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-white">
         <div className="grid grid-cols-3 gap-4">
           {/* Title */}
           <div className="col-span-4">

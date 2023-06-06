@@ -35,7 +35,7 @@ export default function LayoutAdmin({ children }: LayoutAdminProps) {
           {/* <AdminNavbar /> */}
           {/* Header */}
           {/* <HeaderStats /> */}
-          <div className="px-4 md:px-10 mx-auto w-full pt-24 pb-16 bg-color-primary-300">
+          <div className="px-4 md:px-10 mx-auto w-full pt-24 pb-16 bg-color-primary-300 min-h-screen">
             {children}
             {/* <FooterAdmin /> */}
           </div>

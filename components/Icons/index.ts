@@ -14,3 +14,4 @@ export * from './IContact';
 export * from './IOrder';
 export * from './ILoading';
 export * from './IFast';
+export * from './ILoadingSecondary';

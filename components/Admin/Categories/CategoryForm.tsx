@@ -51,7 +51,7 @@ export default function CategoryForm({ category }: CategoryFormProps) {
   };
 
   return (
-    <div className="relative min-w-0 break-words bg-white w-full mb-6 rounded">
+    <div className="relative min-w-0 break-words w-full mb-6 rounded">
       <button
         onClick={() => router.back()}
         className="flex items-center focus:outline-none hover:underline"
@@ -62,7 +62,7 @@ export default function CategoryForm({ category }: CategoryFormProps) {
       <h4 className="font-bold tracking-wider mt-10 mb-4 border-b font-josefinsans-bold text-4xl text-black font-bold pb-5 mb-8 border-b">
         {slug === 'add' ? 'Add New' : 'Edit'} Category
       </h4>
-      <form onSubmit={handleSubmit(onSubmit)} className="py-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-white">
         <InputField label="Name" name="name" control={control} />
         <InputField label="Slug" name="slug" control={control} />
         <DropdownSelect

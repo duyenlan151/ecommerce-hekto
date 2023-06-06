@@ -16,3 +16,5 @@ export const isAllObjectEmptyValue = (values) =>
   Object.values(values).every((x) => x === undefined || x === null || x === '');
 
 export const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
+
+export const PATTERN_IMAGES = /\.(jpg|jpeg|png|gif)$/;
