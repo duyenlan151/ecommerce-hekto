@@ -9,7 +9,7 @@ export default async function handle(req, res) {
       if (req.query?.id) {
         res.status(200).json(await User.findOne({ _id: req.query.id }));
       } else {
-        const { page = 1, limit = 2 } = req.query;
+        const { page = 1, limit = 10 } = req.query;
 
         if (Number(page) < 1) {
           res.status(200).json({
