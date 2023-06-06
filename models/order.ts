@@ -1,4 +1,5 @@
 import { paymentMethod, ShippingAddressModel } from './cart';
+import { DataResCommonModel } from './common';
 import { ProductModel } from './products';
 
 export interface OrderModel {
@@ -21,4 +22,8 @@ export interface OrderModel {
   updatedAt: string;
 }
 
-export type ActionOrder = 'getOrderById' | 'getHistory';
+export type ActionOrder = 'getOrderById' | 'getHistory' | 'getAllOrders';
+
+export interface DataOrdersModel extends DataResCommonModel {
+  data: OrderModel[];
+}

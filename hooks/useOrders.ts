@@ -1,4 +1,4 @@
-import { ActionOrder, OrderModel } from 'models';
+import { ActionOrder, DataOrdersModel, OrderModel } from 'models';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { orderServices } from 'services';
@@ -22,6 +22,10 @@ export const useOrders = () => {
         case 'getHistory': {
           const orders = await orderServices.getOrdersHistory(params);
           setOrders(orders);
+        }
+
+        case 'getAllOrders': {
+          return (await orderServices.getAllOrders(params)) as DataOrdersModel;
         }
         default:
           break;

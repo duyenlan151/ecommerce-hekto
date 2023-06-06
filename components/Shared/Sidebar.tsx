@@ -9,6 +9,7 @@ import {
   AiOutlineLogout,
   AiOutlineMenu,
   AiOutlineSetting,
+  AiOutlineShoppingCart,
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
 import { SlMap } from 'react-icons/sl';
@@ -21,6 +22,7 @@ const items = [
   { id: 2, title: 'Products', icon: <AiOutlineMenu size={20} />, path: '/admin/products' },
   { id: 3, title: 'Categories', icon: <AiOutlineAppstore size={20} />, path: '/admin/categories' },
   { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
+  { id: 9, title: 'Orders', icon: <AiOutlineShoppingCart size={20} />, path: '/admin/orders' },
   { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
   { id: 6, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
   {

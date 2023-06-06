@@ -1,5 +1,4 @@
 import { mongooseConnect } from '@lib/mongoose';
-import { round2 } from 'constants/index';
 import Order from 'models/Admin/order';
 import { getToken } from 'next-auth/jwt';
 
@@ -11,15 +10,57 @@ const handler = async (req, res) => {
   try {
     const { method } = req;
     const user = await getToken({ req, secret });
+
     if (!user) {
       return res.status(401).json({ message: 'signin required' });
     }
+
     switch (method) {
       case 'GET': {
         if (req.query?.id) {
           await mongooseConnect();
           const order = await Order.findById(req.query.id);
           res.status(200).json(order);
+        } else if (user?.isAdmin) {
+          const { page = 1, limit = 10 } = req.query;
+
+          if (Number(page) < 1) {
+            res.status(200).json({
+              data: [],
+              totalDocs: 0,
+              limit,
+              page,
+              message: 'Find all success!',
+              statusCode: 200,
+            });
+          }
+          // const data = await Order.find()
+          //   .skip(Number(limit) * Number(page - 1))
+          //   .limit(Number(limit))
+          //   .lean();
+
+          const data = await Order.aggregate([
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'user',
+                foreignField: '_id',
+                as: 'userInfo',
+              },
+            },
+          ])
+            .skip(Number(limit) * Number(page - 1))
+            .limit(Number(limit));
+
+          const countProducts = await Order.countDocuments();
+          res.status(200).json({
+            data,
+            totalDocs: countProducts,
+            limit,
+            page,
+            message: 'Find all success!',
+            statusCode: 200,
+          });
         }
         break;
       }

@@ -11,6 +11,7 @@ interface Props<T> {
   onSelectOption: (action, item) => void;
   showAction?: boolean;
   isPrimary?: boolean;
+  onClickRow?: (_id: string) => void;
 }
 
 const itemsList = [
@@ -24,6 +25,7 @@ export function TableRow<T>({
   onSelectOption,
   showAction,
   isPrimary = true,
+  onClickRow,
 }: Props<T>) {
   return (
     <>
@@ -31,6 +33,7 @@ export function TableRow<T>({
         data.map((item, itemIndex) => (
           <tr
             key={`table-body-${itemIndex}`}
+            onClick={() => onClickRow && onClickRow(item?._id)}
             className={`${
               isPrimary && 'odd:bg-table-odd even:bg-white'
             } border-b border-table-border cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-100`}

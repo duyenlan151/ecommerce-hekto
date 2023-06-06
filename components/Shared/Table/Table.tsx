@@ -1,3 +1,4 @@
+import { ILoading } from '@components/Icons';
 import { ProductModel } from 'models';
 import { ReactNode } from 'react';
 import { TableHeader } from './TableHeader';
@@ -20,6 +21,8 @@ interface Props<T> {
   showAction?: boolean;
   color?: 'light' | 'dark';
   isPrimary?: boolean;
+  onClickRow?: (_id: string) => void;
+  isLoading?: boolean;
 }
 
 export function Table<T>({
@@ -31,6 +34,8 @@ export function Table<T>({
   showHeader = true,
   showAction = true,
   isPrimary,
+  onClickRow,
+  isLoading,
 }: Props<T>) {
   return (
     <div
@@ -46,13 +51,25 @@ export function Table<T>({
             {showHeader && <TableHeader columns={columns} showAction={showAction} />}
           </thead>
           <tbody>
-            <TableRow
-              isPrimary={isPrimary}
-              data={data}
-              columns={columns}
-              onSelectOption={onSelectOption}
-              showAction={showAction}
-            />
+            {isLoading ? (
+              <tr>
+                <td
+                  className="py-4 border-b border-table-border mx-auto w-full align-middle border-l-0 border-r-0 text-sm whitespace-nowrap text-center"
+                  colSpan={columns.length + 1}
+                >
+                  <ILoading />
+                </td>
+              </tr>
+            ) : (
+              <TableRow
+                isPrimary={isPrimary}
+                data={data}
+                columns={columns}
+                onSelectOption={onSelectOption}
+                showAction={showAction}
+                onClickRow={onClickRow}
+              />
+            )}
             {data && !data.length && (
               <tr>
                 <td
