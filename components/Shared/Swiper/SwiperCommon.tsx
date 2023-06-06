@@ -45,7 +45,10 @@ export default function SwipperCommon({
     <>
       <Swiper
         slidesPerView={1}
-        pagination={true}
+        pagination={{
+          clickable: true,
+        }}
+        // pagination={true}
         loop={true}
         initialSlide={0}
         spaceBetween={15}
