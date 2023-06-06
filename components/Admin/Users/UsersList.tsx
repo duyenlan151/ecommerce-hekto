@@ -55,7 +55,13 @@ export default function UsersList({ data }: UsersListProps) {
           Add New
         </button>
       </div> */}
-      <Table onSelectOption={onSelectOption} data={data} title="User" columns={columns} />
+      <Table
+        showAction={false}
+        onSelectOption={onSelectOption}
+        data={data}
+        title="User"
+        columns={columns}
+      />
 
       <ModalConfirm
         title={'Delete Product'}

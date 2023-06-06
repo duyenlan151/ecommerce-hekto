@@ -32,7 +32,7 @@ export function TableRow<T>({
           <tr
             key={`table-body-${itemIndex}`}
             className={`${
-              isPrimary && 'even:bg-table-odd odd:bg-white'
+              isPrimary && 'odd:bg-table-odd even:bg-white'
             } border-b border-table-border cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-100`}
           >
             <>

@@ -23,7 +23,17 @@ export const Pagination = (props: PaginationProps) => {
 
   // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRange?.length < 2) {
-    return null;
+    return (
+      <div className="py-4">
+        <div>
+          {currentPage * pageSize - pageSize + 1} -{' '}
+          {currentPage * pageSize + pageSize - pageSize > totalCount
+            ? totalCount
+            : currentPage * pageSize + pageSize - pageSize}{' '}
+          in {totalCount}
+        </div>
+      </div>
+    );
   }
 
   const onNext = () => {
