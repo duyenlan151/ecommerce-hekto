@@ -1,10 +1,10 @@
 import { paymentMethod, ShippingAddressModel } from './cart';
 import { DataResCommonModel } from './common';
 import { ProductModel } from './products';
+import { UserModel } from './users';
 
 export interface OrderModel {
   _id: string;
-  user: string;
   orderItems: ProductModel[];
 
   shippingAddress: ShippingAddressModel;
@@ -20,6 +20,8 @@ export interface OrderModel {
 
   createdAt: string;
   updatedAt: string;
+
+  user: UserModel[];
 }
 
 export type ActionOrder = 'getOrderById' | 'getHistory' | 'getAllOrders';

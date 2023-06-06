@@ -107,9 +107,9 @@ export default function Sidebar() {
                 onClick={() => item.action && handleLogout()}
                 className={
                   'items-center flex items-center py-4 ' +
-                  (router.pathname.indexOf(item.path) !== -1
-                    ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                    : 'text-blueGray-700 hover:text-blueGray-500')
+                  (router.pathname.includes(item.path)
+                    ? 'text-blue-700 hover:text-lightBlue-600'
+                    : 'text-gray-500 hover:text-blueGray-500')
                 }
               >
                 {item.icon}
