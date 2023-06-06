@@ -40,6 +40,17 @@ export const filterBrand = [
 
 export const FILTER_LIST = [
   {
+    id: 1,
+    getLabel: (filters) => filters.category && `${filters.category}`,
+    isShow: (filters) => filters.category,
+    onRemove: (filters) => {
+      const newFilters = { ...filters };
+      delete newFilters.category;
+
+      return newFilters;
+    },
+  },
+  {
     id: 2,
     getLabel: (filters) =>
       filters.price &&

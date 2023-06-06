@@ -1,6 +1,6 @@
 // import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
 import { mongooseConnect } from '@lib/mongoose';
-import { Product } from 'models/Admin';
+import { Category, Product } from 'models/Admin';
 import { ObjectId } from 'mongodb';
 
 export default async function handle(req, res) {
@@ -44,6 +44,7 @@ export default async function handle(req, res) {
           price = 'all',
           rating = 'all',
           sort = 'featured',
+          category = '',
         } = req.query;
 
         if (Number(page) < 1) {
@@ -56,6 +57,8 @@ export default async function handle(req, res) {
             statusCode: 200,
           });
         }
+
+        const categoryDOc = await Category.findOne({ slug: category });
 
         const ratingFilter =
           rating && rating !== 'all'
@@ -76,29 +79,63 @@ export default async function handle(req, res) {
               }
             : {};
 
+        const categoryFilter =
+          category && category !== 'all'
+            ? {
+                categoryId: categoryDOc?._id,
+              }
+            : {};
+
         const order =
           sort === 'lowest' ? { price: 1 } : sort === 'highest' ? { price: -1 } : { _id: -1 };
 
-        const filterByPrice =
+        // $match
+        const matchPrice =
           price && price !== 'all'
             ? {
-                $match: {
-                  price: {
-                    $gte: 10,
-                    $lte: 100,
-                  },
+                price: {
+                  $gte: Number(price.split('-')[0]),
+                  $lte: Number(price.split('-')[1]),
                 },
               }
-            : { $match: {} };
+            : {};
+
+        const matchRating =
+          rating && rating !== 'all'
+            ? {
+                rating: {
+                  $gte: Number(rating),
+                },
+              }
+            : {};
+
+        const matchCategory =
+          category && category !== 'all'
+            ? {
+                categoryId: categoryDOc?._id,
+              }
+            : {};
 
         const products = await Product.aggregate([
-          { ...filterByPrice },
+          {
+            $match: {
+              ...matchCategory,
+              ...matchRating,
+              ...matchPrice,
+            },
+          },
           {
             $lookup: {
               from: 'categories',
               localField: 'categoryId',
               foreignField: '_id',
               as: 'category',
+            },
+          },
+          {
+            //@ts-ignore
+            $sort: {
+              ...order,
             },
           },
         ])
@@ -118,7 +155,11 @@ export default async function handle(req, res) {
         //   .limit(Number(limit))
         //   .lean();
 
-        const countProducts = await Product.countDocuments({ ...priceFilter, ...ratingFilter });
+        const countProducts = await Product.countDocuments({
+          ...priceFilter,
+          ...ratingFilter,
+          ...categoryFilter,
+        });
         res.status(200).json({
           data: products,
           totalDocs: countProducts,

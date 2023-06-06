@@ -19,7 +19,7 @@ export function CheckBox({
   control,
   onChange: externalOnChange,
   onBlur: externalOnBlur,
-  value: externaValue,
+  externaValue,
   className,
   ...rest
 }: CheckBoxProps) {
@@ -30,6 +30,7 @@ export function CheckBox({
     name,
     control,
   });
+  console.log('🚀 ~ file: CheckBox.tsx:29 ~ value:', value);
 
   return (
     <>
@@ -39,8 +40,9 @@ export function CheckBox({
           name={name}
           ref={ref}
           defaultValue={value || ''}
-          onChange={onChange}
+          onChange={externalOnChange}
           type="checkbox"
+          {...rest}
           className={`border-green-1 mr-2 mt-[2px] !text-green-1 focus:border-green-1 focus:ring-0 focus:ring-offset-0 focus:ring-indigo-200 ${className}`}
         />
         <label htmlFor={name} className="cursor-pointer text-sm text-sub-title font-lato-light">

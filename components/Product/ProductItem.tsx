@@ -176,7 +176,7 @@ export function ProductItemSecondary({
         {/* Name Product */}
         <Link
           href={`/products/${_id}/${slug}`}
-          className="line-clamp-2 transition delay-100 ease-in-out duration-500 text-pink-1 font-lato font-bold"
+          className="line-clamp-2 transition delay-100 ease-in-out duration-500 text-gray-600 font-lato font-bold"
         >
           {name || title}
         </Link>

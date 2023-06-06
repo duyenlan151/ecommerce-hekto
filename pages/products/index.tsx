@@ -35,8 +35,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const price = context?.query?.price || 'all';
     const rating = context?.query?.rating || 'all';
     const sort = context?.query?.sort || 'featured';
+    const category = context?.query?.category || '';
 
-    const data = await productsService.getAllProducts({ page, price, rating, sort, limit: 3 });
+    const data = await productsService.getAllProducts({
+      page,
+      price,
+      rating,
+      sort,
+      category,
+    });
     return {
       props: { products: data },
     };

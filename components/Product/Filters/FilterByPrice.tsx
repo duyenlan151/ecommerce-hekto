@@ -5,6 +5,9 @@ export interface FilterByPriceProps {}
 
 export function FilterByPrice(props: FilterByPriceProps) {
   const router = useRouter();
+  const {
+    query: { price },
+  } = router;
 
   const handleFilterByPrice = (price) => {
     router.push({
@@ -23,7 +26,9 @@ export function FilterByPrice(props: FilterByPriceProps) {
           <a
             key={item.id}
             onClick={() => handleFilterByPrice(item.value)}
-            className="my-2 font-lato text-sm hover:text-pink-1 cursor-pointer transition ease-in-out duration-300"
+            className={`${
+              price === item.value && 'text-pink-1'
+            } my-2 font-lato text-sm hover:text-pink-1 cursor-pointer transition ease-in-out duration-300`}
           >
             {item.label}
           </a>
