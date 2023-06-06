@@ -1,8 +1,8 @@
 import axiosClient from 'services/api-services';
 
 export const ordersAdminService = {
-  getAllProducts(params?): Promise<any> {
-    return axiosClient.get('/admin/products', { params });
+  getAllOrders(params?): Promise<any> {
+    return axiosClient.get('/admin/orders', { params });
   },
 
   getProductById({ id }): Promise<any> {

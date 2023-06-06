@@ -1,10 +1,15 @@
-import { OrderModel, OrderResModel } from 'models';
+import { DataOrdersModel, OrderModel, OrderResModel } from 'models';
 import axiosClient from './api-services';
 
 export const orderServices = {
+  getAllOrders(params?): Promise<DataOrdersModel> {
+    return axiosClient.get('/orders', { params });
+  },
+
   getOrdersHistory(params): Promise<OrderModel[]> {
     return axiosClient.get(`/orders/history`, { params });
   },
+
   getOrderById(params?): Promise<OrderModel> {
     return axiosClient.get(`/orders`, { params });
   },
