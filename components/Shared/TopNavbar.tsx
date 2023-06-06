@@ -35,10 +35,12 @@ function TopNavbar({}: TopNavbarProps) {
   return (
     <div className="bg-white">
       <div className="container mx-auto">
-        <div className="md:flex justify-between py-3 text-sm text-black-500 lg:px-0 px-2 hidden">
+        <div className="md:flex justify-between items-center py-3 text-sm text-black-500 lg:px-0 px-2 hidden">
           <div className="flex-1 w-50">
-            <span className="mr-5">mhhasanul@gmail.com</span>
-            <span>(12345)67890</span>
+            <Link href="mailto:loanduyen151@gmail.com" className="mr-5">
+              loanduyen151@gmail.com
+            </Link>
+            <Link href="tel:12345)67890">(12345)67890</Link>
           </div>
           <div className="flex items-center w-50">
             <span className="ml-4">English</span>
