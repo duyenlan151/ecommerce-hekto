@@ -16,7 +16,7 @@ export default function ProductSlug({ product }: ProductSlugProps) {
       <section className="container mx-auto">
         <MetaData
           propTitle={product?.name || product?.title}
-          propSuffix={product?.category?.name}
+          propSuffix={product?.category[0]?.name}
           propDescription={product?.description || product?.title}
           propPreviewImage={String(product?.images[0]?.path)}
           propKeywords={product?.name || product?.title}
