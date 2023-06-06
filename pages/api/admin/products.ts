@@ -1,6 +1,7 @@
 // import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
 import { mongooseConnect } from '@lib/mongoose';
 import { Product } from 'models/Admin';
+import { ObjectId } from 'mongodb';
 
 export default async function handle(req, res) {
   const { method } = req;
@@ -9,7 +10,33 @@ export default async function handle(req, res) {
   switch (method) {
     case 'GET': {
       if (req.query?.id) {
-        res.status(200).json(await Product.findOne({ _id: req.query.id }));
+        const { id } = req.query;
+        //
+        const product = await Product.aggregate([
+          {
+            $match: {
+              _id: new ObjectId(id),
+            },
+          },
+          {
+            $lookup: {
+              from: 'categories',
+              localField: 'categoryId',
+              foreignField: '_id',
+              as: 'category',
+              // pipeline: [
+              //   {
+              //     $project: {
+              //       email: 1,
+              //       name: 1,
+              //     },
+              //   },
+              // ],
+            },
+          },
+        ]);
+        res.status(200).json(product[0]);
+        // res.status(200).json(await Product.findOne({ _id: req.query.id }));
       } else {
         const {
           page = 1,
@@ -52,18 +79,44 @@ export default async function handle(req, res) {
         const order =
           sort === 'lowest' ? { price: 1 } : sort === 'highest' ? { price: -1 } : { _id: -1 };
 
-        const products = await Product.find({
-          // ...queryFilter,
-          // ...categoryFilter,
-          // ...brandFilter,
-          ...priceFilter,
-          ...ratingFilter,
-        })
-          //@ts-ignore
-          .sort(order)
+        const filterByPrice =
+          price && price !== 'all'
+            ? {
+                $match: {
+                  price: {
+                    $gte: 10,
+                    $lte: 100,
+                  },
+                },
+              }
+            : { $match: {} };
+
+        const products = await Product.aggregate([
+          { ...filterByPrice },
+          {
+            $lookup: {
+              from: 'categories',
+              localField: 'categoryId',
+              foreignField: '_id',
+              as: 'category',
+            },
+          },
+        ])
           .skip(Number(limit) * Number(page - 1))
-          .limit(Number(limit))
-          .lean();
+          .limit(Number(limit));
+
+        // const products = await Product.find({
+        //   // ...queryFilter,
+        //   // ...categoryFilter,
+        //   // ...brandFilter,
+        //   ...priceFilter,
+        //   ...ratingFilter,
+        // })
+        //   //@ts-ignore
+        //   .sort(order)
+        //   .skip(Number(limit) * Number(page - 1))
+        //   .limit(Number(limit))
+        //   .lean();
 
         const countProducts = await Product.countDocuments({ ...priceFilter, ...ratingFilter });
         res.status(200).json({
@@ -89,6 +142,8 @@ export default async function handle(req, res) {
         short_description,
         discount_percentage,
         rating,
+        categoryId,
+        status,
       } = req.body;
       const productDoc = await Product.create({
         title,
@@ -100,6 +155,8 @@ export default async function handle(req, res) {
         short_description,
         discount_percentage,
         rating,
+        categoryId,
+        status,
         slug: title.split(' ').join('-'),
       });
       res.status(200).json(productDoc);
@@ -116,7 +173,9 @@ export default async function handle(req, res) {
         _id,
         short_description,
         discount_percentage,
+        categoryId,
         rating,
+        status,
       } = req.body;
       await Product.updateOne(
         { _id },
@@ -130,6 +189,8 @@ export default async function handle(req, res) {
           short_description,
           discount_percentage,
           rating,
+          categoryId,
+          status,
           slug: title.split(' ').join('-'),
         }
       );

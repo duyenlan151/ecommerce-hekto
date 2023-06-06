@@ -13,7 +13,7 @@ export const useProducts = () => {
   const [loading, setLoading] = useState(false);
 
   const handleProduct = async (product: Partial<ProductModel>, action: ActionCommon) => {
-    let status = false;
+    let statusCode = false;
     try {
       setLoading(true);
 
@@ -27,6 +27,8 @@ export const useProducts = () => {
         short_description,
         discount_percentage,
         rating,
+        categoryId,
+        status,
       } = product;
       switch (action) {
         case 'add':
@@ -39,6 +41,8 @@ export const useProducts = () => {
             short_description,
             discount_percentage,
             rating,
+            categoryId,
+            status,
           });
           break;
         case 'delete':
@@ -57,6 +61,8 @@ export const useProducts = () => {
             short_description,
             discount_percentage,
             rating,
+            status,
+            categoryId,
           });
           break;
         default:
@@ -67,7 +73,7 @@ export const useProducts = () => {
         toast(`${titleAction[action]} Successfully!`, { type: 'success' });
       }, 2000);
 
-      status = true;
+      statusCode = true;
     } catch (error) {
       toast('Something error! Please try again.', { type: 'error' });
     } finally {
@@ -76,7 +82,7 @@ export const useProducts = () => {
       }, 2000);
     }
 
-    return status;
+    return statusCode;
   };
 
   return { loading, handleProduct };

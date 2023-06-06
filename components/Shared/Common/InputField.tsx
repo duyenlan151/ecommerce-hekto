@@ -56,8 +56,8 @@ export function InputField({
         <input
           ref={ref}
           id={name}
-          defaultValue={value || ''}
-          name={name || ''}
+          defaultValue={value ?? ''}
+          name={name ?? ''}
           placeholder={placeholder}
           // onChange={onChange}
           type={typeInput}

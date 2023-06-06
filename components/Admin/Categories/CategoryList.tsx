@@ -19,9 +19,7 @@ export default function CategoryList({ data }: CategoryListProps) {
 
   const onSelectOption = async (action, item) => {
     if (action === 'edit') {
-      router.push({
-        pathname: `${router.asPath}/${action}/${item._id}`,
-      });
+      router.push(`${router.pathname}/${action}/${item._id}`);
       return;
     }
 
@@ -30,9 +28,7 @@ export default function CategoryList({ data }: CategoryListProps) {
   };
 
   const onAddNew = () => {
-    router.push({
-      pathname: `${router.asPath}/add`,
-    });
+    router.push(`${router.pathname}/add`);
   };
 
   const onDeleteCategory = async () => {

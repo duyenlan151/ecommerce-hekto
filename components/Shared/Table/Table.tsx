@@ -70,7 +70,7 @@ export function Table<T>({
                 onClickRow={onClickRow}
               />
             )}
-            {data && !data.length && (
+            {!isLoading && data && !data.length && (
               <tr>
                 <td
                   className="py-4 border-b border-table-border mx-auto w-full align-middle border-l-0 border-r-0 text-sm whitespace-nowrap text-center"

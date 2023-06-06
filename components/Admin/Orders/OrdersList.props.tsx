@@ -1,3 +1,5 @@
+import { Badge, EBadgeItemType } from '@components/Shared/Badge';
+import { TextItemType } from '@components/Shared/TextField/TextField.props';
 import { formatDateTime, getSymbolCurrency } from '@utils/common';
 
 export const columns = [
@@ -30,12 +32,21 @@ export const columns = [
     key: 'paymentMethod',
     title: 'Payment Method',
     isSort: false,
+    render: (_, { paymentMethod }, columnIndex) => (
+      <span className={`${TextItemType[paymentMethod]}`}>{paymentMethod}</span>
+    ),
   },
   {
     key: 'isPaid',
     title: 'Status Paid',
     isSort: false,
-    render: (_, { isPaid }) => <>{isPaid ? 'Done' : 'Unpaid'}</>,
+    // render: (_, { isPaid }) => <>{isPaid ? 'Done' : 'Unpaid'}</>,
+    render: (_, { isPaid }, columnIndex) => (
+      <Badge
+        type={isPaid ? EBadgeItemType.ACTIVE : EBadgeItemType.PRIMARY}
+        text={isPaid ? 'Done' : 'Unpaid'}
+      />
+    ),
   },
   {
     key: 'isDelivered',

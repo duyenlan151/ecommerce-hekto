@@ -1,3 +1,4 @@
+import { Badge } from '@components/Shared/Badge';
 import * as yup from 'yup';
 
 export const columns = [
@@ -32,6 +33,14 @@ export const columns = [
     key: 'category',
     isSort: false,
     title: 'Category Name',
+    render: (_, { category }, columnIndex) => {
+      return category[0]?.name;
+    },
+  },
+  {
+    key: 'status',
+    title: 'Status',
+    render: (_, { status }, columnIndex) => <Badge type={status} text={status} />,
   },
 ];
 
@@ -51,25 +60,29 @@ export const schemaProduct = yup
       .string()
       .required('Please enter description')
       .max(255, 'Value must be at most 1024 characters'),
-    images: yup
-      .array()
-      .min(3, "You can't leave this blank.")
-      .max(20, 'Maxium image you can upload is 20 images ')
-      .required("You can't leave this blank."),
-    category: yup.string().required('Please select category'),
+    images: yup.array(),
+    // .min(3, "You can't leave this blank.")
+    // .max(20, 'Maxium image you can upload is 20 images ')
+    // .required("You can't leave this blank."),
+    category: yup.object().required('Please select category'),
     short_description: yup.string().required('Please enter short description'),
-    // .max(255, 'Value must be at most 999999 characters'),
     discount_percentage: yup
-      .string()
+      .number()
       .required('Please enter discount percentage')
-      .max(255, 'Value must be at most 3 characters'),
+      .min(0, 'Value must be at least 0 percent')
+      .max(30, 'Value must be at most 30 percent')
+      .typeError('Please enter number'),
     rating: yup
-      .string()
+      .number()
       .required('Please enter rating')
-      .max(255, 'Value must be at most 1 characters'),
+      .min(0, 'Value must be at most 0 star')
+      .max(5, 'Value must be at most 5 star')
+      .typeError('Please enter number'),
     price: yup
-      .string()
+      .number()
       .required('Please enter price')
-      .max(255, 'Value must be at most 3 characters'),
+      .min(1, 'Value must be at least $1')
+      .typeError('Please enter number'),
+    status: yup.object().required('Please select status'),
   })
   .required();

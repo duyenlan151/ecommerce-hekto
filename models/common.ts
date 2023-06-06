@@ -10,7 +10,7 @@ export interface Image {
   description: string;
 }
 
-export type ActionCommon = 'add' | 'edit' | 'delete';
+export type ActionCommon = 'get' | 'add' | 'edit' | 'delete';
 
 export type ActionAuthPage = 'login' | 'signup';
 

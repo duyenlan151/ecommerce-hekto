@@ -13,7 +13,9 @@ export default async function handle(req, res) {
       if (req.query?.id) {
         res.status(200).json(await Category.findOne({ _id: query.id }));
       } else {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 10, status } = req.query;
+
+        const cagetoryFilter = status && status !== 'all' ? { status } : {};
 
         if (Number(page) < 1) {
           res.status(200).json({
@@ -25,11 +27,13 @@ export default async function handle(req, res) {
             statusCode: 200,
           });
         }
-        const data = await Category.find()
+        const data = await Category.find({
+          ...cagetoryFilter,
+        })
           .skip(Number(limit) * Number(page - 1))
           .limit(Number(limit))
           .lean();
-        const countProducts = await Category.countDocuments();
+        const countProducts = await Category.countDocuments({ ...cagetoryFilter });
         res.status(200).json({
           data,
           totalDocs: countProducts,

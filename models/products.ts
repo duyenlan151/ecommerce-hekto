@@ -8,7 +8,7 @@ export interface ProductModel {
   description: string;
   price: number;
   images: ImageModel;
-  category: CategoryModel;
+  category: CategoryModel[];
   short_description: string;
   discount_percentage: number;
   rating: number;

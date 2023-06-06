@@ -11,7 +11,7 @@ export interface DropdownSelectProps {
   placeholder?: string;
   value?: string;
   className?: string;
-  items: Array<{ id: string | number; title: string; value: string }>;
+  items: Array<{ _id: string | number; title: string; value: string }>;
   [name: string]: any;
 }
 
@@ -34,6 +34,7 @@ export function DropdownSelect({
     name,
     control,
   });
+  console.log('🚀 ~ file: DropdownSelect.tsx:32 ~ value:', value);
   const [show, setShow] = React.useState(false);
   const refContainer = React.useRef(null);
 
@@ -54,7 +55,7 @@ export function DropdownSelect({
           className="h-[50px] bg-white flex border border-gray-200 items-center cursor-pointer"
         >
           <span className="px-4 capitalize appearance-none outline-none text-gray-800 w-full">
-            {value ? value : <span className="text-gray-400">{placeholder}</span>}
+            {value ? value?.title : <span className="text-gray-400">{placeholder}</span>}
           </span>
           {value && (
             <button
@@ -99,16 +100,18 @@ export function DropdownSelect({
         <div
           className={`absolute shadow bg-white overflow-hidden ${
             show ? 'flex ' : 'hidden '
-          } flex-col w-full mt-1 border border-gray-200 z-50`}
+          } flex-col w-full mt-1 border border-gray-200 z-[999]`}
         >
           {items.map((item) => (
-            <div key={item.id} className="cursor-pointer group">
+            <div key={item._id} className="cursor-pointer group">
               <a
                 onClick={() => {
-                  onChange(item.value);
+                  onChange(item);
                   setShow(false);
                 }}
-                className="block p-2 py-3 border-transparent transition-all duration-200 ease-in-out border-l-4 hover:border-gray-300 hover:bg-gray-100"
+                className={`block p-2 py-3 border-transparent transition-all duration-200 ease-in-out border-l-4 hover:border-gray-300 hover:bg-gray-100 ${
+                  item?.value === value?.value && '!border-gray-300 bg-gray-100'
+                }`}
               >
                 {item.title}
               </a>

@@ -1,3 +1,4 @@
+import { Badge } from '@components/Shared/Badge';
 import * as yup from 'yup';
 
 export const columns = [
@@ -13,12 +14,17 @@ export const columns = [
     key: 'slug',
     title: 'Slug',
   },
+  {
+    key: 'status',
+    title: 'Status',
+    render: (_, { status }, columnIndex) => <Badge type={status} text={status} />,
+  },
 ];
 
 export const items = [
-  { id: 1, title: 'Active', value: 'active' },
-  { id: 2, title: 'Archived', value: 'archived' },
-  { id: 3, title: 'Lock', value: 'lock' },
+  { _id: 1, title: 'Active', value: 'active' },
+  { _id: 2, title: 'Archived', value: 'archived' },
+  { _id: 3, title: 'Lock', value: 'lock' },
 ];
 
 export const schema = yup
@@ -31,6 +37,6 @@ export const schema = yup
       .string()
       .required('Please enter slug')
       .max(255, 'Value must be at most 255 characters'),
-    status: yup.string().required('Please select status'),
+    status: yup.object().required('Please select status'),
   })
   .required();

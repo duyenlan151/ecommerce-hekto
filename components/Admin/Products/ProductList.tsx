@@ -13,14 +13,13 @@ export interface ProductListProps {
 export default function ProductList({ data }: ProductListProps) {
   const router = useRouter();
   const { loading, handleProduct } = useProducts();
+
   const [isShowModal, setShowModal] = useState(false);
   const refItem = useRef({ _id: null, name: '', title: '' });
 
   const onSelectOption = async (action, item) => {
     if (action === 'edit') {
-      router.push({
-        pathname: `${router.asPath}/${action}/${item._id}`,
-      });
+      router.push(`${router.pathname}/${action}/${item._id}`);
       return;
     }
     refItem.current = item;
@@ -28,9 +27,7 @@ export default function ProductList({ data }: ProductListProps) {
   };
 
   const onAddNew = () => {
-    router.push({
-      pathname: `${router.asPath}/add`,
-    });
+    router.push(`${router.pathname}/add`);
   };
 
   const onDeleteCategory = async () => {

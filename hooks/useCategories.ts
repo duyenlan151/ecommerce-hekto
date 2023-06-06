@@ -13,13 +13,22 @@ const titleAction = {
 export const useCategories = () => {
   const [loading, setLoading] = useState(false);
 
-  const handleCategory = async (category: CategoryModel, action: ActionCommon) => {
+  const handleCategory = async (
+    category: CategoryModel,
+    action: ActionCommon,
+    categoryStatus: string = 'active'
+  ) => {
     let statusCode = false;
     try {
       setLoading(true);
 
       const { _id, name, slug, status } = category;
       switch (action) {
+        case 'get':
+          return await categoryService.getAllCategory({
+            category: categoryStatus,
+          });
+          break;
         case 'add':
           await categoryService.addNewCategory({
             name,

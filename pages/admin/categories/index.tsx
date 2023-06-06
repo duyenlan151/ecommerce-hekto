@@ -5,7 +5,7 @@ import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { DataCategoryModel } from 'models';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { categoryService } from 'services/Admin';
 
 export interface CategoriesPageProps {
@@ -15,17 +15,29 @@ export interface CategoriesPageProps {
 const tabs = [
   { id: 1, title: 'All', value: 'all' },
   { id: 2, title: 'Active', value: 'active' },
-  { id: 3, title: 'Locked', value: 'locked' },
+  { id: 3, title: 'Archived', value: 'archived' },
+  { id: 4, title: 'Lock', value: 'lock' },
 ];
 export default function CategoriesPage({ data }: CategoriesPageProps) {
   const [activeTab, setActiveTab] = useState('all');
+  const router = useRouter();
   const {
     query: { page },
-  } = useRouter();
+  } = router;
+
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: {
+        status: activeTab,
+      },
+    });
+  }, [activeTab]);
 
   const handleSetActiveTab = (value) => {
     setActiveTab(value);
   };
+
   return (
     <>
       <h4 className="font-josefinsans-bold text-5xl text-black font-bold pb-5 mb-8 border-b">
@@ -49,7 +61,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const page = context?.query?.page || 1;
-    const data = await categoryService.getAllCategory({ page });
+    const status = context?.query?.status || 'all';
+    const data = await categoryService.getAllCategory({ page, status });
 
     return {
       props: {

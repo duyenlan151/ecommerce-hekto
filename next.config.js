@@ -13,7 +13,7 @@ const withPWA = require('next-pwa')({
 });
 
 module.exports = withPWA({
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: [
       'images.unsplash.com',
@@ -37,6 +37,15 @@ module.exports = withPWA({
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/dashboard',
+        permanent: true,
+      },
+    ];
   },
   webpack: (config) => {
     config.resolve.fallback = {

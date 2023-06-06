@@ -37,9 +37,14 @@ export default function CategoryForm({ category }: CategoryFormProps) {
   } = form;
 
   const onSubmit = async (category) => {
-    const { _id, name, slug, status } = category;
+    const {
+      _id,
+      name,
+      slug,
+      status: { value },
+    } = category;
     const statusCode = await handleCategory(
-      { _id, name, slug, status },
+      { _id, name, slug, status: value },
       String(router?.query?.slug) as ActionCommon
     );
 
@@ -77,15 +82,18 @@ export default function CategoryForm({ category }: CategoryFormProps) {
             type="submit"
             disabled={loading}
             className={`bg-green-500 ${
-              loading && 'bg-gray-100'
+              loading && 'opacity-50'
             } shadow text-white py-2 px-10 mt-4 capitalize font-bold focus:outline-none`}
           >
             {loading ? <ILoading /> : slug === 'add' ? 'Add' : 'save'}
           </button>
           <button
             onClick={() => router.back()}
+            disabled={loading}
             type="button"
-            className="bg-transparent shadow text-black py-2 px-8 mt-4 capitalize border ml-4 focus:outline-none"
+            className={`bg-transparent shadow text-black py-2 px-8 mt-4 capitalize border ml-4 focus:outline-none ${
+              loading && 'opacity-50'
+            }`}
           >
             cancel
           </button>

@@ -4,9 +4,11 @@ import { DropdownSelect } from '@components/Shared/Dropdowns';
 import ReactQuillCommon from '@components/Shared/ReactQuill';
 import UploadImages from '@components/Shared/UploadImages';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useProducts } from '@hooks/index';
+import { useCategories, useProducts } from '@hooks/index';
+import { formatData } from '@utils/common';
 import { ActionCommon, ProductModel } from 'models';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { schemaProduct } from './ProductForm.props';
@@ -16,24 +18,39 @@ export interface ProductFormProps {
 }
 
 const items = [
-  { id: 1, title: 'Active', value: 'active' },
-  { id: 2, title: 'Archived', value: 'archived' },
-  { id: 3, title: 'Lock', value: 'lock' },
+  { _id: 1, title: 'Active', value: 'active' },
+  { _id: 2, title: 'Archived', value: 'archived' },
+  { _id: 3, title: 'Lock', value: 'lock' },
 ];
 
 export default function ProductForm({ product }: ProductFormProps) {
   const router = useRouter();
   const { loading, handleProduct } = useProducts();
+  const { loading: loadingCategory, handleCategory } = useCategories();
+
+  const [categories, setCategories] = useState();
   const {
     query: { slug },
   } = router;
+
+  useEffect(() => {
+    (async () => {
+      const result = await handleCategory({}, 'get', 'active');
+      setCategories(formatData(result?.data, 'name', '_id'));
+    })();
+  }, []);
 
   const form = useForm({
     resolver: yupResolver(schemaProduct),
     mode: 'onChange',
     reValidateMode: 'onChange',
+
     defaultValues: {
       ...product,
+      category: {
+        title: product && product?.category && product?.category[0]?.name,
+        value: (product && product?.category && product?.category[0]?._id) || '',
+      },
     },
   });
 
@@ -54,6 +71,7 @@ export default function ProductForm({ product }: ProductFormProps) {
       short_description,
       discount_percentage,
       rating,
+      status: { value },
     } = product;
     const statusCode = await handleProduct(
       {
@@ -62,10 +80,11 @@ export default function ProductForm({ product }: ProductFormProps) {
         description,
         price: Number(price),
         images,
-        category,
+        categoryId: category?._id,
         short_description,
         discount_percentage: Number(discount_percentage),
         rating: Number(rating),
+        status: value,
       },
       String(router?.query?.slug) as ActionCommon
     );
@@ -114,6 +133,15 @@ export default function ProductForm({ product }: ProductFormProps) {
               name="category"
               control={control}
               placeholder={'Please select'}
+              items={categories || []}
+            />
+          </div>
+          <div className="col-span-4">
+            <DropdownSelect
+              label="Status"
+              name="status"
+              control={control}
+              placeholder={'Please select'}
               items={items}
             />
           </div>
@@ -143,7 +171,7 @@ export default function ProductForm({ product }: ProductFormProps) {
             type="submit"
             disabled={loading}
             className={`bg-green-500 ${
-              loading && 'bg-gray-100'
+              loading && 'opacity-50'
             } shadow text-white py-2 px-10 mt-4 capitalize font-bold focus:outline-none`}
           >
             {loading ? <ILoading /> : slug === 'add' ? 'Add' : 'save'}
@@ -151,7 +179,10 @@ export default function ProductForm({ product }: ProductFormProps) {
           <button
             onClick={() => router.back()}
             type="button"
-            className="bg-transparent shadow text-black py-2 px-8 mt-4 capitalize border ml-4 focus:outline-none"
+            disabled={loading}
+            className={`bg-transparent shadow text-black py-2 px-8 mt-4 capitalize border ml-4 focus:outline-none ${
+              loading && 'opacity-50'
+            } `}
           >
             cancel
           </button>

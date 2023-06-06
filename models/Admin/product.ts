@@ -6,11 +6,12 @@ const ProductSchema = new Schema(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     images: [],
-    // category: { type: mongoose.Types.ObjectId, ref: 'Category' },
+    categoryId: { type: mongoose.Types.ObjectId, ref: 'Category' },
     short_description: { type: String, required: true },
     slug: String,
     discount_percentage: { type: Number, required: true },
     rating: { type: Number, required: true },
+    status: { type: String, required: true },
   },
   {
     timestamps: true,

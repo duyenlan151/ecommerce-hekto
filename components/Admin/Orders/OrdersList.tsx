@@ -15,9 +15,7 @@ export default function OrdersList({ data, loadingPage }: OrdersListProps) {
   const refItem = useRef({ _id: null, name: '', title: '' });
 
   const onClickRow = (_id: string) => {
-    router.push({
-      pathname: `${router.asPath}/${_id}`,
-    });
+    router.push(`${router.pathname}/${_id}`);
   };
 
   return (

@@ -19,7 +19,7 @@ const handler = async (req, res) => {
 
     switch (method) {
       case 'GET': {
-        const { id } = req.query;
+        const { id, status } = req.query;
         if (id) {
           await mongooseConnect();
 
@@ -54,7 +54,31 @@ const handler = async (req, res) => {
           }
           res.status(200).json(order[0]);
         } else if (user?.isAdmin) {
-          const { page = 1, limit = 10 } = req.query;
+          const { page = 1, limit = 10, status = 'all' } = req.query;
+
+          const queryOrder =
+            status && status === 'unpaid'
+              ? {
+                  isPaid: false,
+                }
+              : status === 'inprogress'
+              ? {
+                  isDelivered: false,
+                  isPaid: true,
+                }
+              : status === 'delivered'
+              ? {
+                  isDelivered: true,
+                }
+              : status === 'cancelled'
+              ? {
+                  isCancelled: true,
+                }
+              : status === 'paid'
+              ? {
+                  isPaid: true,
+                }
+              : {};
 
           if (Number(page) < 1) {
             res.status(200).json({
@@ -66,25 +90,27 @@ const handler = async (req, res) => {
               statusCode: 200,
             });
           }
-          // const data = await Order.find()
-          //   .skip(Number(limit) * Number(page - 1))
-          //   .limit(Number(limit))
-          //   .lean();
-
-          const data = await Order.aggregate([
-            {
-              $lookup: {
-                from: 'users',
-                localField: 'user',
-                foreignField: '_id',
-                as: 'userInfo',
-              },
-            },
-          ])
+          const data = await Order.find({
+            ...queryOrder,
+          })
             .skip(Number(limit) * Number(page - 1))
-            .limit(Number(limit));
+            .limit(Number(limit))
+            .lean();
 
-          const countProducts = await Order.countDocuments();
+          // const data = await Order.aggregate([
+          //   {
+          //     $lookup: {
+          //       from: 'users',
+          //       localField: 'user',
+          //       foreignField: '_id',
+          //       as: 'userInfo',
+          //     },
+          //   },
+          // ])
+          //   .skip(Number(limit) * Number(page - 1))
+          //   .limit(Number(limit));
+
+          const countProducts = await Order.countDocuments({ ...queryOrder });
           res.status(200).json({
             data,
             totalDocs: countProducts,
