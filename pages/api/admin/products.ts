@@ -12,9 +12,6 @@ export default async function handle(req, res) {
   // await isAdminRequest(req,res);
 
   const user = await getToken({ req, secret });
-  console.log('🚀 ~ file: products.ts:15 ~ handle ~ req:', req.cookies);
-  console.log('🚀 ~ file: products.ts:15 ~ handle ~ user:', user);
-
   // if (!user) {
   //   return res.status(401).json({ message: 'signin required' });
   // }
