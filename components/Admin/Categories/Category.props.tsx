@@ -5,6 +5,7 @@ export const columns = [
   {
     key: '_id',
     title: 'Id',
+    render: (_, {}, columnIndex) => <>{columnIndex + 1}</>,
   },
   {
     key: 'name',

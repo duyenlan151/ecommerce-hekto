@@ -2,11 +2,22 @@
 import { mongooseConnect } from '@lib/mongoose';
 import { Category, Product } from 'models/Admin';
 import { ObjectId } from 'mongodb';
+import { getToken } from 'next-auth/jwt';
+
+const secret = process.env.NEXT_PUBLIC_SECRET;
 
 export default async function handle(req, res) {
   const { method } = req;
   await mongooseConnect();
   // await isAdminRequest(req,res);
+
+  const user = await getToken({ req, secret });
+  console.log('🚀 ~ file: products.ts:15 ~ handle ~ req:', req.cookies);
+  console.log('🚀 ~ file: products.ts:15 ~ handle ~ user:', user);
+
+  // if (!user) {
+  //   return res.status(401).json({ message: 'signin required' });
+  // }
   switch (method) {
     case 'GET': {
       if (req.query?.id) {
@@ -24,14 +35,6 @@ export default async function handle(req, res) {
               localField: 'categoryId',
               foreignField: '_id',
               as: 'category',
-              // pipeline: [
-              //   {
-              //     $project: {
-              //       email: 1,
-              //       name: 1,
-              //     },
-              //   },
-              // ],
             },
           },
         ]);
@@ -45,6 +48,7 @@ export default async function handle(req, res) {
           rating = 'all',
           sort = 'featured',
           category = '',
+          status,
         } = req.query;
 
         if (Number(page) < 1) {
@@ -57,6 +61,12 @@ export default async function handle(req, res) {
             statusCode: 200,
           });
         }
+
+        const statusFilter = user?.isAdmin
+          ? status !== 'all'
+            ? { status }
+            : {}
+          : { status: 'active' };
 
         const categoryDOc = await Category.findOne({ slug: category });
 
@@ -122,6 +132,7 @@ export default async function handle(req, res) {
               ...matchCategory,
               ...matchRating,
               ...matchPrice,
+              ...statusFilter,
             },
           },
           {
@@ -159,6 +170,7 @@ export default async function handle(req, res) {
           ...priceFilter,
           ...ratingFilter,
           ...categoryFilter,
+          ...statusFilter,
         });
         res.status(200).json({
           data: products,

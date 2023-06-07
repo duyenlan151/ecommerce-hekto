@@ -5,6 +5,7 @@ import { getToken } from 'next-auth/jwt';
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
 const handler = async (req, res) => {
+  console.log('🚀 ~ file: history.ts:8 ~ handler ~ req:', req.cookies);
   const user = await getToken({ req, secret });
   if (!user) {
     return res.status(401).send({ message: 'Signin required' });

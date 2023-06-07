@@ -1,10 +1,16 @@
 import axios, { AxiosError } from 'axios';
+import { getSession } from 'next-auth/react';
 
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+axiosClient.interceptors.request.use(async (request) => {
+  return request;
 });
 
 // Add a response interceptor

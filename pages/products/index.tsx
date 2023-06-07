@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 import { productsService } from 'services';
+import axiosClient from 'services/api-services';
 
 type Props = {
   products: [];
@@ -31,6 +32,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
 
+    const { req } = context;
+    const cookies = req.headers.cookie;
+
+    axiosClient.defaults.headers.common['Cookie'] = cookies;
+
     const page = context?.query?.page || 1;
     const price = context?.query?.price || 'all';
     const rating = context?.query?.rating || 'all';
@@ -44,6 +50,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       sort,
       category,
     });
+
+    // const res = await axiosClient.get(`/admin/products`, {
+    //   withCredentials: true,
+    //   headers: {
+    //     Cookie: `${cookies};`,
+    //   },
+    // });
     return {
       props: { products: data },
     };

@@ -6,13 +6,12 @@ export const columns = [
     key: 'id',
     title: 'ID',
     isSort: false,
-    render: (_, item, columnIndex) => {
-      columnIndex + 1;
-    },
+    render: (_, {}, columnIndex) => <>{columnIndex + 1}</>,
   },
   {
     key: 'title',
     title: 'Title',
+    isSort: false,
   },
   {
     key: 'description',
@@ -33,9 +32,7 @@ export const columns = [
     key: 'category',
     isSort: false,
     title: 'Category Name',
-    render: (_, { category }, columnIndex) => {
-      return category[0]?.name;
-    },
+    render: (_, { category }, columnIndex) => <> {category[0]?.name}</>,
   },
   {
     key: 'status',
