@@ -26,7 +26,7 @@ export function Footer({}: FooterProps) {
   };
   return (
     <footer>
-      <div className="bg-gray-100 py-24 lg:px-0 px-2">
+      <div className="bg-white py-24 lg:px-0">
         <div className="container mx-auto">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
@@ -35,7 +35,7 @@ export function Footer({}: FooterProps) {
               {/* Input Sing up */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="max-w-[90%] bg-white flex items-center justify-between p-[3px] h-[44px] rounded my-6"
+                className="max-w-[90%] bg-white border flex items-center justify-between h-[44px] rounded my-6"
               >
                 <InputField
                   control={control}
@@ -43,7 +43,7 @@ export function Footer({}: FooterProps) {
                   required
                   placeholder="Enter Email Address"
                   className={
-                    'h-full min-w-[60%] max-w-[95%] border-0 bg-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
+                    'h-full min-w-[60%] max-w-[95%] border-0 bg-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-1 text-black sm:text-sm sm:leading-6'
                   }
                 />
                 <button
@@ -54,8 +54,8 @@ export function Footer({}: FooterProps) {
                 </button>
               </form>
               <div>
-                <p className="font-lato text-[15px] text-gray-400">Contact Info</p>
-                <p className="font-lato text-[15px] text-gray-400">
+                <p className="font-lato text-[15px]">Contact Info</p>
+                <p className="font-lato text-[15px]">
                   17 Princess Road, London, Greater London NW1 8JR, UK
                 </p>
               </div>
@@ -64,7 +64,7 @@ export function Footer({}: FooterProps) {
               <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full">
                 <h4 className="text-xl lg:mb-10 mb-4">{key}</h4>
                 {Array.from(dataFooter[key]).map((item, i) => (
-                  <Link key={`item-${i}`} className="block font-lato text-sub-title mb-5" href="/">
+                  <Link key={`item-${i}`} className="block font-lato mb-5" href="/">
                     {item}
                   </Link>
                 ))}
