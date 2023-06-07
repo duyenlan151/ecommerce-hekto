@@ -9,7 +9,7 @@ function ProductDescription({ product }) {
   const { short_description } = product;
   return (
     <div
-      className="ql-editor"
+      className="ql-editor !overflow-hidden"
       dangerouslySetInnerHTML={{
         __html: short_description,
       }}
