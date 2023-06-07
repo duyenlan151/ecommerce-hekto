@@ -26,7 +26,7 @@ export function Footer({}: FooterProps) {
   };
   return (
     <footer>
-      <div className="bg-white py-24 lg:px-0">
+      <div className="bg-white py-24 lg:px-0 px-4">
         <div className="container mx-auto">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">

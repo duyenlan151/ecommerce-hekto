@@ -1,18 +1,18 @@
 import ImagesGallary from '@components/Shared/ImagesGallary/ImagesGallary';
 import { ProductModel } from 'models';
-import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ProductDescription from './ProductDescription';
 import ProductInfo from './ProductInfo';
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 export interface ProductDetailProps {
   product: ProductModel;
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  const [show, setShow] = useState(false);
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 mb-10">
       <div className="text-sub-title font-lato-light leading-7 pt-8 pb-4">
         Cart/ Information/ Shipping/ Payment
       </div>
@@ -26,8 +26,23 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
       </div>
-      <div className="mt-4 mb-6 bg-white">
+      <div className={`mt-4 bg-white ${!show && 'h-[500px]'} relative overflow-hidden`}>
         <ProductDescription product={product} />
+
+        <div
+          style={{
+            backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255))',
+          }}
+          className="absolute bottom-0 left-0 h-[200px] w-full"
+        ></div>
+      </div>
+      <div className="bg-white text-center py-5" data-view-id="pdp_view_description_button">
+        <a
+          className="cursor-pointer border py-3 w-[150px] px-10"
+          onClick={() => setShow((prev) => !prev)}
+        >
+          {!show ? 'View More' : 'View Less'}
+        </a>
       </div>
     </div>
   );
