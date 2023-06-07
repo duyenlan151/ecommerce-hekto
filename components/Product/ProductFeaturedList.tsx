@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
 import { Pagination } from 'swiper';
 import { ProductModel } from './ProductItem';
+import Link from 'next/link';
 
 export interface ProductFeaturedListProps {
   data?: ProductItemModel[];
@@ -32,7 +33,7 @@ const defaultBreakpoints = {
 
 export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
   return (
-    <AnimatedDiv variants={FadeContainer} className="mt-20 mb-40">
+    <AnimatedDiv variants={FadeContainer} className="mt-20 mb-40 text-center">
       <SwipperCommon
         style={{
           paddingBottom: 50,
@@ -47,6 +48,12 @@ export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
           </SwiperSlide>
         ))}
       </SwipperCommon>
+      <Link
+        href="/products"
+        className="inline-block mt-5 bg-pink-600 text-white py-2.5 px-10 mx-auto"
+      >
+        View all
+      </Link>
     </AnimatedDiv>
   );
 }
