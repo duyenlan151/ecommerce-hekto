@@ -38,9 +38,9 @@ export default function Blog({ blog: { title, desc, thumbnail, author, date } }:
             <span className="ml-2 text-blue-1 text-sm">{date}</span>
           </div>
         </div>
-        <h4 className="tracking-normal text-lg text-blue-1 py-3 font-extrabold group-hover:text-pink-1 transition delay-100 ease-in-out duration-200">
+        <p className="tracking-normal text-lg text-blue-1 py-3 font-extrabold group-hover:text-pink-1 transition delay-100 ease-in-out duration-200">
           {title}
-        </h4>
+        </p>
         {/* Description */}
         <p className="text-grey-3 font-lato-light font-bold tracking-normal">{desc}</p>
         {/* Button read more */}
