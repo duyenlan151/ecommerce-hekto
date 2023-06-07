@@ -98,7 +98,9 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
             {images.map((image, i) => (
               <div
                 key={`image-${i}-${image}`}
-                className={`${i === activeImage ? 'opacity-100' : 'opacity-50 '} relative`}
+                className={`min-w-[75px] ${
+                  i === activeImage ? 'opacity-100' : 'opacity-50 '
+                } relative`}
                 onClick={() => handleSlideChange({ activeIndex: i })}
               >
                 <Image
