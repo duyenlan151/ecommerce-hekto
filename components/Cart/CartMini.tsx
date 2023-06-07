@@ -28,7 +28,7 @@ export default function CartMini(props: CartMiniProps) {
       <div
         className={`trasform translate-x-full ${
           showMiniCart && '!-translate-x-full'
-        } w-[350px] bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
+        } w-[280px] bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
       >
         <div
           className="cursor-pointer p-4 flex justify-end border-b border-primary"
