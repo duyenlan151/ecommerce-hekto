@@ -16,20 +16,20 @@ export function SectionUnique(props: SectionUniqueProps) {
         <div className="">
           <div>
             <div className="mb-3 flex items-baseline">
-              <span className="inline-flex bg-pink-6 rounded-full h-[11px] w-[11px] mr-3"></span>
+              <span className="inline-flex bg-pink-4 rounded-full h-[11px] min-w-[11px] mr-3"></span>
               <AnimatedText variants={popUpFromBottomForText} className="font-lato text-violet-4">
                 All frames constructed with hardwood solids and laminates
               </AnimatedText>
             </div>
             <div className="mb-3 flex items-baseline">
-              <span className="inline-flex bg-blue-4 rounded-full h-[11px] w-[11px] mr-3"></span>
+              <span className="inline-flex bg-blue-4 rounded-full h-[11px] min-w-[11px] mr-3"></span>
               <AnimatedText variants={popUpFromBottomForText} className="font-lato text-violet-4">
                 Reinforced with double wood dowels, glue, screw - nails corner blocks and machine
                 nails
               </AnimatedText>
             </div>
             <div className="mb-3 flex items-baseline">
-              <span className="inline-flex bg-green-4 rounded-full h-[11px] w-[11px] mr-3"></span>
+              <span className="inline-flex bg-green-4 rounded-full h-[11px] min-w-[11px] mr-3"></span>
               <AnimatedText variants={popUpFromBottomForText} className="font-lato text-violet-4">
                 Arms, backs and seats are structurally reinforced
               </AnimatedText>
