@@ -41,7 +41,7 @@ module.exports = withPWA({
   async redirects() {
     return [
       {
-        source: `${process.env.NEXT_PUBLIC_HOST_URL}/admin`,
+        source: `/admin`,
         destination: '/admin/dashboard',
         permanent: true,
       },
