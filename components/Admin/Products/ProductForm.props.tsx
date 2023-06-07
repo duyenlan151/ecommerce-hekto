@@ -64,7 +64,12 @@ export const schemaProduct = yup
     // .min(3, "You can't leave this blank.")
     // .max(20, 'Maxium image you can upload is 20 images ')
     // .required("You can't leave this blank."),
-    category: yup.object().required('Please select category'),
+    category: yup
+      .object({
+        value: yup.string().required('Please select category'),
+      })
+      .typeError('Please select status')
+      .required('Please select category'),
     short_description: yup.string().required('Please enter short description'),
     discount_percentage: yup
       .number()
@@ -83,6 +88,11 @@ export const schemaProduct = yup
       .required('Please enter price')
       .min(1, 'Value must be at least $1')
       .typeError('Please enter number'),
-    status: yup.object().required('Please select status'),
+    status: yup
+      .object({
+        value: yup.string().required('Please select status'),
+      })
+      .typeError('Please select status')
+      .required('Please select status'),
   })
   .required();

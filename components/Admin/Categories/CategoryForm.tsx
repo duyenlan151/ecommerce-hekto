@@ -27,6 +27,10 @@ export default function CategoryForm({ category }: CategoryFormProps) {
     reValidateMode: 'onChange',
     defaultValues: {
       ...category,
+      status: {
+        title: category.status,
+        value: category.status,
+      },
     },
   });
 

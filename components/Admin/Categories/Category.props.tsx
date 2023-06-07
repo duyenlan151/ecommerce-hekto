@@ -37,6 +37,6 @@ export const schema = yup
       .string()
       .required('Please enter slug')
       .max(255, 'Value must be at most 255 characters'),
-    status: yup.object().required('Please select status'),
+    status: yup.object().typeError('Please select status').required('Please select status'),
   })
   .required();

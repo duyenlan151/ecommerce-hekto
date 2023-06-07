@@ -34,7 +34,6 @@ export function DropdownSelect({
     name,
     control,
   });
-  console.log('🚀 ~ file: DropdownSelect.tsx:32 ~ value:', value);
   const [show, setShow] = React.useState(false);
   const refContainer = React.useRef(null);
 
@@ -55,7 +54,7 @@ export function DropdownSelect({
           className="h-[50px] bg-white flex border border-gray-200 items-center cursor-pointer"
         >
           <span className="px-4 capitalize appearance-none outline-none text-gray-800 w-full">
-            {value ? value?.title : <span className="text-gray-400">{placeholder}</span>}
+            {value?.title ? value?.title : <span className="text-gray-400">{placeholder}</span>}
           </span>
           {value && (
             <button
@@ -119,6 +118,13 @@ export function DropdownSelect({
           ))}
         </div>
       </div>
+      {/* @ts-ignore */}
+      {error?.value?.message && (
+        <span className="text-red-500 text-xs font-bold tracking-wide">
+          {/* @ts-ignore */}
+          {error?.value?.message}
+        </span>
+      )}
       {error?.message && (
         <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
       )}

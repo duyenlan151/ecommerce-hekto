@@ -51,6 +51,10 @@ export default function ProductForm({ product }: ProductFormProps) {
         title: product && product?.category && product?.category[0]?.name,
         value: (product && product?.category && product?.category[0]?._id) || '',
       },
+      status: {
+        title: product.status,
+        value: product.status,
+      },
     },
   });
 
@@ -59,6 +63,7 @@ export default function ProductForm({ product }: ProductFormProps) {
     formState: { errors },
     control,
   } = form;
+  // console.log('🚀 ~ file: ProductForm.tsx:60 ~ ProductForm ~ errors:', errors);
 
   const onSubmit = async (product) => {
     const {
