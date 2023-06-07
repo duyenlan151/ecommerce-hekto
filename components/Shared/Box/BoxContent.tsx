@@ -29,7 +29,7 @@ export function BoxContent({
         <div>
           {imgUrl && (
             <div className="">
-              <img src={imgUrl} alt={title} />
+              <img src={imgUrl} alt={title} width={'100%'} height={'100%'} />
             </div>
           )}
         </div>
