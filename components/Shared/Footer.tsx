@@ -81,13 +81,13 @@ export function Footer({}: FooterProps) {
         <div className="container mx-auto flex justify-between">
           <div className="text-grey-4 font-lato">©Webecy - All Rights Reserved</div>
           <div className="flex">
-            <Link href="/">
+            <Link href="https://www.facebook.com/">
               <IFacebook />
             </Link>
-            <Link href="/" className="pl-2.5">
+            <Link href="https://www.instagram.com/" className="pl-2.5">
               <IInstagram />
             </Link>
-            <Link href="/" className="pl-2.5">
+            <Link href="https://twitter.com/" className="pl-2.5">
               <ITwitter />
             </Link>
           </div>
