@@ -28,16 +28,16 @@ export function Tabs({ children, activeTab, setActiveTab }) {
         {children.map((item, i) => {
           return (
             <div key={`tab-${i}`}>
-              {tabValidator(item) && (
-                <Tab
-                  key={`tab-${i}`}
-                  currentTab={item.key}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                >
-                  {item.props.children}
-                </Tab>
-              )}
+              {/* {tabValidator(item) && ( */}
+              <Tab
+                key={`tab-${i}`}
+                currentTab={item.key}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              >
+                {item.props.children}
+              </Tab>
+              {/* )} */}
             </div>
           );
         })}
