@@ -26,7 +26,7 @@ export const useCategories = () => {
       switch (action) {
         case 'get':
           return await categoryService.getAllCategory({
-            category: categoryStatus,
+            status: categoryStatus,
           });
           break;
         case 'add':

@@ -30,7 +30,6 @@ export function CheckBox({
     name,
     control,
   });
-  console.log('🚀 ~ file: CheckBox.tsx:29 ~ value:', value);
 
   return (
     <>
@@ -45,7 +44,7 @@ export function CheckBox({
           {...rest}
           className={`border-green-1 mr-2 mt-[2px] !text-green-1 focus:border-green-1 focus:ring-0 focus:ring-offset-0 focus:ring-indigo-200 ${className}`}
         />
-        <label htmlFor={name} className="cursor-pointer text-sm text-sub-title font-lato-light">
+        <label htmlFor={name} className="cursor-pointer text-sm font-lato">
           {label}
         </label>
       </div>
