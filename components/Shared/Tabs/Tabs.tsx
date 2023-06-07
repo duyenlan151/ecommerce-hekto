@@ -45,11 +45,7 @@ export function Tabs({ children, activeTab, setActiveTab }) {
       {children && (
         <div className="">
           {children.map((item, i) => {
-            return (
-              <div key={i} className={`${i === activeTab ? 'visible' : 'hidden'}`}>
-                {item.props.component}
-              </div>
-            );
+            return <div key={`tab-${i}`}>{item.props.component}</div>;
           })}
         </div>
       )}
