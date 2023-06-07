@@ -29,7 +29,7 @@ export function Footer({}: FooterProps) {
       <div className="bg-grey-1 py-24 lg:px-0 px-2">
         <div className="container mx-auto">
           <div className="flex lg:flex-row flex-col lg:gap-4">
-            <div className="lg:w-2/5 !w-full lg:pr-24 mb-4">
+            <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
               <h4 className="text-4xl font-bold">Hekto</h4>
 
               {/* Input Sing up */}
@@ -43,7 +43,7 @@ export function Footer({}: FooterProps) {
                   required
                   placeholder="Enter Email Address"
                   className={
-                    'h-full min-w-[60%] max-w-[95%] !border-white focus:border-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
+                    'h-full min-w-[60%] max-w-[95%] border-0 bg-transparent focus:ring-0 !outline-none flex-auto bg-white/5 px-3.5 py-2 text-black sm:text-sm sm:leading-6'
                   }
                 />
                 <button
@@ -81,13 +81,17 @@ export function Footer({}: FooterProps) {
         <div className="container mx-auto flex justify-between">
           <div className="text-grey-4 font-lato">©Webecy - All Rights Reserved</div>
           <div className="flex">
-            <Link href="https://www.facebook.com/">
+            <Link href="https://www.facebook.com/" aria-label="https://www.facebook.com/">
               <IFacebook />
             </Link>
-            <Link href="https://www.instagram.com/" className="pl-2.5">
+            <Link
+              href="https://www.instagram.com/"
+              aria-label="https://www.instagram.com/"
+              className="pl-2.5"
+            >
               <IInstagram />
             </Link>
-            <Link href="https://twitter.com/" className="pl-2.5">
+            <Link href="https://twitter.com/" aria-label="https://twitter.com/" className="pl-2.5">
               <ITwitter />
             </Link>
           </div>

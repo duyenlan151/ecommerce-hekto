@@ -1,7 +1,7 @@
 import { IDate, IPencil } from '@components/Icons';
 import { BlogModel } from 'models';
 import React from 'react';
-
+import Image from 'next/image';
 export interface IBlogProps {
   blog: BlogModel;
 }
@@ -9,13 +9,21 @@ export interface IBlogProps {
 export default function Blog({ blog: { title, desc, thumbnail, author, date } }: IBlogProps) {
   return (
     <div
-      className={`shadow-xl hover:shadow-none group transition delay-100 ease-in-out duration-500`}
+      className={`shadow-xl overflow-hidden lg:max-w-full mb-6 max-w-[90%] mx-auto hover:shadow-none group transition delay-100 ease-in-out duration-500`}
     >
       {/* Image blog */}
       <div
-        className={`flex justify-center rounded-md overflow-hidden relative justify-center items-center`}
+        className={`relative lg:w-[400px] max-w-full w-full h-[250px] flex justify-center rounded-md overflow-hidden relative justify-center items-center`}
       >
-        <img className="mx-auto scale-1 w-full" src={thumbnail[0]} alt="profile picture" />
+        <Image
+          src={thumbnail[0]}
+          sizes="(max-width: 500px) 100vw, (max-width: 500px)"
+          fill
+          loading="lazy"
+          alt={thumbnail[0]}
+          className="object-cover object-center absolute "
+        />
+        {/* <img className="mx-auto scale-1 w-full" src={thumbnail[0]} alt="profile picture" /> */}
       </div>
       {/* Body content */}
       <div className="p-3.5">

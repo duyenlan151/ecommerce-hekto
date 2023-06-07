@@ -1,6 +1,7 @@
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
 import AnimatedHeading from '@components/FramerMotion/AnimatedHeading';
 import { FadeContainer, headingFromLeft } from '@content/FramerMotionVariants';
+import Image from 'next/image';
 import React from 'react';
 
 export interface BoxContentProps {
