@@ -153,17 +153,17 @@ export default function Checkout({}: CheckoutProps) {
       </div>
       <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">
-          <div className="inline-block min-w-full">
-            <Table
-              showHeader={false}
-              showAction={false}
-              title={''}
-              data={cartItems}
-              columns={columns}
-              isPrimary={false}
-              onSelectOption={() => {}}
-            />
-          </div>
+          {/* <div className="inline-block min-w-full"> */}
+          <Table
+            showHeader={false}
+            showAction={false}
+            title={''}
+            data={cartItems}
+            columns={columns}
+            isPrimary={false}
+            onSelectOption={() => {}}
+          />
+          {/* </div> */}
           <div className="mt-10">
             <Link
               href="/products"

@@ -29,12 +29,14 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <div className={`mt-4 bg-white ${!show && 'h-[500px]'} relative overflow-hidden`}>
         <ProductDescription product={product} />
 
-        <div
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255))',
-          }}
-          className="absolute bottom-0 left-0 h-[200px] w-full"
-        ></div>
+        {!show && (
+          <div
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255))',
+            }}
+            className="absolute bottom-0 left-0 h-[200px] w-full"
+          ></div>
+        )}
       </div>
       <div className="bg-white text-center py-5" data-view-id="pdp_view_description_button">
         <a
