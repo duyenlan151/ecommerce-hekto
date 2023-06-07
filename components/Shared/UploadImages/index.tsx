@@ -161,7 +161,7 @@ export default function UploadImages({
             disabled={loadingUpload}
             multiple
             type="file"
-            accept="image/png, image/gif, image/jpeg"
+            accept="image/png, image/gif, image/jpeg, image/webp"
             onChange={uploadImages}
             className="hidden"
           />
