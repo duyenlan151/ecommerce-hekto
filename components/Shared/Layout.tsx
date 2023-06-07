@@ -16,7 +16,7 @@ type Props = {
 
 const pathNameNoNeedBox = ['/products', '/'];
 
-export const Layout = ({ children, title = 'This is the default title' }: Props) => {
+export const Layout = ({ children, title = 'Heko | Ecommerce - Next.js + TypeScript' }: Props) => {
   const { status, data: session } = useSession();
   const router = useRouter();
   if (status === 'loading') {
@@ -36,7 +36,7 @@ export const Layout = ({ children, title = 'This is the default title' }: Props)
   return (
     <>
       <Head>
-        {/* <title>{title}</title> */}
+        <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>

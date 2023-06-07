@@ -1,4 +1,5 @@
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import MetaData from './MetaData';
@@ -23,6 +24,11 @@ export default function LayoutAdmin({ children }: LayoutAdminProps) {
 
   return (
     <div className="bg-white font-lato">
+      <Head>
+        <title>Hekto | Admin</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <MetaData
         propTitle={'Hekto'}
         propSuffix={'Admin'}
