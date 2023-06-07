@@ -21,9 +21,9 @@ const defaultCart: CartsModel = {
   cartItems: [],
 };
 
-const initialState: CartsModel = getCookie(KEY_CART)
+const initialState: CartsModel = localStorage.getItem(KEY_CART)
   ? //@ts-ignore
-    JSON.parse(getCookie(KEY_CART))
+    JSON.parse(localStorage.getItem(KEY_CART))
   : defaultCart;
 
 export const cartSlice = createSlice({
@@ -32,7 +32,7 @@ export const cartSlice = createSlice({
   reducers: {
     toggleMiniCart: (state) => {
       state.showMiniCart = !state.showMiniCart;
-      setCookie(KEY_CART, JSON.stringify({ ...state }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state }));
     },
 
     addToCart: (state, action) => {
@@ -46,7 +46,7 @@ export const cartSlice = createSlice({
       }
 
       state.showMiniCart = !state.showMiniCart;
-      setCookie(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
     },
 
     updateQuantity: (state, action) => {
@@ -56,28 +56,28 @@ export const cartSlice = createSlice({
       if (idxProduct >= 0) {
         state.cartItems[idxProduct].quantity = quantity;
       }
-      setCookie(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
     },
 
     removeFromCart: (state, action) => {
       const isNeedToRemove = action.payload;
       state.cartItems = state.cartItems.filter((item) => item._id !== isNeedToRemove);
-      setCookie(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state, ...state.cartItems }));
     },
 
     updateFormValid: (state, action) => {
       state.formValid = action.payload;
-      setCookie(KEY_CART, JSON.stringify({ ...state }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state }));
     },
 
     updateShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
-      setCookie(KEY_CART, JSON.stringify({ ...state }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state }));
     },
 
     updatePaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
-      setCookie(KEY_CART, JSON.stringify({ ...state }));
+      localStorage.setItem(KEY_CART, JSON.stringify({ ...state }));
     },
 
     cleanAllCart: (state) => {
