@@ -70,6 +70,7 @@ export default function SwipperCommon({
               >
                 <Image
                   src={image.bgImg}
+                  sizes="(max-width: 500px) 100vw, (max-width: 500px)"
                   fill
                   loading="lazy"
                   alt={image.title}
