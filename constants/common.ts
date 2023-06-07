@@ -17,7 +17,7 @@ export const isAllObjectEmptyValue = (values) =>
 
 export const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
-export const PATTERN_IMAGES = /\.(jpg|jpeg|png|gif)$/;
+export const PATTERN_IMAGES = /\.(jpg|jpeg|png|webp|gif)$/;
 
 export const titleAction = {
   add: 'Added',

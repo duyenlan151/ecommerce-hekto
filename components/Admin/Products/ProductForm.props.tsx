@@ -57,10 +57,11 @@ export const schemaProduct = yup
       .string()
       .required('Please enter description')
       .max(255, 'Value must be at most 1024 characters'),
-    images: yup.array(),
-    // .min(3, "You can't leave this blank.")
-    // .max(20, 'Maxium image you can upload is 20 images ')
-    // .required("You can't leave this blank."),
+    images: yup
+      .array()
+      .min(3, "You can't leave this blank.")
+      .max(20, 'Maxium image you can upload is 20 images ')
+      .required("You can't leave this blank."),
     category: yup
       .object({
         value: yup.string().required('Please select category'),
