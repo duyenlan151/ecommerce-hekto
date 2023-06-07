@@ -95,6 +95,23 @@ export default function DashboardPage() {
     return data;
   }, [summary?.salesData]);
 
+  const dataSales = useMemo(() => {
+    const saleCurrentYear = summary?.salesData?.currentYear?.reduce(
+      (sum, data) => (sum += data?.total || 0),
+      0
+    );
+
+    const salePeviousYear = summary?.salesData?.previousYear?.reduce(
+      (sum, data) => (sum += data?.total || 0),
+      0
+    );
+    return {
+      saleCurrentYear,
+      salePeviousYear,
+      percent: Number(saleCurrentYear) / Number(salePeviousYear),
+    };
+  }, [summary?.salesData]);
+
   return (
     <>
       <HeaderStats />
@@ -107,8 +124,6 @@ export default function DashboardPage() {
               <CardStats
                 statSubtitle="ALL PRODUCTS"
                 statTitle={summary?.productsCount || 0}
-                statArrow="up"
-                statPercent="3.48"
                 statPercentColor="text-emerald-500"
                 statDescripiron="Since last month"
                 statIconName={<AiOutlineBarChart size={22} />}
@@ -120,8 +135,6 @@ export default function DashboardPage() {
               <CardStats
                 statSubtitle="ALL USERS"
                 statTitle={summary?.usersCount || 0}
-                statArrow="down"
-                statPercent="3.48"
                 statPercentColor="text-red-500"
                 statDescripiron="Since last week"
                 statIconName={<AiOutlineTeam size={22} />}
@@ -132,9 +145,9 @@ export default function DashboardPage() {
             <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
               <CardStats
                 statSubtitle="ALL SALES"
-                statTitle={getSymbolCurrency(summary?.ordersPrice || 0)}
-                statArrow="down"
-                statPercent="1.10"
+                statTitle={getSymbolCurrency(dataSales.saleCurrentYear || 0)}
+                statArrow={dataSales.percent > 0 ? 'up' : 'down'}
+                statPercent={(dataSales.percent * 100).toFixed(2).toString()}
                 statPercentColor="text-orange-500"
                 statDescripiron="Since yesterday"
                 statIconName={<AiOutlineDollarCircle size={22} />}
@@ -146,8 +159,6 @@ export default function DashboardPage() {
               <CardStats
                 statSubtitle="ALL ORDERS"
                 statTitle={summary?.ordersCount || 0}
-                statArrow="up"
-                statPercent="12"
                 statPercentColor="text-emerald-500"
                 statDescripiron="Since last month"
                 statIconName={<AiOutlinePieChart size={22} />}

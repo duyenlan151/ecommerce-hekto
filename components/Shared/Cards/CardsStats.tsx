@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, ReactNode } from 'react';
-import { AiOutlineBarChart, AiOutlineDoubleRight } from 'react-icons/ai';
+import {
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+  AiOutlineBarChart,
+  AiOutlineDoubleRight,
+} from 'react-icons/ai';
 
 interface CardStats {
   statSubtitle: string;
   statTitle: number | string;
 
-  statArrow: 'up' | 'down';
-  statPercent: string;
+  statArrow?: 'up' | 'down';
+  statPercent?: string;
 
   statPercentColor: string;
   statDescripiron: string;
@@ -22,7 +27,7 @@ export function CardStats({
   statSubtitle,
   statTitle,
   statArrow = 'up',
-  statPercent = '3.48',
+  statPercent,
   statPercentColor = 'text-emerald-500',
   statDescripiron = 'Since last month',
   statIconName = <></>,
@@ -50,22 +55,20 @@ export function CardStats({
               </div>
             </div>
           </div>
-          <div className="text-sm text-blueGray-400 mt-8 flex justify-end items-end">
-            {/* <div className="">
-              <span className={statPercentColor + ' mr-2'}>
-                <i
-                  className={
-                    statArrow === 'up'
-                      ? 'fas fa-arrow-up'
-                      : statArrow === 'down'
-                      ? 'fas fa-arrow-down'
-                      : ''
-                  }
-                ></i>{' '}
-                {statPercent}%
-              </span>
-              <span className="whitespace-nowrap">{statDescripiron}</span>
-            </div> */}
+          <div className="text-sm text-blueGray-400 mt-8 flex justify-end items-center">
+            <div className="">
+              {statPercent && (
+                <div className="flex items-center">
+                  {statArrow == 'up' ? (
+                    <AiOutlineArrowUp color={'green'} />
+                  ) : (
+                    <AiOutlineArrowDown />
+                  )}
+                  <span className={statPercentColor + ' mr-2 ml-2'}>{statPercent}%</span>
+                </div>
+              )}
+              {/* <span className="whitespace-nowrap">{statDescripiron}</span> */}
+            </div>
             <div className="cursor-pointer" onClick={() => router.push(statPath)}>
               <AiOutlineDoubleRight />
             </div>
