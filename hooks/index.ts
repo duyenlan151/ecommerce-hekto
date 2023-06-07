@@ -4,3 +4,4 @@ export * from './useCategories';
 export * from './useKeyPress';
 export * from './useProducts';
 export * from './useOrders';
+export * from './useUsers';

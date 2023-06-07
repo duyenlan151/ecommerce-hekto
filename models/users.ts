@@ -5,6 +5,7 @@ export interface UserModel {
   name: string;
   email: string;
   isAdmin: boolean;
+  status: string;
   createdAt: string;
 }
 

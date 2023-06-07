@@ -7,9 +7,19 @@ export default async function handle(req, res) {
   switch (method) {
     case 'GET': {
       if (req.query?.id) {
-        res.status(200).json(await User.findOne({ _id: req.query.id }));
+        const data = await User.findOne({ _id: req.query.id });
+        res.status(200).json({
+          _id: data?._id,
+          email: data?.email,
+          isAdmin: data?.isAdmin,
+          name: data?.name,
+          status: data?.status,
+          createdAt: data?.createdAt,
+        });
       } else {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 10, status } = req.query;
+
+        const cagetoryFilter = status && status !== 'all' ? { status } : {};
 
         if (Number(page) < 1) {
           res.status(200).json({
@@ -21,12 +31,16 @@ export default async function handle(req, res) {
             statusCode: 200,
           });
         }
-        const users = await User.find()
+        const users = await User.find({
+          ...cagetoryFilter,
+        })
           .skip(Number(limit) * Number(page - 1))
           .limit(Number(limit))
           .lean();
 
-        const countProducts = await User.countDocuments();
+        const countProducts = await User.countDocuments({
+          ...cagetoryFilter,
+        });
         res.status(200).json({
           data: users.map((user, idx) => {
             return {
@@ -35,6 +49,7 @@ export default async function handle(req, res) {
               email: user.email,
               isAdmin: user.isAdmin,
               createdAt: user.createdAt,
+              status: user.status,
             };
           }),
           totalDocs: countProducts,
@@ -47,6 +62,18 @@ export default async function handle(req, res) {
       }
       break;
     }
+    case 'PUT':
+      {
+        const { _id, status } = req.body;
+        const userDoc = await User.updateOne(
+          { _id },
+          {
+            status,
+          }
+        );
+        res.status(200).json(userDoc);
+      }
+      break;
     case 'DELETE': {
       if (req.query?._id) {
         await User.deleteOne({ _id: req.query?._id });

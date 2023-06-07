@@ -64,6 +64,9 @@ export default NextAuth({
         const user = await User.findOne({
           email: credentials?.email,
         });
+        if (user.status !== 'active') {
+          throw new Error('Your account has been locked, Please contact Admin!');
+        }
         if (user && bcryptjs.compareSync(credentials?.password, user.password)) {
           // const user = {};
 

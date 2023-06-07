@@ -5,7 +5,7 @@ import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { DataUsersModel } from 'models/users';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usersService } from 'services/Admin';
 
 export interface UsersPageProps {
@@ -15,13 +15,23 @@ export interface UsersPageProps {
 const tabs = [
   { id: 1, title: 'All', value: 'all' },
   { id: 2, title: 'Active', value: 'active' },
-  { id: 3, title: 'Locked', value: 'locked' },
+  { id: 3, title: 'Locked', value: 'lock' },
 ];
 export default function UsersPage({ data }: UsersPageProps) {
   const [activeTab, setActiveTab] = useState('all');
+  const router = useRouter();
   const {
     query: { page },
-  } = useRouter();
+  } = router;
+
+  useEffect(() => {
+    router.push({
+      pathname: router.pathname,
+      query: {
+        status: activeTab,
+      },
+    });
+  }, [activeTab]);
 
   const handleSetActiveTab = (value) => {
     setActiveTab(value);
@@ -29,7 +39,7 @@ export default function UsersPage({ data }: UsersPageProps) {
   return (
     <>
       <h4 className="font-josefinsans-bold text-5xl text-black font-bold pb-5 mb-8 border-b">
-        UsersPage
+        Users Page
       </h4>
       <TabsListAdmin tabs={tabs} activeTab={activeTab} setActiveTab={handleSetActiveTab} />
       <UsersList data={data?.data} />
@@ -47,7 +57,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const page = context?.query?.page || 1;
-    const data = await usersService.getAllUsers({ page });
+    const status = context?.query?.status || 'all';
+    const data = await usersService.getAllUsers({ page, status });
 
     return {
       props: {

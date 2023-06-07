@@ -7,6 +7,7 @@ export enum EBadgeItemType {
   ACTIVE = 'active',
   ARCHIVED = 'archived',
   LOCK = 'lock',
+  LOCKED = 'locked',
 }
 
 export const BadgeItemType: Record<EBadgeItemType, string | number> = {
@@ -16,6 +17,7 @@ export const BadgeItemType: Record<EBadgeItemType, string | number> = {
   [EBadgeItemType.ACTIVE]: 'bg-green-500',
   [EBadgeItemType.ARCHIVED]: '!text-black bg-gray-200',
   [EBadgeItemType.LOCK]: 'bg-red-500',
+  [EBadgeItemType.LOCKED]: 'bg-red-500',
 };
 
 export interface BadgeProps {

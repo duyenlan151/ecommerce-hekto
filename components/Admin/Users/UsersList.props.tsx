@@ -1,3 +1,4 @@
+import { Badge } from '@components/Shared/Badge';
 import { formatDateTime } from '@utils/common';
 
 export const columns = [
@@ -21,6 +22,12 @@ export const columns = [
     title: 'Created At',
     isSort: false,
     render: (_, { createdAt }) => formatDateTime(new Date(createdAt)),
+  },
+  {
+    key: 'status',
+    title: 'Status',
+    isSort: false,
+    render: (_, { status }) => <Badge type={status} text={status} />,
   },
   {
     key: 'isAdmin',

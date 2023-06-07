@@ -33,6 +33,10 @@ export default function UsersList({ data }: UsersListProps) {
     });
   };
 
+  const handleOnClickRow = (_id: string) => {
+    router.push(`/admin/users/${_id}`);
+  };
+
   const onDeleteCategory = async () => {
     if (refItem.current._id) {
       const status = await handleProduct({ _id: refItem.current._id }, 'delete');
@@ -61,6 +65,7 @@ export default function UsersList({ data }: UsersListProps) {
         data={data}
         title="User"
         columns={columns}
+        onClickRow={handleOnClickRow}
       />
 
       <ModalConfirm
