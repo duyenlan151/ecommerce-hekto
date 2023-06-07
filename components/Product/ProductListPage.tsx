@@ -34,7 +34,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
   } = router;
   const [showOverlayFilter, setShowOverlayFilter] = useState(false);
   const [typeView, setTypeView] = useState(
-    [ETypeView.COL, ETypeView.ROW].includes(String(view) as ETypeView) ? view : ETypeView.ROW
+    [ETypeView.COL, ETypeView.ROW].includes(String(view) as ETypeView) ? view : ETypeView.COL
   );
 
   useEffect(() => {
