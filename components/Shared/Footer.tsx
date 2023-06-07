@@ -26,7 +26,7 @@ export function Footer({}: FooterProps) {
   };
   return (
     <footer>
-      <div className="bg-grey-1 py-24 lg:px-0 px-2">
+      <div className="bg-gray-100 py-24 lg:px-0 px-2">
         <div className="container mx-auto">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
@@ -48,14 +48,14 @@ export function Footer({}: FooterProps) {
                 />
                 <button
                   type="submit"
-                  className="font-lato bg-pink-1 flex-none px-7 h-full rounded text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
+                  className="font-lato bg-pink-600 flex-none px-7 h-full rounded text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
                 >
                   Sign Up
                 </button>
               </form>
               <div>
-                <p className="font-lato-light font-bold text-sub-title">Contact Info</p>
-                <p className="font-lato-light font-bold text-sub-title">
+                <p className="font-lato text-[15px] text-gray-400">Contact Info</p>
+                <p className="font-lato text-[15px] text-gray-400">
                   17 Princess Road, London, Greater London NW1 8JR, UK
                 </p>
               </div>
@@ -64,11 +64,7 @@ export function Footer({}: FooterProps) {
               <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full">
                 <h4 className="text-xl lg:mb-10 mb-4">{key}</h4>
                 {Array.from(dataFooter[key]).map((item, i) => (
-                  <Link
-                    key={`item-${i}`}
-                    className="block font-lato-light text-sub-title mb-5"
-                    href="/"
-                  >
+                  <Link key={`item-${i}`} className="block font-lato text-sub-title mb-5" href="/">
                     {item}
                   </Link>
                 ))}
@@ -77,9 +73,9 @@ export function Footer({}: FooterProps) {
           </div>
         </div>
       </div>
-      <div className="bg-violet-5 py-4 lg:px-0 px-2 flex justify-between">
+      <div className="bg-gray-200 py-4 lg:px-0 px-2 flex justify-between">
         <div className="container mx-auto flex justify-between">
-          <div className="text-grey-4 font-lato">©Webecy - All Rights Reserved</div>
+          <div className="text-grey-300 font-lato">©Webecy - All Rights Reserved</div>
           <div className="flex">
             <Link href="https://www.facebook.com/" aria-label="https://www.facebook.com/">
               <IFacebook />

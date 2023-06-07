@@ -32,10 +32,15 @@ const data = [
 
 export default function BlogList(props: BlogListProps) {
   return (
-    <div className="grid justify-center items-center mx-auto lg:gap-10 md:gap-6 gap-4 lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 grid-flow-row">
-      {data.map((blog) => (
-        <BlogItem key={blog.id} blog={blog} />
-      ))}
-    </div>
+    <>
+      <h4 className="text-center text-blue-2 lg:text-5xl md:lg:text-4xl text-3xl font-bold mb-20 tracking-wide">
+        Lasted Blogs
+      </h4>
+      <div className="grid justify-center items-center mx-auto lg:gap-10 md:gap-6 gap-4 lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 grid-flow-row">
+        {data.map((blog) => (
+          <BlogItem key={blog.id} blog={blog} />
+        ))}
+      </div>
+    </>
   );
 }

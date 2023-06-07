@@ -17,7 +17,7 @@ export function BoxSection({
     <div className={`${className} `}>
       <AnimatedHeading
         variants={popUpFromBottomForText}
-        className="text-center text-blue-2 text-5xl font-bold mb-12 tracking-wide"
+        className="text-center text-blue-2 lg:text-5xl md:lg:text-4xl text-3xl font-bold mb-12 tracking-wide"
       >
         {title}
       </AnimatedHeading>
