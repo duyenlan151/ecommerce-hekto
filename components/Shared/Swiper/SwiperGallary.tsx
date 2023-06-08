@@ -63,7 +63,6 @@ export default function SwiperGallary({ initialSlide = 0, images }: SwiperGallar
     <>
       <div className="flex-1 flex items-center">
         <Swiper
-          loop={true}
           style={style}
           navigation={true}
           spaceBetween={10}

@@ -10,7 +10,6 @@ export interface ProductDetailProps {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  console.log('🚀 ~ file: ProductDetail.tsx:13 ~ ProductDetail ~ product:', product);
   const [show, setShow] = useState(false);
   return (
     <div className="container mx-auto px-4 mb-10">
