@@ -32,14 +32,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
   return (
     <div>
-      <h4 className="text-blue-1 text-3xl">{title}</h4>
+      <h4 className="text-gray-700 text-3xl">{title}</h4>
 
       <div className="my-4">
         <span className="text-pink-1 text-2xl">{getSymbolCurrency(price)}</span>
         {salePrice && (
-          <span className="ml-2 text-sub-title text-xs line-through">
-            {getSymbolCurrency(salePrice)}
-          </span>
+          <span className="ml-2 text-xs line-through">{getSymbolCurrency(salePrice)}</span>
         )}
       </div>
       <div className="text-sub-title font-lato-light leading-7">{shortDescription}</div>
