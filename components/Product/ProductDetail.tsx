@@ -10,6 +10,7 @@ export interface ProductDetailProps {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  console.log('🚀 ~ file: ProductDetail.tsx:13 ~ ProductDetail ~ product:', product);
   const [show, setShow] = useState(false);
   return (
     <div className="container mx-auto px-4 mb-10">
@@ -17,7 +18,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         Cart/ Information/ Shipping/ Payment
       </div>
       <div className="bg-white">
-        <div className="flex lg:flex-nowrap flex-wrap justify-center">
+        <div className="lg:flex lg:flex-nowrap flex-wrap justify-center">
           <div className="lg:p-10 p-4">
             <ImagesGallary images={product.images} />
           </div>
