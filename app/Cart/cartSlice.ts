@@ -21,10 +21,11 @@ const defaultCart: CartsModel = {
   cartItems: [],
 };
 
-const initialState: CartsModel = localStorage.getItem(KEY_CART)
-  ? //@ts-ignore
-    JSON.parse(localStorage.getItem(KEY_CART))
-  : defaultCart;
+const initialState: CartsModel =
+  typeof window !== 'undefined' && localStorage.getItem(KEY_CART)
+    ? //@ts-ignore
+      JSON.parse(localStorage.getItem(KEY_CART))
+    : defaultCart;
 
 export const cartSlice = createSlice({
   name: 'cart',
