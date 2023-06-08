@@ -18,12 +18,17 @@ export default async function handle(req, res) {
   switch (method) {
     case 'GET': {
       if (req.query?.id) {
-        const { id } = req.query;
+        const { id, slug } = req.query;
+
+        const queryId = id ? { _id: new ObjectId(id) } : {};
+        const querySlug = slug ? { slug } : {};
+
         //
         const product = await Product.aggregate([
           {
             $match: {
-              _id: new ObjectId(id),
+              ...queryId,
+              ...querySlug,
             },
           },
           {

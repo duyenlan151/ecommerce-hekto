@@ -12,10 +12,11 @@ export const productsService = {
     return axiosClient.get(`/admin/products/${id}`);
   },
 
-  getProductBySlug({ id }): Promise<{ product: ProductModel }> {
+  getProductBySlug({ id, slug }): Promise<{ product: ProductModel }> {
     return axiosClient.get(`/admin/products`, {
       params: {
         id,
+        slug,
       },
     });
   },
