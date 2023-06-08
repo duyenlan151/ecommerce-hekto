@@ -19,35 +19,35 @@ const pathNameNoNeedBox = ['/products', '/'];
 export const Layout = ({ children, title = 'Heko | Ecommerce - Next.js + TypeScript' }: Props) => {
   const { status, data: session } = useSession();
   const router = useRouter();
-  if (status === 'loading') {
-    return <LoadingCommon />;
-  }
+
   //@ts-ignore
   if (!!session?.user?.isAdmin) {
     router.push('/admin');
     return;
   }
-  //@ts-ignore
-  // if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
-  //   router.push('/');
-  //   return;
-  // }
-
+  // @ts-ignore
+  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+    router.push('/');
+    return;
+  }
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <header>
-        <TopNavbar />
-        <Header />
-      </header>
-      <CartMini />
-      {/* {!pathNameNoNeedBox.includes(pathname) && <BoxPageMeta />} */}
-      {children}
-      <Footer />
+      {status === 'loading' && <LoadingCommon />}
+      <div className={`visible ${status === 'loading' && 'hidden'}`}>
+        <Head>
+          <title>{title}</title>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <header>
+          <TopNavbar />
+          <Header />
+        </header>
+        <CartMini />
+        {/* {!pathNameNoNeedBox.includes(pathname) && <BoxPageMeta />} */}
+        {children}
+        <Footer />
+      </div>
     </>
   );
 };
