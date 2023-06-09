@@ -1,20 +1,14 @@
 // import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
 import { mongooseConnect } from '@lib/mongoose';
+import { withNextCorsRoute } from '@utils/withSession';
 import { Category, Product } from 'models/Admin';
 import { ObjectId } from 'mongodb';
 import { getToken } from 'next-auth/jwt';
-import NextCors from 'nextjs-cors';
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
-export default async function handle(req, res) {
+export default withNextCorsRoute(async (req, res) => {
   const { method } = req;
-  // await NextCors(req, res, {
-  //   // Options
-  //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  //   origin: '*',
-  //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  // });
   await mongooseConnect();
   // await isAdminRequest(req,res);
 
@@ -27,7 +21,7 @@ export default async function handle(req, res) {
       if (req.query?.id) {
         const { id, slug } = req.query;
 
-        const queryId = id ? { _id: new ObjectId(id) } : {};
+        const queryId = id ? { _id: new ObjectId(String(id)) } : {};
         const querySlug = slug ? { slug } : {};
 
         //
@@ -92,8 +86,8 @@ export default async function handle(req, res) {
           price && price !== 'all'
             ? {
                 price: {
-                  $gte: Number(price.split('-')[0]),
-                  $lte: Number(price.split('-')[1]),
+                  $gte: Number(String(price).split('-')[0]),
+                  $lte: Number(String(price).split('-')[1]),
                 },
               }
             : {};
@@ -113,8 +107,8 @@ export default async function handle(req, res) {
           price && price !== 'all'
             ? {
                 price: {
-                  $gte: Number(price.split('-')[0]),
-                  $lte: Number(price.split('-')[1]),
+                  $gte: Number(String(price).split('-')[0]),
+                  $lte: Number(String(price).split('-')[1]),
                 },
               }
             : {};
@@ -159,7 +153,7 @@ export default async function handle(req, res) {
             },
           },
         ])
-          .skip(Number(limit) * Number(page - 1))
+          .skip(Number(limit) * (Number(page) - 1))
           .limit(Number(limit));
 
         // const products = await Product.find({
@@ -187,7 +181,7 @@ export default async function handle(req, res) {
           limit,
           page,
           message: 'Find all success!',
-          pages: Math.ceil(countProducts / limit),
+          pages: Math.ceil(countProducts / Number(limit)),
           statusCode: 200,
         });
       }
@@ -272,4 +266,8 @@ export default async function handle(req, res) {
       break;
   }
   // res.status(200).json({ products: 'categories' });
-}
+});
+
+// export default async function handle(req, res) {
+
+// }
