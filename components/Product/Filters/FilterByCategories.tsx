@@ -41,7 +41,6 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
   }, []);
 
   const handleCheckbox = (e) => {
-    console.log(e.target.name);
     const { target } = e;
     const { name } = target;
 

@@ -11,7 +11,6 @@ export interface ProductSlugProps {
 }
 
 export default function ProductDetailSlug({ product }: ProductSlugProps) {
-  console.log('🚀 ~ file: [slug].tsx:14 ~ ProductSlug ~ product:', product);
   return (
     // <React.Suspense fallback={<Loading />}>
     <section className="container mx-auto">
