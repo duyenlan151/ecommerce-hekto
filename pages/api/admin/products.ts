@@ -3,11 +3,18 @@ import { mongooseConnect } from '@lib/mongoose';
 import { Category, Product } from 'models/Admin';
 import { ObjectId } from 'mongodb';
 import { getToken } from 'next-auth/jwt';
+import NextCors from 'nextjs-cors';
 
 const secret = process.env.NEXT_PUBLIC_SECRET;
 
 export default async function handle(req, res) {
   const { method } = req;
+  await NextCors(req, res, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
   await mongooseConnect();
   // await isAdminRequest(req,res);
 
