@@ -1,9 +1,10 @@
 import { mongooseConnect } from '@lib/mongoose';
+import { withNextCorsRoute } from '@utils/withSession';
 import { Category } from 'models/Admin';
 import { getServerSession } from 'next-auth';
 // import { authOptions, isAdminRequest } from "@/pages/api/auth/[...nextauth]";
 
-export default async function handle(req, res) {
+export default withNextCorsRoute(async (req, res) => {
   const { method, query } = req;
   await mongooseConnect();
   // await isAdminRequest(req, res);
@@ -30,7 +31,7 @@ export default async function handle(req, res) {
         const data = await Category.find({
           ...cagetoryFilter,
         })
-          .skip(Number(limit) * Number(page - 1))
+          .skip(Number(limit) * (Number(page) - 1))
           .limit(Number(limit))
           .lean();
         const countProducts = await Category.countDocuments({ ...cagetoryFilter });
@@ -81,4 +82,4 @@ export default async function handle(req, res) {
       res.status(200).json({ categories: 'categories' });
       break;
   }
-}
+});
