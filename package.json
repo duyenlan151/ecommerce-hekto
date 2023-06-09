@@ -19,6 +19,7 @@
     "chart.js": "^4.3.0",
     "cloudinary": "^1.37.0",
     "cookies-next": "^2.1.1",
+    "cors": "^2.8.5",
     "datauri": "^4.1.0",
     "framer-motion": "^10.12.16",
     "immutability-helper": "^3.1.1",
