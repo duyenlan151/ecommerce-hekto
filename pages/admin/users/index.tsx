@@ -1,5 +1,5 @@
 import UsersList from '@components/Admin/Users/UsersList';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { DataUsersModel } from 'models/users';

@@ -1,5 +1,5 @@
 import CategoryForm from '@components/Admin/Categories/CategoryForm';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { useRouter } from 'next/router';
 import PageNotFound from 'pages/404';
 

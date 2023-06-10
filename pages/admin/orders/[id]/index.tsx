@@ -1,5 +1,5 @@
 import { CartInfo, CartInfoSkeleton } from '@components/Cart/CartInfo';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { useOrders } from '@hooks/useOrders';
 import router, { useRouter } from 'next/router';
 import React, { useEffect } from 'react';

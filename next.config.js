@@ -30,6 +30,7 @@ module.exports = withPWA({
       'i.scdn.co', // images from spotify
       'images.unsplash.com',
       'm.media-amazon.com', // for imdb images
+      'stablo-pro.web3templates.com',
     ],
   },
   typescript: {

@@ -19,8 +19,8 @@ export default function ProductList({ products, viewCol }: ProductListProps) {
 
       {isPageLoading ? (
         <div className={`grid justify-center items-center mx-auto gap-4 ${viewCol} grid-cols-1`}>
-          {new Array(6).fill('').map(() => (
-            <ProductItemSkeleton />
+          {new Array(6).fill('').map((item, idex) => (
+            <ProductItemSkeleton key={`number-${idex}`} />
           ))}
         </div>
       ) : (

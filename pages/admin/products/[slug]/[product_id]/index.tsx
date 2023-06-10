@@ -1,5 +1,5 @@
 import ProductForm from '@components/Admin/Products/ProductForm';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { ProductModel } from 'models';
 import { GetServerSideProps } from 'next';
 import React from 'react';

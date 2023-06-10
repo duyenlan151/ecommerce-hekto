@@ -1,4 +1,4 @@
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { useMemo } from 'react';
 
 // components

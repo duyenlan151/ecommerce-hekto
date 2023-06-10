@@ -1,5 +1,5 @@
 import { Layout } from '@components/Shared/Layout';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import ProtectedRoute from '@components/Shared/ProtectedRoute';
 import NProgress from '@utils/nprogress';
 import { wrapper } from 'app/store';
@@ -31,9 +31,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     const start = () => {
       NProgress.setColor('#fb2e86');
       NProgress.start();
+      document.documentElement.classList.add('normal-scroll');
     };
     const end = () => {
       NProgress.done();
+      document.documentElement.classList.remove('normal-scroll');
     };
     router.events.on('routeChangeStart', start);
     router.events.on('routeChangeComplete', end);

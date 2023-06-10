@@ -2,7 +2,7 @@
 
 // layout for page
 
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import MapExample from '@components/Shared/MapExample';
 
 export default function Maps() {

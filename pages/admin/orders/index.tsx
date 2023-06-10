@@ -1,5 +1,5 @@
 import OrdersList from '@components/Admin/Orders/OrdersList';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { useOrders } from '@hooks/useOrders';

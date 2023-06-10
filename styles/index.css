@@ -50,11 +50,25 @@
   src: url(/fonts/Lato/Lato-Bold.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "DancingScript-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Dancing_Script/DancingScript-Regular.ttf) format("truetype");
+}
+
 
 html {
   font-family: 'JosefinSans-Regular', sans-serif;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
+
+html.normal-scroll {
+  scroll-behavior: auto;
+}
+
 .mySwiper {
   /* margin-top: 20px; */
 }

@@ -2,8 +2,8 @@ import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import MetaData from './MetaData';
-import Sidebar from './Sidebar';
+import MetaData from '../MetaData';
+import Sidebar from '../Sidebar';
 
 export interface LayoutAdminProps {
   children: React.ReactNode;

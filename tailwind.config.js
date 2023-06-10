@@ -30,6 +30,7 @@ module.exports = {
       lato: ['Lato-Regular', 'sans-serif'],
       ['lato-light']: ['Lato-Light', 'sans-serif'],
       ['lato-bold']: ['Lato-Bold', 'sans-serif'],
+      ['dancing-regular']: ['DancingScript-Regular', 'sans-serif'],
     },
     extend: {
       keyframes: {

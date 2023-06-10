@@ -1,5 +1,5 @@
 import { INotfound } from '@components/Icons';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 
 export default function PageNotFound() {
   return (

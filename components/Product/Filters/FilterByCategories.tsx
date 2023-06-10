@@ -62,7 +62,7 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
             <div className="my-2" key={item?._id}>
               <CheckBox
                 control={control}
-                value={item?.value}
+                // value={item?.value}
                 label={item?.title}
                 name={item?.value}
                 className={classCheckBox}

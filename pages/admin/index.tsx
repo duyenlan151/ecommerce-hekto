@@ -1,6 +1,6 @@
 import DashboardPage from './dashboard';
 // layout for page
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 export default function AdminPage() {
   return (
     <div className="font-lato">

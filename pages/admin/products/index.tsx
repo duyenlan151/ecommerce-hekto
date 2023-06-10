@@ -1,6 +1,6 @@
 // components
 import ProductList from '@components/Admin/Products/ProductList';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { DataCategoryModel } from 'models';

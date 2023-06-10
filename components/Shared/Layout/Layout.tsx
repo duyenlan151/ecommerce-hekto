@@ -3,11 +3,11 @@ import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
-import { BoxPageMeta } from './Box';
-import LoadingCommon from './Common/LoadingCommon';
-import { Footer } from './Footer';
-import { Header } from './Header';
-import TopNavbar from './TopNavbar';
+import { BoxPageMeta } from '../Box';
+import LoadingCommon from '../Common/LoadingCommon';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
+import TopNavbar from '../TopNavbar';
 
 type Props = {
   children?: ReactNode;

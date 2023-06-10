@@ -1,5 +1,5 @@
 import CategoryList from '@components/Admin/Categories/CategoryList';
-import LayoutAdmin from '@components/Shared/LayoutAdmin';
+import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
 import { DataCategoryModel } from 'models';
