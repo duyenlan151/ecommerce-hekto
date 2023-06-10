@@ -64,7 +64,7 @@ export default function CartMini(props: CartMiniProps) {
           {showMiniCart && (
             <div
               onClick={handleToggleCart}
-              className="animate-fadeEntering fixed inset-0 z-[999] bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
+              className="animate-fadeEntering fixed inset-0 z-[666] bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
             ></div>
           )}
         </>
