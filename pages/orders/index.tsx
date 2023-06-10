@@ -15,7 +15,6 @@ export default function OrdersResultPage(props: OrdersResultPageProps) {
   const {
     query: { success, order_id, session_id },
   } = useRouter();
-
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export default function OrdersResultPage(props: OrdersResultPageProps) {
         }
       }
     })();
-  }, []);
+  }, [success, order_id, session_id]);
 
   return <OrderCommon status={result.status} message={result.message} />;
 }
