@@ -135,7 +135,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
       <div
         className={`trasform translate-x-full ${
           showOverlayFilter && '!-translate-x-full'
-        } w-[280px] lg:hidden bg-white h-full max-w-full overflow-x-hidden fixed z-50 top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
+        } w-[280px] lg:hidden bg-white h-full max-w-full overflow-x-hidden fixed z-[999] top-0 left-full transition-transform duration-300 ease-out outline-none focus:outline-none`}
       >
         <ProductFilters />
       </div>
