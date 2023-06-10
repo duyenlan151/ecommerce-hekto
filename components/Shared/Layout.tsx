@@ -26,7 +26,13 @@ export const Layout = ({ children, title = 'Heko | Ecommerce - Next.js + TypeScr
     return;
   }
   // @ts-ignore
-  if (session?.user?.name && !session?.user?.isAdmin && router.pathname === '/login') {
+  if (
+    session?.user?.name &&
+    // @ts-ignore
+    !session?.user?.isAdmin &&
+    router.pathname === '/login' &&
+    !router?.query?.redirect
+  ) {
     router.push('/');
     return;
   }
