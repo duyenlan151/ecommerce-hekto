@@ -23,6 +23,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: { data: products?.data },
     };
   } catch (error) {
-    return { notFound: true };
+    return {
+      props: { data: {} },
+    };
   }
 };
