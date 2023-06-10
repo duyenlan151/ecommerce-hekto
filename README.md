@@ -33,7 +33,7 @@
 - ⛑ TypeScript
 - 💖 React dnd — Drag and drop
 - 🗂 React hook form + Yup - For validation form
-- ⛑ Mongodb + Mongoose - For setup server
+- ⛑ Mongodb + Mongoose - For datatbase
 - ✨ Tailwind css
 - 🗂 React Quill - For editor
 <!-- - 📏 ESLint — To find and fix problems in your code -->
