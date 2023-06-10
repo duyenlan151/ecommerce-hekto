@@ -141,7 +141,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
       {showOverlayFilter && (
         <div
           onClick={handleOverlayFilter}
-          className="md:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
+          className="lg:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
         ></div>
       )}
     </section>

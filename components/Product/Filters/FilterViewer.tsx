@@ -20,7 +20,7 @@ export function FilterViewer(props: FilterViewerProps) {
 
   return (
     <>
-      <div className="bg-white py-4 px-2 mb-2 flex border-b border-primary">
+      <div className="bg-white py-4 px-2 mb-2 flex overflow-x-auto border-b border-primary">
         {FILTER_LIST.map((elm) => (
           <div key={elm.id}>
             {!!elm.isShow(filters) && (
@@ -34,7 +34,7 @@ export function FilterViewer(props: FilterViewerProps) {
                     },
                   });
                 }}
-                className="cursor-pointer flex items-center ml-4 border border-primary py-1 px-5 rounded-3xl hover:bg-gray-100 transition delay-100 ease-in-out duration-500"
+                className="whitespace-nowrap cursor-pointer flex items-center ml-4 border border-primary py-1 px-5 rounded-3xl hover:bg-gray-100 transition delay-100 ease-in-out duration-500"
               >
                 {elm.getLabel(filters)}
                 <span className="ml-2 -mr-2 cursor-pointer">
