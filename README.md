@@ -173,7 +173,7 @@ While the boilerplate does primarily rely on the standard file structure of a Ne
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
-## How to use it? - Run it Locally
+## How to use
 
 ```
 $ git clone https://github.com/duyenlan151/ecommerce-hekto.git
