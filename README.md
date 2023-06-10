@@ -20,7 +20,8 @@
 3. [About The Project](#about-the-project)
 4. [Demo with Gif](#demo)
 5. [File Structure](#file-structure)
-6. [How to use](#how-to-use)
+6. [Database](#database)
+7. [How to use](#how-to-use)
 
 <!-- FEATURES -->
 
@@ -170,6 +171,11 @@ While the boilerplate does primarily rely on the standard file structure of a Ne
 ├── vercel.json
 └── yarn.lock
 ```
+
+## Database
+
+<img src="./public/images/gif/image-01.png" />
+<img src="./public/images/gif/image-02.png" />
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
