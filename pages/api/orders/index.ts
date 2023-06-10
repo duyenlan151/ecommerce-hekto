@@ -152,8 +152,8 @@ const handler = async (req, res) => {
                 userId: user.id,
               },
               mode: 'payment',
-              success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order.id}&success=true&session_id={CHECKOUT_SESSION_ID}`,
-              cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?order_id=${order.id}&cancelled=true`,
+              success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/orders?order_id=${order._id}&success=true&session_id={CHECKOUT_SESSION_ID}`,
+              cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/cart/payment-method?order_id=${order._id}&cancelled=true`,
             });
             const orderSession = await Order.findById(order.id);
             orderSession.checkout_session_id = checkoutSession.id;
