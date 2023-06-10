@@ -1,10 +1,10 @@
 import { CheckBox } from '@components/Shared/Common';
 import { useCategories } from '@hooks/useCategories';
+import { useRouterPush } from '@hooks/useRouterPush';
 import { formatData } from '@utils/common';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { filterCategories } from './Filter.props';
 
 export interface FilterByCategoriesProps {}
 
@@ -23,6 +23,7 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
   const form = useForm();
 
   const router = useRouter();
+  const { routerPushQuery } = useRouterPush();
 
   const {
     query: { category },
@@ -44,8 +45,7 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
     const { target } = e;
     const { name } = target;
 
-    router.push({
-      pathname: router.pathname,
+    routerPushQuery({
       query: {
         ...router.query,
         category: name,

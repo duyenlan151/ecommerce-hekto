@@ -4,13 +4,12 @@ import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
-import { FadeContainer, opacityVariant } from '@content/FramerMotionVariants';
-import { motion } from 'framer-motion';
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
-import { Pagination } from 'swiper';
-import { ProductModel } from './ProductItem';
+import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
+import { FadeContainer } from '@content/FramerMotionVariants';
 import Link from 'next/link';
+import { Pagination } from 'swiper';
+import { ProductModel } from './ProductItem/ProductItem';
 
 export interface ProductFeaturedListProps {
   data?: ProductItemModel[];

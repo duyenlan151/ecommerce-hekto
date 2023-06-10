@@ -1,17 +1,18 @@
+import { useRouterPush } from '@hooks/useRouterPush';
 import { useRouter } from 'next/router';
 import { filterPrice } from './Filter.props';
 
 export interface FilterByPriceProps {}
 
 export function FilterByPrice(props: FilterByPriceProps) {
+  const { routerPushQuery } = useRouterPush();
   const router = useRouter();
   const {
     query: { price },
   } = router;
 
   const handleFilterByPrice = (price) => {
-    router.push({
-      path: router.pathname,
+    routerPushQuery({
       query: {
         ...router.query,
         price,

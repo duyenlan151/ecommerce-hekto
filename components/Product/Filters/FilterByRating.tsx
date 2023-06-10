@@ -1,3 +1,4 @@
+import { useRouterPush } from '@hooks/useRouterPush';
 import { useRouter } from 'next/router';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { filterRating } from './Filter.props';
@@ -6,10 +7,10 @@ export interface FilterByRatingProps {}
 
 export function FilterByRating(props: FilterByRatingProps) {
   const router = useRouter();
+  const { routerPushQuery } = useRouterPush();
 
   const handleFilterByPrice = (rating) => {
-    router.push({
-      path: router.pathname,
+    routerPushQuery({
       query: {
         ...router.query,
         rating,

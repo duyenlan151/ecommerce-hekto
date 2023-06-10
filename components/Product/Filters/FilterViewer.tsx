@@ -1,6 +1,6 @@
 import { isAllObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FILTER_LIST } from './Filter.props';
 
@@ -27,12 +27,16 @@ export function FilterViewer(props: FilterViewerProps) {
               <div
                 onClick={() => {
                   const newFilters = elm.onRemove(filters);
-                  router.push({
-                    pathname: router.pathname,
-                    query: {
-                      ...newFilters,
+                  router.push(
+                    {
+                      pathname: router.pathname,
+                      query: {
+                        ...newFilters,
+                      },
                     },
-                  });
+                    undefined,
+                    { scroll: false }
+                  );
                 }}
                 className="whitespace-nowrap cursor-pointer flex items-center ml-4 border border-primary py-1 px-5 rounded-3xl hover:bg-gray-100 transition delay-100 ease-in-out duration-500"
               >

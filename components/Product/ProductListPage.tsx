@@ -1,10 +1,11 @@
 import { Dropdown } from '@components/Shared/Dropdowns';
 import { Pagination } from '@components/Shared/Pagination';
+import { useRouterPush } from '@hooks/useRouterPush';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BsGrid, BsListTask } from 'react-icons/bs';
 import { IoFilterOutline } from 'react-icons/io5';
-import { MdKeyboardArrowDown, MdKeyboardControlKey } from 'react-icons/md';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import { FilterViewer } from './Filters';
 import ProductFilters from './ProductFilters';
 import ProductList from './ProductList';
@@ -32,14 +33,15 @@ export default function ProductListPage({ products }: ProductListPageProps) {
   const {
     query: { page, view },
   } = router;
+  const { routerPushQuery } = useRouterPush();
+
   const [showOverlayFilter, setShowOverlayFilter] = useState(false);
   const [typeView, setTypeView] = useState(
     [ETypeView.COL, ETypeView.ROW].includes(String(view) as ETypeView) ? view : ETypeView.COL
   );
 
   useEffect(() => {
-    router.push({
-      path: router.pathname,
+    routerPushQuery({
       query: {
         ...router.query,
         view: typeView,
@@ -52,8 +54,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
   // }, [query]);
 
   const handleFilterBySort = ({ value }) => {
-    router.push({
-      path: router.pathname,
+    routerPushQuery({
       query: {
         ...router.query,
         sort: value,

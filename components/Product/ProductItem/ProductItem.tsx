@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AiOutlineHeart, AiOutlineShoppingCart, AiOutlineZoomIn } from 'react-icons/ai';
-import { EProductItemType } from './ProductItem.props';
+import { EProductItemType } from '../ProductItem.props';
 
 export interface ProductItemProps {
   product: ProductModel;
