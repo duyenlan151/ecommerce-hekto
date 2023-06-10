@@ -119,7 +119,7 @@ function TopNavbar({}: TopNavbarProps) {
             {show && (
               <div
                 onClick={() => setShow(false)}
-                className="md:hidden animate-fadeEntering fixed inset-0 z-40 bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
+                className="md:hidden animate-fadeEntering fixed inset-0 z-[666] bg-black/60 transition-transform ease-in-out duration-500 opacity-100"
               ></div>
             )}
 
