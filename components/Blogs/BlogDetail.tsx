@@ -16,7 +16,7 @@ export function BlogDetail({
     <div>
       <div className="relative z-0 flex min-h-[calc(100vh-30vh)] items-center">
         <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30">
-          <Image alt="" src={main_image} fill />
+          <Image alt="" src={main_image} fill className="object-cover" />
         </div>
         <div className="mx-auto max-w-screen-lg px-5 py-20 text-center">
           <h1 className="text-brand-primary mb-3 mt-2 text-3xl font-semibold tracking-tight text-white lg:text-5xl lg:leading-tight">
