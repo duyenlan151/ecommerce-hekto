@@ -24,7 +24,6 @@ const items = [
 ];
 
 export default function ProductForm({ blog }: ProductFormProps) {
-  console.log('🚀 ~ file: BlogForm.tsx:27 ~ ProductForm ~ blog:', blog);
   const router = useRouter();
   const { loading, handleBlog } = useBlog();
   const { loading: loadingCategory, handleCategory } = useCategories();

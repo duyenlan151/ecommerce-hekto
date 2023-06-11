@@ -11,7 +11,6 @@ export interface BlogListProps {
 }
 
 export default function BlogList({ data }: BlogListProps) {
-  console.log('🚀 ~ file: BlogList.tsx:14 ~ BlogList ~ data:', data);
   const router = useRouter();
   const { loading, handleCategory } = useCategories();
 

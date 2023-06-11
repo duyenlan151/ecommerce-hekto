@@ -61,7 +61,6 @@ export default function UploadImages({
     name,
     control,
   });
-  console.log('🚀 ~ file: index.tsx:59 ~ value:', value);
 
   useEffect(() => {
     setImages(value);

@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const blog_id = context.params?.blog_id;
   if (blog_id) {
-    const blog = await blogsService.getBlogById({ id: String(blog_id) });
+    const blog = await blogsService.getBlogById({ id: String(blog_id), slug: '' });
 
     return {
       props: { blog },
