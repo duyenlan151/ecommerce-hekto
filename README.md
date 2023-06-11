@@ -1,6 +1,6 @@
 <div align="center">
 
-# Heko | Ecommerce - Next.js + TypeScript
+# Hekto | Ecommerce - Next.js + TypeScript
 
 ![Heko | Ecommerce - Next.js + TypeScript](./public/images/banner.png)
 
@@ -40,7 +40,7 @@
 - 💖 Prettier — Code Formatter for consistent style
 - 🐶 Multer + Cloudinary — For upload images
 - 🚓 Nodemailer — For sendmail
-- 🚫 Strip + Paypal — For payment
+- 🚫 Stripe + Paypal — For payment
 - ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
 - 🗂 Chart.js
 - ‽ Either Error Handler - For error handling. (Either is designed to hold either a left or a right value but never both).
@@ -185,7 +185,7 @@ This is a really simple project that shows the usage of Next.js with TypeScript.
 $ git clone https://github.com/duyenlan151/ecommerce-hekto.git
 $ cd ecommerce-hekto
 $ npm install or yarn install
-$ npm run dev or yarn deev
+$ npm run dev or yarn dev
 $ Api: http://localhost:3000/api/
 $ Local: http://localhost:3000
 ```
