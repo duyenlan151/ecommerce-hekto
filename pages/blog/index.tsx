@@ -55,6 +55,7 @@ export default function BlogPage({ blogs }: BlogPageProps) {
       let data;
       if (Number(newCurPage) > 1) {
         data = [...(refBlogs.current || []), ...newBlogs.data];
+        refBlogs.current = [...(refBlogs.current || []), ...newBlogs.data];
       } else {
         refBlogs.current = newBlogs.data;
         data = [...newBlogs.data];

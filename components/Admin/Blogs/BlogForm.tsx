@@ -55,7 +55,7 @@ export default function ProductForm({ blog }: ProductFormProps) {
         title: blog?.status,
         value: blog?.status,
       },
-      main_image: [{ path: blog?.main_image }],
+      main_image: blog?.main_image ? [{ path: blog?.main_image }] : {},
     },
   });
 
