@@ -142,7 +142,7 @@ export default function UploadImages({
                   <ILoadingSeconday />
                 ) : (
                   <div className="absolute -z-10 h-full w-full">
-                    <Image alt="" src={images[0]?.path} fill />
+                    <Image alt="" src={images[0]?.path} fill className="object-cover" />
                   </div>
                 )}
 
