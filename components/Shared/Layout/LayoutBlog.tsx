@@ -1,3 +1,4 @@
+import { IBlog } from '@components/Icons';
 import Link from 'next/link';
 import React, { ReactNode, useEffect } from 'react';
 
@@ -13,8 +14,10 @@ export function LayoutBLog({ children }: LayoutBLogProps) {
   return (
     <div className="relative min-h-screen">
       <header className="font-dancing-regular bg-white top-0 left-0 right-0 w-full text-center gap-5 px-5 pb-4">
-        <h1 className="relative text-5xl py-4 mx-auto max-w-screen-xl">
-          <Link href="/blog">Blog</Link>
+        <h1 className="relative flex justify-center text-5xl py-4 mx-auto max-w-screen-xl">
+          <Link href="/blog">
+            <IBlog />
+          </Link>
         </h1>
         <Link
           className="bg-brand-secondary/20 rounded-full text-sm text-blue-600 dark:text-blue-500 pb-4"
