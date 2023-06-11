@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
 
-    const blogs = await blogsService.getAllBlog({ limit: 3 });
+    const blogs = await blogsService.getAllBlog();
     return {
       props: { blogs },
     };
