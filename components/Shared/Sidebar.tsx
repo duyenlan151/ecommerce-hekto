@@ -13,6 +13,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
+import { SiApache } from 'react-icons/si';
 import { SlMap } from 'react-icons/sl';
 import { useDispatch } from 'react-redux';
 
@@ -24,6 +25,7 @@ const items = [
   { id: 3, title: 'Categories', icon: <AiOutlineAppstore size={20} />, path: '/admin/categories' },
   { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
   { id: 9, title: 'Orders', icon: <AiOutlineShoppingCart size={20} />, path: '/admin/orders' },
+  { id: 10, title: 'Blogs', icon: <SiApache size={20} />, path: '/admin/blogs' },
   { id: 4, title: 'Maps', icon: <SlMap size={20} />, path: '/admin/maps' },
   { id: 6, title: 'Settings', icon: <AiOutlineSetting size={20} />, path: '/admin/settings' },
   {

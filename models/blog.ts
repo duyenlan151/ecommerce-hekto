@@ -1,8 +1,20 @@
+import { CategoryModel } from './category';
+import { DataResCommonModel } from './common';
+
 export interface BlogModel {
-  id: string | number;
+  _id: string | number | null | undefined;
   title: string;
-  desc: string;
-  thumbnail: Array<string>;
+  slug: string;
   author: string;
-  date: Date | string;
+  excerpt: string;
+  main_image: string;
+  categoryId: string;
+  content: string;
+  status: string;
+  category: CategoryModel[];
+  updatedAt: Date;
+}
+
+export interface DataBlogModel extends DataResCommonModel {
+  data: BlogModel[];
 }

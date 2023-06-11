@@ -2,28 +2,30 @@ import React from 'react';
 import Image from 'next/image';
 import { BlogSidebar } from './BlogSidebar';
 import Link from 'next/link';
+import { BlogModel } from 'models';
+import { formatDateTime, optionsDateFormats } from '@utils/common';
 
-export interface BlogDetailProps {}
+export interface BlogDetailProps {
+  blog: BlogModel;
+}
 
-export function BlogDetail(props: BlogDetailProps) {
+export function BlogDetail({
+  blog: { title, main_image, author, content, excerpt, updatedAt },
+}: BlogDetailProps) {
   return (
     <div>
       <div className="relative z-0 flex min-h-[calc(100vh-30vh)] items-center">
         <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30">
-          <Image
-            alt=""
-            src="https://stablo-pro.web3templates.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fcijrdavx%2Fproduction%2F5be1635417f1814b3fb09f8e9f74f37079899f72-4032x3024.jpg%3Fw%3D2000%26auto%3Dformat&w=3840&q=75"
-            fill
-          />
+          <Image alt="" src={main_image} fill />
         </div>
         <div className="mx-auto max-w-screen-lg px-5 py-20 text-center">
           <h1 className="text-brand-primary mb-3 mt-2 text-3xl font-semibold tracking-tight text-white lg:text-5xl lg:leading-tight">
-            Lessons Of Happiness I learned from a Mountain Village
+            {title}
           </h1>
           <div className="mt-8 flex justify-center space-x-3 text-gray-500 ">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="flex gap-3">
-                <div className="relative h-5 w-5 flex-shrink-0">
+                {/* <div className="relative h-5 w-5 flex-shrink-0">
                   <a href="/author/joshua-wood">
                     <Image
                       alt="Joshua Wood"
@@ -32,20 +34,22 @@ export function BlogDetail(props: BlogDetailProps) {
                       data-nimg="fill"
                       fill
                       className="rounded-full object-cover"
-                      // style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                       sizes="100vw"
                       src="https://stablo-pro.web3templates.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fcijrdavx%2Fproduction%2F5be1635417f1814b3fb09f8e9f74f37079899f72-4032x3024.jpg%3Fw%3D2000%26auto%3Dformat&w=3840&q=75"
                     />
                   </a>
-                </div>
+                </div> */}
                 <p className="text-gray-100 ">
-                  <a href="/author/joshua-wood">Joshua Wood</a>{' '}
+                  <a href="/author/joshua-wood">{author}</a>
                   <span className="hidden pl-2 md:inline"> ·</span>
                 </p>
               </div>
               <div>
                 <div className="flex space-x-2 text-sm md:flex-row md:items-center">
-                  <time className="text-gray-100">September 25, 2022</time>
+                  <time className="text-gray-100">
+                    {formatDateTime(new Date(updatedAt), optionsDateFormats.primary)}
+                  </time>
+
                   <span className="text-gray-100">·6 min read</span>
                 </div>
               </div>
@@ -55,7 +59,13 @@ export function BlogDetail(props: BlogDetailProps) {
       </div>
       <div className="mx-auto my-14 flex max-w-screen-xl flex-col gap-5 px-5 md:flex-row">
         <article className="flex-1 px-4">
-          <div className="prose prose-lg mx-auto my-3 dark:prose-invert prose-a:text-blue-500">
+          <div
+            className="ql-editor !overflow-hidden"
+            dangerouslySetInnerHTML={{
+              __html: content,
+            }}
+          ></div>
+          {/* <div className="prose prose-lg mx-auto my-3 dark:prose-invert prose-a:text-blue-500">
             <p>
               I recently went to the mountains with my friends. We were celebrating 50 years of
               friendship. It was very special. Six of us were to be together spending time in the
@@ -190,7 +200,7 @@ export function BlogDetail(props: BlogDetailProps) {
             </p>
             <p>Photo of the old lady who is so happy and stress-free. </p>
             <p />
-          </div>
+          </div> */}
           <div className="mb-7 mt-7 flex justify-center">
             <Link
               className="bg-brand-secondary/20 rounded-full px-5 py-2 text-sm text-blue-600 dark:text-blue-500 "
@@ -201,7 +211,7 @@ export function BlogDetail(props: BlogDetailProps) {
           </div>
           <div className="px-8 py-8 mt-3 text-gray-500 rounded-2xl bg-gray-50 dark:bg-gray-900 dark:text-gray-400">
             <div className="flex flex-wrap items-start sm:space-x-6 sm:flex-nowrap">
-              <div className="relative flex-shrink-0 w-24 h-24 mt-1 ">
+              {/* <div className="relative flex-shrink-0 w-24 h-24 mt-1 ">
                 <a href="/author/joshua-wood">
                   <Image
                     alt=""
@@ -209,28 +219,25 @@ export function BlogDetail(props: BlogDetailProps) {
                     fill
                   />
                 </a>
-              </div>
+              </div> */}
               <div>
                 <div className="mb-3">
                   <h3 className="text-lg font-medium text-gray-800 dark:text-gray-300">
-                    About {/* */}Joshua Wood
+                    About {/* */}
+                    {author}
                   </h3>
                 </div>
                 <div>
-                  <p>
-                    Joshua is a Microsoft Azure Certified Cloud Professional and a Google Certified
-                    Associate Cloud Engineer. A Data Analytics at Acme, specializing in the use of
-                    cloud infrastructure for Machine Learning and Deep Learning operation at scale.
-                  </p>
+                  <p>{excerpt}</p>
                 </div>
-                <div className="mt-3">
+                {/* <div className="mt-3">
                   <a
                     className="py-2 text-sm text-blue-600 rounded-full dark:text-blue-500 bg-brand-secondary/20 "
                     href="/author/joshua-wood"
                   >
                     View Profile
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

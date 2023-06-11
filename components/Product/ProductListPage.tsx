@@ -74,7 +74,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
         <div className="text-primary font-lato-light leading-7">
           About {products?.totalDocs || 0} results
         </div>
-        <div className="ml-auto flex justify-end items-center py-2">
+        <div className="ml-auto flex justify-end items-center py-2 mt-4">
           <div className="flex items-center px-4">
             <p className="pr-3">View:</p>
             <span

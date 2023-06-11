@@ -47,6 +47,7 @@ export function Dropdown({
     <div {...rest}>
       <div ref={refContainer} className="dropdown inline-block relative">
         <button
+          type="button"
           onClick={handleClickInside}
           className="text-gray-700 font-semibold flex items-center focus:outline-none"
         >

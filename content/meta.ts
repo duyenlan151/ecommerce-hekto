@@ -32,6 +32,15 @@ const pageMeta: PageMeta = {
     breadcrumb: 'Singup',
   },
 
+  blog: {
+    title: 'Heko | Blog',
+    description:
+      'These are my personal statistics about me. It includes My Blogs and github Stats and top music stats.',
+
+    keywords: 'stats, Statistics',
+    breadcrumb: 'Blog',
+  },
+
   forgot: {
     title: 'Heko | Forgot Password',
     description:

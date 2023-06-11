@@ -6,7 +6,10 @@ export interface SectionTrendingProps {}
 export function SectionTrending(props: SectionTrendingProps) {
   return (
     <section className="py-[129px] bg-white">
-      <BoxSection className="container mx-auto mt-10 lg:px-0 px-2" title={'Trending Products'}>
+      <BoxSection
+        className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8"
+        title={'Trending Products'}
+      >
         <ProductTredingList />
         <div className="flex gap-6">
           <BoxTrending

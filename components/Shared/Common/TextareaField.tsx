@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useController } from 'react-hook-form';
 
 interface TextareaFieldProps {
@@ -7,7 +7,7 @@ interface TextareaFieldProps {
   onChange?: () => void;
   onBlur?: () => void;
   value?: string | number | null | undefined;
-  label?: string;
+  label?: string | ReactNode;
   className?: string;
   [name: string]: any;
 }
@@ -42,6 +42,7 @@ export function TextareaField({
         </label>
       )}
       <textarea
+        defaultValue={value ?? ''}
         name={name}
         onChange={onChange}
         className={`border border-gray-200 focus:border-gray-200 focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border border-border-1 relative w-full bg-white p-4 font-thin outline-none ${className}`}

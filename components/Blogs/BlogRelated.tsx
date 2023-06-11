@@ -7,7 +7,7 @@ export function BlogRelated(props: BlogRelatedProps) {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold dark:text-white">Related</h3>
-      <div className="grid gap-6 mt-6">
+      {/* <div className="grid gap-6 mt-6">
         <a href="/post/sidebar/this-bread-pudding-will-give-you-all-the-fall-feels">
           <div className="flex gap-5">
             <div className="relative w-24 h-20 overflow-hidden rounded-md shrink-0">
@@ -71,7 +71,7 @@ export function BlogRelated(props: BlogRelatedProps) {
             </div>
           </div>
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }

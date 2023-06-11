@@ -1,13 +1,21 @@
 import { CountryLocals, Currency, CurrencyValue } from 'models';
 
-const options = {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  hour12: false,
-  timeZone: 'America/Los_Angeles',
+export const optionsDateFormats = {
+  default: {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+    timeZone: 'America/Los_Angeles',
+  },
+  primary: {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+  },
 };
 
 export const getSymbolCurrency = (value: number | string, currencyCode: Currency = 'USD') => {
@@ -20,7 +28,10 @@ export const getSymbolCurrency = (value: number | string, currencyCode: Currency
   );
 };
 
-export const formatDateTime = (date: number | Date | undefined | string) => {
+export const formatDateTime = (
+  date: number | Date | undefined | string,
+  options: any = optionsDateFormats.default
+) => {
   // @ts-ignore
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
@@ -47,3 +58,9 @@ export const formatData = (data, keyTitle: string, keyValue: string) =>
     ],
     []
   );
+
+export const generateSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-');

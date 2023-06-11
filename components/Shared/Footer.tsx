@@ -26,8 +26,8 @@ export function Footer({}: FooterProps) {
   };
   return (
     <footer>
-      <div className="bg-white py-24 lg:px-0 px-4">
-        <div className="container mx-auto">
+      <div className="bg-white lg:py-24 py-14 lg:px-0 px-4">
+        <div className="px-4 mx-auto xl:px-0 container py-5 lg:py-8">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
               <h4 className="text-4xl font-bold">Hekto</h4>
@@ -73,7 +73,7 @@ export function Footer({}: FooterProps) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 py-4 lg:px-0 px-2 flex justify-between">
+      <div className="bg-gray-200 py-4 lg:px-0 px-6 flex justify-between">
         <div className="container mx-auto flex justify-between">
           <div className="text-grey-300 font-lato">©Webecy - All Rights Reserved</div>
           <div className="flex">

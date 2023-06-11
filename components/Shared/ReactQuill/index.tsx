@@ -84,7 +84,7 @@ export default function ReactQuillCommon({
         htmlFor="editor"
         className="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400"
       >
-        Short Description
+        {label || 'Short Description'}
       </label>
       {/* @ts-ignore */}
       <QuillNoSSRWrapper

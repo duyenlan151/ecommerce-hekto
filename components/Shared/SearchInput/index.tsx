@@ -34,7 +34,7 @@ export function SearchInput({ label, value, handleChange, ...rest }: SearchInput
   return (
     <div>
       <h1 className="text-2xl font-bold tracking-tight lg:leading-tight text-brand-primary dark:text-white">
-        {label || `Search results for "life"`}
+        {label || `Search results for "${value !== 'undefined' ? value : ''}"`}
       </h1>
       <div className="max-w-md mx-auto">
         <div className="relative">
