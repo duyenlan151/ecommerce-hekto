@@ -43,6 +43,8 @@ export default function BlogPage({ blogs }: BlogPageProps) {
       });
   };
   const handleLoadMore = async () => {
+    if (defaultState.loading) return;
+
     setDefaultState((prev) => ({
       ...prev,
       loading: true,

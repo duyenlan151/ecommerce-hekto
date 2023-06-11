@@ -13,7 +13,7 @@ export function BlogDetail({
   blog: { title, main_image, author, content, excerpt, updatedAt },
 }: BlogDetailProps) {
   return (
-    <div>
+    <div className="font-lato text-[#374151] leading-[28px]">
       <div className="relative z-0 flex min-h-[calc(100vh-30vh)] items-center">
         <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30">
           <Image alt="" src={main_image} fill className="object-cover" />
