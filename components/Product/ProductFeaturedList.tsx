@@ -9,7 +9,7 @@ import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
 import { FadeContainer } from '@content/FramerMotionVariants';
 import Link from 'next/link';
 import { Pagination } from 'swiper';
-import { ProductModel } from './ProductItem/ProductItem';
+import { ProductItem } from './ProductItem/ProductItem';
 
 export interface ProductFeaturedListProps {
   data?: ProductItemModel[];
@@ -32,7 +32,7 @@ const defaultBreakpoints = {
 
 export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
   return (
-    <AnimatedDiv variants={FadeContainer} className="mt-20 mb-40 text-center">
+    <AnimatedDiv variants={FadeContainer} className="mt-20 mb-24 text-center">
       <SwipperCommon
         style={{
           paddingBottom: 50,
@@ -43,7 +43,7 @@ export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
       >
         {data.map((product, idx) => (
           <SwiperSlide key={`${product.id} - ${idx}`}>
-            <ProductModel product={product} />
+            <ProductItem product={product} />
           </SwiperSlide>
         ))}
       </SwipperCommon>

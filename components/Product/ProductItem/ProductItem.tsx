@@ -37,7 +37,7 @@ const classProductItem = {
   },
 };
 
-export function ProductModel({
+export function ProductItem({
   product: { _id, title, price, code, images, isSale, slug },
   styleProductItem = EProductItemType.PRIMARY,
   className = '',
@@ -61,7 +61,7 @@ export function ProductModel({
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={images && images[0]?.name}
-            className="scale-[80%] object-contain p-8 transition-transform duration-300 ease-in-out !py-2 "
+            className="object-contain p-8 transition-transform duration-300 ease-in-out !py-2 "
           />
         </Link>
 
@@ -169,7 +169,7 @@ export function ProductItemSecondary({
           sizes="(max-width: 214px) 100vw, (max-width: 214px)"
           src={images && images[0]?.path}
           alt={(images && images[0]?.path) || name}
-          className="scale-[80%] object-contain  transition-transform duration-300 ease-in-out !py-2 "
+          className=" object-contain  transition-transform duration-300 ease-in-out !py-2 "
         />
       </Link>
       <div className="flex-1 px-2 transition delay-100 ease-in-out duration-500">

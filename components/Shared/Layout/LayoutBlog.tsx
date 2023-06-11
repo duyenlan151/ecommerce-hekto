@@ -9,6 +9,10 @@ export interface LayoutBLogProps {
 export function LayoutBLog({ children }: LayoutBLogProps) {
   useEffect(() => {
     document.body.classList.add('bg-white');
+
+    return () => {
+      document.body.classList.remove('bg-white');
+    };
   }, []);
 
   return (

@@ -9,7 +9,7 @@ export interface IBlogProps {
 export default function BlogItem({ blog }: IBlogProps) {
   const { title, author, updatedAt, main_image, category, slug } = blog;
   return (
-    <div className="group cursor-pointer">
+    <div className="group cursor-pointer lg:mb-0 mb-6">
       <div className=" overflow-hidden rounded-md bg-gray-100 transition-all dark:bg-gray-800">
         <Link className="relative block aspect-square" href={`/blog/${slug}`}>
           <Image

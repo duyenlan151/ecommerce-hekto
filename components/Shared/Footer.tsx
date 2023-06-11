@@ -26,8 +26,8 @@ export function Footer({}: FooterProps) {
   };
   return (
     <footer>
-      <div className="bg-white lg:py-24 py-14 lg:px-0 px-4">
-        <div className="px-4 mx-auto xl:px-0 container py-5 lg:py-8">
+      <div className="bg-white lg:py-24 py-14 lg:px-0 border-t">
+        <div className="container px-8 lg:mx-auto xl:px-5">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
               <h4 className="text-4xl font-bold">Hekto</h4>
@@ -61,7 +61,7 @@ export function Footer({}: FooterProps) {
               </div>
             </div>
             {Object.keys(dataFooter).map((key, i) => (
-              <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full">
+              <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full lg:mt-0 mt-4">
                 <h4 className="text-xl lg:mb-10 mb-4">{key}</h4>
                 {Array.from(dataFooter[key]).map((item, i) => (
                   <Link key={`item-${i}`} className="block font-lato mb-5" href="/">

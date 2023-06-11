@@ -38,7 +38,7 @@ export default withNextCorsRoute(async (req, res) => {
       } else {
         const {
           page = 1,
-          limit = 10,
+          limit = 6,
           price = 'all',
           rating = 'all',
           sort = 'featured',
