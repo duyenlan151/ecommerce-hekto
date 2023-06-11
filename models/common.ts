@@ -44,6 +44,7 @@ export interface DataResCommonModel {
   page?: number;
   message?: string;
   pages: number;
+  hasNextPage: boolean;
 }
 export interface OrderResModel {
   order: OrderModel;

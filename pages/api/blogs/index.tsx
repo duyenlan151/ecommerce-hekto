@@ -162,6 +162,7 @@ export default withNextCorsRoute(async (req, res) => {
           message: 'Find all success!',
           pages: Math.ceil(countBlogs / Number(limit)),
           statusCode: 200,
+          hasNextPage: Number(limit) * Number(page) < countBlogs,
         });
       }
       break;
