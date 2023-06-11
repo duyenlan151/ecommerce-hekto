@@ -57,8 +57,8 @@ export function BlogDetail({
           </div>
         </div>
       </div>
-      <div className="mx-auto my-14 flex max-w-screen-xl flex-col gap-5 px-5 md:flex-row">
-        <article className="flex-1 px-4">
+      <div className="mx-auto my-14 flex max-w-screen-xl flex-col gap-5 px-5 lg:flex-row">
+        <article className="flex-1 lg:px-4">
           <div
             className="ql-editor !overflow-hidden"
             dangerouslySetInnerHTML={{

@@ -7,7 +7,7 @@ export interface BlogSidebarProps {}
 
 export function BlogSidebar(props: BlogSidebarProps) {
   return (
-    <aside className="sticky top-0 w-full self-start md:w-96">
+    <aside className="sticky top-0 w-full self-start lg:w-96">
       <div className="mt-5 font-sans">
         <BlogSearch />
         <BlogRelated />
