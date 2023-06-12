@@ -23,6 +23,7 @@ NProgress.configure({
   showSpinner: false,
 });
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const { store } = wrapper.useWrappedStore(pageProps);
   const router = useRouter();
 
   const LayoutMain = Component.layout ?? Layout;
@@ -48,34 +49,34 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   }, [router.events]);
 
   return (
-    // <Provider store={store}>
-    <SessionProvider session={session}>
-      <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
-        <MetaData />
-        <LayoutMain>
-          {Component.authorize ? (
-            <ProtectedRoute>
+    <Provider store={store}>
+      <SessionProvider session={session}>
+        <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
+          <MetaData />
+          <LayoutMain>
+            {Component.authorize ? (
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
+            ) : (
               <Component {...pageProps} />
-            </ProtectedRoute>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </LayoutMain>
-        <ToastContainer
-          position="top-right"
-          autoClose={2500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-      </PayPalScriptProvider>
-    </SessionProvider>
-    // </Provider>
+            )}
+          </LayoutMain>
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
+        </PayPalScriptProvider>
+      </SessionProvider>
+    </Provider>
   );
 }
-export default wrapper.withRedux(MyApp);
+export default MyApp;
