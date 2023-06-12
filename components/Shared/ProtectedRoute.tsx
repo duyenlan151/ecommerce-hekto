@@ -11,6 +11,12 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const router = useRouter();
   const { status, data: session } = useSession();
 
+  if (typeof window !== 'undefined' && !window.navigator.cookieEnabled) {
+    // The browser does not support or is blocking cookies from being set.
+    alert('The browser does not support or is blocking cookies from being set.');
+    return;
+  }
+
   if (status === 'loading') {
     return <LoadingCommon />;
   }

@@ -82,7 +82,7 @@ export const cartSlice = createSlice({
     },
 
     cleanAllCart: (state) => {
-      deleteCookie(KEY_CART);
+      localStorage.removeItem(KEY_CART);
       return { ...defaultCart };
     },
   },

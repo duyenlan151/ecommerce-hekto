@@ -72,7 +72,6 @@ export default function SwipperCommon({
                   src={image.bgImg}
                   sizes="(max-width: 500px) 100vw, (max-width: 500px)"
                   fill
-                  loading="lazy"
                   alt={image.title}
                   className="object-cover"
                 />
