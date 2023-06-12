@@ -9,6 +9,6 @@ export interface UserModel {
   createdAt: string;
 }
 
-export interface DataUsersModel extends DataResCommonModel {
+export interface DataUsersModel extends DataResCommonModel<UserModel> {
   data: UserModel[];
 }

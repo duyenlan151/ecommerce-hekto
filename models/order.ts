@@ -26,6 +26,6 @@ export interface OrderModel {
 
 export type ActionOrder = 'getOrderById' | 'getHistory' | 'getAllOrders';
 
-export interface DataOrdersModel extends DataResCommonModel {
+export interface DataOrdersModel extends DataResCommonModel<OrderModel> {
   data: OrderModel[];
 }

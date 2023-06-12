@@ -15,6 +15,6 @@ export interface BlogModel {
   updatedAt: Date;
 }
 
-export interface DataBlogModel extends DataResCommonModel {
+export interface DataBlogModel extends DataResCommonModel<BlogModel> {
   data: BlogModel[];
 }

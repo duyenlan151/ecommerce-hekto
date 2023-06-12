@@ -7,6 +7,6 @@ export interface CategoryModel {
   status?: string;
 }
 
-export interface DataCategoryModel extends DataResCommonModel {
+export interface DataCategoryModel extends DataResCommonModel<CategoryModel> {
   data: CategoryModel[];
 }

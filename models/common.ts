@@ -38,7 +38,8 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-export interface DataResCommonModel {
+export interface DataResCommonModel<T> {
+  data: T[];
   totalDocs: number;
   limit?: number;
   page?: number;

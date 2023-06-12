@@ -13,19 +13,19 @@ export function Header({}: HeaderProps) {
             <Link href="/">Hekto</Link>
           </h1>
           {/* <nav className=""> */}
-          <Link className="mx-3 text-base" href="/">
+          <Link className="mx-3 text-base" href="/" prefetch={false}>
             Home
           </Link>
-          <Link className="mx-3 text-base" href="/products">
+          <Link className="mx-3 text-base" href="/products" prefetch={false}>
             Products
           </Link>
-          <Link className="mx-3 text-base" href="/blog">
+          <Link className="mx-3 text-base" href="/blog" prefetch={false}>
             Blog
           </Link>
           {/* <Link className="mx-3 text-base" href="/shop">
             Shop
           </Link> */}
-          <Link className="mx-3 text-base" href="/contact">
+          <Link className="mx-3 text-base" href="/contact" prefetch={false}>
             Contact
           </Link>
           {/* </nav> */}

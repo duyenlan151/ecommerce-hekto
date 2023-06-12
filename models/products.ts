@@ -15,6 +15,6 @@ export interface ProductModel {
   [key: string]: any;
 }
 
-export interface DataCategoryModel extends DataResCommonModel {
+export interface DataCategoryModel extends DataResCommonModel<ProductModel> {
   data: ProductModel[];
 }
