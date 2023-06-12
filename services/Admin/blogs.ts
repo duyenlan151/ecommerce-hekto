@@ -1,8 +1,8 @@
-import { BlogModel, DataBlogModel } from 'models';
+import { BlogModel, DataBlogModel, DataResCommonModel } from 'models';
 import axiosClient from 'services/api-services';
 
 export const blogsService = {
-  getAllBlog(params?): Promise<DataBlogModel> {
+  getAllBlog(params?): Promise<DataResCommonModel<BlogModel>> {
     return axiosClient.get('/blogs', { params });
   },
 

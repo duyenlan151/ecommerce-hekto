@@ -1,10 +1,10 @@
 // import { LoginPayload } from '@/models'
 
-import { ProductModel } from 'models';
+import { DataResCommonModel, ProductModel } from 'models';
 import axiosClient from './api-services';
 
 export const productsService = {
-  getAllProducts(params?): Promise<{ data: ProductModel[]; total: number; limit: number }> {
+  getAllProducts(params?): Promise<DataResCommonModel<ProductModel>> {
     return axiosClient.get('/admin/products', { params });
   },
 
