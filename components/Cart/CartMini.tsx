@@ -47,17 +47,16 @@ export default function CartMini(props: CartMiniProps) {
               >
                 <AiOutlineClose color="black" size={20} />
               </div> */}
-            {/* {cartItems.length <= 0 ? (
-                'Your Cart is empty'
-              ) : ( */}
+
             <div className="flex flex-col overflow-y-scroll bg-white shadow-xl h-full">
               <div
-                className="cursor-pointer pb-4 pr-3 flex justify-end border-b border-primary"
+                className="cursor-pointer py-4 pr-3 flex justify-end border-b border-primary"
                 onClick={handleToggleCart}
               >
                 <AiOutlineClose color="black" size={20} />
               </div>
               <div className="flex-1 p-4">
+                {cartItems.length <= 0 && 'Your Cart is empty'}
                 <CartItemList data={cartItems} />
               </div>
               <div className="p-4 border-t">
