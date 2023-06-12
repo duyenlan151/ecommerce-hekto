@@ -9,7 +9,8 @@ const withPWA = require('next-pwa')({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
-  publicExcludes: ['!resume.pdf'],
+  // publicExcludes: ['!resume.pdf'],
+  buildExcludes: ['/middleware-manifest.json$/'],
 });
 
 module.exports = withPWA({
