@@ -64,3 +64,12 @@ export const generateSlug = (title: string) =>
     .toLowerCase()
     .replace(/[^\w ]+/g, '')
     .replace(/ +/g, '-');
+
+export const queryString = (queryString: string) => {
+  const params = new URLSearchParams(queryString);
+  params.forEach((value, key) => {
+    if (value == '' || value == 'undefined') params.delete(key);
+  });
+
+  return params.toString();
+};
