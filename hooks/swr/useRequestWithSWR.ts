@@ -9,6 +9,7 @@ interface Return<Data, Error>
     'isValidating' | 'error' | 'mutate'
   > {
   data: Data | undefined;
+  isLoading: boolean;
   response: AxiosResponse<Data> | undefined;
 }
 
@@ -20,6 +21,7 @@ export function useRequestWithSWR<Data = unknown, Error = unknown>(
     data: response,
     error,
     isValidating,
+    isLoading,
     mutate,
   } = useSWR<AxiosResponse<Data>, AxiosError<Error>>(
     request,
@@ -27,7 +29,6 @@ export function useRequestWithSWR<Data = unknown, Error = unknown>(
      * NOTE: Typescript thinks `request` can be `null` here, but the fetcher
      * function is actually only called by `useSWR` when it isn't.
      */
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     () => axiosClient.request<Data>(request!),
     {
       ...config,
@@ -47,6 +48,7 @@ export function useRequestWithSWR<Data = unknown, Error = unknown>(
     data: response && response.data,
     response,
     error,
+    isLoading,
     isValidating,
     mutate,
   };

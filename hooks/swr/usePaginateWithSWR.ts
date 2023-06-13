@@ -19,6 +19,7 @@ export default function useRequestInfinite<Data = unknown, Error = unknown>(
   { fallbackData, ...config }: Config<Data, Error> = {}
 ) {
   const { params, url } = request;
+  console.log('🚀 ~ file: usePaginateWithSWR.ts:22 ~ params:', typeof params);
 
   const {
     data: result,

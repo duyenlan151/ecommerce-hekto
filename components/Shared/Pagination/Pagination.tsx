@@ -19,7 +19,7 @@ export const Pagination = (props: PaginationProps) => {
     siblingCount,
     pageSize,
   });
-  let lastPage = paginationRange[paginationRange?.length - 1];
+  let lastPage = paginationRange && paginationRange[paginationRange?.length - 1];
 
   // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRange?.length < 2) {
@@ -46,10 +46,14 @@ export const Pagination = (props: PaginationProps) => {
 
   const onPageChange = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= lastPage) {
-      router.push({
-        pathname: router.pathname,
-        query: { page: pageNumber },
-      });
+      router.push(
+        {
+          pathname: router.pathname,
+          query: { page: pageNumber },
+        },
+        undefined,
+        { scroll: false }
+      );
     }
   };
 

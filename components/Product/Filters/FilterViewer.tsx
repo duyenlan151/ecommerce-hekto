@@ -1,3 +1,4 @@
+import { formatQueryString, queryString } from '@utils/common';
 import { isAllObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
@@ -26,13 +27,11 @@ export function FilterViewer(props: FilterViewerProps) {
             {!!elm.isShow(filters) && (
               <div
                 onClick={() => {
-                  const newFilters = elm.onRemove(filters);
+                  const query = formatQueryString(elm.onRemove(filters));
                   router.push(
                     {
                       pathname: router.pathname,
-                      query: {
-                        ...newFilters,
-                      },
+                      query,
                     },
                     undefined,
                     { scroll: false }

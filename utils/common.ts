@@ -66,7 +66,7 @@ export const generateSlug = (title: string) =>
     .replace(/[^\w ]+/g, '')
     .replace(/ +/g, '-');
 
-export const queryString = (queryString: string) => {
+export const queryString = (queryString: any) => {
   const params = new URLSearchParams(queryString);
   params.forEach((value, key) => {
     if (value == '' || value == 'undefined') params.delete(key);
@@ -74,3 +74,6 @@ export const queryString = (queryString: string) => {
 
   return params.toString();
 };
+
+export const formatQueryString = (params: Object) =>
+  Object.fromEntries(Object.entries(params).filter(([_, v]) => v != null && v !== ''));

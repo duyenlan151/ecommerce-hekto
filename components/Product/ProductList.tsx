@@ -9,15 +9,18 @@ import { ETypeView } from './ProductListPage';
 export interface ProductListProps {
   products: ProductModel[];
   viewCol: ETypeView;
+  isLoading: boolean;
 }
 
-export default function ProductList({ products, viewCol }: ProductListProps) {
+export default function ProductList({ products, viewCol, isLoading }: ProductListProps) {
   const { isPageLoading } = usePageLoading();
+
+  if (products?.length === 0) {
+    return <div className="p-4 bg-white">No Products found</div>;
+  }
   return (
     <AnimatedDiv variants={opacityVariant} className="">
-      {!products.length && <div className="p-4 bg-white">No Products found</div>}
-
-      {isPageLoading ? (
+      {isLoading ? (
         <div className={`grid justify-center items-center mx-auto gap-4 ${viewCol} grid-cols-1`}>
           {new Array(6).fill('').map((item, idex) => (
             <ProductItemSkeleton key={`number-${idex}`} />

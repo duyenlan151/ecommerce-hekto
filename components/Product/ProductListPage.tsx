@@ -15,6 +15,7 @@ import { itemsList } from './Products.props';
 export interface ProductListPageProps {
   products: any;
   itemsPerPage?: number;
+  isLoading: boolean;
 }
 
 // type typeView = 'col' | 'view';
@@ -29,7 +30,7 @@ export const ProductViewType: Record<ETypeView, string | number> = {
   [ETypeView.ROW]: 'lg:grid-cols-1',
 };
 
-export default function ProductListPage({ products }: ProductListPageProps) {
+export default function ProductListPage({ products, isLoading }: ProductListPageProps) {
   const { t } = useTranslation('products');
   const router = useRouter();
   const {
@@ -122,6 +123,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
             <FilterViewer />
             {/* Product List */}
             <ProductList
+              isLoading={isLoading}
               products={products?.data}
               viewCol={ProductViewType[String(typeView)] as ETypeView}
             />
