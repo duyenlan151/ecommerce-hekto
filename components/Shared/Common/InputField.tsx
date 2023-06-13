@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useController } from 'react-hook-form';
-import { AiFillEye, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import {
+  AiOutlineClose,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineSearch,
+} from 'react-icons/ai';
 
 export type TypeInput = 'text' | 'number';
 
@@ -56,7 +61,8 @@ export function InputField({
         <input
           ref={ref}
           id={name}
-          defaultValue={value ?? ''}
+          value={value ?? ''}
+          // defaultValue={value ?? ''}
           name={name ?? ''}
           placeholder={placeholder}
           // onChange={onChange}
@@ -68,6 +74,17 @@ export function InputField({
           className={`border-transparent bg-white focus:border-transparent focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border-0 relative w-full h-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out `}
           // {...rest}
         />
+        {rest.isSearch && (
+          <div
+            onClick={() => {
+              onChange('');
+              externalOnChange && externalOnChange?.(null);
+            }}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none focus:outline-none transition-all text-gray-400 hover:text-gray-600"
+          >
+            {value ? <AiOutlineClose /> : <AiOutlineSearch />}
+          </div>
+        )}
         {rest.type === 'password' && (
           <span className="px-4 cursor-pointer" onClick={changeTypeInput}>
             {typeInput !== 'password' ? (

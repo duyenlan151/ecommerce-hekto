@@ -44,6 +44,7 @@ export default withNextCorsRoute(async (req, res) => {
           sort = 'featured',
           category = '',
           status,
+          search = 'all',
         } = req.query;
 
         if (Number(page) < 1) {
@@ -56,6 +57,16 @@ export default withNextCorsRoute(async (req, res) => {
             statusCode: 200,
           });
         }
+
+        const searchFilter =
+          search && search !== 'all'
+            ? {
+                title: {
+                  $regex: search,
+                  $options: 'i',
+                },
+              }
+            : {};
 
         const statusFilter = user?.isAdmin
           ? status !== 'all'
@@ -128,6 +139,7 @@ export default withNextCorsRoute(async (req, res) => {
               ...matchRating,
               ...matchPrice,
               ...statusFilter,
+              ...searchFilter,
             },
           },
           {
@@ -153,6 +165,7 @@ export default withNextCorsRoute(async (req, res) => {
           ...ratingFilter,
           ...categoryFilter,
           ...statusFilter,
+          ...searchFilter,
         });
         res.status(200).json({
           data: blog,

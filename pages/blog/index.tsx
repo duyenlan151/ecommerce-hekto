@@ -2,102 +2,53 @@ import BlogList from '@components/Blogs/BlogList';
 import { ILoadingSeconday } from '@components/Icons';
 import { LayoutBLog } from '@components/Shared/Layout';
 import { SearchInput } from '@components/Shared/SearchInput';
-import { usePaginateWithSWR } from '@hooks/index';
+import usePaginateWithSWR from '@hooks/swr/usePaginateWithSWR';
 import { useRouterPush } from '@hooks/useRouterPush';
 import { DataBlogModel } from 'models';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { blogsService } from 'services/Admin';
 
 export interface BlogPageProps {
   blogs: DataBlogModel;
 }
-
-const DEFAULT_STATE = {
-  curPage: 1,
-  hasNextPage: false,
-  loading: false,
-};
-
 export default function BlogPage({ blogs }: BlogPageProps) {
   const { query } = useRouter();
   const { search } = query;
-
   const { routerPushQuery } = useRouterPush();
-  const { result, error, isLoadingMore, size, setSize, isReachingEnd, isLoading } =
+
+  const { data, error, size, setSize, isReachingEnd, isLoading, isLoadingMore } =
     usePaginateWithSWR({
-      path: '/blogs',
-      fetcher: () => blogsService.getAllBlog({ limit: 3, page: size }),
+      url: '/blogs',
+      params: { limit: 3, search },
     });
 
-  const blogsList = useMemo(() => {
-    return result.reduce(
-      (newArray: [], item: DataBlogModel) => newArray.concat(item.data as []),
-      []
-    );
-  }, [result]);
+  const blogsList = useMemo(
+    () =>
+      (data &&
+        data.reduce((newArray: [], item: DataBlogModel) => newArray.concat(item.data as []), [])) ||
+      [],
 
-  // const issues = data ? [].concat(...data?.['0']?.data) : [];
-
-  // const [dataBlogs, setDataBlogs] = useState<BlogModel[]>(blogs.data || []);
-  // const [defaultState, setDefaultState] = useState({
-  //   ...DEFAULT_STATE,
-  //   hasNextPage: blogs.hasNextPage,
-  // });
-  // const refBlogs = useRef<Partial<BlogModel[]>>(dataBlogs);
+    [data]
+  );
 
   const handleChangeSearch = (search: string) => {
-    !!search &&
-      search !== 'undefined' &&
-      routerPushQuery({
-        query: {
-          search,
-        },
-      });
+    routerPushQuery({
+      query: search
+        ? {
+            search,
+          }
+        : null,
+    });
   };
   if (error) return <h1>Something went wrong!</h1>;
-  if (!result) return <h1>Loading...</h1>;
-  // const handleLoadMore = async () => {
-  //   if (defaultState.loading) return;
-
-  //   setDefaultState((prev) => ({
-  //     ...prev,
-  //     loading: true,
-  //   }));
-  //   try {
-  //     const newCurPage = defaultState.curPage + 1;
-
-  //     const newBlogs = await blogsService.getAllBlog({ limit: 3, page: newCurPage });
-
-  //     let data;
-  //     if (Number(newCurPage) > 1) {
-  //       data = [...(refBlogs.current || []), ...newBlogs.data];
-  //       refBlogs.current = [...(refBlogs.current || []), ...newBlogs.data];
-  //     } else {
-  //       refBlogs.current = newBlogs.data;
-  //       data = [...newBlogs.data];
-  //     }
-
-  //     setDataBlogs(data);
-  //     setDefaultState((prev) => ({
-  //       ...prev,
-  //       hasNextPage: newBlogs.hasNextPage,
-  //       curPage: newCurPage,
-  //     }));
-  //   } catch (error) {
-  //   } finally {
-  //     setDefaultState((prev) => ({
-  //       ...prev,
-  //       loading: false,
-  //     }));
-  //   }
-  // };
+  // if (!data) return <h1>Loading...</h1>;
 
   return (
     <div className="container px-6 mx-auto xl:px-5 max-w-screen-lg py-5 lg:py-8 min-h-screen">
       <div className="mt-14 text-center mb-8">
         <SearchInput value={String(search) || ''} handleChange={handleChangeSearch} />
       </div>
+      {!blogsList.length && <div className="text-center">No blog found</div>}
       <BlogList blogs={blogsList} />
       {!isReachingEnd && (
         <div className="mt-16 flex justify-center">

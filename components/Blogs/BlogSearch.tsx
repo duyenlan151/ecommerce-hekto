@@ -1,7 +1,7 @@
 import { SearchInput } from '@components/Shared/SearchInput';
 import { useKeypress } from '@hooks/useKeyPress';
 import { useRouterPush } from '@hooks/useRouterPush';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 export interface BlogSearchProps {}
 
@@ -25,6 +25,7 @@ export function BlogSearch(props: BlogSearchProps) {
       <SearchInput
         label="Search Posts"
         value=""
+        debounceTime={200}
         handleChange={(value) => (refSearch.current = value)}
       />
     </div>
