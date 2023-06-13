@@ -1,0 +1,11 @@
+{
+  "title": "Ecommerce Acceories & Fashion item",
+  "result": "About {number} results",
+
+  "view": "View",
+  "sort-by": "Sort by",
+
+  "categories": "Categories",
+  "price": "Price",
+  "rating": "Rating"
+}

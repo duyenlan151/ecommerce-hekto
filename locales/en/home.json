@@ -1,4 +1,7 @@
 {
   "description": "This text is wrote in English from the homepage dictionary",
-  "more-examples": "More examples"
+  "more-examples": "More examples",
+
+  "sign-up": "Sign Up",
+  "placeholder-email": "Enter Email Address"
 }

@@ -2,6 +2,7 @@ import { CheckBox } from '@components/Shared/Common';
 import { useCategories } from '@hooks/useCategories';
 import { useRouterPush } from '@hooks/useRouterPush';
 import { formatData } from '@utils/common';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -18,6 +19,7 @@ interface Categories {
 const classCheckBox = '!text-pink-300 !border-pink-500 focus:!border-pink-500 mr-3';
 
 export function FilterByCategories(props: FilterByCategoriesProps) {
+  const { t } = useTranslation('products');
   const { loading: loadingCategory, handleCategory } = useCategories();
   const [categories, setCategories] = useState<Categories[]>([]);
   const form = useForm();
@@ -55,7 +57,7 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
 
   return (
     <div className="my-2 border-b">
-      <p className="text-blue-1 text-xl px-3 py-2">Categories</p>
+      <p className="text-blue-1 text-xl px-3 py-2">{t('categories')}</p>
       <div className="flex flex-col p-3 pt-0">
         {categories &&
           categories.map((item) => (

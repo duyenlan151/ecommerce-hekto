@@ -1,27 +1,27 @@
 import * as yup from 'yup';
 
 export const dataFooter = {
-  Categories: [
-    { label: 'Laptops & Computers', path: '/s' },
-    { label: 'Cameras & Photography', path: '/' },
-    { label: 'Smart Phones & Tablets', path: '/' },
-    { label: 'Video Games & Consoles', path: '/' },
-    { label: 'Waterproof Headphones', path: '/' },
+  'categories.title': [
+    { label: 'categories.laptops-computers', path: '/s' },
+    { label: 'categories.cameras-photography', path: '/' },
+    { label: 'categories.smartphones-tablets', path: '/' },
+    { label: 'categories.videogames-consoles', path: '/' },
+    { label: 'categories.waterproof-headphones', path: '/' },
   ],
-  'Customer Care': [
-    { label: 'My Account', path: '/user/profile' },
-    { label: 'Discount', path: '/user/orders' },
-    { label: 'Returns', path: '/user/orders' },
-    { label: 'Orders History', path: '/user/orders' },
-    { label: 'Order Tracking', path: '/user/orders' },
+  'customer-care.title': [
+    { label: 'customer-care.my-account', path: '/user/profile' },
+    { label: 'customer-care.discount', path: '/user/orders' },
+    { label: 'customer-care.returns', path: '/user/orders' },
+    { label: 'customer-care.orders-history', path: '/user/orders' },
+    { label: 'customer-care.order-tracking', path: '/user/orders' },
   ],
-  Pages: [
-    { label: 'Blog', path: '/blog' },
-    { label: 'Browse the Shop', path: '/products' },
-    { label: 'Category', path: '/' },
-    { label: 'Pre-Built Pages', path: '/' },
-    { label: 'Visual Composer Elements', path: '/' },
-    { label: 'WooCommerce Pages', path: '/' },
+  'pages.title': [
+    { label: 'pages.blog', path: '/blog' },
+    { label: 'pages.shop', path: '/products' },
+    { label: 'pages.category', path: '/' },
+    { label: 'pages.pre-built', path: '/' },
+    { label: 'pages.visual', path: '/' },
+    { label: 'pages.wooCommerce', path: '/' },
   ],
 };
 

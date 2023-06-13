@@ -1,10 +1,12 @@
 import { useRouterPush } from '@hooks/useRouterPush';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { filterPrice } from './Filter.props';
 
 export interface FilterByPriceProps {}
 
 export function FilterByPrice(props: FilterByPriceProps) {
+  const { t } = useTranslation('products');
   const { routerPushQuery } = useRouterPush();
   const router = useRouter();
   const {
@@ -21,7 +23,7 @@ export function FilterByPrice(props: FilterByPriceProps) {
   };
   return (
     <div className="my-2 border-b">
-      <p className="text-blue-1 text-xl px-3 py-2">Price</p>
+      <p className="text-blue-1 text-xl px-3 py-2">{t('price')}</p>
       <div className="flex flex-col px-3 pt-0 mb-4">
         {filterPrice.map((item) => (
           <a

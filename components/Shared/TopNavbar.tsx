@@ -15,6 +15,7 @@ import { SidebarMenu } from './SidebarMenu';
 
 import setLanguage from 'next-translate/setLanguage';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import useTranslation from 'next-translate/useTranslation';
 
 type TopNavbarProps = {
   // item: User
@@ -26,6 +27,7 @@ const locales = [
 ];
 
 function TopNavbar({}: TopNavbarProps) {
+  const { t, lang } = useTranslation('header');
   const cartItemsCount = useSelector(cartItemsCountSelector);
   const { data: session } = useSession();
   const [show, setShow] = useState(false);
@@ -66,7 +68,9 @@ function TopNavbar({}: TopNavbarProps) {
                 <Dropdown
                   label={
                     <p className="mt-[1px] flex flex-cols items-center text-ellipsis">
-                      <span className="ml-4 font-normal">English</span>
+                      <span className="ml-4 font-normal">
+                        {lang === 'en' ? 'English' : 'France'}
+                      </span>
                       <MdKeyboardArrowDown size={20} />
                     </p>
                   }
@@ -75,7 +79,7 @@ function TopNavbar({}: TopNavbarProps) {
                 />
                 <span className="ml-4">USD</span>
                 <Link href="/whislist" className="ml-4 flex items-center">
-                  Whislist
+                  {t('whislist')}
                   <span className="ml-1">
                     <AiOutlineHeart />
                   </span>
@@ -98,19 +102,19 @@ function TopNavbar({}: TopNavbarProps) {
                         className="whitespace-nowrap hover:bg-grey-1 py-2 px-4 block"
                         href="/user/profile"
                       >
-                        Profile
+                        {t('profile')}
                       </Link>
                       <li
                         onClick={logoutClickHandler}
                         className="bg-white hover:bg-grey-1 py-2 px-4 block whitespace-no-wrap"
                       >
-                        Logout
+                        {t('logout')}
                       </li>
                     </Dropdown>
                   </div>
                 ) : (
                   <Link href="/login" className="ml-4 flex items-center">
-                    Login
+                    {t('login')}
                     <span className="ml-1">
                       <AiOutlineUser />
                     </span>

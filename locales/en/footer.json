@@ -1,0 +1,40 @@
+{
+  "contact-info": "Contact Info",
+  "contact-address": "17 Princess Road, London, Greater London NW1 8JR, UK",
+
+  "categories": {
+    "title": "Categories",
+
+    "laptops-computers": "Laptops & Computers",
+    "cameras-photography": "Cameras & Photography",
+    "smartphones-tablets": "Smart Phones & Tablets",
+    "videogames-consoles": "Video Games & Consoles",
+    "waterproof-headphones": "Waterproof Headphones"
+  },
+
+  "customer-care": {
+    "title": "Customer Care",
+
+    "my-account": "My Account",
+    "discount": "Discount",
+    "returns": "Returns",
+    "orders-history": "Orders History",
+    "order-tracking": "Order Tracking"
+  },
+
+  "pages": {
+    "title": "Pages",
+
+    "blog": "Blog",
+    "shop": "Browse the Shop",
+    "category": "Category",
+    "pre-built": "Pre-Built Pages",
+    "visual": "Visual Composer Elements",
+    "wooCommerce": "WooCommerce Pages"
+  },
+
+  "desc": "©Webecy - All Rights Reserved",
+
+  "sign-up": "Sign Up",
+  "placeholder-email": "Enter Email Address"
+}

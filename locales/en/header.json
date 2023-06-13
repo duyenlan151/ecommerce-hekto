@@ -2,5 +2,28 @@
   "home": "Home",
   "products": "Products",
   "blog": "Blog",
-  "contact": "Contact"
+  "contact": "Contact",
+
+  "login": "Login",
+  "logout": "Logout",
+  "whislist": "Whislist",
+  "profile": "Profile",
+
+  "featured-products": "Featured Products",
+  "shopex-products": "What Shopex Offer!",
+
+  "unique": {
+    "title": "Unique Features Of leatest & Trending Poducts",
+    "item-01": "All frames constructed with hardwood solids and laminates",
+    "item-02": "Reinforced with double wood dowels, glue, screw - nails corner blocks and machine nails",
+    "item-03": "Arms, backs and seats are structurally reinforced"
+  },
+
+  "blog-products": "Lasted Blogs",
+
+  "hello": "Hello",
+
+  "view-all": "View all",
+  "247-support": "24/7 Support",
+  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa purus gravida."
 }

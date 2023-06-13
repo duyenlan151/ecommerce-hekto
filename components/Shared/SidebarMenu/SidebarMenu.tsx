@@ -1,5 +1,6 @@
 import { cleanAllCart } from '@app/Cart/cartSlice';
 import { signOut, useSession } from 'next-auth/react';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdLogin, MdLogout } from 'react-icons/md';
@@ -11,13 +12,14 @@ export interface SidebarMenuProps {
 }
 
 const links = [
-  { id: 1, name: 'Home', path: '/' },
-  { id: 2, name: 'Products', path: '/products' },
-  { id: 3, name: 'Blog', path: '/blog' },
-  { id: 4, name: 'Contact', path: '/contact' },
+  { id: 1, name: 'home', path: '/' },
+  { id: 2, name: 'products', path: '/products' },
+  { id: 3, name: 'blog', path: '/blog' },
+  { id: 4, name: 'contact', path: '/contact' },
 ];
 
 export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
+  const { t } = useTranslation('header');
   const { data: session } = useSession();
   const dispatch = useDispatch();
   return (
@@ -40,12 +42,12 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
               href={'/user/profile'}
               onClick={onClose}
             >
-              Hello, {session?.user?.name}
+              {t('hello')}, {session?.user?.name}
             </Link>
           )}
           {links.map((link) => (
             <Link key={link.id} className="py-3 text-base block" href={link.path} onClick={onClose}>
-              {link.name}
+              {t(link.name)}
             </Link>
           ))}
 
@@ -59,7 +61,7 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
             }
           >
             {session?.user?.name ? <MdLogin size={20} /> : <MdLogout size={20} />}
-            <span className="ml-2">{session?.user?.name ? 'Logout' : 'Login'}</span>
+            <span className="ml-2">{t(session?.user?.name ? 'logout' : 'login')}</span>
           </Link>
         </div>
       </div>

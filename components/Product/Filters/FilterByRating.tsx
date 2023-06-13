@@ -1,4 +1,5 @@
 import { useRouterPush } from '@hooks/useRouterPush';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { filterRating } from './Filter.props';
@@ -6,6 +7,7 @@ import { filterRating } from './Filter.props';
 export interface FilterByRatingProps {}
 
 export function FilterByRating(props: FilterByRatingProps) {
+  const { t } = useTranslation('products');
   const router = useRouter();
   const { routerPushQuery } = useRouterPush();
 
@@ -19,7 +21,7 @@ export function FilterByRating(props: FilterByRatingProps) {
   };
   return (
     <div className="my-2">
-      <p className="text-blue-1 text-xl px-3 py-2">Rating</p>
+      <p className="text-blue-1 text-xl px-3 py-2">{t('rating')}</p>
       <div className="p-3 pt-0">
         {filterRating.map((rating) => (
           <div

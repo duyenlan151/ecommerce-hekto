@@ -1,6 +1,7 @@
 import { Dropdown } from '@components/Shared/Dropdowns';
 import { Pagination } from '@components/Shared/Pagination';
 import { useRouterPush } from '@hooks/useRouterPush';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BsGrid, BsListTask } from 'react-icons/bs';
@@ -29,6 +30,7 @@ export const ProductViewType: Record<ETypeView, string | number> = {
 };
 
 export default function ProductListPage({ products }: ProductListPageProps) {
+  const { t } = useTranslation('products');
   const router = useRouter();
   const {
     query: { page, view },
@@ -70,13 +72,13 @@ export default function ProductListPage({ products }: ProductListPageProps) {
   return (
     <section className="bg-bg-color">
       <div className="container mx-auto py-10 lg:px-0 px-4">
-        <h4 className="text-blue-1 text-3xl">Ecommerce Acceories & Fashion item </h4>
+        <h4 className="text-blue-1 text-3xl">{t('title')}</h4>
         <div className="text-primary font-lato-light leading-7">
-          About {products?.totalDocs || 0} results
+          {t('result').replace('{number}', products?.totalDocs || 0)}
         </div>
         <div className="ml-auto flex justify-end items-center py-2 mt-4">
           <div className="flex items-center px-4">
-            <p className="pr-3">View:</p>
+            <p className="pr-3">{t('view')}:</p>
             <span
               className={`pr-2 cursor-pointer opacity-50 ${
                 typeView === ETypeView.COL && '!opacity-100'
@@ -98,7 +100,7 @@ export default function ProductListPage({ products }: ProductListPageProps) {
           <Dropdown
             label={
               <div className="flex items-center py-2 bg-white px-4 border border-gray-10">
-                <div className="pr-3"> Sort By</div>
+                <div className="pr-3">{t('sort-by')}</div>
                 <MdKeyboardArrowDown size={20} />
               </div>
             }

@@ -30,10 +30,11 @@ export const getSymbolCurrency = (value: number | string, currencyCode: Currency
 
 export const formatDateTime = (
   date: number | Date | undefined | string,
-  options: any = optionsDateFormats.default
+  options: any = optionsDateFormats.default,
+  lang: string = 'en'
 ) => {
   // @ts-ignore
-  return new Intl.DateTimeFormat('en-US', options).format(date);
+  return new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'fr-FR', options).format(date);
 };
 
 // export const urlFor = (source: any) => builder.image(source);

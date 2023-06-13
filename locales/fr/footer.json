@@ -1,0 +1,40 @@
+{
+  "contact-info": "Informations de contact",
+  "contact-address": "17 Princess Road, Londres, Grand Londres NW1 8JR, Royaume-Uni",
+
+  "categories": {
+    "title": "Catégories",
+
+    "laptops-computers": "Ordinateurs portables et ordinateurs",
+    "cameras-photography": "Appareils photo et photographie",
+    "smartphones-tablets": "Téléphones intelligents et tablettes",
+    "videogames-consoles": "Jeux vidéo et consoles",
+    "waterproof-headphones": "Casque étanche"
+  },
+
+  "customer-care": {
+    "title": "Service client",
+
+    "my-account": "Mon compte",
+    "discount": "Remise",
+    "returns": "Retour",
+    "orders-history": "Historique des commandes",
+    "order-tracking": "Suivi de commande"
+  },
+
+  "pages": {
+    "title": "Pages",
+
+    "blog": "Blog",
+    "shop": "Parcourir la boutique",
+    "category": "Catégorie",
+    "pre-built": "Pages pré-construites",
+    "visual": "Éléments du compositeur visuel",
+    "wooCommerce": "Pages WooCommerce"
+  },
+
+  "desc": "©Webecy - Tous droits réservés",
+
+  "sign-up": "S'inscrire",
+  "placeholder-email": "Entrer l'adresse e-mail"
+}

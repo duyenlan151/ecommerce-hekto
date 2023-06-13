@@ -2,5 +2,28 @@
   "home": "Maison",
   "products": "Des produits",
   "blog": "Blog",
-  "contact": "Contact"
+  "contact": "Contact",
+
+  "login": "Connexion",
+  "logout": "Se déconnecter",
+  "whislist": "Liste de souhaits",
+  "profile": "Profil",
+
+  "featured-products": "Produits populaires",
+  "shopex-products": "Quelle offre Shopex!",
+
+  "unique": {
+    "title": "Caractéristiques uniques des produits les plus récents et les plus tendances",
+    "item-01": "Tous les cadres sont construits avec des solides en bois dur et des stratifiés",
+    "item-02": "Renforcé avec des chevilles en bois doubles, de la colle, des blocs d'angle vis-clous et des clous mécaniques",
+    "item-03": "Les bras, les dossiers et les sièges sont structurellement renforcés"
+  },
+
+  "blog-products": "Blogs durés",
+
+  "hello": "Bonjour",
+
+  "view-all": "Voir tout",
+  "247-support": "Assistance 24h/24 et 7j/7",
+  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Masse purus gravidique."
 }

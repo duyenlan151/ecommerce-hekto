@@ -10,6 +10,7 @@ import { FadeContainer } from '@content/FramerMotionVariants';
 import Link from 'next/link';
 import { Pagination } from 'swiper';
 import { ProductItem } from './ProductItem/ProductItem';
+import useTranslation from 'next-translate/useTranslation';
 
 export interface ProductFeaturedListProps {
   data?: ProductItemModel[];
@@ -31,6 +32,7 @@ const defaultBreakpoints = {
 };
 
 export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
+  const { t } = useTranslation('header');
   return (
     <AnimatedDiv variants={FadeContainer} className="mt-20 mb-24 text-center">
       <SwipperCommon
@@ -52,7 +54,7 @@ export function ProductFeaturedList({ data = [] }: ProductFeaturedListProps) {
         href="/products"
         className="inline-block mt-5 bg-pink-600 text-white py-2.5 px-10 mx-auto"
       >
-        View all
+        {t('view-all')}
       </Link>
     </AnimatedDiv>
   );
