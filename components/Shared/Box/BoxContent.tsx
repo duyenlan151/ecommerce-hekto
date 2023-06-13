@@ -15,7 +15,7 @@ export interface BoxContentProps {
 
 export function BoxContent({
   title = 'Featured Products',
-  className = 'container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8',
+  className = 'container mx-auto lg:px-0 px-5 max-w-screen-lg py-5 lg:py-8',
   children,
   col = 6,
   imgUrl = '',

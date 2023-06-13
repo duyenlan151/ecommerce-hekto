@@ -7,7 +7,7 @@ export function SectionTrending(props: SectionTrendingProps) {
   return (
     <section className="py-[110px] bg-white">
       <BoxSection
-        className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8"
+        className="container mx-auto lg:px-0 px-5 max-w-screen-lg py-5 lg:py-8"
         title={'Trending Products'}
       >
         <ProductTredingList />

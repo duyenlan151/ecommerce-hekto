@@ -7,7 +7,7 @@ export interface LayoutProfileProps {
 
 export default function LayoutProfile({ children }: LayoutProfileProps) {
   return (
-    <section className="container mx-auto my-10 lg:px-0 px-2">
+    <section className="container mx-auto my-10 lg:px-0 px-4">
       <div className="flex flex-col lg:flex-row justify-between mt-2">
         <div className="lg:max-w-[250px] w-full basis-full mb-8">
           {/* Filter */}

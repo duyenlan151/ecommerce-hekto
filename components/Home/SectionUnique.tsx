@@ -10,7 +10,7 @@ export function SectionUnique(props: SectionUniqueProps) {
     <section className="overflow-hidden">
       <BoxContent
         imgUrl={'/images/box/Home.png'}
-        className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8"
+        className="container mx-auto lg:px-0 px-5 max-w-screen-lg py-5 lg:py-8"
         title={`Unique Features Of leatest & Trending Poducts`}
       >
         <div className="">

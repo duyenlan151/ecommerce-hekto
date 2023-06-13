@@ -2,20 +2,26 @@ import * as yup from 'yup';
 
 export const dataFooter = {
   Categories: [
-    'Laptops & Computers',
-    'Cameras & Photography',
-    'Smart Phones & Tablets',
-    'Video Games & Consoles',
-    'Waterproof Headphones',
+    { label: 'Laptops & Computers', path: '/s' },
+    { label: 'Cameras & Photography', path: '/' },
+    { label: 'Smart Phones & Tablets', path: '/' },
+    { label: 'Video Games & Consoles', path: '/' },
+    { label: 'Waterproof Headphones', path: '/' },
   ],
-  'Customer Care': ['My Account', 'Discount', 'Returns', 'Orders History', 'Order Tracking'],
+  'Customer Care': [
+    { label: 'My Account', path: '/user/profile' },
+    { label: 'Discount', path: '/user/orders' },
+    { label: 'Returns', path: '/user/orders' },
+    { label: 'Orders History', path: '/user/orders' },
+    { label: 'Order Tracking', path: '/user/orders' },
+  ],
   Pages: [
-    'Blog',
-    'Browse the Shop',
-    'Category',
-    'Pre-Built Pages',
-    'Visual Composer Elements',
-    'WooCommerce Pages',
+    { label: 'Blog', path: '/blog' },
+    { label: 'Browse the Shop', path: '/products' },
+    { label: 'Category', path: '/' },
+    { label: 'Pre-Built Pages', path: '/' },
+    { label: 'Visual Composer Elements', path: '/' },
+    { label: 'WooCommerce Pages', path: '/' },
   ],
 };
 

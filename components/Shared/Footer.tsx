@@ -27,7 +27,7 @@ export function Footer({}: FooterProps) {
   return (
     <footer>
       <div className="bg-white lg:py-24 py-14 lg:px-0 border-t">
-        <div className="container px-8 lg:mx-auto xl:px-5">
+        <div className="container lg:mx-auto lg:px-0 px-5">
           <div className="flex lg:flex-row flex-col lg:gap-4">
             <div className="lg:w-2/5 w-full lg:pr-1 mb-4">
               <h4 className="text-4xl font-bold">Hekto</h4>
@@ -35,7 +35,7 @@ export function Footer({}: FooterProps) {
               {/* Input Sing up */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="max-w-[90%] bg-white border flex items-center justify-between h-[44px] rounded my-6"
+                className="lg:max-w-[90%] w-full bg-white border flex items-center justify-between h-[44px] rounded my-6"
               >
                 <InputField
                   control={control}
@@ -48,7 +48,7 @@ export function Footer({}: FooterProps) {
                 />
                 <button
                   type="submit"
-                  className="font-lato bg-pink-600 flex-none px-7 h-full rounded text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
+                  className="font-lato bg-pink-600 flex-none px-7 h-full rounded-r text-sm text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
                 >
                   Sign Up
                 </button>
@@ -63,9 +63,9 @@ export function Footer({}: FooterProps) {
             {Object.keys(dataFooter).map((key, i) => (
               <div key={`key-${i}`} className="lg:w-1/5 sm:w-1/2 w-full lg:mt-0 mt-4">
                 <h4 className="text-xl lg:mb-10 mb-4">{key}</h4>
-                {Array.from(dataFooter[key]).map((item, i) => (
-                  <Link key={`item-${i}`} className="block font-lato mb-5" href="/">
-                    {item}
+                {Array.from(dataFooter[key]).map((item: { label: string; path: string }, i) => (
+                  <Link key={`item-${i}`} className="block font-lato mb-5" href={item?.path || '/'}>
+                    {item.label}
                   </Link>
                 ))}
               </div>
