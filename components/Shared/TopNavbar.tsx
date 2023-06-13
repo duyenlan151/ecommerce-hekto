@@ -13,9 +13,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from './Dropdowns';
 import { SidebarMenu } from './SidebarMenu';
 
+import setLanguage from 'next-translate/setLanguage';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+
 type TopNavbarProps = {
   // item: User
 };
+
+const locales = [
+  { id: 1, label: 'English', value: 'en' },
+  { id: 2, label: 'France', value: 'fr' },
+];
 
 function TopNavbar({}: TopNavbarProps) {
   const cartItemsCount = useSelector(cartItemsCountSelector);
@@ -38,6 +46,10 @@ function TopNavbar({}: TopNavbarProps) {
     dispatch(toggleMiniCart());
   };
 
+  const handleChangeLang = async ({ value }: { value: string }) => {
+    await setLanguage(value);
+  };
+
   return (
     <>
       {mounted && (
@@ -51,7 +63,16 @@ function TopNavbar({}: TopNavbarProps) {
                 <Link href="tel:12345)67890">(12345)67890</Link>
               </div>
               <div className="flex items-center w-50">
-                <span className="ml-4">English</span>
+                <Dropdown
+                  label={
+                    <p className="mt-[1px] flex flex-cols items-center text-ellipsis">
+                      <span className="ml-4 font-normal">English</span>
+                      <MdKeyboardArrowDown size={20} />
+                    </p>
+                  }
+                  onSelectItem={handleChangeLang}
+                  listItems={locales}
+                />
                 <span className="ml-4">USD</span>
                 <Link href="/whislist" className="ml-4 flex items-center">
                   Whislist

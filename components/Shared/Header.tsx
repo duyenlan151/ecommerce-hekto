@@ -1,17 +1,19 @@
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 interface HeaderProps {}
 
 const items = [
-  { id: 1, title: 'Home', path: '/' },
-  { id: 2, title: 'Products', path: '/products' },
-  { id: 3, title: 'Blog', path: '/blog' },
-  { id: 4, title: 'Contact', path: '/contact' },
+  { id: 1, title: 'home', path: '/' },
+  { id: 2, title: 'products', path: '/products' },
+  { id: 3, title: 'blog', path: '/blog' },
+  { id: 4, title: 'contact', path: '/contact' },
 ];
 
 export function Header({}: HeaderProps) {
   const router = useRouter();
+  const { t } = useTranslation('header');
+
   return (
     <div className="md:flex hidden items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-primary">
       <div className="flex items-center justify-between container mx-auto">
@@ -31,7 +33,7 @@ export function Header({}: HeaderProps) {
                     : 'text-gray-500 hover:text-blueGray-500')
                 }
               >
-                {item.title}
+                {t(item.title)}
               </Link>
             ))}
           </nav>

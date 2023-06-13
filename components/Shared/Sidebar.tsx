@@ -20,7 +20,7 @@ import { useDispatch } from 'react-redux';
 export interface SideBarProps {}
 
 const items = [
-  { id: 1, title: 'Dashboard', icon: <AiOutlineHome size={20} />, path: '/admin' },
+  { id: 1, title: 'Dashboard', icon: <AiOutlineHome size={20} />, path: '/admin/dashboard' },
   { id: 2, title: 'Products', icon: <AiOutlineMenu size={20} />, path: '/admin/products' },
   { id: 3, title: 'Categories', icon: <AiOutlineAppstore size={20} />, path: '/admin/categories' },
   { id: 5, title: 'Users group', icon: <AiOutlineUsergroupAdd size={20} />, path: '/admin/users' },
