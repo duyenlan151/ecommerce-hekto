@@ -3,7 +3,7 @@ import { getSymbolCurrency } from '@utils/common';
 import { addToCart } from 'app/Cart/cartSlice';
 import { ProductModel } from 'models';
 import { useState } from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillStar, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
 export interface ProductInfoProps {
@@ -34,6 +34,18 @@ export default function ProductInfo({ product }: ProductInfoProps) {
     <div>
       <h4 className="text-gray-700 text-3xl">{title}</h4>
 
+      <div className="flex mt-4 items-center">
+        {new Array(5).fill('').map((_, index) =>
+          Math.round(rating) <= index ? (
+            <span key={`${rating}- ${index}`}>
+              <AiOutlineStar size={20} color={'#b8b8b8'} />
+            </span>
+          ) : (
+            <AiFillStar key={`${rating}- ${index}`} size={20} color={'#FDDA43'} />
+          )
+        )}
+        <span className="ml-2 mt-[3px]">({rating}/5)</span>
+      </div>
       <div className="my-4">
         <span className="text-pink-1 text-2xl">{getSymbolCurrency(price)}</span>
         {salePrice && (

@@ -17,7 +17,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         Cart/ Information/ Shipping/ Payment
       </div>
       <div className="bg-white">
-        <div className="lg:flex lg:flex-nowrap flex-wrap justify-center">
+        <div className="lg:flex lg:flex-nowrap flex-wrap">
           <div className="lg:p-10 p-4">
             <ImagesGallary images={product.images} />
           </div>

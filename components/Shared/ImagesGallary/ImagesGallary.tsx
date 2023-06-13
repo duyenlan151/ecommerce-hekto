@@ -26,9 +26,9 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
     setShowModal((prev) => !prev);
   };
   return (
-    <div className="overflow-hidden max-w-[90%] lg:w-full mx-auto">
+    <div className="overflow-hidden lg:w-full mx-auto">
       <div
-        className="relative max-w-full cursor-pointer flex justify-center lg:min-h-[444px] h-[250px]"
+        className="relative max-w-full cursor-pointer flex justify-center lg:min-h-[444px] lg:h-[250px] lg:mt-0 mt-8"
         onClick={handleToggleModal}
       >
         <Image
