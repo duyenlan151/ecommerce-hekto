@@ -1,10 +1,17 @@
 import Link from 'next/link';
-import React from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 interface HeaderProps {}
 
+const items = [
+  { id: 1, title: 'Home', path: '/' },
+  { id: 2, title: 'Products', path: '/products' },
+  { id: 3, title: 'Blog', path: '/blog' },
+  { id: 4, title: 'Contact', path: '/contact' },
+];
+
 export function Header({}: HeaderProps) {
+  const router = useRouter();
   return (
     <div className="md:flex hidden items-center justify-between bg-white py-4 lg:px-0 px-2 border border-b border-primary">
       <div className="flex items-center justify-between container mx-auto">
@@ -12,23 +19,22 @@ export function Header({}: HeaderProps) {
           <h1 className="text-4xl font-bold mr-20">
             <Link href="/">Hekto</Link>
           </h1>
-          {/* <nav className=""> */}
-          <Link className="mx-3 text-base" href="/" prefetch={false}>
-            Home
-          </Link>
-          <Link className="mx-3 text-base" href="/products" prefetch={false}>
-            Products
-          </Link>
-          <Link className="mx-3 text-base" href="/blog" prefetch={false}>
-            Blog
-          </Link>
-          {/* <Link className="mx-3 text-base" href="/shop">
-            Shop
-          </Link> */}
-          <Link className="mx-3 text-base" href="/contact" prefetch={false}>
-            Contact
-          </Link>
-          {/* </nav> */}
+          <nav className="flex">
+            {items.map((item) => (
+              <Link
+                key={item.id}
+                href={item?.path}
+                className={
+                  'mx-3 text-base ' +
+                  (router.pathname === item.path
+                    ? 'text-pink-600 hover:text-lightBlue-600'
+                    : 'text-gray-500 hover:text-blueGray-500')
+                }
+              >
+                {item.title}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         {/* Input */}
