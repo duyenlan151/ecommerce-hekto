@@ -1,0 +1,8 @@
+{
+  "cart-empty": "Your Cart is empty",
+
+  "button-checkout": "Check out",
+
+  "subtotal": "Subtotal",
+  "shipping-desc": "Shipping and taxes calculated at checkout."
+}

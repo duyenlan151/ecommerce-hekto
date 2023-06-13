@@ -1,6 +1,7 @@
 import { cartItemsSelector, cartTotalSelector, showMiniCartSelector } from '@app/Cart/cartSelector';
 import { toggleMiniCart } from '@app/Cart/cartSlice';
 import { getSymbolCurrency } from '@utils/common';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -10,6 +11,7 @@ import CartItemList from './CartItemList';
 export interface CartMiniProps {}
 
 export default function CartMini(props: CartMiniProps) {
+  const { t } = useTranslation('cart');
   const router = useRouter();
 
   const cartItems = useSelector(cartItemsSelector);
@@ -56,22 +58,20 @@ export default function CartMini(props: CartMiniProps) {
                 <AiOutlineClose color="black" size={20} />
               </div>
               <div className="flex-1 p-4">
-                {cartItems.length <= 0 && 'Your Cart is empty'}
+                {cartItems.length <= 0 && t('cart-empty')}
                 <CartItemList data={cartItems} />
               </div>
               <div className="p-4 border-t">
                 <div className="flex justify-between">
-                  Subtotal:<span>{getSymbolCurrency(cartTotal)}</span>
+                  {t('subtotal')}:<span>{getSymbolCurrency(cartTotal)}</span>
                 </div>
-                <span className="text-sm text-gray-600">
-                  Shipping and taxes calculated at checkout.
-                </span>
+                <span className="text-sm text-gray-600">{t('shipping-desc')}</span>
                 <button
                   type="submit"
                   onClick={onViewBag}
                   className="block text-center mt-6 bg-black text-white w-full rounded-sm py-3 text-base font-lato text-primary shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
                 >
-                  Check out
+                  {t('button-checkout')}
                 </button>
               </div>
             </div>
