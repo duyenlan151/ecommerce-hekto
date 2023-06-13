@@ -1,4 +1,4 @@
-import { CountryLocals, Currency, CurrencyValue } from 'models';
+import { Currency, CurrencyValue } from 'models';
 
 export const optionsDateFormats = {
   default: {

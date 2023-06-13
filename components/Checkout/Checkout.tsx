@@ -149,7 +149,7 @@ export default function Checkout({}: CheckoutProps) {
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
       <h4 className="text-blue-1 text-3xl">Hekto Checkout</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
-        Cart/ Information/ Shipping/ Checkout
+        Cart / Information / Shipping / Checkout
       </div>
       <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">

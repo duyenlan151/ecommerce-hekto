@@ -1,27 +1,26 @@
 import {
-  paymentMethodSelector,
-  shippingAddressSelector,
   allCartSelector,
   cartTotalSelector,
+  paymentMethodSelector,
+  shippingAddressSelector,
 } from '@app/Cart/cartSelector';
 import { cleanAllCart, updatePaymentMethod } from '@app/Cart/cartSlice';
 import CartCheckout from '@components/Cart/CartCheckout';
-import { isObjectEmpty, round2 } from 'constants/index';
+import { ILoading } from '@components/Icons';
+import { Modal } from '@components/Shared/Modal';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { getError } from '@utils/common';
+import { round2 } from 'constants/index';
+import { OrderResModel } from 'models';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { orderServices } from 'services';
-import { paymentMethods } from './Payment.props';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import axiosClient from 'services/api-services';
-import { getError } from '@utils/common';
-import { Modal } from '@components/Shared/Modal';
-import { ILoading } from '@components/Icons';
-import { OrderResModel } from 'models';
-import { useSession } from 'next-auth/react';
-import LoadingCommon from '@components/Shared/Common/LoadingCommon';
+import { paymentMethods } from './Payment.props';
 
 export interface PaymentMethodProps {}
 
@@ -165,7 +164,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
       <h4 className="text-blue-1 text-3xl">Hekto Payment</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
-        Cart/ Information/ Shipping/ Payment
+        Cart / Information / Shipping / Payment
       </div>
       {paymentMethod !== 'paypal' && (
         <Modal showIconClose={false} isShow={loading} onChange={() => {}}>
@@ -236,7 +235,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
         <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 w-full justify-self-end">
           <CartCheckout onClick={handlePayment} isShowButton={paymentMethod !== 'paypal'} />
           {isPending ? (
-            <LoadingCommon />
+            <></>
           ) : (
             <>
               {paymentMethod === 'paypal' && (

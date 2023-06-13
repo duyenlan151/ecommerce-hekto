@@ -1,9 +1,11 @@
+import { BreadcrumdMain } from '@components/Shared';
 import ImagesGallary from '@components/Shared/ImagesGallary/ImagesGallary';
 import { ProductModel } from 'models';
 import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ProductDescription from './ProductDescription';
 import ProductInfo from './ProductInfo';
+import { breadcrumbsForProduct } from './ProductItem.props';
 
 export interface ProductDetailProps {
   product: ProductModel;
@@ -14,7 +16,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   return (
     <div className="container mx-auto px-4 mb-10">
       <div className="text-sub-title font-lato-light leading-7 pt-8 pb-4">
-        Cart/ Information/ Shipping/ Payment
+        <BreadcrumdMain items={breadcrumbsForProduct(product)} />
       </div>
       <div className="bg-white">
         <div className="lg:flex lg:flex-nowrap flex-wrap">
