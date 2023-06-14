@@ -2,11 +2,13 @@ import ProductDetail from '@components/Product/ProductDetail';
 import MetaData from '@components/Shared/MetaData';
 import { useRequestWithSWR } from '@hooks/index';
 import { ProductModel } from 'models';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Loading from '../loading';
 
 export default function ProductSlug() {
+  const { t } = useTranslation('products');
   const {
     query: { slug },
   } = useRouter();
@@ -15,6 +17,14 @@ export default function ProductSlug() {
     url: '/admin/products',
     params: { id: String(slug[0]), slug: String(slug[1]) },
   });
+
+  if (!product) {
+    return (
+      <section className="container mx-auto my-[129px] text-center">
+        <div>{t('not-found')}</div>
+      </section>
+    );
+  }
 
   return (
     <React.Suspense fallback={<Loading />}>

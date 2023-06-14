@@ -13,5 +13,7 @@
   "quantity": "Quantity",
 
   "view-more": "View more",
-  "view-less": "View less"
+  "view-less": "View less",
+
+  "not-found": "Product not found"
 }
