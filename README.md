@@ -19,7 +19,7 @@
 2. [Features](#features)
 3. [About The Project](#about-the-project)
 4. [Demo with Gif](#demo)
-5. [File Structure](#file-structure)
+5. [Architecture](#architecture)
 6. [Database](#database)
 7. [How to use](#how-to-use)
 
@@ -43,6 +43,10 @@
 - 🚫 Stripe + Paypal — For payment
 - ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
 - 🗂 Chart.js
+- 🚓 Nodemailer — For sendmail
+- 💖 Update -------
+- 🐶 SWR - for data fetching - cached and optimize
+- ✨ Next-translate - for i18n
 - ‽ Either Error Handler - For error handling. (Either is designed to hold either a left or a right value but never both).
 
 <!-- ABOUT THE PROJECT -->
@@ -51,7 +55,79 @@
 
 I saw a UI design on [Figma](<https://www.figma.com/file/GIXFcdmd9tEiSEy6lrlBOk/Project---Hekto-(An-Ecommerce-Ui-Kit)-(Community)?type=design&node-id=87-622&t=JtW2exDkHFoC2LlZ-0>). And I wanted to code this design. So I decided to make it a full working website with NextJS but in just 2 - 3 week as challenge myself. Some issues are still there but I will check out them later.
 
-<!-- DEMO -->
+<!-- FEATURE -->
+
+## Feature
+
+- [Admin]()
+
+  - [Dashboard]()
+    - [View sumary: users, orders, sales, products]()
+    - [Line Chart]()
+    - [Bar Chart]()
+    - [And also do Pie Chart]()
+  - [Produsts]()
+    - [Products List - Pagination]()
+    - [Add, Edit, Delete product]()
+    - [View product detail]()
+    - [Filter product by status]()
+    - [Search product (In progress)]()
+  - [Categories]()
+    - [Categories List - Pagination]()
+    - [Add, Edit, Delete category]()
+    - [View category detail]()
+    - [Filter category by status]()
+    - [Search category (In progress)]()
+  - [Users group]()
+    - [Users group List - Pagination]()
+    - [Edit user]()
+    - [View user detail]()
+    - [Filter user by status]()
+    - [Search user (In progress)]()
+  - [Orders]()
+    - [Orders List - Pagination]()
+    - [View order detail]()
+    - [Filter order by status]()
+    - [Search order (In progress)]()
+  - [Blog]()
+    - [Blog List - Pagination]()
+    - [Add, Edit, Delete blog]()
+    - [View blog detail]()
+    - [Filter blog by status]()
+    - [Search blog (In progress)]()
+
+- [User]()
+  - [Home Page]()
+  - [Auth]()
+    - [Login]()
+    - [Sign-up]()
+    - [Forgot password]()
+    - [Reset password]()
+    - [Logout]()
+  - [Products]()
+    - [Product List - Pagination]()
+    - [Product Detail]()
+    - [Filter Product]()
+      - [Filter by Category, Rating, Price]()
+    - [Search Product and highlight (title only)]()
+    - [Sort Product by Price]()
+  - [Cart]()
+    - [Checkout, Payment with Cash, Stripe or Paypal ]()
+  - [User]()
+    - [User Profile]()
+    - [User orders history by status]()
+      - [Order history list]()
+      - [Order history detail]()
+  - [Blog]()
+    - [Blog List - Pagination Infinity(load more)]()
+    - [Blog Detail]()
+    - [Search Blog and highlight (title only)]()
+    - [Filter blog]()
+      - [Filter by Category, Author (In progress)]()
+  - [Contact]()
+    - [Send mail contact]()
+  - [Whislist (In progress)]()
+  <!-- DEMO -->
 
 ## Demo
 
@@ -72,7 +148,7 @@ I saw a UI design on [Figma](<https://www.figma.com/file/GIXFcdmd9tEiSEy6lrlBOk/
 
 <!-- FILE STRUCTURE -->
 
-## File Structure
+## Architecture
 
 While the boilerplate does primarily rely on the standard file structure of a Next.js project (anchored around the `/pages` directory), a few additions have been made. The following outlines the full structure of the boilerplate:
 
