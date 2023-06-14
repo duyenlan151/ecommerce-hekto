@@ -16,6 +16,7 @@ export function FilterByRating(props: FilterByRatingProps) {
       query: {
         ...router.query,
         rating,
+        page: 1,
       },
     });
   };

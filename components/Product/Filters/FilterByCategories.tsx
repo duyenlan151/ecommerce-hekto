@@ -51,6 +51,7 @@ export function FilterByCategories(props: FilterByCategoriesProps) {
       query: {
         ...router.query,
         category: name,
+        page: 1,
       },
     });
   };

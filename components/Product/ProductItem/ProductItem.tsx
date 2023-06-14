@@ -50,7 +50,7 @@ export function ProductItem({
       className={`${classProductItem[styleProductItem].shadow} ${className} group transition delay-100 ease-in-out duration-500`}
     >
       <div
-        className={`flex relative justify-center items-stretch h-72 bg-white
+        className={`relative block aspect-square
         ${classProductItem[styleProductItem]?.img}`}
       >
         {/* Image product */}
@@ -161,12 +161,12 @@ export function ProductItemSecondary({
       {/* Image product */}
       <Link
         href={`/products/${_id}/${slug}`}
-        className="relative block max-w-[214px] lg:min-w-[214px] min-w-[150px] h-[214px]"
+        className="relative block max-w-[200px] lg:min-w-[200px] min-w-[150px] h-[200px]"
       >
         <Image
           fill
           loading="lazy"
-          sizes="(max-width: 214px) 100vw, (max-width: 214px)"
+          sizes="(max-width: 200px) 100vw, (max-width: 200px)"
           src={images && images[0]?.path}
           alt={(images && images[0]?.path) || name}
           className=" object-contain  transition-transform duration-300 ease-in-out !py-2 "

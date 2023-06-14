@@ -18,6 +18,7 @@ export function FilterByPrice(props: FilterByPriceProps) {
       query: {
         ...router.query,
         price,
+        page: 1,
       },
     });
   };
