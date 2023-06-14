@@ -49,7 +49,7 @@ export const Pagination = (props: PaginationProps) => {
       router.push(
         {
           pathname: router.pathname,
-          query: { page: pageNumber },
+          query: { ...router.query, page: pageNumber },
         },
         undefined,
         { scroll: false }
