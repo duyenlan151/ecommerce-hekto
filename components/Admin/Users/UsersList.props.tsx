@@ -21,7 +21,7 @@ export const columns = [
     key: 'createdAt',
     title: 'Created At',
     isSort: false,
-    render: (_, { createdAt }) => formatDateTime(new Date(createdAt)),
+    render: (_, { createdAt }) => formatDateTime(new Date(createdAt || 0)),
   },
   {
     key: 'status',

@@ -1,3 +1,5 @@
+#### Hi all, thank you for visiting my repo, but I just wanted to remind you about my .env in this repo, Please don't do anything on it. You can use this repo with your setup .env. Thanks all!!!
+
 <div align="center">
 
 # Hekto | Ecommerce - Next.js + TypeScript
