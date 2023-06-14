@@ -56,7 +56,7 @@ export function Dropdown({
         </button>
         {showDropdown && (
           <>
-            <ul className="dropdown-menu min-w-[150px] absolute text-gray-700 right-0 bg-white top-[110%] shadow-xl">
+            <ul className="dropdown-menu min-w-[150px] absolute text-gray-700 right-0 bg-white top-[110%] shadow-xl z-[333]">
               {children
                 ? children
                 : listItems &&
