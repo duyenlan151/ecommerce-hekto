@@ -13,7 +13,7 @@ export interface ProductDetailProps {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
-  const { lang } = useTranslation();
+  const { lang, t } = useTranslation('products');
   const [show, setShow] = useState(false);
   return (
     <div className="container mx-auto px-4 mb-10">
@@ -47,7 +47,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           className="cursor-pointer border py-3 w-[150px] px-10"
           onClick={() => setShow((prev) => !prev)}
         >
-          {!show ? 'View More' : 'View Less'}
+          {t(!show ? 'view-more' : 'view-less')}
         </a>
       </div>
     </div>

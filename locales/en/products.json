@@ -10,5 +10,8 @@
   "rating": "Rating",
 
   "share": "Share",
-  "quantity": "Quantity"
+  "quantity": "Quantity",
+
+  "view-more": "View more",
+  "view-less": "View less"
 }

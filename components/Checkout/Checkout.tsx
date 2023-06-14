@@ -175,8 +175,11 @@ export default function Checkout({}: CheckoutProps) {
             </Link>
           </div>
         </div>
-        <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 mt-5 w-full justify-self-end">
-          <h4 className="text-blue-1 text-xl text-center mb-5"> {t('cart-detail.title')}</h4>
+        <div className="lg:basis-4/12 basis-full lg:ml-4  w-full justify-self-end">
+          <h4 className="text-blue-1 text-xl text-center lg:mt-0 mt-12 mb-5">
+            {' '}
+            {t('cart-detail.title')}
+          </h4>
           <CartCheckout onClick={handleNavigate} />
         </div>
       </div>

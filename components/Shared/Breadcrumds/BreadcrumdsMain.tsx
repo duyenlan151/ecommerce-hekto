@@ -10,7 +10,7 @@ export function BreadcrumdMain({ items }: BreadcrumbsProps) {
         const isLastItem = i === length;
         if (!isLastItem) {
           return (
-            <>
+            <div key={crumb.path}>
               <Link
                 href={crumb.path}
                 key={i}
@@ -20,10 +20,14 @@ export function BreadcrumdMain({ items }: BreadcrumbsProps) {
               </Link>
               {/* separator */}
               <span> / </span>
-            </>
+            </div>
           );
         } else {
-          return <span className="text-gray-500 whitespace-nowrap">{crumb.label}</span>;
+          return (
+            <span key={crumb.path} className="text-gray-500 whitespace-nowrap">
+              {crumb.label}
+            </span>
+          );
         }
       })}
     </div>

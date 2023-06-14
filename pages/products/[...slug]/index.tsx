@@ -1,16 +1,21 @@
 import ProductDetail from '@components/Product/ProductDetail';
 import MetaData from '@components/Shared/MetaData';
+import { useRequestWithSWR } from '@hooks/index';
 import { ProductModel } from 'models';
-import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import React from 'react';
-import { productsService } from 'services';
 import Loading from '../loading';
 
-export interface ProductSlugProps {
-  product: ProductModel;
-}
+export default function ProductSlug() {
+  const {
+    query: { slug },
+  } = useRouter();
 
-export default function ProductSlug({ product }: ProductSlugProps) {
+  const { data: product, isLoading } = useRequestWithSWR<ProductModel>({
+    url: '/admin/products',
+    params: { id: String(slug[0]), slug: String(slug[1]) },
+  });
+
   return (
     <React.Suspense fallback={<Loading />}>
       <section className="container mx-auto">
@@ -27,25 +32,25 @@ export default function ProductSlug({ product }: ProductSlugProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
-    const slug = context.params?.slug;
-    let product;
-    if (slug) {
-      product = await productsService.getProductBySlug({
-        id: String(slug[0]),
-        slug: '',
-      });
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   try {
+//     context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate=5');
+//     const slug = context.params?.slug;
+//     let product;
+//     if (slug) {
+//       product = await productsService.getProductBySlug({
+//         id: String(slug[0]),
+//         slug: '',
+//       });
 
-      if (!product) {
-        return { notFound: true };
-      }
-    }
-    return {
-      props: { product },
-    };
-  } catch (error) {
-    return { notFound: true };
-  }
-};
+//       if (!product) {
+//         return { notFound: true };
+//       }
+//     }
+//     return {
+//       props: { product },
+//     };
+//   } catch (error) {
+//     return { notFound: true };
+//   }
+// };

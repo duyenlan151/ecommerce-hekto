@@ -41,7 +41,7 @@ export default withNextCorsRoute(async (req, res) => {
             },
           },
         ]);
-        res.status(200).json(product[0]);
+        res.status(200).json({ data: product[0] });
         // res.status(200).json(await Product.findOne({ _id: req.query.id }));
       } else {
         const {

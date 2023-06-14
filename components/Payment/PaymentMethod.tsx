@@ -176,13 +176,13 @@ export default function PaymentMethod(props: PaymentMethodProps) {
       <div className="flex lg:flex-row flex-col justify-between mt-6">
         <div className="lg:basis-8/12 basis-full">
           <div className="bg-white mb-4">
-            <div className="tracking-wider flex items-center justify-between px-8 py-4 text-lg mb-4 border-b border-primary">
+            <div className="tracking-wider flex items-center justify-between lg:px-6 px-4 py-4 text-lg mb-4 border-b border-primary">
               {t('cart:payment.shipping-address')}
               <Link href="/cart/payment" className="text-sm underline">
                 {t('cart:payment.edit')}
               </Link>
             </div>
-            <div className="px-8 pb-4">
+            <div className="lg:px-6 px-4 pb-4">
               <div className="py-2 text-sm">
                 First Name: <span className="text-sub-title">{shippingAddress?.firstName}</span>
               </div>
@@ -206,7 +206,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
               </div>
             </div>
           </div>
-          <div className="bg-white py-5 px-8">
+          <div className="bg-white py-5 lg:px-6 px-4">
             <div className="tracking-wider text-xl mb-8">{t('cart:payment.method')}</div>
             <div className="">
               {paymentMethods.map((payment, index) => (
