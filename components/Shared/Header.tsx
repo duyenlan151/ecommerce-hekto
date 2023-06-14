@@ -106,7 +106,7 @@ export function Header({}: HeaderProps) {
             control={control}
             name="search"
             placeholder="Search..."
-            className="!p-0 h-[45px] min-w-[380px]"
+            className="!p-0 h-[45px] lg:min-w-[380px]"
             onChange={onChangeValue}
           />
           <button
