@@ -48,7 +48,7 @@ export default function BlogPage({ blogs }: BlogPageProps) {
       <div className="mt-14 text-center mb-8">
         <SearchInput value={String(search) || ''} handleChange={handleChangeSearch} />
       </div>
-      {!blogsList.length && <div className="text-center">No blog found</div>}
+      {!isLoading && !blogsList.length && <div className="text-center">No blog found</div>}
       <BlogList blogs={blogsList} />
       {!isReachingEnd && (
         <div className="mt-16 flex justify-center">
