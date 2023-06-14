@@ -1,9 +1,8 @@
-import React from 'react';
-import Image from 'next/image';
-import { BlogSidebar } from './BlogSidebar';
-import Link from 'next/link';
-import { BlogModel } from 'models';
 import { formatDateTime, optionsDateFormats } from '@utils/common';
+import { BlogModel } from 'models';
+import Image from 'next/image';
+import Link from 'next/link';
+import { BlogSidebar } from './BlogSidebar';
 
 export interface BlogDetailProps {
   blog: BlogModel;

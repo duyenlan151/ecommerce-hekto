@@ -1,13 +1,19 @@
+import { HighLightSearchText } from '@components/Shared/HighLightSearchText';
 import { formatDateTime, optionsDateFormats } from '@utils/common';
 import { BlogModel } from 'models';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 export interface IBlogProps {
   blog: BlogModel;
 }
 
 export default function BlogItem({ blog }: IBlogProps) {
   const { title, author, updatedAt, main_image, category, slug } = blog;
+
+  const {
+    query: { search },
+  } = useRouter();
   return (
     <div className="group cursor-pointer lg:mb-0 mb-6">
       <div className=" overflow-hidden rounded-md bg-gray-100 transition-all dark:bg-gray-800">
@@ -37,7 +43,8 @@ export default function BlogItem({ blog }: IBlogProps) {
           <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2    dark:text-white">
             <Link href={`/blog/${slug}`}>
               <span className="line-clamp-2	bg-gradient-to-r from-gray-200 to-gray-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
-                {title}
+                {/* {title} */}
+                <HighLightSearchText text={title} textHighlight={String(search)} />
               </span>
             </Link>
           </h2>
