@@ -96,4 +96,17 @@ export const FILTER_LIST = [
       return newFilters;
     },
   },
+  {
+    id: 5,
+    getLabel: (filters) => (
+      <div className="flex items-center capitalize">Keyword - {filters.search}</div>
+    ),
+    isShow: (filters) => filters.search,
+    onRemove: (filters) => {
+      const newFilters = { ...filters };
+      delete newFilters.search;
+
+      return newFilters;
+    },
+  },
 ];
