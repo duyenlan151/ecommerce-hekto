@@ -1,10 +1,12 @@
 import { signOut, useSession } from 'next-auth/react';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { AiOutlineUser } from 'react-icons/ai';
 
 export interface UserSidebarProps {}
 
 export function UserSidebar(props: UserSidebarProps) {
+  const { t } = useTranslation('user');
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -28,7 +30,7 @@ export function UserSidebar(props: UserSidebarProps) {
             router.pathname.includes('/user/profile') && 'bg-gray-100'
           }`}
         >
-          Account information
+          {t('sidebar.profile')}
         </li>
         <li
           onClick={() => handleClickItem('orders')}
@@ -36,13 +38,13 @@ export function UserSidebar(props: UserSidebarProps) {
             router.pathname.includes('/user/orders') && 'bg-gray-100'
           }`}
         >
-          My order
+          {t('sidebar.my-order')}
         </li>
         <li
           onClick={() => signOut({ callbackUrl: '/' })}
           className={`py-4 cursor-pointer px-3 hover:bg-gray-100`}
         >
-          Log out
+          {t('sidebar.logout')}
         </li>
       </ul>
     </div>

@@ -2,6 +2,7 @@ import { QuantityField } from '@components/Shared/Common/QuantityField';
 import { getSymbolCurrency } from '@utils/common';
 import { addToCart } from 'app/Cart/cartSlice';
 import { ProductModel } from 'models';
+import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
 import { AiFillStar, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
@@ -11,6 +12,7 @@ export interface ProductInfoProps {
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
+  const { t } = useTranslation('products');
   const { _id, title, price, rating, images, slug, shortDescription, salePrice } = product;
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
@@ -60,10 +62,10 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <span className="text-blue-1">Categories:</span>
       </div> */}
       <div className="mt-4">
-        <span className="text-blue-1">Share:</span>
+        <span className="text-blue-1">{t('share')}:</span>
       </div>
       <div className="mt-4">
-        <span className="text-blue-1">Quantity</span>
+        <span className="text-blue-1">{t('quantity')}</span>
         <QuantityField
           onChange={setQuantity}
           value={quantity}

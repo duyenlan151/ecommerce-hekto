@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation';
 import React from 'react';
 import { useController } from 'react-hook-form';
 
@@ -23,6 +24,7 @@ export function CheckBox({
   className,
   ...rest
 }: CheckBoxProps) {
+  const { t } = useTranslation('form');
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { error },
@@ -55,7 +57,7 @@ export function CheckBox({
         </label>
       </div>
       {error?.message && (
-        <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
+        <span className="text-red-500 text-xs font-bold tracking-wide">{t(error?.message)}</span>
       )}
     </>
   );

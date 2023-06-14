@@ -12,10 +12,10 @@ export const ProductItemType: Record<EProductItemType, string | number> = {
   [EProductItemType.TRENDING]: '',
 };
 
-export const breadcrumbsForProduct = (product: ProductModel) => {
+export const breadcrumbsForProduct = (product: ProductModel, lang: string = 'en') => {
   return [
     {
-      label: 'All Products',
+      label: lang === 'en' ? 'All Products' : 'Tous les produits',
       path: '/products',
     },
     {

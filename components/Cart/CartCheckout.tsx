@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { getSymbolCurrency } from '@utils/common';
 import { round2 } from 'constants/index';
 import { Currency } from 'models';
+import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -20,6 +21,7 @@ export default function CartCheckout({
   onClick,
   isShowButton = true,
 }: CartCheckoutProps) {
+  const { t } = useTranslation('cart');
   const cartTotal = useSelector(cartTotalSelector);
 
   const shippingPrice = cartTotal > 200 ? 0 : 15;
@@ -51,16 +53,16 @@ export default function CartCheckout({
   return (
     <form onSubmit={handleSubmit(onClick)} className="bg-white w-full h-fit lg:p-6 p-4">
       <div className="flex items-center justify-between border-b pb-3 border-grey-1 mt-3 mb-4">
-        <label className="text-blue-1 text-base">Subtotals:</label>
+        <label className="text-blue-1 text-base">{t('cart-detail.subtotals')}:</label>
         <p className="text-blue-1 font-lato font-bold text-lg">{getSymbolCurrency(cartTotal)}</p>
       </div>
 
       <div className="flex items-center text-sm justify-between pb-3 border-grey-1 ">
-        <label className="text-blue-1">Ship:</label>
+        <label className="text-blue-1">{t('cart-detail.ship')}:</label>
         <p className="text-blue-1 font-lato">{getSymbolCurrency(shippingPrice)}</p>
       </div>
       <div className="flex items-center  text-sm justify-between pb-3 border-grey-1 border-b">
-        <label className="text-blue-1">Tax:</label>
+        <label className="text-blue-1">{t('cart-detail.tax')}:</label>
         <p className="text-blue-1 font-lato">{getSymbolCurrency(taxPrice)}</p>
       </div>
       {/* <div className="text-right text-sm mb-2">
@@ -68,13 +70,13 @@ export default function CartCheckout({
         <div>Tax: {getSymbolCurrency(taxPrice)}</div>
       </div> */}
       <div className="flex items-center justify-between border-b pb-2 border-grey-1 mt-2 mb-4">
-        <label className="text-blue-1 text-base">Totals:</label>
+        <label className="text-blue-1 text-base">{t('cart-detail.totals')}:</label>
         <p className="text-blue-1 font-lato font-bold text-lg">{getSymbolCurrency(totalPrice)}</p>
       </div>
       <CheckBox
         control={control}
         name="terms"
-        label="Shipping & taxes calculated at checkout"
+        label={t('cart-detail.checkbox')}
         className="rounded w-3 h-3"
       />
       {errors.cartTotal?.message && !errors.terms?.message && (
@@ -87,7 +89,7 @@ export default function CartCheckout({
           type="submit"
           className="block text-center mt-10 bg-green-1 w-full rounded-sm py-3 text-base font-lato text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
         >
-          Proceed To Checkout
+          {t('cart-detail.button')}
         </button>
       )}
     </form>

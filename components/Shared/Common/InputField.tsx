@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
 import { useController } from 'react-hook-form';
 import {
@@ -32,6 +33,7 @@ export function InputField({
   className,
   ...rest
 }: InputFieldProps) {
+  const { t } = useTranslation('form');
   const [typeInput, setTypeInput] = useState(rest?.type || 'text');
   const {
     field: { onChange, onBlur, value, ref },
@@ -96,7 +98,7 @@ export function InputField({
         )}
       </div>
       {error?.message && (
-        <span className="text-red-500 text-xs font-bold tracking-wide">{error?.message}</span>
+        <span className="text-red-500 text-xs font-bold tracking-wide">{t(error?.message)}</span>
       )}
     </div>
     // <TextField

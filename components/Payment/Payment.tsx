@@ -2,6 +2,7 @@ import CartCheckout from '@components/Cart/CartCheckout';
 import CartItemList from '@components/Cart/CartItemList';
 import { cartItemsSelector, shippingAddressSelector } from 'app/Cart/cartSelector';
 import { isObjectEmpty, isObjectEmptyValue } from 'constants/index';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -9,6 +10,7 @@ import PaymentForm from './PaymentForm';
 export interface PaymentProps {}
 
 export default function Payment(props: PaymentProps) {
+  const { t } = useTranslation('cart');
   const cartItems = useSelector(cartItemsSelector);
   const shippingAddress = useSelector(shippingAddressSelector);
   const router = useRouter();
@@ -27,7 +29,7 @@ export default function Payment(props: PaymentProps) {
   const onSubmit = (isError) => {};
   return (
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
-      <h4 className="text-blue-1 text-3xl">Hekto Payment</h4>
+      <h4 className="text-blue-1 text-3xl">{t('title.payment')}</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart / Information / Shipping / Payment
       </div>

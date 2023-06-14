@@ -1,17 +1,19 @@
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 export interface UserCartInfoProps {}
 
 const dataOrders = [
-  { id: 1, title: 'All orders', value: 'all' },
-  { id: 2, title: 'Waiting for payment', value: 'unpaid' },
-  { id: 3, title: 'In progress', value: 'inprogress' },
-  { id: 4, title: 'Delivered', value: 'delivered' },
-  { id: 5, title: 'Cancelled', value: 'cancelled' },
+  { id: 1, title: 'order.status.all-orders', value: 'all' },
+  { id: 2, title: 'order.status.waiting-for-payment', value: 'unpaid' },
+  { id: 3, title: 'order.status.in-progress', value: 'inprogress' },
+  { id: 4, title: 'order.status.delivered', value: 'delivered' },
+  { id: 5, title: 'order.status.cancelled', value: 'cancelled' },
 ];
 
 export function UserCartInfo(props: UserCartInfoProps) {
+  const { t } = useTranslation('user');
   const router = useRouter();
   const {
     query: { typeOrder },
@@ -41,7 +43,7 @@ export function UserCartInfo(props: UserCartInfoProps) {
                 typeOrder === order.value && 'bg-gray-100'
               }`}
             >
-              {order.title}
+              {t(order.title)}
             </li>
           ))}
         </ul>

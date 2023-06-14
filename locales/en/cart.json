@@ -1,4 +1,37 @@
 {
+  "title": {
+    "checkout": "Hekto Checkout",
+    "payment": "Hekto Payment"
+  },
+
+  "cart-detail": {
+    "title": "Cart Totals",
+    "subtotals": "Subtotals",
+    "ship": "Ship",
+    "tax": "Tax",
+    "totals": "Totals",
+
+    "checkbox": "Shipping & taxes calculated at checkout",
+
+    "button": "Proceed To Checkout"
+  },
+
+  "payment": {
+    "contact": "Contact Information",
+    "shipping-address": "Shipping address",
+
+    "checkbox": "Keep me up to date on news and excluive offers",
+
+    "method": "Payment method",
+    "edit": "Edit",
+
+    "cash": "Cash On Delivery",
+    "stripe": "Stripe",
+    "paypal": "Paypal"
+  },
+
+  "continue-shopping": "Continue Shopping",
+
   "cart-empty": "Your Cart is empty",
 
   "button-checkout": "Check out",

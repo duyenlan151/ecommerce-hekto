@@ -1,0 +1,42 @@
+{
+  "sidebar": {
+    "profile": "Account information",
+    "my-order": "My order",
+    "logout": "Logout"
+  },
+
+  "order": {
+    "status": {
+      "all-orders": "All orders",
+      "waiting-for-payment": "Waiting for payment",
+      "in-progress": "In progress",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
+  },
+
+  "detail": {
+    "address": "Address",
+    "postal-code:": "Postal Code:",
+    "email": "Email",
+    "shipping-price": "Shipping price",
+
+    "payment-method:": "Payment method:",
+    "status": "Status",
+    "order-date:": "Order Date:",
+
+    "table": {
+      "product": "Product",
+      "title": "Title",
+      "price": "Price",
+      "quantity": "Quantity"
+    }
+  },
+
+  "items": "Items",
+  "tax": "Tax",
+  "ship": "Ship",
+
+  "total-price": "Total price",
+  "view-detail": "View detail"
+}

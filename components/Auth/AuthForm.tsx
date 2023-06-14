@@ -3,6 +3,7 @@ import { InputField } from '@components/Shared/Common';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ActionAuthPage } from 'models';
 import { signIn, useSession } from 'next-auth/react';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -17,6 +18,7 @@ export interface LoginFormProps {
 }
 
 export default function LoginForm({ type = 'login' }: LoginFormProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const {
     query: { redirect },
@@ -77,22 +79,34 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
         onSubmit={handleSubmit(onSubmit)}
         className="mx-auto py-10 w-34 max-w-[98%] shadow-main lg:!px-8 px-4 bg-white"
       >
-        <h4 className="text-3xl text-center mb-4">{type === 'login' ? 'Login' : 'Sign Up'}</h4>
+        <h4 className="text-3xl text-center mb-4">
+          {t(type === 'login' ? 'auth:login.title' : 'auth:sign-up.title')}
+        </h4>
 
         {type === 'login' && (
           <p className="text-sub-title mb-5 mt-2 font-lato-light tracking-wide font-bold text-center">
-            Please login using account detail bellow.
+            {t('auth:login.desc')}
           </p>
         )}
         {type !== 'login' && (
-          <InputField disabled={loading} control={control} name="name" placeholder="Name" />
+          <InputField
+            disabled={loading}
+            control={control}
+            name="name"
+            placeholder={t('form:name.placeholder')}
+          />
         )}
-        <InputField disabled={loading} control={control} name="email" placeholder="Email Address" />
+        <InputField
+          disabled={loading}
+          control={control}
+          name="email"
+          placeholder={t('form:email.placeholder')}
+        />
         <InputField
           disabled={loading}
           control={control}
           name="password"
-          placeholder="Password"
+          placeholder={t('form:password.placeholder')}
           type="password"
         />
 
@@ -101,7 +115,7 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
             disabled={loading}
             control={control}
             name="confirm_password"
-            placeholder="Confirm Password"
+            placeholder={t('form:confirm_password.placeholder')}
             type="password"
           />
         )}
@@ -110,7 +124,7 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
             href="/forgot"
             className="block -mt-1 block underline text-left text-xs hover:text-pink-1 transition ease-in-out duration-500 font-lato-light text-sub-title tracking-wide"
           >
-            Forgot password
+            {t('auth:forgot-password.title')}
           </Link>
         )}
 
@@ -120,7 +134,7 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
           type="button"
           className="flex items-center justify-center mt-10 w-full rounded-sm px-3.5 py-2.5 text-sm font-semibold border border-primary shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
         >
-          {dataTile[type]} with Google
+          {t(dataTile[type])} {t('auth:login.goggle')}
           <span className="ml-2">
             <AiFillGooglePlusCircle size={30} />
           </span>
@@ -132,13 +146,13 @@ export default function LoginForm({ type = 'login' }: LoginFormProps) {
             loading && 'opacity-50'
           }`}
         >
-          {loading ? <ILoading /> : dataTile[type]}
+          {loading ? <ILoading /> : t(dataTile[type])}
         </button>
         <Link
           href={`/${type !== 'login' ? 'login' : 'signup'}`}
           className="mt-6 text-center block underline font-lato-light text-primary tracking-wide"
         >
-          {type !== 'login' ? 'Already a Member? Sign In' : 'Don’t have an Account? Create account'}
+          {t(type !== 'login' ? 'auth:login.have-account' : 'auth:login.question')}
         </Link>
       </form>
     </section>

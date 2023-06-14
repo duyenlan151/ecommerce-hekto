@@ -13,6 +13,7 @@ import { getError } from '@utils/common';
 import { round2 } from 'constants/index';
 import { OrderResModel } from 'models';
 import { useSession } from 'next-auth/react';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -25,6 +26,7 @@ import { paymentMethods } from './Payment.props';
 export interface PaymentMethodProps {}
 
 export default function PaymentMethod(props: PaymentMethodProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -162,7 +164,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
 
   return (
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
-      <h4 className="text-blue-1 text-3xl">Hekto Payment</h4>
+      <h4 className="text-blue-1 text-3xl">{t('cart:title.payment')}</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart / Information / Shipping / Payment
       </div>
@@ -175,9 +177,9 @@ export default function PaymentMethod(props: PaymentMethodProps) {
         <div className="lg:basis-8/12 basis-full">
           <div className="bg-white mb-4">
             <div className="tracking-wider flex items-center justify-between px-8 py-4 text-lg mb-4 border-b border-primary">
-              Shipping Address
+              {t('cart:payment.shipping-address')}
               <Link href="/cart/payment" className="text-sm underline">
-                Edit
+                {t('cart:payment.edit')}
               </Link>
             </div>
             <div className="px-8 pb-4">
@@ -205,7 +207,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
             </div>
           </div>
           <div className="bg-white py-5 px-8">
-            <div className="tracking-wider text-xl mb-8">Payment method</div>
+            <div className="tracking-wider text-xl mb-8">{t('cart:payment.method')}</div>
             <div className="">
               {paymentMethods.map((payment, index) => (
                 <div className="flex items-center my-6" key={payment.value}>
@@ -225,7 +227,7 @@ export default function PaymentMethod(props: PaymentMethodProps) {
                     htmlFor={`${payment.value}-${index}`}
                     className="text-sm font-medium text-gray-900 ml-2"
                   >
-                    {payment.label}
+                    {t(payment.label)}
                   </label>
                 </div>
               ))}

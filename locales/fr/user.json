@@ -1,0 +1,42 @@
+{
+  "sidebar": {
+    "profile": "Information sur le compte",
+    "my-order": "Ma commande",
+    "logout": "Se déconnecter"
+  },
+
+  "order": {
+    "status": {
+      "all-orders": "Tous les ordres",
+      "waiting-for-payment": "En attente de paiement",
+      "in-progress": "En cours",
+      "delivered": "Livré",
+      "cancelled": "Annulé"
+    }
+  },
+
+  "detail": {
+    "address": "Adresse",
+    "postal-code:": "Code Postal",
+    "email": "E-mail",
+    "shipping-price": "Prix ​​de l'expédition",
+
+    "payment-method:": "Mode de paiement",
+    "status": "Statut",
+    "order-date:": "Date de commande",
+
+    "table": {
+      "product": "Produit",
+      "title": "Titre",
+      "price": "Prix",
+      "quantity": "Quantity"
+    }
+  },
+
+  "items": "Articles",
+  "tax": "Impôt",
+  "ship": "Bateau",
+
+  "total-price": "Prix ​​total",
+  "view-detail": "Voir les détails"
+}

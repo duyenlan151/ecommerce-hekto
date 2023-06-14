@@ -6,6 +6,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Table } from '@components/Shared/Table';
 import MetaData from '@components/Shared/MetaData';
+import useTranslation from 'next-translate/useTranslation';
 
 export interface CartInfoProps {
   isLoading: boolean;
@@ -143,6 +144,7 @@ export function CartInfoSkeleton() {
 }
 
 export function CartInfo({ isLoading, order }: CartInfoProps) {
+  const { t } = useTranslation('user');
   const {
     _id,
     shippingAddress: { firstName, lastName, address, city, country, postalCode },
@@ -175,27 +177,37 @@ export function CartInfo({ isLoading, order }: CartInfoProps) {
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="bg-white p-4 w-full mx-auto">
           <div className="uppercase font-bold">{firstName + lastName}</div>
-          <div className="text-[13px] mt-2">Address: {[address, city, country].join(', ')}</div>
-          <div className="text-[13px] mt-1">Postal Code: {postalCode}</div>
-          <div className="text-[13px] mt-1">Email: {user[0]?.email}</div>
+          <div className="text-[13px] mt-2">
+            {t('detail.address')}: {[address, city, country].join(', ')}
+          </div>
+          <div className="text-[13px] mt-1">
+            {t('detail.postal-code')}: {postalCode}
+          </div>
+          <div className="text-[13px] mt-1">
+            {t('detail.email')}: {user[0]?.email}
+          </div>
         </div>
         <div className="bg-white p-4 w-full mx-auto">
           <div className="font-[13px] flex items-center">
             <IFast />
             <span className="ml-2 -mt-[1px]">Economical delivery</span>
           </div>
-          <div className="text-[13px] mt-2">Shipping price: {getSymbolCurrency(shippingPrice)}</div>
+          <div className="text-[13px] mt-2">
+            {t('detail.shipping-price')}: {getSymbolCurrency(shippingPrice)}
+          </div>
         </div>
         <div className="bg-white p-4 w-full mx-auto">
           <div className="text-[13px]">
-            Payment method:
+            {t('detail.payment-method')}:
             <span className="uppercase text-sm ml-2 text-yellow-600">{paymentMethod}</span>
           </div>
           <div className="text-[13px] mt-2">
-            Status:
+            {t('detail.status')}:
             <span className="text-sm ml-2 text-yellow-600">{isPaid ? 'Done' : 'Unpaid'}</span>
           </div>
-          <div className="text-[13px] mt-2">Order Date: {formatDateTime(new Date(createdAt))}</div>
+          <div className="text-[13px] mt-2">
+            {t('detail.order-date')}: {formatDateTime(new Date(createdAt))}
+          </div>
         </div>
       </div>
       <div className="bg-white w-full mx-auto mt-4">
@@ -210,23 +222,23 @@ export function CartInfo({ isLoading, order }: CartInfoProps) {
         <div className="p-6 mt-4">
           <div className="space-y-3">
             <div className="flex justify-end">
-              <div className="text-right text-sm">Items: </div>
+              <div className="text-right text-sm">{t('items')}: </div>
               <div className="min-w-[120px] text-sm text-right">
                 {getSymbolCurrency(itemsPrice)}
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="text-right text-sm">Tax: </div>
+              <div className="text-right text-sm">{t('tax')}: </div>
               <div className="min-w-[120px] text-sm text-right">{getSymbolCurrency(taxPrice)}</div>
             </div>
             <div className="flex justify-end">
-              <div className="text-right text-sm">Ship: </div>
+              <div className="text-right text-sm">{t('ship')}: </div>
               <div className="min-w-[120px] text-sm text-right">
                 {getSymbolCurrency(shippingPrice)}
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="text-right">Total price: </div>
+              <div className="text-right">{t('total-price')}: </div>
               <div className="min-w-[120px] text-right text-red-500 text-lg">
                 {getSymbolCurrency(totalPrice)}
               </div>

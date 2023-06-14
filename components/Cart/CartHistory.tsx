@@ -7,6 +7,7 @@ import React from 'react';
 import { AiOutlineStop } from 'react-icons/ai';
 import { MdOutlineDeliveryDining } from 'react-icons/md';
 import { useRouter } from 'next/router';
+import useTranslation from 'next-translate/useTranslation';
 
 export interface CartHistoryProps {
   order: OrderModel;
@@ -68,6 +69,7 @@ const columns = [
 ];
 
 export default function CartHistory({ order }: CartHistoryProps) {
+  const { t } = useTranslation('user');
   const router = useRouter();
   const {
     _id,
@@ -114,14 +116,14 @@ export default function CartHistory({ order }: CartHistoryProps) {
       />
       <div className="flex flex-col flex-end items-end mt-6">
         <div className="flex">
-          <div className="text-right">Total price: </div>
+          <div className="text-right"> {t('total-price')}: </div>
           <div className="ml-4 text-right">{getSymbolCurrency(totalPrice)}</div>
         </div>
         <Link
           href={`${router.pathname}/${_id}`}
           className="block text-center mt-4 border border-primary w-fit rounded-sm py-2 px-6 text-base font-lato text-black shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
         >
-          View detail
+          {t('view-detail')}
         </Link>
       </div>
     </div>

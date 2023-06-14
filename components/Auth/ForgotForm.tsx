@@ -1,6 +1,7 @@
 import { ILoading } from '@components/Icons';
 import { InputField } from '@components/Shared/Common';
 import { yupResolver } from '@hookform/resolvers/yup';
+import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -10,6 +11,7 @@ import { schemaForgot } from './ResetpassForm.props';
 export interface ForgotPassProps {}
 
 export default function ForgotpassForm({}: ForgotPassProps) {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const form = useForm({
@@ -45,16 +47,16 @@ export default function ForgotpassForm({}: ForgotPassProps) {
         onSubmit={handleSubmit(onSubmit)}
         className="mx-auto py-10 w-34 max-w-[98%] shadow-main lg:!px-8 px-4 bg-white"
       >
-        <h4 className="text-3xl text-center mb-4">Forgot password</h4>
+        <h4 className="text-3xl text-center mb-4">{t('auth:forgot-password.title')}</h4>
         <p className="text-sub-title mb-5 mt-2 font-lato-light tracking-wide font-bold text-center">
-          Enter email you want to reset password
+          {t('auth:forgot-password.desc')}
         </p>
 
         <InputField
           control={control}
           disabled={loading}
           name="email"
-          placeholder="Email"
+          placeholder={t('form:email.placeholder')}
           type="email"
         />
         <div
@@ -70,7 +72,7 @@ export default function ForgotpassForm({}: ForgotPassProps) {
             loading && 'opacity-50'
           }`}
         >
-          {loading ? <ILoading /> : 'Submit'}
+          {loading ? <ILoading /> : t('form:submit')}
         </button>
       </form>
     </section>

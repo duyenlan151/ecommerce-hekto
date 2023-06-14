@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import * as yup from 'yup';
 import { useSession } from 'next-auth/react';
+import useTranslation from 'next-translate/useTranslation';
 
 export interface CheckoutProps {}
 
@@ -29,6 +30,7 @@ const schema = yup
   .required();
 
 export default function Checkout({}: CheckoutProps) {
+  const { t } = useTranslation('cart');
   const cartItems = useSelector(cartItemsSelector);
   const cartTotal = useSelector(cartTotalSelector);
   const { data: session } = useSession();
@@ -147,7 +149,7 @@ export default function Checkout({}: CheckoutProps) {
 
   return (
     <section className="container mx-auto lg:py-32 py-10 lg:px-0 px-4">
-      <h4 className="text-blue-1 text-3xl">Hekto Checkout</h4>
+      <h4 className="text-blue-1 text-3xl">{t('title.checkout')}</h4>
       <div className="text-sub-title font-lato-light leading-7 mt-3">
         Cart / Information / Shipping / Checkout
       </div>
@@ -169,12 +171,12 @@ export default function Checkout({}: CheckoutProps) {
               href="/products"
               className="text-center mt-20 bg-pink-1 lg:w-fit w-full rounded-sm px-10 py-3 text-base font-lato text-white shadow-sm backdrop-opacity-10 hover:backdrop-opacity-60"
             >
-              Continue Shopping
+              {t('continue-shopping')}
             </Link>
           </div>
         </div>
         <div className="lg:basis-4/12 basis-full lg:ml-4 lg:mt-0 mt-5 w-full justify-self-end">
-          <h4 className="text-blue-1 text-xl text-center mb-5">Cart Totals</h4>
+          <h4 className="text-blue-1 text-xl text-center mb-5"> {t('cart-detail.title')}</h4>
           <CartCheckout onClick={handleNavigate} />
         </div>
       </div>

@@ -1,0 +1,121 @@
+{
+  "name": {
+    "name": "Name",
+    "placeholder": "Name",
+
+    "error": {
+      "required": "Please enter name",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "email": {
+    "name": "email",
+    "placeholder": "Email Address",
+
+    "error": {
+      "required": "Please enter email",
+      "invalid": "Please enter valid email",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "password": {
+    "name": "email",
+    "placeholder": "Password",
+
+    "error": {
+      "required": "Please enter password",
+      "min": "Password length should be at least 4 characters",
+      "max": "Value must be at most 255 characters",
+      "not-match": "Confirm passwords does not match"
+    }
+  },
+
+  "confirm_password": {
+    "name": "Confirm Password",
+    "placeholder": "Confirm Password",
+
+    "error": {
+      "required": "Please enter confirm password",
+      "min": "Password length should be at least 4 characters",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "first-name": {
+    "name": "First Name",
+    "placeholder": "First name (optional)",
+
+    "error": {
+      "required": "Please enter first name",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "last-name": {
+    "name": "Last Name",
+    "placeholder": "Last Name",
+
+    "error": {
+      "required": "Please enter last name",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "address": {
+    "name": "Address",
+    "placeholder": "Address",
+
+    "error": {
+      "required": "Please enter email",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "city": {
+    "name": "City",
+    "placeholder": "City",
+
+    "error": {
+      "required": "Please enter city",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "country": {
+    "name": "Country",
+    "placeholder": "Country",
+
+    "error": {
+      "required": "Please enter Country",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "postal-code": {
+    "name": "Postal Code",
+    "placeholder": "Postal Code",
+
+    "error": {
+      "required": "Please enter postal code",
+      "max": "Value must be at most 255 characters"
+    }
+  },
+
+  "cart": {
+    "error": {
+      "not-check": "Please checked this checkbox to countinue payment",
+      "items-null": "Items price must be over $0"
+    }
+  },
+
+  "common": {
+    "error": {
+      "required": "Please enter {name}",
+      "max": "Value must be at most {value} characters"
+    }
+  },
+
+  "submit": "Submit"
+}

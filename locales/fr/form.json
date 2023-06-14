@@ -1,0 +1,118 @@
+{
+  "name": {
+    "name": "Nom",
+    "placeholder": "Nom",
+
+    "error": {
+      "required": "Veuillez entrer le nom",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "email": {
+    "placeholder": "Adresse e-mail",
+
+    "error": {
+      "required": "Veuillez saisir un e-mail",
+      "invalid": "Veuillez saisir une adresse e-mail valide",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "password": {
+    "placeholder": "Mot de passe",
+
+    "error": {
+      "required": "Veuillez entrer le mot de passe",
+      "min": "La longueur du mot de passe doit être d'au moins 4 caractères",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "confirm_password": {
+    "name": "Confirmez le mot de passe",
+    "placeholder": "Confirmez le mot de passe",
+
+    "error": {
+      "required": "Veuillez saisir le mot de passe de confirmation",
+      "min": "La longueur du mot de passe doit être d'au moins 4 caractères",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "first-name": {
+    "name": "Prénom",
+    "placeholder": "Prénom (facultatif)",
+
+    "error": {
+      "required": "Veuillez entrer le prénom",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "last-name": {
+    "name": "Nom de famille",
+    "placeholder": "Nom de famille",
+
+    "error": {
+      "required": "Veuillez entrer le nom de famille",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "address": {
+    "name": "Adresse",
+    "placeholder": "Adresse",
+
+    "error": {
+      "required": "Veuillez saisir un e-mail",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "city": {
+    "name": "Ville",
+    "placeholder": "Ville",
+
+    "error": {
+      "required": "Veuillez entrer la ville",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "country": {
+    "name": "Pays",
+    "placeholder": "Pays",
+
+    "error": {
+      "required": "Veuillez entrer le pays",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "postal-code": {
+    "name": "Code Postal",
+    "placeholder": "Code Postal",
+
+    "error": {
+      "required": "Veuillez entrer le code postal",
+      "max": "La valeur ne doit pas dépasser 255 caractères"
+    }
+  },
+
+  "cart": {
+    "error": {
+      "not-check": "Veuillez cocher cette case pour continuer le paiement",
+      "items-null": "Le prix des articles doit être supérieur à 0 $"
+    }
+  },
+
+  "common": {
+    "error": {
+      "required": "Veuillez saisir {name}",
+      "max": "La valeur doit comporter au plus {value} caractères"
+    }
+  },
+
+  "submit": "Soumettre"
+}

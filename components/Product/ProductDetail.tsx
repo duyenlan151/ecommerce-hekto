@@ -1,6 +1,7 @@
 import { BreadcrumdMain } from '@components/Shared';
 import ImagesGallary from '@components/Shared/ImagesGallary/ImagesGallary';
 import { ProductModel } from 'models';
+import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ProductDescription from './ProductDescription';
@@ -12,11 +13,12 @@ export interface ProductDetailProps {
 }
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  const { lang } = useTranslation();
   const [show, setShow] = useState(false);
   return (
     <div className="container mx-auto px-4 mb-10">
       <div className="text-sub-title font-lato-light leading-7 pt-8 pb-4">
-        <BreadcrumdMain items={breadcrumbsForProduct(product)} />
+        <BreadcrumdMain items={breadcrumbsForProduct(product, lang)} />
       </div>
       <div className="bg-white">
         <div className="lg:flex lg:flex-nowrap flex-wrap">

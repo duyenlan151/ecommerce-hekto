@@ -7,5 +7,8 @@
 
   "categories": "Catégories",
   "price": "Prix",
-  "rating": "Notation"
+  "rating": "Notation",
+
+  "share": "Partager",
+  "quantity": "Quantité"
 }
