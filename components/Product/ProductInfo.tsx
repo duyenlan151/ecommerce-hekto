@@ -79,7 +79,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           onClick={onAddToCart}
           className="bg-pink-1 w-fit rounded px-12 py-2.5 text-base font-lato text-white hover:shadow-xl transition delay-100 ease-in-out duration-300"
         >
-          Add To Cart
+          {t('add-to-cart')}
         </button>
         <span className="ml-4 cursor-pointer">
           <AiOutlineHeart size={22} />
