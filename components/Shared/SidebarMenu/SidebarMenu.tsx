@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdLogin, MdLogout } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import { SearchHeader } from '../SearchHeader';
 
 export interface SidebarMenuProps {
   show: boolean;
@@ -36,6 +37,8 @@ export function SidebarMenu({ show = false, onClose }: SidebarMenuProps) {
           </span>
         </div>
         <div className="p-3">
+          {/* Search */}
+          <SearchHeader />
           {session?.user?.name && (
             <Link
               className="py-3 text-base block text-ellipsis max-w-full overflow-hidden whitespace-nowrap"
