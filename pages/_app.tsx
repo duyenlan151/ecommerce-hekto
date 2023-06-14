@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import React from 'react';
 
+import { GoogleAnalytics } from 'nextjs-google-analytics';
+
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import '../styles/index.css';
@@ -53,6 +55,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <SessionProvider session={session}>
         <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
           <MetaData />
+          {process.env.NODE_ENV === 'production' && <GoogleAnalytics strategy="lazyOnload" />}
           <LayoutMain>
             {Component.authorize ? (
               <ProtectedRoute>
