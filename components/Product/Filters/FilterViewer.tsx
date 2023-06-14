@@ -9,10 +9,10 @@ export interface FilterViewerProps {}
 
 export function FilterViewer(props: FilterViewerProps) {
   const router = useRouter();
-  const { price, rating, sort, category } = router.query;
+  const { price, rating, sort, category, search } = router.query;
 
   const filters = useMemo(() => {
-    return { price, rating, sort, category };
+    return { price, rating, sort, category, search };
   }, [router.query]);
 
   if (isAllObjectEmptyValue(filters)) {
