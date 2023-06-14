@@ -76,7 +76,7 @@ export function InputField({
           className={`border-transparent bg-white focus:border-transparent focus:ring-0 placeholder:text-sub-title placeholder:font-lato-light peer border-0 relative w-full h-full bg-white px-4 font-thin outline-none transition-all duration-200 ease-in-out `}
           // {...rest}
         />
-        {rest.isSearch && (
+        {rest?.isSearch && (
           <div
             onClick={() => {
               onChange('');

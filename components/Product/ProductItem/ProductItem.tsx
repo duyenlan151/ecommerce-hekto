@@ -1,4 +1,5 @@
 import { ISale } from '@components/Icons';
+import { HighLightSearchText } from '@components/Shared/HighLightSearchText';
 import { opacityVariant } from '@content/FramerMotionVariants';
 import { getSymbolCurrency } from '@utils/index';
 import { motion } from 'framer-motion';
@@ -154,6 +155,11 @@ export function ProductItemSecondary({
   product: { _id, name, price, shortDescription, description, images, title, rating, slug },
 }: ProductItemProps) {
   const router = useRouter();
+
+  const {
+    query: { search },
+  } = router;
+
   return (
     <div
       className={`min-h-[230px] max-h-[230px] flex bg-white group transition delay-100 ease-in-out duration-500 flex justify-center items-center p-2`}
@@ -178,7 +184,8 @@ export function ProductItemSecondary({
           href={`/products/${_id}/${slug}`}
           className="line-clamp-2 transition delay-100 ease-in-out duration-500 text-gray-600 font-lato font-bold"
         >
-          {name || title}
+          <HighLightSearchText text={title} textHighlight={String(search)} />
+          {/* {name || title} */}
         </Link>
         {/* Price */}
         <div className="transition delay-100 ease-in-out duration-500 mt-1 text-blue-1 text-sm font-lato">

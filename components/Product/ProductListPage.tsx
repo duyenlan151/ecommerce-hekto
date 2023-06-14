@@ -34,7 +34,7 @@ export default function ProductListPage({ products, isLoading }: ProductListPage
   const { t } = useTranslation('products');
   const router = useRouter();
   const {
-    query: { page, view },
+    query: { page, view, search },
   } = router;
   const { routerPushQuery } = useRouterPush();
 

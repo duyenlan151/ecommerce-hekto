@@ -16,12 +16,12 @@ type Props = {
 const ProductsPage = ({ products, limit, total }: Props) => {
   const router = useRouter();
   const {
-    query: { category, page = 1, price, rating, sort },
+    query: { category, page = 1, price, rating, sort, search },
   } = router;
 
   const { response, isLoading } = useRequestWithSWR({
     url: '/admin/products',
-    params: { category, page, price, rating, sort },
+    params: { category, page, price, rating, sort, search },
   });
 
   if (router.isFallback) {

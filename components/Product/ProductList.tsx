@@ -18,6 +18,7 @@ export default function ProductList({ products, viewCol, isLoading }: ProductLis
   if (products?.length === 0) {
     return <div className="p-4 bg-white">No Products found</div>;
   }
+
   return (
     <AnimatedDiv variants={opacityVariant} className="">
       {isLoading ? (
