@@ -6,7 +6,7 @@ export default async (req, res) => {
       const { token } = req.body;
 
       if (token) {
-        const decoded = await jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
+        const decoded = await jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET || '');
         req.user = decoded;
         res.json({ decoded });
       }

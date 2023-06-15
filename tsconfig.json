@@ -33,6 +33,13 @@
     "strictNullChecks": true,
     "resolveJsonModule": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.js",
+    ".next/types/**/*.ts",
+    "lib/firebase.js"
+  ],
   "exclude": ["node_modules"]
 }

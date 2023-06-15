@@ -34,8 +34,8 @@ export default NextAuth({
         //@ts-ignore
         session.user._id = token._id;
         const accessToken = jwt.sign(
-          //@ts-ignore
           { _id: token?._id, isAdmin: token?.isAdmin },
+          //@ts-ignore
           process.env.NEXT_PUBLIC_JWT_SECRET,
           {
             expiresIn: 10,

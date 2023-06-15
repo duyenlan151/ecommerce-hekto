@@ -16,7 +16,7 @@ export default async (req, res) => {
         res.status(404).json({ message: 'Email not found!' });
       }
 
-      const token = jwt.sign({ _id: user._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
+      const token = jwt.sign({ _id: user._id }, process.env.NEXT_PUBLIC_JWT_SECRET || '', {
         expiresIn: 60 * 5,
       });
       // const token = jwt.sign({ _id: user._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {

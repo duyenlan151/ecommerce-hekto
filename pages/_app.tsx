@@ -1,6 +1,6 @@
 import { Layout } from '@components/Shared/Layout';
-import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import ProtectedRoute from '@components/Shared/ProtectedRoute';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import NProgress from '@utils/nprogress';
 import { wrapper } from 'app/store';
 import { SessionProvider } from 'next-auth/react';
@@ -8,8 +8,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import React from 'react';
 
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 
@@ -17,8 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import '../styles/index.css';
 // import '../styles/tailwind.css';
-import { initialOptionsPayPal } from '@utils/common';
 import MetaData from '@components/Shared/MetaData';
+import PushNotificationLayout from '@components/Shared/PushNotificationLayout';
+import { initialOptionsPayPal } from '@utils/common';
 NProgress.configure({
   easing: 'ease',
   speed: 800,
@@ -54,6 +53,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <Provider store={store}>
       <SessionProvider session={session}>
         <PayPalScriptProvider deferLoading={true} options={initialOptionsPayPal}>
+          <PushNotificationLayout />
           <MetaData />
           {process.env.NODE_ENV === 'production' && <GoogleAnalytics strategy="lazyOnload" />}
           <LayoutMain>
