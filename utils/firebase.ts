@@ -7,7 +7,7 @@
 // export const fetchToken = (setTokenFound) => {
 //   return getToken(messaging, {
 //     vapidKey:
-//       'BJAJR28nj2-Jjxf2EdT76DaoHys9Q0t9rGF54_i9udWy7SahmI_yZ3BAxLr8t2bwjwCYH0rtFGhJUBGOYIUi9ts',
+//       '',
 //   })
 //     .then((currentToken) => {
 //       if (currentToken) {

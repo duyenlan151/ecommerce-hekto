@@ -49,6 +49,7 @@
 - 💖 Update -------
 - 🐶 SWR - for data fetching - cached and optimize
 - ✨ Next-translate - for i18n
+- ⛑ Firebase - Firebase Cloud Messaging
 - ‽ Either Error Handler - For error handling. (Either is designed to hold either a left or a right value but never both).
 
 <!-- ABOUT THE PROJECT -->
@@ -260,8 +261,10 @@ This is a really simple project that shows the usage of Next.js with TypeScript.
 ## How to use
 
 ```
+
 $ git clone https://github.com/duyenlan151/ecommerce-hekto.git
 $ cd ecommerce-hekto
+$ Update your rename .env.example to .env.development or .env.staging what mode you want file, then setup your env variable
 $ npm install or yarn install
 $ npm run dev or yarn dev
 $ Api: http://localhost:3000/api/
