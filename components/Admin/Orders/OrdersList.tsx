@@ -1,7 +1,7 @@
 import { Table } from '@components/Shared/Table';
 import { OrderModel } from 'models';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { columns } from './OrdersList.props';
 
 export interface OrdersListProps {
@@ -14,9 +14,9 @@ export default function OrdersList({ data, loadingPage }: OrdersListProps) {
   const [isShowModal, setShowModal] = useState(false);
   const refItem = useRef({ _id: null, name: '', title: '' });
 
-  const onClickRow = (_id: string) => {
+  const onClickRow = useCallback((_id: string) => {
     router.push(`${router.pathname}/${_id}`);
-  };
+  }, []);
 
   return (
     <div className="mt-10">

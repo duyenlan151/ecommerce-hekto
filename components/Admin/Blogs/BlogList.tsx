@@ -3,7 +3,7 @@ import { Table } from '@components/Shared/Table';
 import { useCategories } from '@hooks/index';
 import { BlogModel } from 'models';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { columns } from './Blog.props';
 
 export interface BlogListProps {
@@ -17,7 +17,7 @@ export default function BlogList({ data }: BlogListProps) {
   const [isShowModal, setShowModal] = useState(false);
   const refItem = useRef({ _id: null, name: '' });
 
-  const onSelectOption = async (action, item) => {
+  const onSelectOption = useCallback(async (action, item) => {
     if (action === 'edit') {
       router.push(`${router.pathname}/${action}/${item._id}`);
       return;
@@ -25,7 +25,7 @@ export default function BlogList({ data }: BlogListProps) {
 
     refItem.current = item;
     setShowModal(true);
-  };
+  }, []);
 
   const onAddNew = () => {
     router.push(`${router.pathname}/add`);

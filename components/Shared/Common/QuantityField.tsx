@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Controller, useController } from 'react-hook-form';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
@@ -11,7 +11,7 @@ interface QuantityFieldProps {
   [name: string]: any;
 }
 
-export function QuantityField({
+export const QuantityField = memo(function QuantityFieldMain({
   name,
   onChange: externalOnChange,
   onBlur: externalOnBlur,
@@ -43,4 +43,4 @@ export function QuantityField({
       </div>
     </div>
   );
-}
+});

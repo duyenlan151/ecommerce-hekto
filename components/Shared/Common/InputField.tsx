@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useController } from 'react-hook-form';
 import {
   AiOutlineClose,
@@ -22,7 +22,7 @@ interface InputFieldProps {
   [name: string]: any;
 }
 
-export function InputField({
+export const InputField = memo(function InputFieldMain({
   name,
   label,
   control,
@@ -33,6 +33,7 @@ export function InputField({
   className,
   ...rest
 }: InputFieldProps) {
+  console.log('🚀 ~ file: InputField.tsx:36 ~ name:', name);
   const { t } = useTranslation('form');
   const [typeInput, setTypeInput] = useState(rest?.type || 'text');
   const {
@@ -118,4 +119,4 @@ export function InputField({
     //   {...rest}
     // />
   );
-}
+});

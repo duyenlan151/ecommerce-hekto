@@ -1,6 +1,6 @@
 import { ILoading } from '@components/Icons';
 import { ProductModel } from 'models';
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
 
@@ -25,7 +25,7 @@ interface Props<T> {
   isLoading?: boolean;
 }
 
-export function Table<T>({
+export const Table = memo(function TableMain<T>({
   color = 'light',
   title = '',
   data,
@@ -37,6 +37,8 @@ export function Table<T>({
   onClickRow,
   isLoading,
 }: Props<T>) {
+  console.log('🚀 ~ file: Table.tsx:89 ~ columns:', columns);
+
   return (
     <div
       className={
@@ -85,4 +87,4 @@ export function Table<T>({
       </div>
     </div>
   );
-}
+});

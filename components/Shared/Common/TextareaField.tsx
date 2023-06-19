@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { useController } from 'react-hook-form';
 
 interface TextareaFieldProps {
@@ -12,7 +12,7 @@ interface TextareaFieldProps {
   [name: string]: any;
 }
 
-export function TextareaField({
+export const TextareaField = memo(function TextareaFieldMain({
   name,
   control,
   onChange: externalOnChange,
@@ -54,4 +54,4 @@ export function TextareaField({
       )}
     </div>
   );
-}
+});
