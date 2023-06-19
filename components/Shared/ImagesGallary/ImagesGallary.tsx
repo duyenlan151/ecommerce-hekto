@@ -1,5 +1,5 @@
 import { Modal } from '@components/Shared/Modal';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 // Import Swiper styles
 import SwiperGallary from '@components/Shared/Swiper/SwiperGallary';
@@ -14,7 +14,7 @@ export interface ImagesGallaryProps {
   images: any;
 }
 
-export default function ImagesGallary({ images }: ImagesGallaryProps) {
+export const ImagesGallary = memo(function ImagesGallaryMain({ images }: ImagesGallaryProps) {
   const [activeImage, setAtiveImage] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
@@ -79,4 +79,4 @@ export default function ImagesGallary({ images }: ImagesGallaryProps) {
       </Modal>
     </div>
   );
-}
+});

@@ -1,11 +1,14 @@
 import { ProductModel } from 'models';
+import { memo } from 'react';
 import * as sanitizeHtml from 'sanitize-html';
 
 export interface ProductDetailProps {
   product: ProductModel;
 }
 
-function ProductDescription({ product }) {
+export const ProductDescription = memo(function ProductDescriptionMain({
+  product,
+}: ProductDetailProps) {
   const { short_description } = product;
   return (
     <div
@@ -15,6 +18,4 @@ function ProductDescription({ product }) {
       }}
     ></div>
   );
-}
-
-export default ProductDescription;
+});

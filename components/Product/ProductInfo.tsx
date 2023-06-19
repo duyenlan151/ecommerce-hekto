@@ -3,15 +3,14 @@ import { getSymbolCurrency } from '@utils/common';
 import { addToCart } from 'app/Cart/cartSlice';
 import { ProductModel } from 'models';
 import useTranslation from 'next-translate/useTranslation';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { AiFillStar, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 
 export interface ProductInfoProps {
   product: ProductModel;
 }
-
-export default function ProductInfo({ product }: ProductInfoProps) {
+export const ProductInfo = memo(function ProductInfoMain({ product }: ProductInfoProps) {
   const { t } = useTranslation('products');
   const { _id, title, price, rating, images, slug, shortDescription, salePrice } = product;
   const [quantity, setQuantity] = useState(1);
@@ -87,4 +86,4 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       </div>
     </div>
   );
-}
+});

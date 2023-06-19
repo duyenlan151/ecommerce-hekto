@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import * as React from 'react';
+import React, { memo } from 'react';
 import { BreadcrumbsProps } from './Breadcrumds';
 
-export function BreadcrumdMain({ items }: BreadcrumbsProps) {
+export const BreadcrumdMain = memo(function BreadcrumdMain({ items }: BreadcrumbsProps) {
   const length = items.length - 1;
   return (
     <div className="flex gap-2 items-start flex-nowrap overflow-x-auto pb-4">
@@ -32,4 +32,4 @@ export function BreadcrumdMain({ items }: BreadcrumbsProps) {
       })}
     </div>
   );
-}
+});
