@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 
 export function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
-  function changeWindowSize() {
+  const handleWindowResize = () => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('resize', changeWindowSize);
+    // component is mounted and window is available
+    handleWindowResize();
 
-    return () => {
-      window.removeEventListener('resize', changeWindowSize);
-    };
+    window.addEventListener('resize', handleWindowResize);
+    // unsubscribe from the event on component unmount
+    return () => window.removeEventListener('resize', handleWindowResize);
   }, []);
 
   return windowSize;
