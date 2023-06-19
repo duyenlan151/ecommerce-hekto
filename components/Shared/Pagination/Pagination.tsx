@@ -1,5 +1,6 @@
 import { DOTS, usePagination } from '@hooks/usePagination';
 import router from 'next/router';
+import { memo } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 interface PaginationProps {
@@ -10,7 +11,7 @@ interface PaginationProps {
   [key: string]: any;
 }
 
-export const Pagination = (props: PaginationProps) => {
+export const Pagination = memo(function PaginationMain(props: PaginationProps) {
   const { totalCount, siblingCount = 1, currentPage, pageSize, className } = props;
 
   const paginationRange = usePagination({
@@ -116,4 +117,4 @@ export const Pagination = (props: PaginationProps) => {
       </ul>
     </div>
   );
-};
+});

@@ -3,12 +3,12 @@ import { Pagination } from '@components/Shared/Pagination';
 import { useRouterPush } from '@hooks/useRouterPush';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BsGrid, BsListTask } from 'react-icons/bs';
 import { IoFilterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { FilterViewer } from './Filters';
-import ProductFilters from './ProductFilters';
+import { ProductFilters } from './ProductFilters';
 import ProductList from './ProductList';
 import { itemsList } from './Products.props';
 
@@ -56,20 +56,30 @@ export default function ProductListPage({ products, isLoading }: ProductListPage
   //   setShowOverlayFilter((prev) => !prev);
   // }, [query]);
 
-  const handleFilterBySort = ({ value }) => {
+  const handleFilterBySort = useCallback(({ value }) => {
     routerPushQuery({
       query: {
         ...router.query,
         sort: value,
       },
     });
-  };
+  }, []);
 
   const onChangeViewType = (type) => setTypeView(type);
 
   const handleOverlayFilter = () => {
     setShowOverlayFilter((prev) => !prev);
   };
+
+  const LabelDropdown = useCallback(() => {
+    return (
+      <div className="flex items-center py-2 bg-white px-4 border border-gray-10">
+        <div className="pr-3">{t('sort-by')}</div>
+        <MdKeyboardArrowDown size={20} />
+      </div>
+    );
+  }, []);
+
   return (
     <section className="bg-bg-color">
       <div className="container mx-auto py-10 lg:px-0 px-4">
@@ -99,12 +109,7 @@ export default function ProductListPage({ products, isLoading }: ProductListPage
           </div>
           {/* Sort */}
           <Dropdown
-            label={
-              <div className="flex items-center py-2 bg-white px-4 border border-gray-10">
-                <div className="pr-3">{t('sort-by')}</div>
-                <MdKeyboardArrowDown size={20} />
-              </div>
-            }
+            label={<LabelDropdown />}
             listItems={itemsList}
             onSelectItem={handleFilterBySort}
           />

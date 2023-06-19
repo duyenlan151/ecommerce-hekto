@@ -2,7 +2,7 @@ import { cleanAllCart, toggleMiniCart } from '@app/Cart/cartSlice';
 import { cartItemsCountSelector } from 'app/Cart/cartSelector';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   AiOutlineHeart,
   AiOutlineMenu,
@@ -48,9 +48,9 @@ function TopNavbar({}: TopNavbarProps) {
     dispatch(toggleMiniCart());
   };
 
-  const handleChangeLang = async ({ value }: { value: string }) => {
+  const handleChangeLang = useCallback(async ({ value }: { value: string }) => {
     await setLanguage(value);
-  };
+  }, []);
 
   return (
     <>

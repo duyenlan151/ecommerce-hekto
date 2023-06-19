@@ -1,19 +1,21 @@
 import { formatQueryString, queryString } from '@utils/common';
 import { isAllObjectEmptyValue } from 'constants/index';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FILTER_LIST } from './Filter.props';
 
 export interface FilterViewerProps {}
 
-export function FilterViewer(props: FilterViewerProps) {
+export const FilterViewer = memo(function FilterViewerMain(props: FilterViewerProps) {
   const router = useRouter();
-  const { price, rating, sort, category, search } = router.query;
+  const {
+    query: { price, rating, sort, category, search },
+  } = router;
 
   const filters = useMemo(() => {
     return { price, rating, sort, category, search };
-  }, [router.query]);
+  }, [price, rating, sort, category, search]);
 
   if (isAllObjectEmptyValue(filters)) {
     return <></>;
@@ -50,4 +52,4 @@ export function FilterViewer(props: FilterViewerProps) {
       </div>
     </>
   );
-}
+});

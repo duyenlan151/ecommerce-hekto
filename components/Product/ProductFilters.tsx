@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   FilterByBrand,
   FilterByCategories,
@@ -9,7 +9,7 @@ import {
 
 export interface ProductFiltersProps {}
 
-export default function ProductFilters(props: ProductFiltersProps) {
+export const ProductFilters = memo(function ProductFilters(props: ProductFiltersProps) {
   return (
     <div className="bg-white py-2">
       {/* <FilterByBrand /> */}
@@ -19,4 +19,4 @@ export default function ProductFilters(props: ProductFiltersProps) {
       <FilterByRating />
     </div>
   );
-}
+});

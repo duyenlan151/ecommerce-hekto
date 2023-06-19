@@ -1,6 +1,5 @@
 import { useOnClickOutside } from '@hooks/index';
-import React, { ReactNode, RefObject, useRef, useState } from 'react';
-import { AiOutlineDown } from 'react-icons/ai';
+import { memo, ReactNode, useRef, useState } from 'react';
 
 export interface DropdownProps {
   label?: string | ReactNode;
@@ -10,7 +9,7 @@ export interface DropdownProps {
   [key: string]: any;
 }
 
-export function Dropdown({
+export const Dropdown = memo(function DropdownMain({
   label = 'Sort by',
   children,
   listItems,
@@ -77,4 +76,4 @@ export function Dropdown({
       </div>
     </div>
   );
-}
+});
