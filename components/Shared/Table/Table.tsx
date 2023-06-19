@@ -37,8 +37,6 @@ export const Table = memo(function TableMain<T>({
   onClickRow,
   isLoading,
 }: Props<T>) {
-  console.log('🚀 ~ file: Table.tsx:89 ~ columns:', columns);
-
   return (
     <div
       className={

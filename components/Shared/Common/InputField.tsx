@@ -33,7 +33,6 @@ export const InputField = memo(function InputFieldMain({
   className,
   ...rest
 }: InputFieldProps) {
-  console.log('🚀 ~ file: InputField.tsx:36 ~ name:', name);
   const { t } = useTranslation('form');
   const [typeInput, setTypeInput] = useState(rest?.type || 'text');
   const {
