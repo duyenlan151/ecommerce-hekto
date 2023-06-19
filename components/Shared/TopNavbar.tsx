@@ -16,6 +16,8 @@ import { SidebarMenu } from './SidebarMenu';
 import setLanguage from 'next-translate/setLanguage';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import useTranslation from 'next-translate/useTranslation';
+import { useWindowSize } from '@hooks/index';
+import { BREAKPOINT_DEFAULT } from 'constants/index';
 
 type TopNavbarProps = {
   // item: User
@@ -34,6 +36,8 @@ function TopNavbar({}: TopNavbarProps) {
   const dispatch = useDispatch();
 
   const [mounted, setMounted] = useState(false);
+
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setMounted(true);
@@ -139,7 +143,9 @@ function TopNavbar({}: TopNavbarProps) {
               </div>
             </div>
 
-            <SidebarMenu show={show} onClose={() => setShow(false)} />
+            {width <= BREAKPOINT_DEFAULT.md && (
+              <SidebarMenu show={show} onClose={() => setShow(false)} />
+            )}
 
             {show && (
               <div
