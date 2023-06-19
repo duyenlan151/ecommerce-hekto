@@ -1,12 +1,11 @@
-import BlogList from '@components/Blogs/BlogList';
+import { BlogList } from '@components/Blogs';
 import { ILoadingSeconday } from '@components/Icons';
 import { LayoutBLog } from '@components/Shared/Layout';
 import { SearchInput } from '@components/Shared/SearchInput';
-import usePaginateWithSWR from '@hooks/swr/usePaginateWithSWR';
-import { useRouterPush } from '@hooks/useRouterPush';
-import { DataBlogModel } from 'models';
+import { BlogModel, DataBlogModel, DataResCommonModel } from 'models';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { useRequestInfinite, useRouterPush } from '@hooks/index';
 
 export interface BlogPageProps {
   blogs: DataBlogModel;
@@ -15,9 +14,10 @@ export default function BlogPage({ blogs }: BlogPageProps) {
   const { query } = useRouter();
   const { search } = query;
   const { routerPushQuery } = useRouterPush();
+  const [count, setCount] = useState(0);
 
   const { data, error, size, setSize, isReachingEnd, isLoading, isLoadingMore } =
-    usePaginateWithSWR({
+    useRequestInfinite<DataResCommonModel<BlogModel>[]>({
       url: '/blogs',
       params: { limit: 3, search },
     });
@@ -25,26 +25,34 @@ export default function BlogPage({ blogs }: BlogPageProps) {
   const blogsList = useMemo(
     () =>
       (data &&
-        data.reduce((newArray: [], item: DataBlogModel) => newArray.concat(item.data as []), [])) ||
+        data?.reduce(
+          (newArray: [], item: DataBlogModel) => newArray.concat(item.data as []),
+          []
+        )) ||
       [],
 
-    [data]
+    [data, isLoading]
   );
 
-  const handleChangeSearch = (search: string) => {
-    routerPushQuery({
-      query: search
-        ? {
-            search,
-          }
-        : null,
-    });
-  };
+  const handleChangeSearch = useCallback(
+    (search: string) => {
+      routerPushQuery({
+        query: search
+          ? {
+              search,
+            }
+          : null,
+      });
+    },
+    [search]
+  );
   if (error) return <h1>Something went wrong!</h1>;
   // if (!data) return <h1>Loading...</h1>;
 
   return (
     <div className="container px-6 mx-auto xl:px-5 max-w-screen-lg py-5 lg:py-8 min-h-screen">
+      {count}
+      <button onClick={() => setCount((prev) => ++prev)}>count</button>
       <div className="mt-14 text-center mb-8">
         <SearchInput value={String(search) || ''} handleChange={handleChangeSearch} />
       </div>
