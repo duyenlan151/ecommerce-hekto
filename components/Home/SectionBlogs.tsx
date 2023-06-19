@@ -1,7 +1,6 @@
-import BlogList from '@components/Blogs/BlogList';
-import { BlogModel, DataBlogModel, DataResCommonModel } from 'models';
+import { BlogList } from '@components/Blogs';
+import { BlogModel } from 'models';
 import useTranslation from 'next-translate/useTranslation';
-import React from 'react';
 
 export interface SectionBlogsProps {
   blogs: BlogModel[];

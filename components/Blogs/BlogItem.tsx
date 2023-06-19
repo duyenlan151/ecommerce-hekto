@@ -8,7 +8,7 @@ export interface IBlogProps {
   blog: BlogModel;
 }
 
-export default function BlogItem({ blog }: IBlogProps) {
+export function BlogItem({ blog }: IBlogProps) {
   const { title, author, updatedAt, main_image, category, slug } = blog;
 
   const {

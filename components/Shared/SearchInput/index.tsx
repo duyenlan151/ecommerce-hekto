@@ -1,5 +1,5 @@
 import { useDebounce } from '@hooks/index';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InputField } from '../Common';
 
@@ -10,7 +10,7 @@ export interface SearchInputProps {
   handleChange: (value) => void;
 }
 
-export function SearchInput({
+export const SearchInput = memo(function SearchInput({
   label,
   value,
   debounceTime = 400,
@@ -58,4 +58,4 @@ export function SearchInput({
       </div>
     </div>
   );
-}
+});

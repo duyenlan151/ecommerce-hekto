@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface BlogCategoriesProps {}
 
-export default function BlogCategories(props: BlogCategoriesProps) {
+export function BlogCategories(props: BlogCategoriesProps) {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold dark:text-white">Categories</h3>

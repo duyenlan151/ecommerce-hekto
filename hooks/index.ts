@@ -9,5 +9,4 @@ export * from './usePageLoading';
 export * from './useRouterPush';
 export * from './useDebounce';
 export * from './useBlogs';
-export * from './swr/usePaginateWithSWR';
-export * from './swr/useRequestWithSWR';
+export * from './swr';

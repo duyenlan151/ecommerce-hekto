@@ -2,7 +2,7 @@ import { formatDateTime, optionsDateFormats } from '@utils/common';
 import { BlogModel } from 'models';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BlogSidebar } from './BlogSidebar';
+import { BlogSidebar } from './';
 
 export interface BlogDetailProps {
   blog: BlogModel;

@@ -7,10 +7,10 @@ import 'swiper/css/pagination';
 import AnimatedDiv from '@components/FramerMotion/AnimatedDiv';
 import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
 import { FadeContainer } from '@content/FramerMotionVariants';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { Pagination } from 'swiper';
 import { ProductItem } from './ProductItem/ProductItem';
-import useTranslation from 'next-translate/useTranslation';
 
 export interface ProductFeaturedListProps {
   data?: ProductItemModel[];

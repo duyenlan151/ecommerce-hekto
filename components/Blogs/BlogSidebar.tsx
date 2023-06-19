@@ -1,7 +1,5 @@
 import * as React from 'react';
-import BlogCategories from './BlogCategories';
-import { BlogRelated } from './BlogRelated';
-import { BlogSearch } from './BlogSearch';
+import { BlogCategories, BlogRelated, BlogSearch } from './';
 
 export interface BlogSidebarProps {}
 

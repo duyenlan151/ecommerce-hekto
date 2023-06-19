@@ -1,6 +1,5 @@
 import { SearchInput } from '@components/Shared/SearchInput';
-import { useKeypress } from '@hooks/useKeyPress';
-import { useRouterPush } from '@hooks/useRouterPush';
+import { useKeypress, useRouterPush } from '@hooks/index';
 import { useRef } from 'react';
 
 export interface BlogSearchProps {}
