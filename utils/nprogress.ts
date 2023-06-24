@@ -6,7 +6,7 @@ NProgress.setColor = (color) => {
   const style = document.createElement('style');
   style.textContent = `
   #nprogress .bar {
-    background: ${color} !important;
+    background: ${color};
   }
   `;
   document.body.appendChild(style);

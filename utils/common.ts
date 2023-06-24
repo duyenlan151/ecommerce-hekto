@@ -29,11 +29,10 @@ export const getSymbolCurrency = (value: number | string, currencyCode: Currency
 };
 
 export const formatDateTime = (
-  date: number | Date | undefined | string,
+  date: number | Date | undefined,
   options: any = optionsDateFormats.default,
   lang: string = 'en'
 ) => {
-  // @ts-ignore
   return new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'fr-FR', options).format(date);
 };
 
