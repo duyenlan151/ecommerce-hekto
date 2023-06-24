@@ -12,7 +12,8 @@
       "@context/*": ["context/*"],
       "@layout/*": ["layout/*"],
       "@hooks/*": ["hooks/*"],
-      "@app/*": ["app/*"]
+      "@app/*": ["app/*"],
+      "@models/*": ["models/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

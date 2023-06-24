@@ -36,7 +36,7 @@ export default function ProductForm({ blog }: ProductFormProps) {
   useEffect(() => {
     (async () => {
       const result = await handleCategory({}, 'get', 'active');
-      setCategories(formatData(result?.data, 'name', '_id'));
+      setCategories(result && formatData(result?.data, 'name', '_id'));
     })();
   }, []);
 
@@ -74,8 +74,7 @@ export default function ProductForm({ blog }: ProductFormProps) {
     }, null);
 
     if (firstError) {
-      // @ts-ignore
-      setFocus(firstError);
+      setFocus(firstError as keyof typeof getValues);
     }
   }, [errors, setFocus]);
 

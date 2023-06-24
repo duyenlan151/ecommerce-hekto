@@ -3,7 +3,7 @@ import ProductList from '@components/Admin/Products/ProductList';
 import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
 import { Pagination } from '@components/Shared/Pagination';
 import { TabsListAdmin } from '@components/Shared/Tabs/TabsListAdmin';
-import { DataCategoryModel } from 'models';
+import { DataProductsModel } from 'models';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import axiosClient from 'services/api-services';
 
 // layout for page
 export interface ProductsPageProps {
-  data: DataCategoryModel;
+  data: DataProductsModel;
 }
 
 const tabs = [

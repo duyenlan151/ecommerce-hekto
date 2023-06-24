@@ -32,7 +32,7 @@ export const orderServices = {
     });
   },
 
-  removeCartItem(id): Promise<any> {
+  removeCartItem(id): Promise<OrderModel> {
     return axiosClient.put('/orders', {
       params: {
         id,
@@ -40,7 +40,7 @@ export const orderServices = {
     });
   },
 
-  updateCartItem(carts): Promise<any> {
+  updateCartItem(carts): Promise<OrderModel> {
     return axiosClient.put('/orders', {
       params: {
         carts,
