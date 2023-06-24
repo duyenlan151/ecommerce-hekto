@@ -1,6 +1,5 @@
 import { queryString } from '@utils/common';
 import { AxiosError, AxiosResponse } from 'axios';
-import { DataResCommonModel } from 'models';
 import axiosClient from 'services/api-services';
 import useSWRInfinite, { SWRInfiniteResponse } from 'swr/infinite';
 import { Config, GetRequest } from './swr.props';

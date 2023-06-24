@@ -11,6 +11,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/**
+ *
+ * @param params:
+ * @identifier : email identifier
+ * @url : url on email
+ * @message : message you want to send in email
+ * @subject : subject of email
+ * @fromEmail : email send
+ */
+
 export async function sendEmail(params) {
   const { identifier, url, message, subject, fromEmail } = params;
   const { host } = new URL(url);
