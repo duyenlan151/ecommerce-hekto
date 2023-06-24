@@ -10,12 +10,7 @@ const secret = process.env.NEXT_PUBLIC_SECRET;
 export default withNextCorsRoute(async (req, res) => {
   const { method } = req;
   await mongooseConnect();
-  // await isAdminRequest(req,res);
-
   const user = await getToken({ req, secret });
-  // if (!user) {
-  //   return res.status(401).json({ message: 'signin required' });
-  // }
   switch (method) {
     case 'GET': {
       if (req.query?.id) {
@@ -24,7 +19,6 @@ export default withNextCorsRoute(async (req, res) => {
         const queryId = id ? { _id: new ObjectId(String(id)) } : {};
         const querySlug = slug ? { slug } : {};
 
-        //
         const product = await Product.aggregate([
           {
             $match: {
@@ -42,7 +36,6 @@ export default withNextCorsRoute(async (req, res) => {
           },
         ]);
         res.status(200).json({ data: product[0] });
-        // res.status(200).json(await Product.findOne({ _id: req.query.id }));
       } else {
         const {
           page = 1,
@@ -82,8 +75,6 @@ export default withNextCorsRoute(async (req, res) => {
             : {}
           : { status: 'active' };
 
-        const categoryDOc = await Category.findOne({ slug: category });
-
         const ratingFilter =
           rating && rating !== 'all'
             ? {
@@ -103,6 +94,7 @@ export default withNextCorsRoute(async (req, res) => {
               }
             : {};
 
+        const categoryDOc = await Category.findOne({ slug: category });
         const categoryFilter =
           category && category !== 'all'
             ? {
@@ -110,7 +102,7 @@ export default withNextCorsRoute(async (req, res) => {
               }
             : {};
 
-        const order =
+        const order: Record<string, 1 | -1 | { $meta: 'textScore' }> =
           sort === 'lowest' ? { price: 1 } : sort === 'highest' ? { price: -1 } : { _id: -1 };
 
         // $match
@@ -159,10 +151,7 @@ export default withNextCorsRoute(async (req, res) => {
             },
           },
           {
-            //@ts-ignore
-            $sort: {
-              ...order,
-            },
+            $sort: order,
           },
         ])
           .skip(Number(limit) * (Number(page) - 1))
@@ -207,7 +196,6 @@ export default withNextCorsRoute(async (req, res) => {
         price,
         images,
         category,
-        // properties,
         short_description,
         discount_percentage,
         rating,
@@ -220,7 +208,6 @@ export default withNextCorsRoute(async (req, res) => {
         price,
         images,
         category,
-        // properties,
         short_description,
         discount_percentage,
         rating,
@@ -238,7 +225,6 @@ export default withNextCorsRoute(async (req, res) => {
         price,
         images,
         category,
-        // properties,
         _id,
         short_description,
         discount_percentage,
@@ -254,7 +240,6 @@ export default withNextCorsRoute(async (req, res) => {
           price,
           images,
           category,
-          // properties,
           short_description,
           discount_percentage,
           rating,
@@ -278,9 +263,4 @@ export default withNextCorsRoute(async (req, res) => {
       res.status(200).json({ products: 'categories' });
       break;
   }
-  // res.status(200).json({ products: 'categories' });
 });
-
-// export default async function handle(req, res) {
-
-// }

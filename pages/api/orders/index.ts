@@ -47,7 +47,6 @@ const handler = async (req, res) => {
             },
           ]);
 
-          // @ts-ignore
           if (!user?.isAdmin && order[0]?.user[0]?._id.toString() !== user?._id) {
             res.status(401).json({ message: 'Authorize error!!' });
             return;

@@ -58,6 +58,7 @@ export default withNextCorsRoute(async (req, res) => {
           });
         }
 
+        // Filter by Search keyword
         const searchFilter =
           search && search !== 'all'
             ? {
@@ -68,6 +69,7 @@ export default withNextCorsRoute(async (req, res) => {
               }
             : {};
 
+        // Filter by status blog
         const statusFilter = user?.isAdmin
           ? status !== 'all'
             ? { status }
@@ -75,26 +77,6 @@ export default withNextCorsRoute(async (req, res) => {
           : { status: 'active' };
 
         const categoryDOc = await Blog.findOne({ slug: category });
-
-        const ratingFilter =
-          rating && rating !== 'all'
-            ? {
-                rating: {
-                  $gte: Number(rating),
-                },
-              }
-            : {};
-
-        const priceFilter =
-          price && price !== 'all'
-            ? {
-                price: {
-                  $gte: Number(String(price).split('-')[0]),
-                  $lte: Number(String(price).split('-')[1]),
-                },
-              }
-            : {};
-
         const categoryFilter =
           category && category !== 'all'
             ? {
@@ -102,7 +84,7 @@ export default withNextCorsRoute(async (req, res) => {
               }
             : {};
 
-        const order =
+        const order: Record<string, 1 | -1 | { $meta: 'textScore' }> =
           sort === 'lowest' ? { price: 1 } : sort === 'highest' ? { price: -1 } : { _id: -1 };
 
         // $match
@@ -132,7 +114,7 @@ export default withNextCorsRoute(async (req, res) => {
               }
             : {};
 
-        const blog = await Blog.aggregate([
+        const blogs = await Blog.aggregate([
           {
             $match: {
               ...matchCategory,
@@ -151,24 +133,19 @@ export default withNextCorsRoute(async (req, res) => {
             },
           },
           {
-            //@ts-ignore
-            $sort: {
-              ...order,
-            },
+            $sort: order,
           },
         ])
           .skip(Number(limit) * (Number(page) - 1))
           .limit(Number(limit));
 
         const countBlogs = await Blog.countDocuments({
-          ...priceFilter,
-          ...ratingFilter,
           ...categoryFilter,
           ...statusFilter,
           ...searchFilter,
         });
         res.status(200).json({
-          data: blog,
+          data: blogs,
           totalDocs: countBlogs,
           limit,
           page,
