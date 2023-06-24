@@ -6,14 +6,16 @@ declare module 'next-auth' {
     accessToken?: Account.accessToken;
 
     user: {
-      _id: string;
-      isAdmin: boolean;
+      _id?: string;
+      isAdmin?: boolean;
+      email: string;
+      name: string;
     };
   }
 
   interface User {
-    _id: string;
-    isAdmin: boolean;
+    _id?: string;
+    isAdmin?: boolean;
   }
 }
 
