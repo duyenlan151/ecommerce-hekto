@@ -10,3 +10,4 @@ export * from './order';
 export * from './summary';
 export * from './users';
 export * from './category';
+export * from './users';

@@ -7,6 +7,7 @@ export interface UserModel {
   isAdmin: boolean;
   status: string;
   createdAt: string;
+  accessToken?: string;
 }
 
 export interface DataUsersModel extends DataResCommonModel<UserModel> {

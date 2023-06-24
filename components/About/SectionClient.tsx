@@ -2,7 +2,7 @@ import SwipperCommon from '@components/Shared/Swiper/SwiperCommon';
 import { useState } from 'react';
 import { Pagination } from 'swiper';
 
-import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
+import { SwiperClass, SwiperSlide } from 'swiper/react';
 
 export interface SectionClientProps {}
 

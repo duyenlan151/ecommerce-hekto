@@ -44,9 +44,10 @@ export function CheckBox({
           onChange={(e) => {
             if (externalOnChange) {
               externalOnChange(e);
-            } else {
-              onChange(e.target.checked);
+              return;
             }
+
+            onChange(e.target.checked);
           }}
           type="checkbox"
           {...rest}

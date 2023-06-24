@@ -1,9 +1,9 @@
 import clientPromise from '@lib/mongodb';
 import { mongooseConnect } from '@lib/mongoose';
+import User from '@models/Admin/user';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from 'models/Admin/user';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -21,32 +21,24 @@ export default NextAuth({
   secret: NEXT_PUBLIC_SECRET,
   callbacks: {
     async jwt({ token, user, account }) {
-      //@ts-ignore
       if (user?._id) token._id = user._id;
-      //@ts-ignore
       if (user?.isAdmin) token.isAdmin = user.isAdmin;
-      //@ts-ignore
 
       return token;
     },
     async session({ session, token }) {
       if (token?._id) {
-        //@ts-ignore
         session.user._id = token._id;
         const accessToken = jwt.sign(
           { _id: token?._id, isAdmin: token?.isAdmin },
-          //@ts-ignore
-          process.env.NEXT_PUBLIC_JWT_SECRET,
+          process.env.NEXT_PUBLIC_JWT_SECRET || '',
           {
             expiresIn: 10,
           }
         );
-        //@ts-ignore
         session.accessToken = accessToken;
       }
-      //@ts-ignore
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
-      //@ts-ignore
 
       return session;
     },
@@ -58,7 +50,7 @@ export default NextAuth({
       clientSecret: NEXT_PUBLIC_GOOGLE_SECRET,
     }),
     CredentialsProvider({
-      //@ts-ignore
+      // @ts-ignore
       async authorize(credentials) {
         await mongooseConnect();
         const user = await User.findOne({
