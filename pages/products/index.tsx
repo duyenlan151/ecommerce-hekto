@@ -1,11 +1,8 @@
 import ProductListPage from '@components/Product/ProductListPage';
 import LoadingCommon from '@components/Shared/Common/LoadingCommon';
 import { useRequestWithSWR } from '@hooks/index';
-import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
-import { productsService } from 'services';
-import axiosClient from 'services/api-services';
 
 type Props = {
   products: [];

@@ -1,5 +1,3 @@
-import { Layout } from '@components/Shared/Layout';
-import ListDetail from '@components/ListDetail';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { User } from '../../interfaces';

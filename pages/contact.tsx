@@ -1,7 +1,6 @@
-import { ICirlceCommon } from '@components/Shared/Common';
 import ContactForm from '@components/Contact/ContactForm';
 import { IContact } from '@components/Icons';
-import { Layout } from '@components/Shared';
+import { ICirlceCommon } from '@components/Shared/Common';
 
 const ContactPage = () => (
   <section className="bg-white lg:py-32 py-14 lg:px-0 px-4">

@@ -1,10 +1,8 @@
 import UsersForm from '@components/Admin/Users/UsersForm';
 import LayoutAdmin from '@components/Shared/Layout/LayoutAdmin';
-import { useOrders } from '@hooks/useOrders';
 import { UserModel } from 'models';
 import { GetServerSideProps } from 'next';
-import router, { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import router from 'next/router';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { usersService } from 'services/Admin';
 
